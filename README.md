@@ -62,6 +62,15 @@ cd site && python -m http.server        # preview the site at http://localhost:8
 
 Tests: `pip install pytest && python -m pytest tests` and `node --test tests/water_check.test.js`.
 
+## Porchlight Puzzle Press (Amazon KDP books)
+
+`kdp/` builds print-ready large-print puzzle books for Amazon KDP: interior PDF, wrap-around cover PDF, and a `listing.md` with the title, description, keywords, categories and price to paste into KDP. Four books are already built in `kdp/books/`. Start with [docs/kdp-playbook.md](docs/kdp-playbook.md).
+
+```bash
+python -m kdp list
+python -m kdp build --all --out kdp/books
+```
+
 ## Important
 
 - The starter water numbers in `data/cities.json` are **estimates** (marked `verified: false`). The Water Data agent checks each city against the utility's Consumer Confidence Report and records sources. The website labels unverified data as an estimate.
