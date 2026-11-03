@@ -4,7 +4,7 @@ from __future__ import annotations
 import random
 from pathlib import Path
 
-from . import compose, render, specs, sudoku, wordsearch
+from . import compose, products, render, specs, sudoku, wordsearch
 from .catalog import Book
 
 HOW_TO_SUDOKU = [
@@ -124,12 +124,20 @@ def build(book: Book, out_root: Path) -> dict:
         pages, puzzles = wordsearch_pages(book)
     elif book.kind == "compose":
         pages, puzzles = compose.book_pages(book)
+    elif book.kind in products.BUILDERS:
+        render.register_fonts()
+        pages, puzzles = products.BUILDERS[book.kind][0](book)
     else:
         raise ValueError(book.kind)
     interior = out / f"{book.id}-interior.pdf"
     page_count = render.render_interior(interior, book.trim, pages)
     cover = out / f"{book.id}-cover.pdf"
-    art = compose.cover_art(book) if book.kind == "compose" else cover_art(book)
+    if book.kind == "compose":
+        art = compose.cover_art(book)
+    elif book.kind in products.BUILDERS:
+        art = products.BUILDERS[book.kind][1](book)
+    else:
+        art = cover_art(book)
     cw, ch = render.render_cover(cover, book, page_count, art)
     info = {
         "id": book.id,
@@ -173,7 +181,7 @@ Copy each field below into the matching box on kdp.amazon.com → **Create** →
 | Primary audience | Not sexually explicit; reading age: {book.reading_age or 'leave blank'} |
 | Publishing rights | I own the copyright and I hold the necessary publishing rights |
 | Large print | {'Yes' if book.large_print else 'No'} |
-| Low-content book | No (it has real puzzle content, so it needs an ISBN; take KDP's free one) |
+| Low-content book | {'Yes (planners and journals qualify; no ISBN needed)' if book.low_content else "No (it has real content, so it needs an ISBN; take KDP's free one)"} |
 
 **Description** (paste into the description box; it accepts this HTML):
 
@@ -200,7 +208,7 @@ Copy each field below into the matching box on kdp.amazon.com → **Create** →
 | Paperback cover finish | Matte |
 | Manuscript | `{info['interior'].name}` |
 | Cover | Upload a cover you already have → `{info['cover'].name}` |
-| AI-generated content | Answer honestly. The puzzles and layout come from this repo's code, not from an AI image or text generator. If you rewrite text with an AI tool, say so. |
+| AI-generated content | {'**Yes, text.** The written text in this book was drafted with AI (Claude). KDP requires you to declare this.' if book.ai_text else "Answer honestly. The puzzles, art and layout come from this repo's code, not from an AI image or text generator. If you rewrite text with an AI tool, say so."} |
 
 Generated: **{info['pages']} pages**, {info['puzzles']} puzzles. Spine {info['spine']:.3f}\". Cover PDF {cw:.3f}\" x {ch:.3f}\" (includes 0.125\" bleed).
 

@@ -15,7 +15,7 @@ COL = [i % 9 for i in range(81)]
 BOX = [(i // 27) * 3 + (i % 9) // 3 for i in range(81)]
 
 # Target clue counts. Fewer clues = harder.
-LEVELS = {"easy": 40, "medium": 32, "hard": 27}
+LEVELS = {"easy": 40, "medium": 32, "hard": 27, "expert": 24}
 
 
 def _bits(x: int):

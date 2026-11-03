@@ -64,7 +64,7 @@ Tests: `pip install pytest && python -m pytest tests` and `node --test tests/wat
 
 ## Porchlight Puzzle Press (Amazon KDP books)
 
-`kdp/` builds print-ready large-print puzzle books for Amazon KDP: interior PDF, wrap-around cover PDF, and a `listing.md` with the title, description, keywords, categories and price to paste into KDP. 19 books are already built in `kdp/books/`, including a 15-book Christmas collection (`python -m kdp build --season christmas --out kdp/books`). Start with [docs/kdp-playbook.md](docs/kdp-playbook.md).
+`kdp/` builds print-ready large-print puzzle books for Amazon KDP: interior PDF, wrap-around cover PDF, and a `listing.md` with the title, description, keywords, categories and price to paste into KDP. 34 books are already built in `kdp/books/`: 15 different top-selling product types (`--season top`), a 15-book Christmas collection (`--season christmas`) and 4 starter puzzle books. Start with [docs/kdp-playbook.md](docs/kdp-playbook.md).
 
 ```bash
 python -m kdp list

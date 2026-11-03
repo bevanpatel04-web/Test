@@ -28,8 +28,10 @@ POOLS = {
     "BIBLE": xmas_words.BIBLE,
     "NOSTALGIA": xmas_words.NOSTALGIA,
     "WORLD": xmas_words.WORLD,
+    "GENERAL": wordsearch.THEMES,
 }
-QUOTE_SOURCES = {"QUOTES": xmas_words.QUOTES, "SCRIPTURE": xmas_words.SCRIPTURE}
+from .text_content import GENERAL_QUOTES  # noqa: E402
+QUOTE_SOURCES = {"QUOTES": xmas_words.QUOTES, "SCRIPTURE": xmas_words.SCRIPTURE, "GENERAL": GENERAL_QUOTES}
 
 KIND_NAMES = {
     "ws": "Word Search", "sudoku": "Sudoku", "sudoku6": "Mini Sudoku",
@@ -572,8 +574,9 @@ def book_pages(book) -> tuple[list, int]:
         pages.append(render.notes_page)
     pages += [render.section_page("Solutions"), render.blank_page]
     pages += solution_pages(items, book)
-    pages.append(render.text_page("Merry Christmas!", [
-        "Thank you for spending part of your holiday season with these puzzles.",
+    pages.append(render.text_page("Merry Christmas!" if book.season == "christmas" else "Thank You!", [
+        "Thank you for spending part of your holiday season with these puzzles." if book.season == "christmas"
+        else "Thank you for choosing this book. We hope you enjoyed the puzzles.",
         "If you enjoyed them, a short review on Amazon would mean a great deal. "
         "Reviews help other puzzle fans find this book.",
         f"Look for more books from {book.author}.",

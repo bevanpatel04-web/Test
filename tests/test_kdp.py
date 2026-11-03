@@ -116,3 +116,57 @@ def test_build_compose_book(tmp_path):
     info = build(book, tmp_path)
     assert info["pages"] % 2 == 0 and info["pages"] >= 24
     assert info["interior"].stat().st_size > 10_000 and info["cover"].stat().st_size > 10_000
+
+
+# ---------------------------------------------------------------- top-seller collection
+
+import datetime  # noqa: E402
+
+from kdp import products, products_art, products_puzzles  # noqa: E402
+from kdp.catalog_top import TOP_BOOKS  # noqa: E402
+
+
+@pytest.mark.parametrize("n", [3, 4, 5])
+def test_logic_case_has_one_solution(n):
+    case = products_puzzles.make_case(random.Random(n), 1, n)
+    assert products_puzzles._count(case.atoms, n) == 1
+    assert products_puzzles._consistent(case.atoms, case.weapon_of, case.place_of)
+    assert len(case.clues) == len(case.atoms)
+
+
+def test_crime_search_hides_message_in_leftovers():
+    cs = products_puzzles.make_crime_search(random.Random(4), 1)
+    used = {cell for p in cs.ws.placements for cell in p.cells()}
+    leftovers = "".join(cs.ws.grid[r][c] for r in range(15) for c in range(15) if (r, c) not in used)
+    assert leftovers.startswith(cs.message.replace(" ", ""))
+
+
+def test_planner_holidays_2027():
+    h = products.us_holidays(2027)
+    assert h[datetime.date(2027, 3, 28)] == "Easter"
+    assert h[datetime.date(2027, 11, 25)] == "Thanksgiving"
+    assert h[datetime.date(2027, 5, 31)] == "Memorial Day"
+
+
+def test_mosaic_pictures_rasterize():
+    for pic in products_art.PICTURES:
+        grid = products_art.rasterize(pic)
+        colors = {k for row in grid for k in row}
+        assert len(colors) >= 2, pic[0]
+
+
+def test_top_catalog_is_15_different_products():
+    assert len(TOP_BOOKS) == 15
+    assert len({b.kind for b in TOP_BOOKS}) == 15
+    for b in TOP_BOOKS:
+        assert len(b.keywords) <= 7 and all(len(k) <= 50 for k in b.keywords)
+        assert len(b.title) + len(b.subtitle) < 200
+        assert b.kind in products.BUILDERS or b.kind == "compose"
+
+
+def test_build_text_book(tmp_path):
+    from kdp.build import build
+    book = next(b for b in TOP_BOOKS if b.kind == "riddles")
+    info = build(book, tmp_path)
+    assert info["pages"] >= 24 and info["pages"] % 2 == 0
+    assert "AI-generated content | **Yes" in (tmp_path / book.id / "listing.md").read_text()

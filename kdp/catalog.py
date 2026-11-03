@@ -50,6 +50,8 @@ class Book:
     reading_age: str = ""
     copyright_extra: str = ""
     season: str = ""
+    low_content: bool = False      # journals/planners: KDP's low-content option, no ISBN needed
+    ai_text: bool = False          # written text was produced with AI: KDP requires disclosure
 
     @property
     def spine_text(self) -> str:
@@ -249,3 +251,7 @@ def get(book_id: str) -> Book:
 from .catalog_xmas import XMAS_BOOKS  # noqa: E402
 
 BOOKS += XMAS_BOOKS
+
+from .catalog_top import TOP_BOOKS  # noqa: E402
+
+BOOKS += TOP_BOOKS
