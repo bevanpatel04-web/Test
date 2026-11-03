@@ -1,0 +1,58 @@
+name: Approve agent work
+
+# Approve or reject items from the daily brief — from your phone via the GitHub app:
+# Actions → "Approve agent work" → Run workflow → type the task numbers.
+on:
+  workflow_dispatch:
+    inputs:
+      approve:
+        description: "Task numbers to approve, separated by spaces (e.g. 3 4 7)"
+        required: false
+        default: ""
+      reject:
+        description: "Task numbers to reject, separated by spaces"
+        required: false
+        default: ""
+      reason:
+        description: "Why you're rejecting (helps the CEO agent learn)"
+        required: false
+        default: ""
+
+concurrency:
+  group: company-state
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Apply decisions
+        env:
+          APPROVE: ${{ inputs.approve }}
+          REJECT: ${{ inputs.reject }}
+          REASON: ${{ inputs.reason }}
+        run: |
+          status=0
+          for id in $APPROVE; do python -m company approve "$id" || status=1; done
+          for id in $REJECT; do python -m company reject "$id" --reason "$REASON" || status=1; done
+          python -m company status
+          exit $status
+      - name: Save
+        if: always()
+        env:
+          APPROVE: ${{ inputs.approve }}
+          REJECT: ${{ inputs.reject }}
+        run: |
+          git config user.name "company-agents"
+          git config user.email "company-agents@users.noreply.github.com"
+          git add ops data site
+          git diff --cached --quiet || git commit -m "Founder decisions: approve [$APPROVE] reject [$REJECT]"
+          git push

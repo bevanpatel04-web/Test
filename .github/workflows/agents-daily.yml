@@ -1,0 +1,61 @@
+name: Daily agent run
+
+# Every morning: the CEO agent plans the day, worker agents do the work, and the
+# founder gets a GitHub issue with the daily brief (GitHub notifies you by email or app).
+on:
+  schedule:
+    - cron: "23 11 * * *" # 11:23 UTC daily (about 6:23am US Eastern)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no AI calls, no cost)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: company-state
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+
+      - name: Run the AI team
+        id: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          COMPANY_SITE_URL: ${{ vars.COMPANY_SITE_URL }}
+          COMPANY_MAX_TASKS: ${{ vars.COMPANY_MAX_TASKS }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python -m company run-daily --dry-run
+          elif [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY secret is not set. Running a dry run instead."
+            python -m company run-daily --dry-run
+          else
+            python -m company run-daily
+          fi
+          echo "brief=ops/briefs/$(date -u +%F).md" >> "$GITHUB_OUTPUT"
+
+      - name: Save the company's memory and outputs
+        run: |
+          git config user.name "company-agents"
+          git config user.email "company-agents@users.noreply.github.com"
+          git add ops data site
+          git diff --cached --quiet || git commit -m "Agents: daily run $(date -u +%F)"
+          git push
+
+      - name: Send the daily brief
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Daily brief $(date -u +%F)" --body-file "${{ steps.run.outputs.brief }}"

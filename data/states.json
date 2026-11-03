@@ -1,0 +1,16 @@
+{
+  "_about": "Fallback when a ZIP code is not in a covered metro. Rough statewide tendency based on generalized USGS groundwater hardness patterns. Hardness varies a lot within a state, so the tool labels these as low-confidence and tells users to check their utility's Consumer Confidence Report.",
+  "states": {
+    "AK": "soft", "AL": "moderate", "AR": "moderate", "AZ": "very_hard", "CA": "hard",
+    "CO": "moderate", "CT": "soft", "DC": "hard", "DE": "moderate", "FL": "hard",
+    "GA": "soft", "HI": "soft", "IA": "very_hard", "ID": "hard", "IL": "hard",
+    "IN": "very_hard", "KS": "very_hard", "KY": "hard", "LA": "moderate", "MA": "soft",
+    "MD": "moderate", "ME": "soft", "MI": "hard", "MN": "hard", "MO": "hard",
+    "MS": "moderate", "MT": "hard", "NC": "soft", "ND": "hard", "NE": "very_hard",
+    "NH": "soft", "NJ": "moderate", "NM": "very_hard", "NV": "very_hard", "NY": "moderate",
+    "OH": "hard", "OK": "hard", "OR": "soft", "PA": "moderate", "RI": "soft",
+    "SC": "soft", "SD": "very_hard", "TN": "moderate", "TX": "hard", "UT": "hard",
+    "VA": "moderate", "VT": "soft", "WA": "soft", "WI": "hard", "WV": "moderate",
+    "WY": "hard"
+  }
+}

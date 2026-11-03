@@ -1,0 +1,27 @@
+{
+  "_about": "Starter estimates for major US metro areas. hardness_mg_l is mg/L as calcium carbonate. EVERY entry starts verified=false: the Water Data agent checks each one against the utility's latest Consumer Confidence Report (CCR) and records source URLs before it is marked verified. Do not market these numbers as exact until verified.",
+  "cities": [
+    {"slug": "new-york-ny", "city": "New York", "state": "NY", "zip3": ["100", "101", "102", "103", "104", "112", "113", "114", "116"], "utility": "NYC Department of Environmental Protection", "hardness_mg_l": 30, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "los-angeles-ca", "city": "Los Angeles", "state": "CA", "zip3": ["900", "901"], "utility": "Los Angeles Department of Water and Power", "hardness_mg_l": 150, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "chicago-il", "city": "Chicago", "state": "IL", "zip3": ["606"], "utility": "Chicago Department of Water Management", "hardness_mg_l": 145, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "houston-tx", "city": "Houston", "state": "TX", "zip3": ["770"], "utility": "Houston Public Works", "hardness_mg_l": 100, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "phoenix-az", "city": "Phoenix", "state": "AZ", "zip3": ["850"], "utility": "City of Phoenix Water Services", "hardness_mg_l": 250, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "philadelphia-pa", "city": "Philadelphia", "state": "PA", "zip3": ["191"], "utility": "Philadelphia Water Department", "hardness_mg_l": 150, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "san-antonio-tx", "city": "San Antonio", "state": "TX", "zip3": ["782"], "utility": "San Antonio Water System", "hardness_mg_l": 250, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "san-diego-ca", "city": "San Diego", "state": "CA", "zip3": ["921"], "utility": "City of San Diego Public Utilities", "hardness_mg_l": 250, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "dallas-tx", "city": "Dallas", "state": "TX", "zip3": ["752"], "utility": "Dallas Water Utilities", "hardness_mg_l": 120, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "austin-tx", "city": "Austin", "state": "TX", "zip3": ["787"], "utility": "Austin Water", "hardness_mg_l": 140, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "denver-co", "city": "Denver", "state": "CO", "zip3": ["802"], "utility": "Denver Water", "hardness_mg_l": 70, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "boston-ma", "city": "Boston", "state": "MA", "zip3": ["021", "022"], "utility": "Massachusetts Water Resources Authority", "hardness_mg_l": 15, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "seattle-wa", "city": "Seattle", "state": "WA", "zip3": ["981"], "utility": "Seattle Public Utilities", "hardness_mg_l": 20, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "portland-or", "city": "Portland", "state": "OR", "zip3": ["972"], "utility": "Portland Water Bureau", "hardness_mg_l": 8, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "san-francisco-ca", "city": "San Francisco", "state": "CA", "zip3": ["941"], "utility": "San Francisco Public Utilities Commission", "hardness_mg_l": 30, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "las-vegas-nv", "city": "Las Vegas", "state": "NV", "zip3": ["891"], "utility": "Las Vegas Valley Water District", "hardness_mg_l": 280, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "atlanta-ga", "city": "Atlanta", "state": "GA", "zip3": ["303"], "utility": "Atlanta Department of Watershed Management", "hardness_mg_l": 20, "disinfectant": "chlorine", "verified": false, "sources": []},
+    {"slug": "miami-fl", "city": "Miami", "state": "FL", "zip3": ["331"], "utility": "Miami-Dade Water and Sewer Department", "hardness_mg_l": 90, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "tampa-fl", "city": "Tampa", "state": "FL", "zip3": ["336"], "utility": "City of Tampa Water Department", "hardness_mg_l": 150, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "minneapolis-mn", "city": "Minneapolis", "state": "MN", "zip3": ["554"], "utility": "Minneapolis Water Treatment and Distribution", "hardness_mg_l": 90, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "washington-dc", "city": "Washington", "state": "DC", "zip3": ["200"], "utility": "DC Water", "hardness_mg_l": 130, "disinfectant": "chloramine", "verified": false, "sources": []},
+    {"slug": "salt-lake-city-ut", "city": "Salt Lake City", "state": "UT", "zip3": ["841"], "utility": "Salt Lake City Public Utilities", "hardness_mg_l": 150, "disinfectant": "chlorine", "verified": false, "sources": []}
+  ]
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water Skin Check</title>
+  <meta name="description" content="Enter your ZIP code to see your tap water's hardness and disinfectant, and how gentle your shower is on sensitive, eczema-prone skin.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header><a class="brand" id="brand" href="./">Mildwell</a></header>
+
+    <h1>Is your water hard on your skin?</h1>
+    <p class="lede">Enter your ZIP code to see your water's hardness and disinfectant, and what you can do about them. Built by someone with eczema, for people with sensitive skin.</p>
+
+    <div class="card">
+      <form class="zip" id="zipForm" autocomplete="off">
+        <input type="text" id="zip" inputmode="numeric" maxlength="5" placeholder="ZIP code, e.g. 85004" aria-label="ZIP code" required>
+        <button type="submit">Check my water</button>
+      </form>
+      <p class="error hidden" id="zipError"></p>
+    </div>
+
+    <section id="result" class="hidden" aria-live="polite">
+      <div class="card">
+        <div class="score">
+          <div class="num" id="scoreNum">–</div>
+          <div>
+            <div class="label" id="scoreLabel"></div>
+            <div class="fine">Water irritation potential, 0–10</div>
+          </div>
+        </div>
+        <div class="facts">
+          <div class="fact"><div class="k">Area</div><div class="v" id="area"></div></div>
+          <div class="fact"><div class="k">Hardness</div><div class="v" id="hardness"></div></div>
+          <div class="fact"><div class="k">Disinfectant</div><div class="v" id="disinfectant"></div></div>
+        </div>
+        <p class="fine" id="confidence"></p>
+      </div>
+
+      <div class="card">
+        <h2>What you can do</h2>
+        <ul class="recs" id="recs"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Get your free shower routine for sensitive skin</h2>
+        <p>A one-page guide plus updates when we verify your city's water data.</p>
+        <form class="zip" id="signupForm" method="post" target="_blank">
+          <input type="email" name="email" id="email" placeholder="you@example.com" aria-label="Email" required>
+          <input type="hidden" name="zip" id="signupZip">
+          <button type="submit">Send it to me</button>
+        </form>
+        <p class="fine hidden" id="signupMsg"></p>
+      </div>
+    </section>
+
+    <div class="card fine">
+      <strong>Important:</strong> This tool gives general information about water, not medical advice. It doesn't diagnose, treat or prevent eczema or any other condition. Water is only one possible trigger. Talk to a dermatologist about your skin.
+      Water data comes from public utility reports and regional estimates. Your utility's annual Consumer Confidence Report has the exact figures.
+    </div>
+  </div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
