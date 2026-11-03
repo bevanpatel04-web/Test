@@ -18,6 +18,7 @@ def main(argv: list[str] | None = None) -> int:
     b = sub.add_parser("build", help="build interior, cover and listing")
     b.add_argument("ids", nargs="*")
     b.add_argument("--all", action="store_true")
+    b.add_argument("--season", help="build every book for a season, e.g. christmas")
     b.add_argument("--out", default="kdp/out")
     args = ap.parse_args(argv)
 
@@ -26,7 +27,12 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{bk.id:28} {bk.trim.label:12} ${bk.price:<6.2f} {bk.title}")
         return 0
 
-    books = BOOKS if args.all else [get(i) for i in args.ids]
+    if args.all:
+        books = BOOKS
+    elif args.season:
+        books = [bk for bk in BOOKS if bk.season == args.season]
+    else:
+        books = [get(i) for i in args.ids]
     if not books:
         ap.error("give book ids or --all")
     out = Path(args.out)

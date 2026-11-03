@@ -41,6 +41,15 @@ class Book:
     wordsearch_count: int = 0
     large_print: bool = True
     author: str = PEN_NAME
+    # mixed-puzzle books (kind="compose"); see kdp/compose.py
+    plan: list = field(default_factory=list)
+    interleave: bool = False
+    advent: bool = False
+    cover_art: str = ""
+    decor: str = ""                 # "snow" adds snowflakes to the cover
+    reading_age: str = ""
+    copyright_extra: str = ""
+    season: str = ""
 
     @property
     def spine_text(self) -> str:
@@ -235,3 +244,8 @@ def get(book_id: str) -> Book:
         if b.id == book_id:
             return b
     raise KeyError(f"unknown book id {book_id!r}; run `python -m kdp list`")
+
+
+from .catalog_xmas import XMAS_BOOKS  # noqa: E402
+
+BOOKS += XMAS_BOOKS

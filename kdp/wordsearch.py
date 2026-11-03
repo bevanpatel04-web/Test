@@ -52,7 +52,16 @@ def make_puzzle(
     dirs = dirs or DIRS_ALL
     pool = [w.upper() for w in words if 3 <= len(_key(w)) <= size]
     for _attempt in range(50):
-        chosen = rng.sample(pool, min(count, len(pool)))
+        shuffled = rng.sample(pool, len(pool))
+        chosen: list[str] = []
+        for w in shuffled:
+            k = _key(w)
+            # a word hidden inside another (SNOW in PACKING SNOW) would appear twice
+            if any(k in _key(o) or _key(o) in k or k[::-1] in _key(o) for o in chosen):
+                continue
+            chosen.append(w)
+            if len(chosen) == count:
+                break
         chosen.sort(key=lambda w: -len(_key(w)))
         grid = [["" for _ in range(size)] for _ in range(size)]
         placements: list[Placement] = []

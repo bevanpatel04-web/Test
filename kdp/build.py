@@ -4,7 +4,7 @@ from __future__ import annotations
 import random
 from pathlib import Path
 
-from . import render, specs, sudoku, wordsearch
+from . import compose, render, specs, sudoku, wordsearch
 from .catalog import Book
 
 HOW_TO_SUDOKU = [
@@ -122,12 +122,15 @@ def build(book: Book, out_root: Path) -> dict:
         pages, puzzles = sudoku_pages(book)
     elif book.kind == "wordsearch":
         pages, puzzles = wordsearch_pages(book)
+    elif book.kind == "compose":
+        pages, puzzles = compose.book_pages(book)
     else:
         raise ValueError(book.kind)
     interior = out / f"{book.id}-interior.pdf"
     page_count = render.render_interior(interior, book.trim, pages)
     cover = out / f"{book.id}-cover.pdf"
-    cw, ch = render.render_cover(cover, book, page_count, cover_art(book))
+    art = compose.cover_art(book) if book.kind == "compose" else cover_art(book)
+    cw, ch = render.render_cover(cover, book, page_count, art)
     info = {
         "id": book.id,
         "pages": page_count,
@@ -167,7 +170,7 @@ Copy each field below into the matching box on kdp.amazon.com → **Create** →
 | Subtitle | {(book.title.split(':', 1)[1].strip() + ' - ') if ':' in book.title else ''}{book.subtitle} |
 | Series | {book.series} (volume {book.volume}) |
 | Author | {book.author} |
-| Primary audience | Not sexually explicit; reading age: leave blank or 18+ |
+| Primary audience | Not sexually explicit; reading age: {book.reading_age or 'leave blank'} |
 | Publishing rights | I own the copyright and I hold the necessary publishing rights |
 | Large print | {'Yes' if book.large_print else 'No'} |
 | Low-content book | No (it has real puzzle content, so it needs an ISBN; take KDP's free one) |

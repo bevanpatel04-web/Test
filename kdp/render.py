@@ -311,6 +311,37 @@ def wordsearch_solutions_page(items: list[tuple[int, object]], cols: int = 2, ro
 
 # ---------------------------------------------------------------- cover
 
+def _mix(color, other, t: float):
+    return Color(color.red + (other.red - color.red) * t,
+                 color.green + (other.green - color.green) * t,
+                 color.blue + (other.blue - color.blue) * t)
+
+
+def snowflake(c: Canvas, x: float, y: float, r: float) -> None:
+    import math
+    for k in range(6):
+        a = math.pi / 3 * k
+        ex, ey = x + r * math.cos(a), y + r * math.sin(a)
+        c.line(x, y, ex, ey)
+        for f in (0.55,):
+            bx, by = x + r * f * math.cos(a), y + r * f * math.sin(a)
+            for da in (0.6, -0.6):
+                c.line(bx, by, bx + r * 0.3 * math.cos(a + da), by + r * 0.3 * math.sin(a + da))
+
+
+def draw_snow(c: Canvas, W: float, H: float, base, seed: int) -> None:
+    """Scatter soft snowflakes over the background (solid blended colour, no transparency)."""
+    import random as _r
+    rng = _r.Random(seed)
+    c.setLineCap(1)
+    for _ in range(int(W * H / (INCH * INCH) * 0.9)):
+        r = rng.uniform(0.08, 0.32) * INCH
+        c.setStrokeColor(_mix(base, white, rng.uniform(0.10, 0.22)))
+        c.setLineWidth(max(0.8, r * 0.09))
+        snowflake(c, rng.uniform(0, W), rng.uniform(0, H), r)
+    c.setLineCap(0)
+
+
 def render_cover(path: Path, book, pages: int, art: Callable[[Canvas, float, float, float], None]) -> tuple[float, float]:
     """Full-wrap paperback cover with bleed. `art(c, x, y, size)` draws the front illustration."""
     register_fonts()
@@ -329,6 +360,8 @@ def render_cover(path: Path, book, pages: int, art: Callable[[Canvas, float, flo
     # background
     c.setFillColor(primary)
     c.rect(0, 0, W, H, stroke=0, fill=1)
+    if getattr(book, "decor", "") == "snow":
+        draw_snow(c, W, H, primary, book.seed)
 
     # ---- front cover
     fx0 = bleed + tw + spine

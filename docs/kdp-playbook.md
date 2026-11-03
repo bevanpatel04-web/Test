@@ -15,6 +15,38 @@ Files are in `kdp/books/<book-id>/`. Each folder has `listing.md`, which tells y
 
 Every Sudoku is computer-checked to have exactly one solution, and every word search word appears exactly once. All fonts are embedded (KDP rejects PDFs without embedded fonts).
 
+## Christmas 2026 collection (15 books)
+
+Built from what was on Amazon's Puzzles & Games best-seller lists on 3 Nov 2026: Christmas word searches, themed large-print books for seniors, advent puzzle books, activity books and kids' books. All are in the **Porchlight Christmas Puzzles** series. Each is priced at $9.99 or more, so it earns KDP's 60% royalty.
+
+| # | Book | Pages | Price | Est. royalty |
+|---|---|---|---|---|
+| 1 | Christmas Word Search for Adults: 50 Large Print Puzzles | 70 | $9.99 | $3.15 |
+| 2 | Christmas Advent Puzzle Book: 24 Days of Holiday Puzzles | 124 | $12.99 | $4.68 |
+| 3 | Christmas Activity Book for Adults (100 puzzles, 5 types) | 128 | $9.99 | $2.81 |
+| 4 | Christmas Activity Book for Kids Ages 6-10 | 130 | $9.99 | $2.78 |
+| 5 | Christmas Word Search for Kids Ages 6-10 | 58 | $9.99 | $3.15 |
+| 6 | Nostalgic Christmas Word Search for Seniors | 80 | $12.99 | $4.95 |
+| 7 | Christmas Sudoku for Adults: 200 Large Print Puzzles | 142 | $9.99 | $2.58 |
+| 8 | Pocket Christmas Puzzles (6 x 9 stocking stuffer) | 130 | $9.99 | $3.43 |
+| 9 | Christmas Bible Word Search: Large Print | 54 | $9.99 | $3.15 |
+| 10 | Christmas Cryptograms: 60 Large Print Puzzles | 64 | $9.99 | $3.15 |
+| 11 | Christmas Word Scramble for Adults: 50 Large Print Puzzles | 66 | $9.99 | $3.15 |
+| 12 | Christmas Around the World Word Search | 70 | $9.99 | $3.15 |
+| 13 | Christmas Mazes for Kids Ages 5-9 | 108 | $9.99 | $3.15 |
+| 14 | Christmas Sudoku for Kids Ages 7-12 | 84 | $9.99 | $3.15 |
+| 15 | Christmas Mazes for Adults: 60 Large Print Labyrinths | 82 | $9.99 | $3.15 |
+
+Files: `kdp/books/xmas-*/`. Rebuild them all with `python -m kdp build --season christmas --out kdp/books`.
+
+**Timing is everything for these.** Christmas sales fall off sharply after about December 20 (the last shipping days), so every day a book sits unpublished is lost selling time.
+
+- Publish in the order of the table: best sellers first, and the **Advent book (#2) as early as possible**, because buyers want it before December 1.
+- KDP can limit how many new titles an account creates per day. Publish a few a day (for example 3 per day over 5 days) rather than all at once.
+- Review takes up to 72 hours. Order one proof of the first book while you upload the rest.
+- Start Amazon ads as each book goes live and **raise budgets in early December**. Turn them down after about Dec 20 and off on Dec 26.
+- After Christmas, leave the books up. They are undated, so they sell again next season and keep their reviews.
+
 ## Publish a book (about 15 minutes each)
 
 1. Make a free account at **kdp.amazon.com**. Fill in the tax interview and bank details: you can't get paid without them.
