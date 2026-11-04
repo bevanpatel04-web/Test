@@ -1,0 +1,17 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "m1": { "type": "message", "settings": { "text": "Free US shipping on every order", "link": "" } },
+        "m2": { "type": "message", "settings": { "text": "Buy 2, save 15%, applied automatically", "link": "" } },
+        "m3": { "type": "message", "settings": { "text": "Order by Dec 12 for Christmas delivery", "link": "" } }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    },
+    "header": { "type": "header", "settings": { "menu": "main-menu", "sticky": true } }
+  },
+  "order": ["announcement", "header"]
+}

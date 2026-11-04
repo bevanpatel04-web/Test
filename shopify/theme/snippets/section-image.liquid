@@ -1,0 +1,8 @@
+{%- comment -%} Uploaded image if set, otherwise a fallback image URL. Accepts: image, fallback_url, alt, sizes, class, loading {%- endcomment -%}
+{%- if image != blank -%}
+  {{ image | image_url: width: 2400 | image_tag: widths: '600, 900, 1200, 1600, 2000, 2400', sizes: sizes, alt: image.alt | default: alt, class: class, loading: loading }}
+{%- elsif fallback_url != blank -%}
+  <img src="{{ fallback_url }}&w=1600" srcset="{{ fallback_url }}&w=800 800w, {{ fallback_url }}&w=1200 1200w, {{ fallback_url }}&w=1600 1600w, {{ fallback_url }}&w=2200 2200w" sizes="{{ sizes }}" alt="{{ alt | escape }}" class="{{ class }}" loading="{{ loading | default: 'lazy' }}" width="1600" height="1067">
+{%- else -%}
+  {{ 'lifestyle-1' | placeholder_svg_tag: class }}
+{%- endif -%}

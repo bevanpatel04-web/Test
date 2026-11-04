@@ -1,0 +1,40 @@
+<header class="header{% if section.settings.sticky %} header--sticky{% endif %}">
+  <div class="container header__inner">
+    <button type="button" class="icon-btn header__menu-btn" data-menu-toggle aria-controls="MobileMenu" aria-expanded="false" aria-label="Menu">{% render 'icon', icon: 'menu' %}</button>
+    <nav class="header__nav" aria-label="Main">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+      {%- endfor -%}
+    </nav>
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 480 | image_tag: alt: shop.name, style: 'width: var(--logo-width)', widths: '120, 240, 480' }}
+      {%- else -%}
+        <span class="wordmark">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+    <div class="header__icons">
+      <a href="{{ routes.search_url }}" class="icon-btn" aria-label="Search">{% render 'icon', icon: 'search' %}</a>
+      <a href="{{ routes.cart_url }}" class="icon-btn cart-btn" data-cart-open aria-label="Open bag">
+        {% render 'icon', icon: 'bag' %}
+        <span class="cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="MobileMenu" hidden aria-label="Mobile">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title | escape }}</a>
+    {%- endfor -%}
+  </nav>
+</header>
+<style>:root { --logo-width: {{ settings.logo_width }}px; }</style>
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "sticky", "label": "Stick to top when scrolling", "default": true }
+  ]
+}
+{% endschema %}

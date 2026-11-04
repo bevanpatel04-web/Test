@@ -1,0 +1,20 @@
+{%- if section.blocks.size > 0 -%}
+<section class="section">
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <div class="section__head section__head--center"><h2 class="h2">{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+    {%- for block in section.blocks -%}
+      {% render block %}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Apps (e.g. reviews)",
+  "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "What customers say" }],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Apps (e.g. reviews)" }]
+}
+{% endschema %}
