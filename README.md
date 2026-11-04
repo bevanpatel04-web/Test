@@ -1,5 +1,8 @@
 # Mildwell — an AI-run water and skin business
 
+> **Also in this repo: Snug & Co. dropshipping store** (`store/`). It has five trending cozy winter products, a plan for reaching $1,000/week profit (`docs/dropshipping-plan.md`), and a playbook for using ChatGPT as your ad manager (`docs/chatgpt-ad-manager.md`). Preview it with `cd store && python -m http.server`.
+
+
 **Mildwell** (working name) helps people with eczema and sensitive skin understand their tap water and choose gentler showers. This repo holds the whole company:
 
 | Part | Folder | What it does |
