@@ -1,0 +1,52 @@
+{%- liquid
+  assign needed = settings.bundle_min_qty | minus: cart.item_count
+-%}
+{%- if cart.item_count == 0 -%}
+  <div class="drawer__empty">
+    <p class="h3">Your bag is empty</p>
+    <p class="muted">Cozy things are waiting.</p>
+    <a href="{{ routes.all_products_collection_url }}" class="btn">Shop all</a>
+  </div>
+{%- else -%}
+  {%- if settings.bundle_offer_enabled -%}
+    <div class="offer-bar">
+      {%- if needed > 0 -%}
+        <p>Add <strong>{{ needed }} more item{% if needed > 1 %}s{% endif %}</strong> to get <strong>{{ settings.bundle_offer_text }}</strong> your order</p>
+      {%- else -%}
+        <p>🎉 You've unlocked <strong>{{ settings.bundle_offer_text }}</strong>. It's applied at checkout.</p>
+      {%- endif -%}
+      {%- assign pct = cart.item_count | times: 100 | divided_by: settings.bundle_min_qty | at_most: 100 -%}
+      <div class="offer-bar__track"><span style="width: {{ pct }}%"></span></div>
+    </div>
+  {%- endif -%}
+  <ul class="line-items">
+    {%- for item in cart.items -%}
+      <li class="line-item">
+        <a href="{{ item.url }}" class="line-item__img">
+          {%- if item.image -%}{{ item.image | image_url: width: 180 | image_tag: loading: 'lazy', alt: item.title }}{%- endif -%}
+        </a>
+        <div class="line-item__info">
+          <a href="{{ item.url }}" class="line-item__title">{{ item.product.title | escape }}</a>
+          {%- unless item.product.has_only_default_variant -%}<p class="muted small">{{ item.variant.title }}</p>{%- endunless -%}
+          <div class="qty" data-line="{{ forloop.index }}">
+            <button type="button" data-qty-change="{{ item.quantity | minus: 1 }}" aria-label="Decrease quantity">{% render 'icon', icon: 'minus' %}</button>
+            <span>{{ item.quantity }}</span>
+            <button type="button" data-qty-change="{{ item.quantity | plus: 1 }}" aria-label="Increase quantity">{% render 'icon', icon: 'plus' %}</button>
+          </div>
+        </div>
+        <div class="line-item__price">
+          {{ item.final_line_price | money }}
+          {%- if item.original_line_price > item.final_line_price -%}<s class="muted small">{{ item.original_line_price | money }}</s>{%- endif -%}
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <div class="drawer__foot">
+    <div class="drawer__total"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+    <p class="muted small">{{ settings.shipping_estimate }}. Discounts applied at checkout.</p>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="btn btn--full btn--large">Checkout securely</button>
+    </form>
+    {%- if additional_checkout_buttons -%}<div class="drawer__wallets">{{ content_for_additional_checkout_buttons }}</div>{%- endif -%}
+  </div>
+{%- endif -%}

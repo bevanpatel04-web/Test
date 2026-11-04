@@ -1,0 +1,12 @@
+<div class="drawer" id="CartDrawer" aria-hidden="true">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your bag">
+    <header class="drawer__head">
+      <h2 class="drawer__title">Your bag</h2>
+      <button type="button" class="icon-btn" data-drawer-close aria-label="Close">{% render 'icon', icon: 'close' %}</button>
+    </header>
+    <div class="drawer__body" data-cart-body>
+      {% render 'cart-drawer-items' %}
+    </div>
+  </aside>
+</div>

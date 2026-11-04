@@ -1,0 +1,20 @@
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <h1 class="h1">{{ page.title | escape }}</h1>
+    <div class="rte">{{ page.content }}</div>
+    {%- form 'contact', class: 'contact-form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="notice">Thanks for reaching out. We reply within 24 hours.</p>
+      {%- endif -%}
+      {{ form.errors | default_errors }}
+      <label>Name<input type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}"></label>
+      <label>Email<input type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}"></label>
+      <label>Order number (optional)<input type="text" name="contact[order]"></label>
+      <label>Message<textarea name="contact[body]" rows="6" required>{{ form.body }}</textarea></label>
+      <button type="submit" class="btn">Send message</button>
+    {%- endform -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Contact form", "settings": [] }
+{% endschema %}

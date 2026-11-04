@@ -1,0 +1,38 @@
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <h1 class="h1">Your bag</h1>
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" class="cart-page">
+        <ul class="line-items">
+          {%- for item in cart.items -%}
+            <li class="line-item">
+              <a href="{{ item.url }}" class="line-item__img">{%- if item.image -%}{{ item.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: item.title }}{%- endif -%}</a>
+              <div class="line-item__info">
+                <a href="{{ item.url }}" class="line-item__title">{{ item.product.title | escape }}</a>
+                {%- unless item.product.has_only_default_variant -%}<p class="muted small">{{ item.variant.title }}</p>{%- endunless -%}
+                <label class="visually-hidden" for="Qty-{{ forloop.index }}">Quantity</label>
+                <input class="qty-input" id="Qty-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                <a href="{{ item.url_to_remove }}" class="muted small">Remove</a>
+              </div>
+              <div class="line-item__price">{{ item.final_line_price | money }}</div>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="cart-page__foot">
+          <div class="drawer__total"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+          <p class="muted small">{{ settings.shipping_estimate }}. Discounts applied at checkout.</p>
+          <div class="cart-page__actions">
+            <button type="submit" name="update" class="btn btn--ghost">Update</button>
+            <button type="submit" name="checkout" class="btn btn--large">Checkout securely</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <p class="muted">Your bag is empty.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn">Continue shopping</a>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

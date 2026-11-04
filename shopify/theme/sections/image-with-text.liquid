@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="container split{% if section.settings.reverse %} split--reverse{% endif %}">
+    <div class="split__media">
+      {% render 'section-image', image: section.settings.image, fallback_url: section.settings.fallback_url, alt: section.settings.heading, sizes: '(min-width: 990px) 50vw, 100vw', class: 'split__img' %}
+    </div>
+    <div class="split__content">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "fallback_url", "label": "Image URL (used when no image is uploaded)" },
+    { "type": "checkbox", "id": "reverse", "label": "Image on right", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Small text above heading", "default": "Our story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for the slow, cozy hours" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tell your story here.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Image with text" }]
+}
+{% endschema %}

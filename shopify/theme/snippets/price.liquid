@@ -1,0 +1,18 @@
+{%- comment -%} Renders price, compare-at price and savings badge. Accepts: product, variant (optional), show_badge {%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant
+  assign on_sale = false
+  if target.compare_at_price > target.price
+    assign on_sale = true
+  endif
+-%}
+<div class="price{% if on_sale %} price--sale{% endif %}" data-price>
+  <span class="price__current">{{ target.price | money }}</span>
+  {%- if on_sale -%}
+    <s class="price__compare">{{ target.compare_at_price | money }}</s>
+    {%- if show_badge -%}
+      {%- assign savings = target.compare_at_price | minus: target.price -%}
+      <span class="price__badge">Save {{ savings | money_without_trailing_zeros }}</span>
+    {%- endif -%}
+  {%- endif -%}
+</div>

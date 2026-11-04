@@ -1,0 +1,18 @@
+<section class="section section--tight">
+  <div class="container">
+    <h1 class="h1">Collections</h1>
+    <div class="tiles">
+      {%- for collection in collections -%}
+        <a class="tile" href="{{ collection.url }}">
+          <div class="tile__media">
+            {%- if collection.featured_image -%}{{ collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: collection.title }}{%- else -%}{{ 'collection-1' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+          <p class="tile__label">{{ collection.title | escape }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

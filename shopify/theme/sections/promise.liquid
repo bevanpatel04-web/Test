@@ -1,0 +1,38 @@
+<section class="section section--dark">
+  <div class="container">
+    <div class="section__head section__head--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow eyebrow--light">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="promise">
+      {%- for block in section.blocks -%}
+        <div class="promise__item" {{ block.shopify_attributes }}>
+          <span class="promise__num">{{ forloop.index | prepend: '0' }}</span>
+          <h3 class="h3">{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Brand promise",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text above heading", "default": "The Snug promise" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gifting, minus the stress" }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Promise",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Promise" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Describe it." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Brand promise", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}

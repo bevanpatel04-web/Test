@@ -1,0 +1,30 @@
+{%- liquid
+  assign heading_font = settings.type_heading_font
+  assign heading_italic = heading_font | font_modify: 'style', 'italic'
+  assign body_font = settings.type_body_font
+  assign body_bold = body_font | font_modify: 'weight', 'bold'
+  assign body_semibold = body_font | font_modify: 'weight', '600'
+-%}
+<style>
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {% if heading_italic %}{{ heading_italic | font_face: font_display: 'swap' }}{% endif %}
+  {{ body_font | font_face: font_display: 'swap' }}
+  {% if body_bold %}{{ body_bold | font_face: font_display: 'swap' }}{% endif %}
+  {% if body_semibold %}{{ body_semibold | font_face: font_display: 'swap' }}{% endif %}
+  :root {
+    --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --font-heading-weight: {{ heading_font.weight }};
+    --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --font-body-weight: {{ body_font.weight }};
+    --color-bg: {{ settings.color_background }};
+    --color-surface: {{ settings.color_surface }};
+    --color-text: {{ settings.color_text }};
+    --color-muted: {{ settings.color_muted }};
+    --color-border: {{ settings.color_border }};
+    --color-button: {{ settings.color_button }};
+    --color-button-text: {{ settings.color_button_text }};
+    --color-sale: {{ settings.color_sale }};
+    --color-dark: {{ settings.color_dark }};
+    --radius: {{ settings.radius }}px;
+  }
+</style>

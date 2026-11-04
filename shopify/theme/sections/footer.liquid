@@ -1,0 +1,58 @@
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <p class="wordmark wordmark--light">{{ shop.name }}</p>
+      <p class="footer__about">{{ section.settings.about }}</p>
+      <div class="footer__social">
+        {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}">Instagram</a>{%- endif -%}
+        {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}">TikTok</a>{%- endif -%}
+        {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}">Facebook</a>{%- endif -%}
+        {%- if settings.social_pinterest != blank -%}<a href="{{ settings.social_pinterest }}">Pinterest</a>{%- endif -%}
+      </div>
+    </div>
+    <div>
+      <p class="footer__heading">Shop</p>
+      {%- for link in section.settings.menu_shop.links -%}<a href="{{ link.url }}">{{ link.title | escape }}</a>{%- endfor -%}
+    </div>
+    <div>
+      <p class="footer__heading">Help</p>
+      {%- for link in section.settings.menu_help.links -%}<a href="{{ link.url }}">{{ link.title | escape }}</a>{%- endfor -%}
+      {%- for policy in shop.policies -%}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{%- endfor -%}
+    </div>
+    <div class="footer__news">
+      <p class="footer__heading">{{ section.settings.newsletter_heading }}</p>
+      <p class="footer__about">{{ section.settings.newsletter_text }}</p>
+      {%- form 'customer', class: 'news-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        {%- if form.posted_successfully? -%}
+          <p class="news-form__ok">Thanks! Check your inbox.</p>
+        {%- else -%}
+          <label class="visually-hidden" for="FooterEmail">Email</label>
+          <input id="FooterEmail" type="email" name="contact[email]" placeholder="Email address" required autocomplete="email">
+          <button type="submit" class="btn btn--light">Join</button>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+    {%- if shop.enabled_payment_types.size > 0 -%}
+      <ul class="payment-icons">
+        {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag }}</li>{%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    { "type": "textarea", "id": "about", "label": "About text", "default": "Small comforts for cold days. Thoughtful winter gifts for the people (and pets) you love." },
+    { "type": "link_list", "id": "menu_shop", "label": "Shop menu", "default": "main-menu" },
+    { "type": "link_list", "id": "menu_help", "label": "Help menu", "default": "footer" },
+    { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Get 10% off your first order" },
+    { "type": "text", "id": "newsletter_text", "label": "Newsletter text", "default": "Plus early access to gift drops. No spam, ever." }
+  ]
+}
+{% endschema %}

@@ -4,7 +4,7 @@ ChatGPT makes the decisions and writes the ads. **You click the buttons** in Met
 
 ## Step 1: Create a ChatGPT Project named "Snug & Co. Ads"
 
-Put everything below into the Project's **Instructions**. Then upload `docs/dropshipping-plan.md` and `store/assets/products.js` as Project files. Keep every day's report in this one Project so ChatGPT remembers past results.
+Put everything below into the Project's **Instructions**. Then upload `docs/dropshipping-plan.md` and `shopify/products.csv` as Project files. Keep every day's report in this one Project so ChatGPT remembers past results.
 
 ```
 You are the performance ad manager for Snug & Co., a US dropshipping store selling cozy winter gifts.
@@ -14,9 +14,9 @@ PRODUCTS (price / profit before ads):
 - Blanket hoodie $49.99 / $29.24   (main product)
 - Heatless curl set $24.99 / $18.22 (main product)
 - Heated mug set $34.99 / $20.93
-- Calming pet bed $49.99 / $28.74
+- Cloud Donut pet bed $44.99–69.99 / $28–40
 - Touchscreen gloves $22.99 / $16.87
-- Bundles $69.99 / $36–45
+- Automatic discount: buy 2+, save 15%
 Blended average order ~$52, profit before ads ~$30.
 
 TARGETS: CPA ≤ $15 (target), break-even CPA $30, ROAS ≥ 3.5 target, 1.7 break-even.
@@ -48,14 +48,14 @@ Ask me for any number you need that I didn't give you. Never make up numbers.
 
 ```
 Daily report. Date: ____. My daily budget cap: $____.
-Stripe/Shopify actual orders yesterday: __, revenue: $____.
+Shopify actual orders yesterday: __, revenue: $____.
 Attached: Meta (and TikTok) ad-level export for the last 3 days.
 Apply the rules and give me today's actions.
 ```
 
 4. Make exactly the changes it lists. Don't touch anything else.
 
-> Use **actual Stripe/Shopify orders** to check the ad platform's numbers. The pixel often over- or under-counts. If they disagree by more than 20%, tell ChatGPT and have it judge by actual orders.
+> Use **actual Shopify orders** to check the ad platform's numbers. The pixel often over- or under-counts. If they disagree by more than 20%, tell ChatGPT and have it judge by actual orders.
 
 ## Step 3: Make ads (when launching and every time one is killed)
 
@@ -74,7 +74,7 @@ Angles that tend to work for these products:
 - **Pet bed:** dog's first reaction / "my anxious dog finally sleeps".
 - **Gloves:** close-up of texting outside in the snow.
 
-Use the ad link `https://YOURDOMAIN/?p=blanket-hoodie` (or `heatless-curls`, `heated-mug`, `calming-pet-bed`, `touch-gloves`) so the product the ad shows appears first on the page.
+Link each ad to its product page, e.g. `https://YOURSTORE.com/products/cloud-sherpa-blanket-hoodie` (others: `stay-warm-mug-warmer-set`, `overnight-heatless-curl-set`, `cloud-donut-pet-bed`, `thermal-touchscreen-gloves`).
 
 ## Step 4: Campaign setup (one time, Meta)
 
@@ -86,7 +86,7 @@ Campaign: Sales objective · Advantage+ off at first · CBO off (budget per ad s
      3 ads
 Conversion event: Purchase
 ```
-Test week = $50/day ≈ $350. After you have 2–3 winning ads, move them into one CBO or Advantage+ Shopping campaign and scale with Rule 4.
+Test week = $50/day ≈ $350. After you have 2–3 winning ads, move them into one CBO or Advantage+ sales campaign and scale with Rule 4.
 
 TikTok: the same structure in TikTok Ads Manager, $20/day per ad group minimum, Smart+ off at first. Curls and the hoodie work especially well on TikTok.
 

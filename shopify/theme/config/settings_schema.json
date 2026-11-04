@@ -1,0 +1,59 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Hearth",
+    "theme_version": "1.0.0",
+    "theme_author": "Snug & Co.",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_background", "label": "Background", "default": "#FAF6F1" },
+      { "type": "color", "id": "color_surface", "label": "Cards and soft panels", "default": "#F1E8DD" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#2B2420" },
+      { "type": "color", "id": "color_muted", "label": "Secondary text", "default": "#76685E" },
+      { "type": "color", "id": "color_border", "label": "Borders", "default": "#E4D9CC" },
+      { "type": "color", "id": "color_button", "label": "Buttons", "default": "#2B2420" },
+      { "type": "color", "id": "color_button_text", "label": "Button text", "default": "#FAF6F1" },
+      { "type": "color", "id": "color_sale", "label": "Sale and highlight", "default": "#A84B2A" },
+      { "type": "color", "id": "color_dark", "label": "Dark sections", "default": "#2B2420" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "font_picker", "id": "type_heading_font", "label": "Headings", "default": "newsreader_n4" },
+      { "type": "font_picker", "id": "type_body_font", "label": "Body", "default": "nunito_sans_n4" }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo (optional, text logo used if empty)" },
+      { "type": "range", "id": "logo_width", "label": "Logo width", "min": 60, "max": 240, "step": 10, "unit": "px", "default": 120 },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "range", "id": "radius", "label": "Corner roundness", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 10 }
+    ]
+  },
+  {
+    "name": "Cart and offers",
+    "settings": [
+      { "type": "checkbox", "id": "bundle_offer_enabled", "label": "Show 'buy 2, save 15%' nudge in cart", "default": true, "info": "Create a matching automatic discount: Discounts → Create → Amount off products → Automatic → minimum quantity 2." },
+      { "type": "range", "id": "bundle_min_qty", "label": "Items needed for offer", "min": 2, "max": 5, "step": 1, "default": 2 },
+      { "type": "text", "id": "bundle_offer_text", "label": "Offer name", "default": "15% off" },
+      { "type": "text", "id": "delivery_cutoff", "label": "Holiday cutoff message", "default": "Order by Dec 12 for Christmas delivery" },
+      { "type": "text", "id": "shipping_estimate", "label": "Shipping estimate", "default": "Free US shipping · arrives in 5–9 business days" }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook URL" },
+      { "type": "text", "id": "social_pinterest", "label": "Pinterest URL" }
+    ]
+  }
+]

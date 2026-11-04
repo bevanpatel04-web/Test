@@ -1,0 +1,11 @@
+<article class="section section--tight">
+  <div class="container container--narrow">
+    <p class="eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
+    <h1 class="h1">{{ article.title | escape }}</h1>
+    {%- if article.image -%}<div class="article__img">{{ article.image | image_url: width: 1600 | image_tag: alt: article.title }}</div>{%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+  </div>
+</article>
+{% schema %}
+{ "name": "Blog post", "settings": [] }
+{% endschema %}

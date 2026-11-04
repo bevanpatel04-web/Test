@@ -1,0 +1,47 @@
+{%- comment -%} Accepts: product (or blank for placeholder), index {%- endcomment -%}
+{%- if product != blank -%}
+  {%- liquid
+    assign variant = product.selected_or_first_available_variant
+    assign second_image = product.media[1].preview_image
+  -%}
+  <article class="card">
+    <a href="{{ product.url }}" class="card__media{% if second_image %} card__media--hover{% endif %}">
+      {%- if product.featured_media -%}
+        {{ product.featured_media.preview_image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 50vw', widths: '360, 540, 720, 900', alt: product.featured_media.alt | default: product.title, class: 'card__img' }}
+        {%- if second_image -%}
+          {{ second_image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 50vw', widths: '360, 540, 720, 900', alt: '', class: 'card__img card__img--alt' }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'card__placeholder' }}
+      {%- endif -%}
+      {%- if variant.compare_at_price > variant.price -%}
+        {%- assign pct = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price | floor -%}
+        <span class="card__badge">-{{ pct }}%</span>
+      {%- endif -%}
+      {%- unless product.available -%}<span class="card__badge card__badge--muted">Sold out</span>{%- endunless -%}
+    </a>
+    <div class="card__info">
+      <h3 class="card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+      {%- if product.metafields.custom.tagline != blank -%}
+        <p class="card__tagline">{{ product.metafields.custom.tagline }}</p>
+      {%- endif -%}
+      {% render 'price', product: product %}
+      {%- if product.has_only_default_variant and product.available -%}
+        <form method="post" action="{{ routes.cart_add_url }}" class="card__quick" data-ajax-add>
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <button type="submit" class="btn btn--small btn--ghost">Add to bag</button>
+        </form>
+      {%- else -%}
+        <a href="{{ product.url }}" class="btn btn--small btn--ghost card__quick">Choose options</a>
+      {%- endif -%}
+    </div>
+  </article>
+{%- else -%}
+  <article class="card">
+    <div class="card__media">{{ 'product-1' | placeholder_svg_tag: 'card__placeholder' }}</div>
+    <div class="card__info">
+      <h3 class="card__title">Your product</h3>
+      <div class="price"><span class="price__current">$49.99</span></div>
+    </div>
+  </article>
+{%- endif -%}
