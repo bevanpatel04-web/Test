@@ -1,0 +1,108 @@
+{
+  "facts": [
+    {
+      "key": "cc_apr_assessed",
+      "label": "Average credit card APR on accounts charged interest (commercial banks)",
+      "value": 22.36,
+      "display": "22.36%",
+      "as_of": "Q3 2026",
+      "source_name": "Federal Reserve G.19",
+      "sources": ["https://www.federalreserve.gov/releases/g19/current/default.htm"],
+      "verified": true,
+      "verified_on": "2026-11-14",
+      "check_every_days": 90,
+      "notes": "G.19 released Nov 6, 2026. 'All accounts' rate was 21.19%."
+    },
+    {
+      "key": "emergency_400_cash",
+      "label": "Share of adults who would cover a $400 emergency expense using cash or its equivalent",
+      "value": 63,
+      "display": "63%",
+      "as_of": "2025 survey",
+      "source_name": "Federal Reserve SHED",
+      "sources": ["https://www.federalreserve.gov/newsevents/pressreleases/other20260513a.htm"],
+      "verified": true,
+      "verified_on": "2026-11-14",
+      "check_every_days": 365,
+      "notes": "Economic Well-Being of U.S. Households in 2025, published May 13, 2026. Unchanged from 2024."
+    },
+    {
+      "key": "limit_401k_2027",
+      "label": "Employee contribution limit for 401(k), 403(b), governmental 457 plans and the TSP in 2027",
+      "value": 25500,
+      "display": "$25,500",
+      "as_of": "IRS, Nov 2026",
+      "source_name": "IRS",
+      "sources": ["https://www.irs.gov/newsroom/401k-limit-increases-to-25500-for-2027-ira-limit-remains-7500"],
+      "verified": true,
+      "verified_on": "2026-11-14",
+      "check_every_days": 365,
+      "notes": "IR-2026-136, Nov 12, 2026. Up from $24,500 for 2026."
+    },
+    {
+      "key": "limit_ira_2027",
+      "label": "IRA annual contribution limit in 2027 (under age 50)",
+      "value": 7500,
+      "display": "$7,500",
+      "as_of": "IRS, Nov 2026",
+      "source_name": "IRS",
+      "sources": ["https://www.irs.gov/newsroom/401k-limit-increases-to-25500-for-2027-ira-limit-remains-7500"],
+      "verified": true,
+      "verified_on": "2026-11-14",
+      "check_every_days": 365,
+      "notes": "IR-2026-136, Nov 12, 2026. Unchanged from 2026."
+    },
+    {
+      "key": "roth_ira_phaseout_single_2027",
+      "label": "Roth IRA income phase-out range for single filers in 2027",
+      "value": null,
+      "display": "$158,000 to $173,000",
+      "as_of": "2027",
+      "source_name": "IRS",
+      "sources": [],
+      "verified": false,
+      "verified_on": null,
+      "check_every_days": 365,
+      "notes": "Reported by secondary sources only. Confirm in IRS Notice 2026-66 or the IRS newsroom release."
+    },
+    {
+      "key": "sp500_2008_return",
+      "label": "S&P 500 total return in calendar year 2008",
+      "value": -37.0,
+      "display": "-37%",
+      "as_of": "2008",
+      "source_name": "S&P Dow Jones Indices",
+      "sources": [],
+      "verified": false,
+      "verified_on": null,
+      "check_every_days": 3650,
+      "notes": "Widely cited figure. Confirm against S&P Dow Jones Indices or another primary index source."
+    },
+    {
+      "key": "sp500_2020_drawdown",
+      "label": "S&P 500 price decline from its Feb 19, 2020 high to its Mar 23, 2020 low",
+      "value": -34.0,
+      "display": "-34%",
+      "as_of": "2020",
+      "source_name": "S&P Dow Jones Indices",
+      "sources": [],
+      "verified": false,
+      "verified_on": null,
+      "check_every_days": 3650,
+      "notes": "Approximate, from daily closes. Confirm against a primary index source."
+    },
+    {
+      "key": "sp500_2022_return",
+      "label": "S&P 500 total return in calendar year 2022",
+      "value": -18.1,
+      "display": "-18.1%",
+      "as_of": "2022",
+      "source_name": "S&P Dow Jones Indices",
+      "sources": [],
+      "verified": false,
+      "verified_on": null,
+      "check_every_days": 3650,
+      "notes": "Widely cited figure. Confirm against a primary index source."
+    }
+  ]
+}

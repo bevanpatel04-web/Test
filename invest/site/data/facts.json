@@ -1,0 +1,44 @@
+{
+ "facts": [
+  {
+   "key": "cc_apr_assessed",
+   "label": "Average credit card APR on accounts charged interest (commercial banks)",
+   "display": "22.36%",
+   "as_of": "Q3 2026",
+   "source_name": "Federal Reserve G.19",
+   "sources": [
+    "https://www.federalreserve.gov/releases/g19/current/default.htm"
+   ]
+  },
+  {
+   "key": "emergency_400_cash",
+   "label": "Share of adults who would cover a $400 emergency expense using cash or its equivalent",
+   "display": "63%",
+   "as_of": "2025 survey",
+   "source_name": "Federal Reserve SHED",
+   "sources": [
+    "https://www.federalreserve.gov/newsevents/pressreleases/other20260513a.htm"
+   ]
+  },
+  {
+   "key": "limit_401k_2027",
+   "label": "Employee contribution limit for 401(k), 403(b), governmental 457 plans and the TSP in 2027",
+   "display": "$25,500",
+   "as_of": "IRS, Nov 2026",
+   "source_name": "IRS",
+   "sources": [
+    "https://www.irs.gov/newsroom/401k-limit-increases-to-25500-for-2027-ira-limit-remains-7500"
+   ]
+  },
+  {
+   "key": "limit_ira_2027",
+   "label": "IRA annual contribution limit in 2027 (under age 50)",
+   "display": "$7,500",
+   "as_of": "IRS, Nov 2026",
+   "source_name": "IRS",
+   "sources": [
+    "https://www.irs.gov/newsroom/401k-limit-increases-to-25500-for-2027-ira-limit-remains-7500"
+   ]
+  }
+ ]
+}

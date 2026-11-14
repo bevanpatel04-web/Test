@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start Investing Now or Later? Free Calculator | Patient Money</title>
+  <meta name="description" content="See what starting to invest at 21 instead of 26 could mean, and what a market crash could do along the way. Plain math with numbers you choose. Education, not advice.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="./">Patient Money</a>
+      <nav><a href="learn/">Learn</a><a href="rules.html">Our rules</a></nav>
+    </header>
+
+    <p class="pill">Education, not advice · Your money, your risk, your call</p>
+    <h1>Your biggest investing advantage is time. Here's what it could be worth.</h1>
+    <p class="lede">Compare starting now with starting a few years later. Then add a market crash and see what risk looks like. Plain math with numbers you choose. No stock tips.</p>
+
+    <section class="card" aria-labelledby="inputsTitle">
+      <h2 id="inputsTitle">Your numbers</h2>
+      <form id="calcForm" class="inputs" novalidate>
+        <div class="field">
+          <label for="age">Your age now</label>
+          <input type="number" id="age" min="16" max="80" step="1" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="endAge">Until age</label>
+          <input type="number" id="endAge" min="20" max="100" step="1" inputmode="numeric">
+        </div>
+        <div class="field span-2">
+          <label for="monthly">Invest each month ($)</label>
+          <input type="number" id="monthly" min="1" max="100000" step="1" inputmode="numeric">
+          <div class="chips" id="monthlyChips" aria-label="Quick amounts">
+            <button type="button" class="chip" data-value="25">$25</button>
+            <button type="button" class="chip" data-value="50">$50</button>
+            <button type="button" class="chip" data-value="100">$100</button>
+            <button type="button" class="chip" data-value="250">$250</button>
+          </div>
+        </div>
+        <fieldset class="field">
+          <legend>If you wait</legend>
+          <div class="chips" id="delayChips">
+            <button type="button" class="chip" data-value="1">1 year</button>
+            <button type="button" class="chip" data-value="3">3 years</button>
+            <button type="button" class="chip" data-value="5">5 years</button>
+            <button type="button" class="chip" data-value="10">10 years</button>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>Hypothetical yearly growth</legend>
+          <div class="chips" id="rateChips">
+            <button type="button" class="chip" data-value="4">4% <small>cautious</small></button>
+            <button type="button" class="chip" data-value="6">6% <small>middle</small></button>
+            <button type="button" class="chip" data-value="8">8% <small>optimistic</small></button>
+          </div>
+          <div class="range-row">
+            <input type="range" id="rate" min="0" max="12" step="0.5" aria-label="Hypothetical yearly growth rate">
+            <output id="rateOut" for="rate"></output>
+          </div>
+        </fieldset>
+      </form>
+      <p class="error" id="errors" role="alert"></p>
+      <p class="fine">The growth rate is an assumption you pick, not a prediction. Real investments don't grow at a steady rate, and they can lose money, including money you put in. Numbers aren't adjusted for inflation, taxes or fees.</p>
+    </section>
+
+    <section id="results" aria-live="polite">
+      <div class="card">
+        <p class="hero-label" id="heroLabel"></p>
+        <p class="hero" id="heroValue"></p>
+        <p class="fine" id="heroNote"></p>
+        <div class="tiles">
+          <div class="tile"><div class="k"><span class="key s1"></span><span id="nowLabel"></span></div><div class="v" id="nowValue"></div><div class="sub" id="nowSub"></div></div>
+          <div class="tile"><div class="k"><span class="key s2"></span><span id="laterLabel"></span></div><div class="v" id="laterValue"></div><div class="sub" id="laterSub"></div></div>
+        </div>
+        <p id="insight"></p>
+        <div class="row-actions">
+          <button type="button" class="ghost" id="shareBtn">Share these numbers</button>
+          <span class="fine" id="shareMsg" role="status"></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 id="chartTitle">Balance by age</h2>
+        <div class="legend" id="legend"></div>
+        <div class="chart" id="chart"></div>
+        <details>
+          <summary>Show as a table</summary>
+          <div class="table-wrap"><table id="table"></table></div>
+        </details>
+      </div>
+
+      <div class="card" id="risk">
+        <h2>Now add risk</h2>
+        <p>Markets don't climb in a straight line. Add a crash to see what it could do to the "start now" balance.</p>
+        <label class="toggle"><input type="checkbox" id="shockOn"> Show a market drop</label>
+        <div id="shockControls" class="inputs hidden">
+          <div class="field">
+            <label for="shockDrop">Size of the drop</label>
+            <div class="range-row">
+              <input type="range" id="shockDrop" min="10" max="60" step="5">
+              <output id="shockDropOut" for="shockDrop"></output>
+            </div>
+          </div>
+          <div class="field">
+            <label for="shockAge">At age</label>
+            <input type="number" id="shockAge" min="17" max="100" step="1" inputmode="numeric">
+          </div>
+        </div>
+        <p id="shockText"></p>
+        <p class="fine">Real crashes can be deeper, last longer or recover faster than this. A drop right before you need the money hurts most, which is why your timeline matters. This is an illustration, not a forecast.</p>
+      </div>
+    </section>
+
+    <section class="card" id="checklist">
+      <h2>Before you invest: what many people check first</h2>
+      <ol class="steps">
+        <li><strong>High-interest debt.</strong>
+          <span class="needs-fact" data-needs="cc_apr_assessed">Credit card accounts that were charged interest averaged <b data-fact="cc_apr_assessed"></b> APR (<span data-fact-asof="cc_apr_assessed"></span>).</span>
+          Paying down a balance saves that interest for certain. Investment returns are never certain.</li>
+        <li><strong>A cash cushion.</strong>
+          <span class="needs-fact" data-needs="emergency_400_cash"><b data-fact="emergency_400_cash"></b> of adults said they'd cover a surprise $400 expense with cash or its equivalent (<span data-fact-asof="emergency_400_cash"></span>).</span>
+          Money you might need soon has no time to recover from a drop.</li>
+        <li><strong>An employer match.</strong> If your job offers a 401(k) match, it's extra pay for contributing. Your plan's documents say how it works.
+          <span class="needs-fact" data-needs="limit_401k_2027">You can contribute up to <b data-fact="limit_401k_2027"></b> to a 401(k) in 2027 (<span data-fact-asof="limit_401k_2027"></span>).</span></li>
+        <li><strong>The account type.</strong> A 401(k), a Roth or traditional IRA and a regular brokerage account have different tax rules.
+          <span class="needs-fact" data-needs="limit_ira_2027">The 2027 IRA contribution limit is <b data-fact="limit_ira_2027"></b> (<span data-fact-asof="limit_ira_2027"></span>).</span></li>
+        <li><strong>What you'd actually own.</strong> A single stock rides on one company. A broad index fund spreads your money across hundreds of them. Fees come out every year, whatever the market does.</li>
+        <li><strong>Red flags.</strong> Promised returns, pressure to act fast, and people who get paid when you buy but don't say so. You can look up anyone selling investments at <a href="https://www.investor.gov/">Investor.gov</a>.</li>
+      </ol>
+      <p class="fine sources" id="factSources"></p>
+    </section>
+
+    <section class="card">
+      <h2>One 2-minute money lesson a week</h2>
+      <p>Short, honest explainers on how investing works. No stock tips, ever. Unsubscribe anytime.</p>
+      <form id="signupForm" class="signup" method="post" target="_blank">
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email" required>
+        <input type="hidden" name="source" value="calculator">
+        <button type="submit" class="primary">Send me lessons</button>
+      </form>
+      <p class="fine hidden" id="signupMsg" role="status"></p>
+      <p class="fine">For adults 18 and over.</p>
+    </section>
+
+    <footer class="card fine disclaimer">
+      <p><strong>Education, not advice.</strong> Patient Money explains how investing works in general. It isn't investment, tax or legal advice, and it doesn't recommend any security, account or strategy for you.</p>
+      <p>Every number on this page is a hypothetical illustration based on the assumptions you choose. It isn't a prediction or a promise. Investing involves risk, including losing money you put in. Past performance doesn't guarantee future results.</p>
+      <p>Your money, your decision. For advice about your own situation, talk to a licensed professional. <a href="rules.html">Our rules</a> · <a href="learn/">Lessons</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/calc.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

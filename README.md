@@ -1,3 +1,5 @@
+> **This repo holds two AI-run products.** Mildwell (below) and **Patient Money**, investing education for 18–25 year olds, in [`invest/`](invest/README.md), with its plan in [`docs/patient-money-plan.md`](docs/patient-money-plan.md). Each has its own AI team, workflows and website.
+
 # Mildwell — an AI-run water and skin business
 
 **Mildwell** (working name) helps people with eczema and sensitive skin understand their tap water and choose gentler showers. This repo holds the whole company:

@@ -1,0 +1,15 @@
+{
+  "lessons": [
+    {"slug": "compound-growth", "title": "Compound growth, explained with $100 a month", "needs_facts": [], "published": false},
+    {"slug": "what-risk-means", "title": "What \"risk\" actually means when you invest", "needs_facts": [], "published": false},
+    {"slug": "debt-vs-investing", "title": "Paying down a credit card vs. investing: the math", "needs_facts": ["cc_apr_assessed"], "published": false},
+    {"slug": "cash-cushion-first", "title": "Why many people build a cash cushion before investing", "needs_facts": ["emergency_400_cash"], "published": false},
+    {"slug": "401k-match", "title": "What a 401(k) match is, and why people call it free money", "needs_facts": ["limit_401k_2027"], "published": false},
+    {"slug": "roth-ira-basics", "title": "Roth IRA basics for your first job", "needs_facts": ["limit_ira_2027", "roth_ira_phaseout_single_2027"], "published": false},
+    {"slug": "index-funds-vs-stocks", "title": "Index funds vs. single stocks: what's the difference?", "needs_facts": [], "published": false},
+    {"slug": "fees-add-up", "title": "How a 1% fee adds up over 40 years", "needs_facts": [], "published": false},
+    {"slug": "market-crashes", "title": "What happened to investors in 2008, 2020 and 2022", "needs_facts": ["sp500_2008_return", "sp500_2020_drawdown", "sp500_2022_return"], "published": false},
+    {"slug": "timing-the-market", "title": "Why \"waiting for the dip\" is harder than it sounds", "needs_facts": [], "published": false},
+    {"slug": "spot-the-hype", "title": "Finfluencer red flags: how to spot hype and scams", "needs_facts": [], "published": false}
+  ]
+}
