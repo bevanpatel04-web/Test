@@ -31,8 +31,9 @@ N_ELIGIBLE = 400
 N_ENROLLED = 240
 HIRE_WINDOW_DAYS = 548                 # about 18 months before the pilot start
 
-# Assumed monthly quit rates. Food service runs about 4-5% a month (BLS JOLTS reports 5.0% for
-# accommodation and food services in September 2026). People in their first 90 days quit more.
+# Assumed monthly quit rates, in the 4-5% range the team brief gives for food service (the brief
+# cites 5.0% for accommodation and food services, September 2026, BLS JOLTS, https://www.bls.gov/jlt/;
+# not re-checked here, so unverified). People in their first 90 days are assumed to quit more.
 MONTHLY_QUIT_NOT_ENROLLED = 0.045
 MONTHLY_QUIT_ENROLLED = 0.035
 NEW_HIRE_QUIT_FACTOR = 1.4
