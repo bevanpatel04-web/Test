@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Rewards | Patient Money</title>
+  <meta name="description" content="Your Patient Money rewards: points balance, next milestones, history and rewards you can redeem.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="assets/pilot.css">
+</head>
+<body data-page="member">
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../">Patient Money</a>
+      <nav><a href="../learn/">Learn</a><a href="../rules.html">Our rules</a></nav>
+    </header>
+    <nav class="pilot-nav" aria-label="Pilot views"><a href="./">Employer view</a><a href="member.html" aria-current="page">Member view</a></nav>
+
+    <p class="demo-banner" role="note"><strong>DEMO PREVIEW</strong> &mdash; sample member data, not a real account. The Redeem buttons don't send anything.</p>
+
+    <div class="load-status fine" id="loadStatus" role="status">Loading your rewards&hellip;</div>
+
+    <main id="app" class="hidden">
+      <section class="card" aria-labelledby="hello">
+        <div class="member-head">
+          <h1 id="hello">Your rewards</h1>
+          <p class="fine" id="memberMeta"></p>
+        </div>
+        <p class="hero-label">Your points</p>
+        <p class="hero"><span id="balance"></span><span class="unit" id="balanceUnit">points</span></p>
+        <p class="fine" id="balanceUsd"></p>
+      </section>
+
+      <section class="card" aria-labelledby="msTitle">
+        <h2 id="msTitle">Next milestones</h2>
+        <ul class="milestones" id="milestones"></ul>
+      </section>
+
+      <section class="card" aria-labelledby="catTitle">
+        <h2 id="catTitle">Rewards</h2>
+        <p class="section-sub">Your employer pays for these. Points never come from trading or account balances.</p>
+        <div class="catalog" id="catalog"></div>
+      </section>
+
+      <section class="card" aria-labelledby="learnTitle">
+        <h2 id="learnTitle">Earn points by learning</h2>
+        <p>Each short lesson you finish earns 50 points, up to 10 lessons. Lessons explain how money and investing work, with sources for every number. They never tell you what to buy.</p>
+        <a class="btn" href="../learn/">Go to lessons</a>
+      </section>
+
+      <section class="card" aria-labelledby="histTitle">
+        <h2 id="histTitle">History</h2>
+        <ol class="history" id="history"></ol>
+      </section>
+    </main>
+
+    <footer class="card fine disclaimer">
+      <p><strong>Education, not advice.</strong> Patient Money lessons explain how money and investing work in general. They aren't investment, tax or legal advice, and they don't recommend any security, account or strategy for you.</p>
+      <p>Points are a reward from your employer, not an investment, and they don't earn interest. Investing involves risk, including losing money you put in. Your money, your decision. <a href="../rules.html">Our rules</a> · <a href="../learn/">Lessons</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/pilot.js"></script>
+</body>
+</html>

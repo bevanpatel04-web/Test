@@ -1,0 +1,25 @@
+{
+  "as_of": "2026-11-14",
+  "member": { "id": "m_001", "display_name": "Member 001", "employer_name": "Demo Diner Group", "tenure_days": 95 },
+  "points_balance": 600,
+  "points_per_usd": 100,
+  "history": [
+    { "date": "2026-08-19", "kind": "earn", "rule": "lesson_completed", "label": "Finished a lesson", "points": 50 },
+    { "date": "2026-09-02", "kind": "earn", "rule": "lesson_completed", "label": "Finished a lesson", "points": 50 },
+    { "date": "2026-09-10", "kind": "earn", "rule": "tenure_30", "label": "30 days on the job", "points": 300 },
+    { "date": "2026-09-16", "kind": "earn", "rule": "savings_setup", "label": "Set up direct deposit to savings", "points": 300 },
+    { "date": "2026-09-24", "kind": "earn", "rule": "lesson_completed", "label": "Finished a lesson", "points": 50 },
+    { "date": "2026-10-08", "kind": "redeem", "rule": "payroll_bonus", "label": "Payroll bonus", "points": -500 },
+    { "date": "2026-10-21", "kind": "earn", "rule": "lesson_completed", "label": "Finished a lesson", "points": 50 },
+    { "date": "2026-11-09", "kind": "earn", "rule": "tenure_90", "label": "90 days on the job", "points": 300 }
+  ],
+  "next_milestones": [
+    { "rule": "tenure_180", "label": "180 days on the job", "points": 600, "progress_pct": 52.8 },
+    { "rule": "checklist_completed", "label": "Finished the \"before you invest\" checklist", "points": 200, "progress_pct": 50.0 },
+    { "rule": "tenure_365", "label": "One year on the job", "points": 1000, "progress_pct": 26.0 }
+  ],
+  "catalog": [
+    { "type": "payroll_bonus", "label": "Payroll bonus", "min_points": 500, "note": "Paid by your employer in your next paycheck. Taxed like regular pay." },
+    { "type": "gift_card", "label": "Gift card", "min_points": 500, "note": "Delivered by email within 5 business days." }
+  ]
+}

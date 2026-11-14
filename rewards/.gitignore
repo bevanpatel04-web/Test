@@ -1,0 +1,5 @@
+# Pilot databases (real or demo) never go into git.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

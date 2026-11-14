@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rewards Pilot Dashboard | Patient Money</title>
+  <meta name="description" content="Employer dashboard for the Patient Money rewards pilot: enrollment, activity, reward pool, points and staff retention.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="assets/pilot.css">
+</head>
+<body data-page="employer">
+  <div class="wrap wide">
+    <header class="top">
+      <a class="brand" href="../">Patient Money</a>
+      <nav><a href="../learn/">Learn</a><a href="../rules.html">Our rules</a></nav>
+    </header>
+    <nav class="pilot-nav" aria-label="Pilot views"><a href="./" aria-current="page">Employer view</a><a href="member.html">Member view</a></nav>
+
+    <p class="demo-banner hidden" id="demoBanner" role="note"><strong>SIMULATED DEMO DATA</strong> &mdash; not real results. Every name and number on this page is made up to show how the dashboard works.</p>
+
+    <div class="load-status fine" id="loadStatus" role="status">Loading pilot data&hellip;</div>
+
+    <main id="app" class="hidden">
+      <div class="pilot-head">
+        <p class="pill" id="planPill">Rewards pilot</p>
+        <h1 id="empName">Rewards pilot</h1>
+        <p class="lede" id="empMeta"></p>
+      </div>
+
+      <section class="tiles four" aria-label="Pilot at a glance">
+        <div class="tile">
+          <div class="k">Enrolled</div>
+          <div class="v" id="tEnrolled"></div>
+          <div class="sub" id="tEnrolledSub"></div>
+          <div class="meter" aria-hidden="true"><span id="tEnrolledBar"></span></div>
+        </div>
+        <div class="tile">
+          <div class="k">Active in last 30 days</div>
+          <div class="v" id="tActive"></div>
+          <div class="sub" id="tActiveSub"></div>
+          <div class="meter" aria-hidden="true"><span id="tActiveBar"></span></div>
+        </div>
+        <div class="tile">
+          <div class="k">Reward pool remaining</div>
+          <div class="v" id="tPool"></div>
+          <div class="sub" id="tPoolSub"></div>
+          <div class="meter" aria-hidden="true"><span id="tPoolBar"></span></div>
+        </div>
+        <div class="tile">
+          <div class="k">Points outstanding</div>
+          <div class="v" id="tOutstanding"></div>
+          <div class="sub" id="tOutstandingSub"></div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="retTitle">
+        <h2 id="retTitle">Still on staff: enrolled vs. not enrolled</h2>
+        <p class="section-sub">Share of each starting group still employed, by month since the pilot began.</p>
+        <p class="chart-lede" id="retHeadline"></p>
+        <div class="legend" id="retLegend"></div>
+        <div class="chart" id="retChart"></div>
+        <p class="sr-only" id="retLive" aria-live="polite"></p>
+        <details>
+          <summary>Show as a table</summary>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Retention by month, as a table"><table id="retTable"></table></div>
+        </details>
+
+        <div class="callout explainer">
+          <h3>What this comparison shows, and what it doesn't</h3>
+          <ul>
+            <li><strong>It shows</strong> how many people in each group were still on staff each month. Both lines start at 100% when the pilot began.</li>
+            <li><strong>It doesn't prove the rewards caused the gap.</strong> This isn't a controlled experiment. People who choose to join may be different from people who don't. They might already plan to stay longer, work more hours or feel more settled in the job.</li>
+            <li><strong>Other things matter too,</strong> like location, role, schedule, pay and the time of year.</li>
+            <li><strong>Small groups swing a lot.</strong> In a group of 100 people, one person leaving moves the line by a full point.</li>
+            <li><strong>A fairer test:</strong> start the program at some locations first, picked at random, and compare them with the rest over the same months.</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="grid-2">
+        <section class="card" aria-labelledby="ruleTitle">
+          <h2 id="ruleTitle">Points earned by rule</h2>
+          <p class="section-sub" id="ruleSub"></p>
+          <div class="bars-box" id="ruleBox" tabindex="0" role="group" aria-label="Points earned by rule. Use the up and down arrow keys to read each rule.">
+            <ul class="bars" id="ruleBars"></ul>
+          </div>
+          <p class="sr-only" id="ruleLive" aria-live="polite"></p>
+          <details>
+            <summary>Show as a table</summary>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Points earned by rule, as a table"><table id="ruleTable"></table></div>
+          </details>
+          <p class="fine">Points come from time on the job, lessons and healthy money habits. They're never given for trading, number of trades or account balances.</p>
+        </section>
+
+        <section class="card" aria-labelledby="redTitle">
+          <h2 id="redTitle">Redemptions</h2>
+          <p class="section-sub" id="redSub"></p>
+          <ul class="stat-list" id="redList"></ul>
+          <p class="fine">Payroll bonuses are paid by you through payroll, so they're taxed as wages. In the pilot, Patient Money doesn't hold or move anyone's money.</p>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="memTitle">
+        <h2 id="memTitle">Members</h2>
+        <p class="section-sub" id="memSub">Display names only. This dashboard never shows real names, emails or other personal details. Select a column heading to sort.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="memTitle"><table id="memTable"></table></div>
+      </section>
+    </main>
+
+    <footer class="card fine disclaimer">
+      <p><strong>About the pilot.</strong> Members earn points for time on the job, finishing short money lessons and healthy money habits, like setting up direct deposit to savings. Points can be redeemed for a payroll bonus or a gift card.</p>
+      <p><strong>Education, not advice.</strong> Patient Money lessons explain how money and investing work in general. They aren't investment, tax or legal advice, and they don't recommend any security, account or strategy. <a href="../rules.html">Our rules</a> · <a href="../learn/">Lessons</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/pilot.js"></script>
+</body>
+</html>
