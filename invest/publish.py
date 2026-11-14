@@ -26,7 +26,14 @@ def find_fact(key: str) -> dict | None:
 
 
 def is_primary_source(url: str) -> bool:
-    host = (urlparse(url).hostname or "").lower()
+    # Only plain web links count. "javascript://www.irs.gov/%0a..." has an irs.gov hostname but runs
+    # script when clicked; "https://evil.com\@irs.gov" is irs.gov to Python but evil.com to browsers.
+    if not isinstance(url, str) or any(c.isspace() or c == "\\" for c in url):
+        return False
+    parsed = urlparse(url)
+    if parsed.scheme.lower() not in ("http", "https") or "@" in parsed.netloc:
+        return False
+    host = (parsed.hostname or "").lower()
     return any(host == d or host.endswith("." + d) for d in config.PRIMARY_SOURCE_DOMAINS)
 
 

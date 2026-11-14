@@ -259,7 +259,7 @@
 
     var W = Math.max(240, Math.round(box.clientWidth || 640));
     var wide = W >= 440;
-    var H = wide ? Math.round(clamp(W * 0.34, 260, 340)) : 240;
+    var H = wide ? Math.round(clamp(W * 0.34, 260, 340)) : 260;
     var m = { t: 16, r: wide ? 92 : 52, b: 42, l: 44 }; // right margin holds the end labels
     var plotW = W - m.l - m.r, plotH = H - m.t - m.b;
 
@@ -286,10 +286,11 @@
       svg.appendChild(tl);
     }
 
-    // X ticks: month names, with the year under the first month of each year
-    var spacing = n > 1 ? plotW / (n - 1) : plotW, every = Math.max(1, Math.ceil(36 / spacing)), shownYear = null;
+    // X ticks: month names (counted back from the latest month, so it always has a label),
+    // with the year under the first labeled month of each year.
+    var spacing = n > 1 ? plotW / (n - 1) : plotW, every = Math.max(1, Math.ceil(30 / spacing)), shownYear = null;
     rows.forEach(function (r, i) {
-      if (i % every !== 0) return;
+      if ((n - 1 - i) % every !== 0) return;
       var dt = parseDate(r.month);
       var mt = svgEl("text", { "class": "tick", x: x(i), y: H - m.b + 18, "text-anchor": "middle" });
       mt.textContent = dt.toLocaleDateString("en-US", { month: "short" });
@@ -345,7 +346,8 @@
     var cross = svgEl("line", { "class": "crosshair hidden", y1: m.t, y2: m.t + plotH });
     var hoverDots = svgEl("g", { "class": "hidden" });
     series.forEach(function (s) { hoverDots.appendChild(svgEl("circle", { "class": "dot f" + s.slot, r: 5 })); });
-    var overlay = svgEl("rect", { x: m.l - 16, y: 0, width: plotW + 32, height: H - m.b + 8, fill: "transparent" });
+    // The whole chart is the hit target; the crosshair snaps to the nearest month.
+    var overlay = svgEl("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent" });
     svg.appendChild(cross); svg.appendChild(hoverDots); svg.appendChild(overlay);
 
     var tip = el("div", "tooltip hidden");
@@ -377,13 +379,20 @@
       if (g) tip.appendChild(el("div", "t-note", g));
       tip.classList.remove("hidden");
 
-      // Beside the crosshair, flipped near the right edge; top or bottom, away from the lines.
       var scale = (svg.getBoundingClientRect().width || W) / W, px = cx * scale;
-      var left = px + 14 + tip.offsetWidth > box.clientWidth ? px - 14 - tip.offsetWidth : px + 14;
-      tip.style.left = clamp(left, 0, Math.max(0, box.clientWidth - tip.offsetWidth)) + "px";
-      var avgY = ys.length ? ys.reduce(function (a, b) { return a + b; }, 0) / ys.length : H;
-      var top = avgY < m.t + plotH / 2 ? (m.t + plotH) * scale - tip.offsetHeight : m.t * scale;
-      tip.style.top = Math.max(0, top) + "px";
+      var maxLeft = Math.max(0, box.clientWidth - tip.offsetWidth), left, top;
+      if (!wide && box.getBoundingClientRect().top > tip.offsetHeight + 8) {
+        // Narrow screens: float above the plot, so the tooltip doesn't hide the lines under a finger.
+        left = px - tip.offsetWidth / 2;
+        top = -tip.offsetHeight - 8;
+      } else {
+        // Beside the crosshair, flipped near the right edge; top or bottom, away from the lines.
+        left = px + 14 + tip.offsetWidth > box.clientWidth ? px - 14 - tip.offsetWidth : px + 14;
+        var avgY = ys.length ? ys.reduce(function (a, b) { return a + b; }, 0) / ys.length : H;
+        top = Math.max(0, avgY < m.t + plotH / 2 ? (m.t + plotH) * scale - tip.offsetHeight : m.t * scale);
+      }
+      tip.style.left = clamp(left, 0, maxLeft) + "px";
+      tip.style.top = top + "px";
     }
     function hide() { cross.classList.add("hidden"); hoverDots.classList.add("hidden"); tip.classList.add("hidden"); }
     function announce() {

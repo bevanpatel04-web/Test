@@ -14,6 +14,7 @@
       <nav><a href="learn/">Learn</a><a href="rules.html">Our rules</a></nav>
     </header>
 
+    <main>
     <p class="pill">Education, not advice · Your money, your risk, your call</p>
     <h1>Your biggest investing advantage is time. Here's what it could be worth.</h1>
     <p class="lede">Compare starting now with starting a few years later. Then add a market crash and see what risk looks like. Plain math with numbers you choose. No stock tips.</p>
@@ -32,7 +33,7 @@
         <div class="field span-2">
           <label for="monthly">Invest each month ($)</label>
           <input type="number" id="monthly" min="1" max="100000" step="1" inputmode="numeric">
-          <div class="chips" id="monthlyChips" aria-label="Quick amounts">
+          <div class="chips" id="monthlyChips" role="group" aria-label="Quick amounts">
             <button type="button" class="chip" data-value="25">$25</button>
             <button type="button" class="chip" data-value="50">$50</button>
             <button type="button" class="chip" data-value="100">$100</button>
@@ -65,12 +66,14 @@
       <p class="fine">The growth rate is an assumption you pick, not a prediction. Real investments don't grow at a steady rate, and they can lose money, including money you put in. Numbers aren't adjusted for inflation, taxes or fees.</p>
     </section>
 
-    <section id="results" aria-live="polite">
+    <section id="results" aria-label="Results">
       <div class="card">
-        <p class="hero-label" id="heroLabel"></p>
-        <p class="hero" id="heroValue"></p>
-        <p class="fine" id="heroNote"></p>
-        <div class="tiles">
+        <div id="summary" aria-live="polite" aria-atomic="true">
+          <p class="hero-label" id="heroLabel"></p>
+          <p class="hero" id="heroValue"></p>
+          <p class="fine" id="heroNote"></p>
+        </div>
+        <div class="tiles compare">
           <div class="tile"><div class="k"><span class="key s1"></span><span id="nowLabel"></span></div><div class="v" id="nowValue"></div><div class="sub" id="nowSub"></div></div>
           <div class="tile"><div class="k"><span class="key s2"></span><span id="laterLabel"></span></div><div class="v" id="laterValue"></div><div class="sub" id="laterSub"></div></div>
         </div>
@@ -85,6 +88,7 @@
         <h2 id="chartTitle">Balance by age</h2>
         <div class="legend" id="legend"></div>
         <div class="chart" id="chart"></div>
+        <p class="sr-only" id="chartReadout" aria-live="polite"></p>
         <details>
           <summary>Show as a table</summary>
           <div class="table-wrap"><table id="table"></table></div>
@@ -108,7 +112,7 @@
             <input type="number" id="shockAge" min="17" max="100" step="1" inputmode="numeric">
           </div>
         </div>
-        <p id="shockText"></p>
+        <p id="shockText" aria-live="polite"></p>
         <p class="fine">Real crashes can be deeper, last longer or recover faster than this. A drop right before you need the money hurts most, which is why your timeline matters. This is an illustration, not a forecast.</p>
       </div>
     </section>
@@ -143,6 +147,7 @@
       <p class="fine hidden" id="signupMsg" role="status"></p>
       <p class="fine">For adults 18 and over.</p>
     </section>
+    </main>
 
     <footer class="card fine disclaimer">
       <p><strong>Education, not advice.</strong> Patient Money explains how investing works in general. It isn't investment, tax or legal advice, and it doesn't recommend any security, account or strategy for you.</p>

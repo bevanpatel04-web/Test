@@ -11,15 +11,19 @@
   // ---- State (URL params let people share their numbers) ----------------------------------
   var q = new URLSearchParams(location.search);
   function param(key, fallback) { var v = parseFloat(q.get(key)); return isFinite(v) ? v : fallback; }
+  // Ages and the wait are whole years (a shared "?age=21.5&crash=1" link used to crash the page).
+  function wholeParam(key, fallback) { return Math.round(param(key, fallback)); }
+  var rateIn = $("rate");
   var state = {
-    age: param("age", d.age || 21),
+    age: wholeParam("age", d.age || 21),
     monthly: param("m", d.monthly || 100),
-    delay: param("wait", d.delay || 5),
-    rate: param("rate", d.rate || 6),
-    endAge: param("to", d.endAge || 65),
+    delay: wholeParam("wait", d.delay || 5),
+    // Keep a linked rate inside the slider's range so the slider and the math agree.
+    rate: Math.min(+rateIn.max, Math.max(+rateIn.min, param("rate", d.rate || 6))),
+    endAge: wholeParam("to", d.endAge || 65),
     shockOn: q.get("crash") === "1",
     shockDrop: param("drop", d.shockDrop || 35),
-    shockAge: param("at", d.shockAge || 40)
+    shockAge: wholeParam("at", d.shockAge || 40)
   };
 
   $("age").value = state.age;
@@ -29,6 +33,15 @@
   $("shockOn").checked = state.shockOn;
   $("shockDrop").value = state.shockDrop;
   $("shockAge").value = state.shockAge;
+
+  // Writes a money value with optional line breaks after the commas ("$29,534,<wbr>900").
+  function setMoney(el, n) {
+    el.textContent = "";
+    PM.money(n).split(",").forEach(function (part, i, all) {
+      el.appendChild(document.createTextNode(part + (i < all.length - 1 ? "," : "")));
+      if (i < all.length - 1) el.appendChild(document.createElement("wbr"));
+    });
+  }
 
   function years(n) { return n === 1 ? "1 year" : n + " years"; }
   function pct(n) { return (n % 1 === 0 ? String(n) : n.toFixed(1)) + "%"; }
@@ -43,9 +56,12 @@
     state.shockAge = parseInt($("shockAge").value, 10);
   }
 
-  // Keep the crash inside the time window when the age range changes.
-  function clampShockAge() {
-    if (!state.shockOn || !isFinite(state.age) || !isFinite(state.endAge)) return;
+  // Keep the crash inside the time window when the age range changes. Skipped while the person
+  // is typing the crash age itself (typing "45" used to become "43" after the first digit), and
+  // while the age range is still invalid (retyping the end age used to reset the crash age).
+  function clampShockAge(source) {
+    if (!state.shockOn || source === "shockAge") return;
+    if (PM.validate(Object.assign(calcInputs(), { shock: null })).length) return;
     if (!(state.shockAge > state.age && state.shockAge <= state.endAge)) {
       state.shockAge = Math.min(state.endAge, Math.max(state.age + 1, Math.round((state.age + state.endAge) / 2)));
       $("shockAge").value = state.shockAge;
@@ -83,11 +99,14 @@
   // ---- Main update -----------------------------------------------------------------------------
   var lastSeries = null;
 
-  function update() {
-    clampShockAge();
+  function update(source) {
+    clampShockAge(source);
     syncChips();
     $("rateOut").textContent = isFinite(state.rate) ? pct(state.rate) : "";
     $("shockDropOut").textContent = state.shockDrop + "%";
+    // Screen readers announce "6%" rather than a bare "6".
+    if (isFinite(state.rate)) $("rate").setAttribute("aria-valuetext", pct(state.rate) + " a year");
+    $("shockDrop").setAttribute("aria-valuetext", state.shockDrop + "% drop");
     $("shockControls").classList.toggle("hidden", !state.shockOn);
 
     var r = PM.compare(calcInputs());
@@ -97,13 +116,13 @@
 
     var laterAge = state.age + state.delay;
     $("heroLabel").textContent = "Waiting " + years(state.delay) + " could cost you about";
-    $("heroValue").textContent = PM.money(r.costOfWaiting);
+    setMoney($("heroValue"), r.costOfWaiting);
     $("heroNote").textContent = "by age " + state.endAge + ", if your money grew a hypothetical " + pct(state.rate) + " a year.";
     $("nowLabel").textContent = "Start at " + state.age;
-    $("nowValue").textContent = PM.money(r.now.final);
+    setMoney($("nowValue"), r.now.final);
     $("nowSub").textContent = "You put in " + PM.money(r.now.contributed);
     $("laterLabel").textContent = "Start at " + laterAge;
-    $("laterValue").textContent = PM.money(r.later.final);
+    setMoney($("laterValue"), r.later.final);
     $("laterSub").textContent = "You put in " + PM.money(r.later.contributed);
 
     var insight = "Starting at " + state.age + " instead of " + laterAge + " means putting in " + PM.money(r.extraPutIn) +
@@ -121,8 +140,12 @@
                     slot: 3, points: r.stressed.points });
       var s = r.stressed.shock;
       var text = "A " + state.shockDrop + "% drop at " + state.shockAge + " would take the start-now balance from about " +
-        PM.money(s.before) + " to " + PM.money(s.after) + ". If growth then picked back up at " + pct(state.rate) +
-        " a year, you'd end at about " + PM.money(r.stressed.final) + " instead of " + PM.money(r.now.final) + ".";
+        PM.money(s.before) + " to " + PM.money(s.after) + ".";
+      text += state.shockAge >= state.endAge
+        ? " That's the end age, so there'd be no time left to recover: you'd end at about " + PM.money(r.stressed.final) +
+          " instead of " + PM.money(r.now.final) + "."
+        : " If growth then picked back up at " + pct(state.rate) + " a year, you'd end at about " +
+          PM.money(r.stressed.final) + " instead of " + PM.money(r.now.final) + ".";
       text += r.stressed.final >= r.later.final
         ? " In this example, starting now with the crash still ends ahead of waiting " + years(state.delay) + " with no crash (" + PM.money(r.later.final) + ")."
         : " In this example, the crash costs more than waiting " + years(state.delay) + " would have (" + PM.money(r.later.final) + ").";
@@ -246,7 +269,7 @@
     tip.setAttribute("aria-hidden", "true");
     var current = pts0.length - 1;
 
-    function show(i) {
+    function show(i, announce) {
       current = Math.max(0, Math.min(pts0.length - 1, i));
       var age = pts0[current].age, cx = x(age);
       cross.setAttribute("x1", cx); cross.setAttribute("x2", cx); cross.classList.remove("hidden");
@@ -264,6 +287,11 @@
         tip.appendChild(row);
       });
       tip.classList.remove("hidden");
+      if (announce) {
+        $("chartReadout").textContent = "Age " + age + ": " + series.map(function (s) {
+          return (s.short || s.name) + " " + PM.money(s.points[current].balance);
+        }).join(", ") + ".";
+      }
       var scale = (svg.getBoundingClientRect().width || W) / W, px = cx * scale;
       var left = px + 12 + tip.offsetWidth > box.clientWidth ? px - 12 - tip.offsetWidth : px + 12;
       tip.style.left = Math.max(0, left) + "px";
@@ -277,13 +305,13 @@
     overlay.addEventListener("pointermove", function (e) { show(indexAt(e.clientX)); });
     overlay.addEventListener("pointerdown", function (e) { show(indexAt(e.clientX)); });
     overlay.addEventListener("pointerleave", hide);
-    svg.addEventListener("focus", function () { show(current); });
+    svg.addEventListener("focus", function () { show(current, true); });
     svg.addEventListener("blur", hide);
     svg.addEventListener("keydown", function (e) {
       var moves = { ArrowLeft: -1, ArrowRight: 1, ArrowDown: -5, ArrowUp: 5 };
-      if (e.key in moves) { e.preventDefault(); show(current + moves[e.key]); }
-      else if (e.key === "Home") { e.preventDefault(); show(0); }
-      else if (e.key === "End") { e.preventDefault(); show(pts0.length - 1); }
+      if (e.key in moves) { e.preventDefault(); show(current + moves[e.key], true); }
+      else if (e.key === "Home") { e.preventDefault(); show(0, true); }
+      else if (e.key === "End") { e.preventDefault(); show(pts0.length - 1, true); }
       else if (e.key === "Escape") hide();
     });
 
@@ -300,7 +328,7 @@
 
   // ---- Inputs ----------------------------------------------------------------------------------
   ["age", "endAge", "monthly", "rate", "shockDrop", "shockAge"].forEach(function (id) {
-    $(id).addEventListener("input", function () { readInputs(); update(); });
+    $(id).addEventListener("input", function () { readInputs(); update(id); });
   });
   $("shockOn").addEventListener("change", function () { readInputs(); update(); });
   $("calcForm").addEventListener("submit", function (e) { e.preventDefault(); });
@@ -338,7 +366,7 @@
     box.textContent = "";
     used.forEach(function (f) {
       var url = (f.sources || [])[0];
-      if (!url || seen[url]) return;
+      if (!url || seen[url] || !/^https?:\/\//i.test(url)) return;
       seen[url] = true;
       box.appendChild(document.createTextNode(box.childNodes.length ? " · " : "Sources: "));
       var a = document.createElement("a");

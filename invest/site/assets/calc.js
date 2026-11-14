@@ -35,17 +35,20 @@
   function validate(o) {
     var errors = [];
     function isNum(v) { return typeof v === "number" && isFinite(v); }
-    if (!isNum(o.startAge) || o.startAge < 16 || o.startAge > 80) errors.push("Enter an age between 16 and 80.");
+    // Ages and the wait are whole years: project() steps one year at a time, and a fractional
+    // crash age would never match a year (the page then crashed reading a null shock).
+    function isWhole(v) { return isNum(v) && Math.floor(v) === v; }
+    if (!isWhole(o.startAge) || o.startAge < 16 || o.startAge > 80) errors.push("Enter a whole-number age between 16 and 80.");
     if (!isNum(o.monthly) || o.monthly < 1 || o.monthly > 100000) errors.push("Enter a monthly amount between $1 and $100,000.");
     if (!isNum(o.rate) || o.rate < 0 || o.rate > 0.15) errors.push("Pick a yearly growth rate between 0% and 15%.");
-    if (!isNum(o.delay) || o.delay < 1 || o.delay > 30) errors.push("Pick a wait between 1 and 30 years.");
-    if (!isNum(o.endAge) || o.endAge > 100) errors.push("Pick an end age of 100 or less.");
+    if (!isWhole(o.delay) || o.delay < 1 || o.delay > 30) errors.push("Pick a wait between 1 and 30 years.");
+    if (!isWhole(o.endAge) || o.endAge > 100) errors.push("Pick a whole-number end age of 100 or less.");
     else if (isNum(o.startAge) && isNum(o.delay) && o.endAge <= o.startAge + o.delay) {
       errors.push("The end age has to be after you'd start, even if you wait.");
     }
     if (o.shock) {
       if (!isNum(o.shock.drop) || o.shock.drop <= 0 || o.shock.drop >= 1) errors.push("Pick a drop between 1% and 99%.");
-      if (!isNum(o.shock.age) || o.shock.age <= o.startAge || o.shock.age > o.endAge) {
+      if (!isWhole(o.shock.age) || o.shock.age <= o.startAge || o.shock.age > o.endAge) {
         errors.push("The drop has to happen between your age now and the end age.");
       }
     }
@@ -70,29 +73,34 @@
     };
   }
 
+  // "$247,400" (nearest $100 from $10,000 up), "-$5,000" for negatives, never "$-0".
   function money(n) {
-    var rounded = Math.abs(n) >= 10000 ? Math.round(n / 100) * 100 : Math.round(n);
-    return "$" + Math.round(rounded).toLocaleString("en-US");
+    var a = Math.abs(n);
+    var rounded = a >= 10000 ? Math.round(a / 100) * 100 : Math.round(a);
+    return (n < 0 && rounded > 0 ? "-$" : "$") + rounded.toLocaleString("en-US");
   }
 
+  // "$247.4K", "$1.3M". Picks the unit after rounding, so 999,960 is "$1M", not "$1000K".
   function compactMoney(n) {
-    var a = Math.abs(n);
-    if (a >= 1e6) return "$" + trim(n / 1e6) + "M";
-    if (a >= 1e3) return "$" + trim(n / 1e3) + "K";
-    return "$" + Math.round(n);
+    var a = Math.abs(n), sign = n < 0 && Math.round(a) > 0 ? "-" : "";
+    if (a >= 999950) return sign + "$" + trim(a / 1e6) + "M";
+    if (a >= 999.5) return sign + "$" + trim(a / 1e3) + "K";
+    return sign + "$" + Math.round(a);
   }
   function trim(x) { return (Math.round(x * 10) / 10).toString(); }
 
   // Clean axis ticks (1, 2, 2.5 or 5 x 10^n) covering 0..max.
   function niceTicks(max, count) {
-    count = count || 4;
-    if (!(max > 0)) return [0, 1];
+    count = count > 0 ? count : 4;
+    if (!(max > 0) || !isFinite(max)) return [0, 1]; // Infinity used to loop forever
     var raw = max / count, mag = Math.pow(10, Math.floor(Math.log10(raw)));
-    var steps = [1, 2, 2.5, 5, 10], step = mag;
+    var steps = [1, 2, 2.5, 5, 10], step = 10 * mag;
     for (var i = 0; i < steps.length; i++) { if (steps[i] * mag >= raw) { step = steps[i] * mag; break; } }
+    // Multiply instead of adding up steps, and trim float noise (0.30000000000000004 -> 0.3).
+    function tick(k) { return Number((k * step).toPrecision(12)); }
     var ticks = [];
-    for (var t = 0; t <= max + step * 0.0001; t += step) ticks.push(t);
-    if (ticks[ticks.length - 1] < max) ticks.push(ticks[ticks.length - 1] + step);
+    for (var k = 0; k * step <= max + step * 0.0001; k++) ticks.push(tick(k));
+    if (ticks[ticks.length - 1] < max) ticks.push(tick(ticks.length));
     return ticks;
   }
 
