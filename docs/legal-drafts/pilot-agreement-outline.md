@@ -144,12 +144,12 @@ These measures are for the conversion decision. They are not a promise of any re
 
 ## 12. Liability [placeholders]
 
-- Each party's total liability is capped at [the fees paid or payable in the 12 months before the claim] / [$X].
+- Each party's total liability is capped at [the fees paid or payable in the 12 months before the claim] / [fixed amount].
 - No indirect, special or consequential damages, except for [breach of confidentiality, data protection obligations, indemnities, gross negligence or willful misconduct].
 - **Indemnities:**
   - Employer covers claims about its wages, taxes and employment decisions.
   - We cover claims that our software infringes third-party IP, and claims from our breach of data obligations [scope to be set].
-- **Insurance:** we carry [cyber and errors-and-omissions insurance of $X].
+- **Insurance:** we carry [cyber and errors-and-omissions insurance; amounts to be set].
 
 ## 13. Publicity
 

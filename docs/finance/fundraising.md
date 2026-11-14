@@ -65,8 +65,8 @@
 ## 10-slide pitch outline
 
 1. **Title.** Patient Money (working name): "Rewards that keep young hourly workers, paid for by the employers who keep them."
-2. **The problem.** Young hourly workers quit fast and replacing them is expensive. Accommodation and food services saw 719,000 quits in Sept 2026, a 5.0% monthly quit rate (BLS JOLTS). For low-wage jobs, a replacement typically costs about 16% of a year's pay (CAP), about $4,000.
-3. **Who pays and why.** Employers, because the math works: the program costs about $9,700 a year for 150 members, so it pays for itself if 2 or 3 people a year stay who would have left (a 3% cut in quits).
+2. **The problem.** Young hourly workers quit fast and replacing them is expensive. Accommodation and food services saw 719,000 quits in Sept 2026, a 5.0% monthly quit rate (BLS JOLTS). Replacing one worker costs roughly $1,500 to $6,000; we plan with $3,500 (research team range; CAP puts it at 16% of pay for jobs under $30,000).
+3. **Who pays and why.** Employers, because the math works: the program costs about $9,700 a year for 150 members, so it pays for itself if about 3 people a year stay who would have left (a 3.5% cut in quits).
 4. **The product.** Points for staying (30, 90, 180 and 365 days), for money lessons, and for healthy habits. Rewards are paid as a payroll bonus or a gift card. **Never** for trading or account balances.
 5. **Why now and why us.** Gen Z wants to build wealth but distrusts hype. Our education-first brand (see `docs/patient-money-plan.md`) is the trust layer employers can offer. The compliance guardrails are built in from day one.
 6. **Traction.** Pilots, enrollment and activity rates, early retention comparison, paying customers, LOIs. *(Fill in after the pilots.)*

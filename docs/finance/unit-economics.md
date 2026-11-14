@@ -13,17 +13,17 @@
 | **Gross margin** | **62%** | 7% to 87% |
 | Rewards the employer pays | about $11 per member per year | $9 to $13 |
 | Employer's total cost | $9,679 a year ($5.38 per member per month) | $6,654 to $21,915 |
-| One replacement hire costs the employer | about $4,060 | $2,030 to $5,840 |
-| **Break-even retention lift** | **3.0% fewer quits** (4.1% a month falls to 3.98%) | 9.2% to 1.6% |
-| That is | 2.4 fewer quits a year per 150 members | |
+| One replacement hire costs the employer | about $3,500 | $1,500 to $6,000 |
+| **Break-even retention lift** | **3.5% fewer quits** (4.1% a month falls to 3.96%) | 12.5% to 1.6% |
+| That is | 2.8 fewer quits a year per 150 members | |
 | **Employers needed for $100K a month (MRR)** | **167** (25,000 members) | 278 to 71 |
 | Month we reach $100K MRR | **month 49** | never in 6 years to month 21 |
 
-**In one sentence:** the employer's math looks very good on paper (it breaks even if just 2 or 3 people a year stay who would have quit), our margin is healthy only when an employer has 140 or more members, and the speed of the company depends on how many pilots turn into paying customers.
+**In one sentence:** the employer's math looks very good on paper (it breaks even if about 3 people a year stay who would have quit), our margin is healthy only when an employer has 140 or more members, and the speed of the company depends on how many pilots turn into paying customers.
 
 ## The 3 numbers that matter most
 
-1. **Retention lift: do members actually quit less?** Everything rests on this. The employer breaks even at about 3% fewer quits (base) and makes about $22,500 a year at 10% fewer. We have no evidence yet that $11 a year in rewards changes anyone's behavior (see "Rewards are small" below). The pilot must test this first.
+1. **Retention lift: do members actually quit less?** Everything rests on this. The employer breaks even at about 3.5% fewer quits (base) and comes out about $18,000 ahead in a year at 10% fewer. We have no evidence yet that $11 a year in rewards changes anyone's behavior (see "Rewards are small" below). The pilot must test this first.
 2. **Members per employer: is each customer big enough?** Our costs are mostly fixed per employer: account management time and the payroll data connection. At $4 we need about **140 members per employer for a 60% margin**. At 50 members the margin is 14%, and we never earn back the cost of the sale. This is why `pricing.md` recommends a $500 monthly minimum.
 3. **Pilot-to-paid conversion: how many pilots become customers?** At 60% conversion, a salesperson costs us about **$5,000 per paying employer**, and we earn it back in about 13 months. At 40% conversion and slower sales, it costs $12,500 and we never earn it back. This number also decides how much money we need to raise.
 
@@ -43,14 +43,17 @@
   - People who quit early never reach the 180-day and one-year milestones.
 - Year 2 is a bit lower (about $9.15) because existing staff only earn the one-time points once.
 - **90-day pilot:** about 448 points per member, about **$672 for a 150-member employer**. The model suggests a **$1,000 pilot pool budget** (1.5x the expected amount). The employer is billed only for what is redeemed.
-- **Rewards are small.** A new hire who stays a full year can earn at most $32, about 1.5 hours of pay at the BLS average of $20.52 an hour. That may be too little to change behavior. The employer can afford much more: at 5 times the point values, the employer's cost rises to about $16,700 a year and break-even rises only to 5.2% fewer quits (table 4c). **Consider testing bigger milestone rewards in at least one pilot.**
+- **Rewards are small.** A new hire who stays a full year can earn at most $32, about 1.5 hours of pay at the BLS average of $20.52 an hour. That may be too little to change behavior. The employer can afford much more: at 5 times the point values, the employer's cost rises to about $16,700 a year and break-even rises only to 6.0% fewer quits (table 4c). **Consider testing bigger milestone rewards in at least one pilot.**
 
 ### 2. Employer ROI
 
 - **Baseline quits.** BLS reports a 4.1% average monthly quit rate in accommodation and food services for June to Sept 2026. Sept alone was 5.0% (719,000 quits), a spike. At 4.1%, about 74 of 150 members quit in a year.
-- **Cost of a quit.** CAP found the typical turnover cost for jobs under $30,000 a year is 16% of annual pay. That is about $4,060 on BLS pay data ($20.52 an hour, 23.8 hours a week). The range we use runs from $2,030 (direct costs only) to $5,840 (close to the widely cited Cornell $5,864, unverified and in 2006 dollars).
+- **Cost of a quit.** We use the research team's range in `docs/research/turnover-economics.md`: $1,500 low, **$3,500 base**, $6,000 high.
+  - The low end is near the most rigorous study the team found: Kuhn and Yu, retail, $1,132 per departure.
+  - As a cross-check, CAP found the typical turnover cost for jobs under $30,000 a year is 16% of annual pay. That is about $4,060 on BLS pay data ($20.52 an hour, 23.8 hours a week).
+  - The widely cited Cornell figure of $5,864 is for hotels, from 2006, and unverified in the original report.
 - **Employer cost.** $7,200 fee + $1,634 rewards + $125 employer payroll tax + $720 manager time = **$9,679 in year 1**. Both payroll bonuses and gift cards count as taxable wages (IRS Pub 15-B).
-- **Break-even.** About 2.4 avoided quits a year, a 3.0% cut in quits. In the conservative case (retail-level quits, $2,030 replacement cost, small employer) it takes a 9.2% cut. Table 2b in the output shows net savings at each lift level.
+- **Break-even.** About 2.8 avoided quits a year, a 3.5% cut in quits. In the conservative case (retail-level quits, $1,500 replacement cost, small employer) it takes a 12.5% cut. Table 2b in the output shows net savings at each lift level.
 
 ### 3. Company path
 
@@ -67,7 +70,7 @@
 
 ### 4. Sensitivities (base case)
 
-- **Price** (table 4a). At $5 the margin is 70% and we need 133 employers for $100K MRR. At $3 it is 50% and we need 222. Break-even lift barely moves, so price is not what decides the employer's ROI. Retention is.
+- **Price** (table 4a). At $5 the margin is 70% and we need 133 employers for $100K MRR. At $3 it is 50% and we need 222. Break-even lift moves only from 2.8% to 4.1%, so price is not what decides the employer's ROI. Retention is.
 - **Employer size** (table 4b) matters more than price. This is why we should **target employers with 150+ members** (roughly 250+ hourly staff aged 18-25), such as multi-unit franchisees, regional restaurant groups and hotel management companies.
 
 ## What a 90-day pilot can and cannot prove
@@ -94,8 +97,8 @@ So the pilot should:
 | Redemption mix (payroll vs gift card) | 60/40 | Gift card fees, payroll work | `redemptions` |
 | Points never redeemed | 10% | Employer cost | `points_outstanding` after the pilot |
 | 30- and 90-day retention of **new hires**, program vs comparison | 2x higher early quits | The earliest retention signal | `retention`, plus the employer's hire and end dates |
-| Monthly quit rate, all members vs comparison | 4.1% | The break-even test (3% lift) | Employer HR data (voluntary quits only) |
-| The employer's own cost per hire | $4,060 | Their ROI, in their own numbers | Ask them: recruiting spend, training hours, overtime |
+| Monthly quit rate, all members vs comparison | 4.1% | The break-even test (3.5% lift) | Employer HR data (voluntary quits only) |
+| The employer's own cost per hire | $3,500 | Their ROI, in their own numbers | Ask them: recruiting spend, training hours, overtime |
 | Support tickets per member per month, minutes each | 0.05, 10 minutes | Our cost | Our support log |
 | Our hours per employer per month | 2 | Biggest cost line | Time log |
 | Employer manager hours per month | 2 | Their hidden cost | Ask at day 30, 60 and 90 |
@@ -107,7 +110,7 @@ So the pilot should:
 1. **That small rewards move retention.** Nothing yet shows that $11 to $32 a year changes quitting. This is the biggest risk. It is also the lesson of Bumped: payers stop paying without clear value.
 2. **Employer size.** Our margin needs 140+ members per employer. Many restaurant operators are smaller.
 3. **Pilot conversion and sales speed.** These are pure assumptions until we run real sales conversations.
-4. **Cost per replacement.** Employers may count only direct costs (the $2,030 case), which nearly triples the lift they need.
+4. **Cost per replacement.** If an employer counts only direct costs (the $1,500 case), the lift they need more than triples (12.5% vs 3.5%).
 5. **Legal structure** (see `docs/legal-drafts/`). Four questions:
    - Does limiting eligibility to ages 18-25 raise age-discrimination issues? The ADEA protects workers 40 and over, and covers pay and benefits.
    - Must earned points be paid out when someone leaves (state wage laws)?
@@ -123,6 +126,7 @@ So the pilot should:
 - BLS CES, food services and drinking places, nonsupervisory pay and hours, Sept 2026 (preliminary): https://data.bls.gov/timeseries/CES7072200008 and https://data.bls.gov/timeseries/CES7072200007
 - Center for American Progress, turnover costs 16% of pay for jobs under $30,000 (Nov 2012): https://www.americanprogress.org/article/there-are-significant-business-costs-to-replacing-employees/
 - Tracey and Hinkin, Cornell CHR (Dec 2006), $5,864 figure widely cited, **unverified** in the original: https://hdl.handle.net/1813/71149
+- Replacement cost range ($1,500 / $3,500 / $6,000) and its sources (Kuhn and Yu, NBER w26179; Dube, Freeman and Reich 2010): research team, `docs/research/turnover-economics.md`
 - IRS Topic 751 (employer FICA 7.65%): https://www.irs.gov/taxtopics/tc751
 - IRS Publication 15-B (2026), gift cards never de minimis: https://www.irs.gov/publications/p15b
 - EEOC, age discrimination (ADEA protects 40+; covers pay and benefits): https://www.eeoc.gov/age-discrimination
@@ -182,12 +186,12 @@ Members needed for 75% margin                  never           305           125
 2. EMPLOYER ROI (first 12 months)
                                         Conservative          Base    Optimistic
 --------------------------------------------------------------------------------
-Replacement cost per hourly worker            $2,032        $4,063        $5,841
-  (share of a year's pay)                         8%           16%           23%
+Replacement cost per hourly worker            $1,500        $3,500        $6,000
+  (share of a year's pay)                         6%           14%           24%
 Baseline monthly quit rate                      3.1%          4.1%          5.0%
 Quits per year among members, no program          33.5          73.8         210.0
   per 100 members                               37.2          49.2          60.0
-Cost of those quits per year                 $68,019      $299,871    $1,226,605
+Cost of those quits per year                 $50,220      $258,300    $1,260,000
 
 EMPLOYER COST OF THE PROGRAM, YEAR 1                                            
   Our fee                                     $4,320        $7,200       $16,800
@@ -198,29 +202,29 @@ EMPLOYER COST OF THE PROGRAM, YEAR 1
   Total per member per month                   $6.16         $5.38         $5.22
 
 BREAK-EVEN RETENTION LIFT                                                       
-  Cut in quits needed (relative)                9.2%          3.0%          1.6%
-  = monthly quit rate falls to                 2.81%         3.98%         4.92%
-  = quits avoided per year                       3.3           2.4           3.7
-  = quits avoided per 100 members/yr             3.6           1.6           1.1
+  Cut in quits needed (relative)               12.5%          3.5%          1.6%
+  = monthly quit rate falls to                 2.71%         3.96%         4.92%
+  = quits avoided per year                       4.4           2.8           3.7
+  = quits avoided per 100 members/yr             4.9           1.8           1.0
 
 2b. EMPLOYER NET SAVINGS BY RETENTION LIFT (year 1; negative = employer loses money)
                                         Conservative          Base    Optimistic
 --------------------------------------------------------------------------------
 5% fewer quits: quits avoided                    1.8           4.0          11.4
-   employer net savings                      -$3,041        $6,479       $44,999
-   return per $1 spent                         $0.54         $1.67         $3.06
+   employer net savings                      -$3,985        $4,241       $46,820
+   return per $1 spent                         $0.40         $1.44         $3.14
 10% fewer quits: quits avoided                   3.5           7.9          22.8
-   employer net savings                         $551       $22,516      $111,328
-   return per $1 spent                         $1.08         $3.33         $6.10
+   employer net savings                      -$1,331       $18,057      $114,953
+   return per $1 spent                         $0.80         $2.87         $6.27
 15% fewer quits: quits avoided                   5.3          11.8          34.0
-   employer net savings                       $4,121       $38,431      $177,071
-   return per $1 spent                         $1.62         $4.99         $9.13
+   employer net savings                       $1,307       $31,768      $182,485
+   return per $1 spent                         $1.20         $4.30         $9.38
 20% fewer quits: quits avoided                   7.0          15.7          45.2
-   employer net savings                       $7,669       $54,224      $242,230
-   return per $1 spent                         $2.16         $6.64        $12.15
+   employer net savings                       $3,929       $45,374      $249,416
+   return per $1 spent                         $1.59         $5.72        $12.48
 30% fewer quits: quits avoided                  10.5          23.4          67.2
-   employer net savings                      $14,702       $85,448      $370,792
-   return per $1 spent                         $3.22         $9.92        $18.14
+   employer net savings                       $9,125       $72,274      $381,476
+   return per $1 spent                         $2.38         $8.54        $18.64
 
 3. COMPANY PATH
                                                Conservative         Base   Optimistic
@@ -276,11 +280,11 @@ Pilot fees collected in first 12 months             $12,000      $20,250      $5
 4a. BASE CASE: WHAT IF THE PRICE CHANGES? (assumes sales pace does not change)
 Price/member/mo      Gross margin  Break-even lift  Employers $100K    Reach $100K
 ----------------------------------------------------------------------------------
-$2.00                         26%             1.9%              333            >72
-$3.00                         50%             2.4%              222       month 63
-$4.00                         62%             3.0%              167       month 49
-$5.00                         70%             3.5%              133       month 43
-$6.00                         75%             4.1%              111       month 39
+$2.00                         26%             2.2%              333            >72
+$3.00                         50%             2.8%              222       month 63
+$4.00                         62%             3.5%              167       month 49
+$5.00                         70%             4.1%              133       month 43
+$6.00                         75%             4.8%              111       month 39
 
 4b. BASE CASE: WHAT IF EMPLOYERS ARE BIGGER OR SMALLER?
 Members/employer       Revenue/mo   Gross margin   CAC payback mo  Employers $100K
@@ -291,13 +295,13 @@ Members/employer       Revenue/mo   Gross margin   CAC payback mo  Employers $10
 250                        $1,000            72%              6.9              100
 400                        $1,600            78%              4.0               62
 
-4c. BASE CASE: WHAT IF REWARDS ARE BIGGER? (1x = data-contract point values)
+4c. BASE CASE: WHAT IF REWARDS ARE BIGGER? (x1 = data-contract point values)
 Point values    Max $/person/yr  Avg paid/member   Employer cost  Break-even lift
 ---------------------------------------------------------------------------------
-1x                          $32           $10.89          $9,679             3.0%
-2x                          $64           $21.79         $11,438             3.5%
-5x                         $160           $54.47         $16,715             5.2%
-10x                        $320          $108.93         $25,510             7.8%
+x1                          $32           $10.89          $9,679             3.5%
+x2                          $64           $21.79         $11,438             4.1%
+x5                         $160           $54.47         $16,715             6.0%
+x10                        $320          $108.93         $25,510             9.1%
 
 5. PRICING OPTIONS: our revenue per employer per month (same costs as section 1)
                                                Conservative         Base   Optimistic

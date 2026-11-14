@@ -101,7 +101,7 @@ Rewards stay at cost because:
 
 - **Default price:** $4 per enrolled member per month, $500 monthly minimum, 12-month term, monthly ACH billing.
 - **For chains that want predictability:** offer the per-location price ($75 per location per month), so long as it works out above the PEPM equivalent.
-- **Test a higher price** with a new prospect, not a pilot employer. The model says $5 lifts margin to 70% while the employer's break-even lift rises only from 3.0% to 3.5%. We don't know yet whether $5 slows sales.
+- **Test a higher price** with a new prospect, not a pilot employer. The model says $5 lifts margin to 70% while the employer's break-even lift rises only from 3.5% to 4.1%. We don't know yet whether $5 slows sales.
 - **Don't** offer a "money back if retention doesn't improve" deal yet. One pilot can't measure retention reliably (see `unit-economics.md`, "What a 90-day pilot can and cannot prove").
 
 ## Open questions for the founder

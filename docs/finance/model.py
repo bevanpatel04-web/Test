@@ -138,12 +138,17 @@ INPUTS = {
             "payment_pct": 0.008, "payment_cap_usd": 5.0, "invoicing_pct": 0.004,
 
             # -- Employer ROI --
-            # Replacement cost as a share of a year's pay.
-            # SOURCED (base): Center for American Progress (Boushey and Glynn, Nov 2012):
-            # "The typical cost of turnover for positions earning less than $30,000
-            # annually is 16 percent of an employee's annual salary."
+            # Cost to replace one hourly worker. The three values match the research
+            # team's low/base/high in docs/research/turnover-economics.md, so the team
+            # uses one range. Low $1,500: near Kuhn and Yu (NBER w26179, retail,
+            # $1,132 per departure) and the low end of Dube, Freeman and Reich (2010).
+            # Cross-check, verified 2026-11-14: Center for American Progress (Boushey
+            # and Glynn, Nov 2012): "The typical cost of turnover for positions earning
+            # less than $30,000 annually is 16 percent of an employee's annual salary,"
+            # which is about $4,060 on the BLS pay above.
             # https://www.americanprogress.org/article/there-are-significant-business-costs-to-replacing-employees/
-            "replacement_cost_pct_of_pay": 0.08,  # ASSUMPTION: direct costs only (ads, interviews, training hours)
+            "replacement_cost_usd": 1_500,
+
             "employer_admin_hours_month": 4,      # ASSUMPTION: manager time to run the program
             "employer_manager_cost_per_hour": 30.0,  # ASSUMPTION
 
@@ -198,8 +203,9 @@ INPUTS = {
             "fraud_loss_rate": 0.005,
             "payment_pct": 0.008, "payment_cap_usd": 5.0, "invoicing_pct": 0.004,
 
-            # SOURCED: 16% of pay (CAP, above) x $25,400 = about $4,060.
-            "replacement_cost_pct_of_pay": 0.16,
+            # Research team base: middle of Dube et al.'s blue-collar range, a bit
+            # below CAP's 16% of pay (about $4,060).
+            "replacement_cost_usd": 3_500,
             "employer_admin_hours_month": 2,
             "employer_manager_cost_per_hour": 30.0,
 
@@ -248,11 +254,10 @@ INPUTS = {
             "fraud_loss_rate": 0.002,
             "payment_pct": 0.008, "payment_cap_usd": 5.0, "invoicing_pct": 0.004,
 
-            # Roughly matches the widely cited $5,864 per front-line hospitality employee
-            # attributed to Tracey and Hinkin, Cornell Center for Hospitality Research
-            # (Dec 2006), https://hdl.handle.net/1813/71149. UNVERIFIED in the original
-            # report, and in 2006 dollars.
-            "replacement_cost_pct_of_pay": 0.23,
+            # Research team high: between CAP's 16% of pay and the widely cited $5,864
+            # per front-line hotel worker (Tracey and Hinkin, Cornell CHR, Dec 2006,
+            # https://hdl.handle.net/1813/71149; UNVERIFIED in the report, 2006 dollars).
+            "replacement_cost_usd": 6_000,
             "employer_admin_hours_month": 1,
             "employer_manager_cost_per_hour": 30.0,
 
@@ -446,7 +451,7 @@ def employer_year1(s, sh, lift, price=None):
     tax = rewards * sh["employer_payroll_tax_rate"]
     admin = 12 * s["employer_admin_hours_month"] * s["employer_manager_cost_per_hour"]
     cost = fee + rewards + tax + admin
-    repl = s["replacement_cost_pct_of_pay"] * annual_pay(sh)
+    repl = s["replacement_cost_usd"]
     avoided = base_quits - quits
     savings = avoided * repl
     return {"fee": fee, "rewards": rewards, "tax": tax, "admin": admin, "cost": cost,
@@ -607,7 +612,7 @@ def main():
     # 2. Employer ROI ---------------------------------------------------------
     rows = [
         ["Replacement cost per hourly worker", *cols(lambda k: money(R0[k]["repl"]))],
-        ["  (share of a year's pay)", *cols(lambda k: pct(sc[k]["replacement_cost_pct_of_pay"]))],
+        ["  (share of a year's pay)", *cols(lambda k: pct(sc[k]["replacement_cost_usd"] / annual_pay(sh)))],
         ["Baseline monthly quit rate", *cols(lambda k: pct(sc[k]["monthly_quit_rate"], 1))],
         ["Quits per year among members, no program", *cols(lambda k: num(R0[k]["base_quits"], 1))],
         ["  per 100 members", *cols(lambda k: num(R0[k]["base_quits"] / U[k]["E"] * 100, 1))],
@@ -719,8 +724,8 @@ def main():
         be = break_even_lift(b, sh_k)
         top = (sum(sh_k["tenure_milestones"].values()) + sh_k["max_lessons"] * sh_k["points_per_lesson"]
                + sh_k["checklist_points"] + sh_k["savings_setup_points"]) / sh["points_per_usd"]
-        rows.append([f"{k_scale}x", money(top), money(u["pool_y1_pm"], True), money(r["cost"]), pct(be, 1)])
-    table("4c. BASE CASE: WHAT IF REWARDS ARE BIGGER? (1x = data-contract point values)",
+        rows.append([f"x{k_scale}", money(top), money(u["pool_y1_pm"], True), money(r["cost"]), pct(be, 1)])
+    table("4c. BASE CASE: WHAT IF REWARDS ARE BIGGER? (x1 = data-contract point values)",
           ["Point values", "Max $/person/yr", "Avg paid/member", "Employer cost", "Break-even lift"],
           rows, [14, 17, 17, 16, 17])
 
