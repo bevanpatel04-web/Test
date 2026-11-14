@@ -482,19 +482,21 @@ async function run() {
 
   await check("accessibility: every keyboard stop has a visible focus ring", async () => {
     const page = await open("/?crash=1");
-    await page.click("summary"); // include the table toggle in its open state
+    await page.evaluate(() => { document.querySelector("details").open = true; }); // table view open, focus untouched
     const stops = [], missing = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 80; i++) {
       await page.keyboard.press("Tab");
       const s = await page.evaluate(() => {
         const el = document.activeElement;
         if (!el || el === document.body) return null;
+        if (el.hasAttribute("data-qa-seen")) return { again: true };
+        el.setAttribute("data-qa-seen", "");
         const c = getComputedStyle(el);
-        return { id: el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (el.textContent ? ` "${el.textContent.trim().slice(0, 16)}"` : ""),
+        return { id: el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (el.textContent ? ` "${el.textContent.trim().slice(0, 20)}"` : ""),
                  ring: c.outlineStyle !== "none" && parseFloat(c.outlineWidth) >= 2 };
       });
       if (!s) continue;
-      if (stops.includes(s.id)) break;
+      if (s.again) break;
       stops.push(s.id);
       if (!s.ring) missing.push(s.id);
     }

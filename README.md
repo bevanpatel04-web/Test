@@ -1,4 +1,6 @@
 > **This repo holds two AI-run products.** Mildwell (below) and **Patient Money**, investing education for 18–25 year olds, in [`invest/`](invest/README.md), with its plan in [`docs/patient-money-plan.md`](docs/patient-money-plan.md). Each has its own AI team, workflows and website.
+>
+> Patient Money's next step is an **employer-paid rewards pilot** ("Bilt for the first paycheck"): team brief in [`docs/pilot/BRIEF.md`](docs/pilot/BRIEF.md), rewards engine in [`rewards/`](rewards/README.md), demo dashboard in `invest/site/pilot/`, and research, finance, marketing and draft legal docs in `docs/research/`, `docs/finance/`, `docs/marketing/` and `docs/legal-drafts/`. QA tests live in `tests/qa/`.
 
 # Mildwell — an AI-run water and skin business
 

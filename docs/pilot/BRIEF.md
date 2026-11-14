@@ -17,13 +17,24 @@ Copy Bilt's playbook. Bilt signed landlords *before* renters, and landlords pay 
 
 **How the pilot works**
 - The employer pays a per-employee-per-month (PEPM) fee and funds a reward pool.
-- Members (employees aged 18-25) earn points for **work tenure milestones** (30/90/180/365 days), **completing lessons**, and **healthy money habits** (setting up direct deposit to savings, finishing the "before you invest" checklist).
+- Members (hourly employees 18+; young workers are the focus, see below) earn points for **work tenure milestones** (30/90/180/365 days), **completing lessons**, and **healthy money habits** (setting up direct deposit to savings, finishing the "before you invest" checklist).
 - **Never** for trading, number of trades or account balances. Gamified trading is a regulatory red flag; Massachusetts fined Robinhood $7.5M in 2024 partly over it.
 - Pilot redemptions: **payroll bonus** (the employer pays through payroll, so it's taxed as wages) or **gift card**. No securities and no money movement by us in the pilot.
 - Later (not in the pilot): points become a cash deposit into the member's **own** investing or savings account through a licensed partner (e.g. Apex or DriveWealth stock-rewards APIs). The member chooses what to invest in. We never pick.
 - Second payer later: credit unions that want young members.
 
 **Why it can fail (from research):** Bumped's brand-funded stock rewards shut down in 2022 when brands stopped paying. Wells Fargo reportedly lost up to $10M a month subsidizing the Bilt card. The payer must get clear value (retention) that we can measure.
+
+## What changed after the first research round (Nov 14, 2026)
+
+The research, marketing and finance agents independently flagged the same issues. Until an attorney says otherwise:
+
+- **Eligibility is all hourly staff 18+, not "ages 18-25".** An age cap likely conflicts with federal age-discrimination law (protects workers 40+, including benefits). Young workers stay the focus of the content and marketing, not the eligibility rule.
+- **Every reward goes through the employer's payroll as taxable pay, gift cards included** (IRS Publication 15-B). Tenure bonuses also count toward overtime pay (29 CFR 778.211).
+- **Measure fairly.** "Enrolled vs. not enrolled" overstates the effect, because steady workers are the ones who sign up. Pilots should start at some locations first and compare them with the rest, and results should be pooled across employers. One 400-person employer can't prove a small effect.
+- **Open decisions for the founder:** reward size (a full first year caps near $32 today), points when someone leaves (pay out vs. expire, which is an attorney question), gift-card delivery without storing emails, credit for tenure served before joining, and pilot pricing (free vs. $1,500 flat).
+
+Details: `docs/research/`, `docs/finance/`, `docs/legal-drafts/`.
 
 ## Rules for every agent
 
