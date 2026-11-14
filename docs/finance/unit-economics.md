@@ -37,6 +37,8 @@
 
 ### The reward pool (paid by the employer, passed through at cost)
 
+> **Update, Nov 14, 2026:** pilots now use the **boosted** schedule (at most $150 a year, front-loaded). The tables below still use the original standard values. With boosted rewards, the base-case employer's year-1 cost rises from $9,679 to about $17,500 and the break-even cut in quits from 3.5% to 6.2%; our revenue and margin don't change, because rewards pass straight through. Run `python3 docs/finance/decisions_check.py` and see `docs/pilot/decisions.md`.
+
 - The earning rules (`docs/pilot/data-contract.md`) cap one person at **3,200 points ($32) in a first year**: $22 for tenure milestones plus $10 for lessons, the checklist and savings setup.
 - On average a member earns far less: about **1,210 points ($12.10) in year 1**, or $10.89 after 10% of points are never redeemed. The reasons:
   - Many members have already passed their milestones when the program starts. The model gives no back pay for milestones passed before launch.

@@ -106,7 +106,7 @@ Rewards stay at cost because:
 
 ## Open questions for the founder
 
-1. Is the target buyer a franchisee or regional operator with 250+ hourly staff aged 18-25? Smaller operators only work with the minimum fee.
+1. ~~Is the target buyer a franchisee or regional operator with 250+ hourly staff?~~ **Decided Nov 14, 2026:** yes, 250+ eligible hourly staff across 4+ locations, with the $500 monthly minimum. See `docs/pilot/decisions.md`.
 2. Do you want Pilot 1 free in exchange for a well-known logo, or should every pilot pay something?
-3. Will the first employers accept the point values in the data contract (at most $32 per person in year 1)? Or should one pilot test bigger rewards, say 5x?
+3. ~~Bigger rewards?~~ **Decided Nov 14, 2026:** every early pilot uses the boosted schedule (at most $150 per person in year 1, front-loaded). See `docs/pilot/decisions.md`.
 4. Who at the employer signs: the general manager, the HR lead or the owner? That changes the sales cycle and how big a fee they can approve.

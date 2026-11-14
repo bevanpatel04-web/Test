@@ -6,16 +6,16 @@
     "plan": "pilot",
     "pepm_usd": 4.0,
     "points_per_usd": 100,
-    "pool_funded_usd": 5000.0,
-    "pool_remaining_usd": 4240.0
+    "pool_funded_usd": 15000.0,
+    "pool_remaining_usd": 12705.0
   },
   "summary": {
     "eligible": 400,
     "enrolled": 240,
-    "active_30d": 130,
-    "points_issued": 244100,
-    "points_redeemed": 76000,
-    "points_outstanding": 168100
+    "active_30d": 131,
+    "points_issued": 964600,
+    "points_redeemed": 229500,
+    "points_outstanding": 735100
   },
   "retention": [
     {
@@ -53,51 +53,51 @@
     {
       "rule": "tenure_30",
       "label": "30 days on the job",
-      "points": 7200
+      "points": 72000
     },
     {
       "rule": "tenure_90",
       "label": "90 days on the job",
-      "points": 17700
+      "points": 236000
     },
     {
       "rule": "tenure_180",
       "label": "180 days on the job",
-      "points": 51600
+      "points": 258000
     },
     {
       "rule": "tenure_365",
       "label": "One year on the job",
-      "points": 61000
+      "points": 183000
     },
     {
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 66300
+      "points": 132600
     },
     {
       "rule": "checklist_completed",
       "label": "Finished the \"before you invest\" checklist",
-      "points": 19000
+      "points": 47500
     },
     {
       "rule": "savings_setup",
       "label": "Set up direct deposit to savings",
-      "points": 21300
+      "points": 35500
     }
   ],
   "redemptions": [
     {
       "type": "payroll_bonus",
       "label": "Payroll bonus",
-      "count": 83,
-      "usd": 440.0
+      "count": 74,
+      "usd": 1380.0
     },
     {
       "type": "gift_card",
       "label": "Gift card",
-      "count": 56,
-      "usd": 320.0
+      "count": 52,
+      "usd": 915.0
     }
   ],
   "members": [
@@ -105,7 +105,7 @@
       "id": "m_001",
       "display_name": "Member 001",
       "tenure_days": 269,
-      "points_balance": 100,
+      "points_balance": 1000,
       "lessons_completed": 10,
       "last_active": "2026-11-14"
     },
@@ -113,7 +113,7 @@
       "id": "m_004",
       "display_name": "Member 004",
       "tenure_days": 244,
-      "points_balance": 1150,
+      "points_balance": 7500,
       "lessons_completed": 5,
       "last_active": "2026-10-10"
     },
@@ -121,7 +121,7 @@
       "id": "m_005",
       "display_name": "Member 005",
       "tenure_days": 534,
-      "points_balance": 450,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-10-03"
     },
@@ -129,7 +129,7 @@
       "id": "m_006",
       "display_name": "Member 006",
       "tenure_days": 496,
-      "points_balance": 450,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-11-05"
     },
@@ -137,7 +137,7 @@
       "id": "m_007",
       "display_name": "Member 007",
       "tenure_days": 638,
-      "points_balance": 750,
+      "points_balance": 1500,
       "lessons_completed": 5,
       "last_active": "2026-11-08"
     },
@@ -145,7 +145,7 @@
       "id": "m_008",
       "display_name": "Member 008",
       "tenure_days": 189,
-      "points_balance": 1550,
+      "points_balance": 10700,
       "lessons_completed": 7,
       "last_active": "2026-10-24"
     },
@@ -153,7 +153,7 @@
       "id": "m_011",
       "display_name": "Member 011",
       "tenure_days": 242,
-      "points_balance": 650,
+      "points_balance": 4500,
       "lessons_completed": 5,
       "last_active": "2026-11-01"
     },
@@ -161,7 +161,7 @@
       "id": "m_013",
       "display_name": "Member 013",
       "tenure_days": 25,
-      "points_balance": 250,
+      "points_balance": 1500,
       "lessons_completed": 5,
       "last_active": "2026-06-20"
     },
@@ -169,7 +169,7 @@
       "id": "m_014",
       "display_name": "Member 014",
       "tenure_days": 233,
-      "points_balance": 1000,
+      "points_balance": 7200,
       "lessons_completed": 2,
       "last_active": "2026-10-12"
     },
@@ -177,7 +177,7 @@
       "id": "m_015",
       "display_name": "Member 015",
       "tenure_days": 479,
-      "points_balance": 700,
+      "points_balance": 1900,
       "lessons_completed": 4,
       "last_active": "2026-11-11"
     },
@@ -185,7 +185,7 @@
       "id": "m_018",
       "display_name": "Member 018",
       "tenure_days": 442,
-      "points_balance": 1000,
+      "points_balance": 2400,
       "lessons_completed": 4,
       "last_active": "2026-10-26"
     },
@@ -193,7 +193,7 @@
       "id": "m_020",
       "display_name": "Member 020",
       "tenure_days": 167,
-      "points_balance": 1400,
+      "points_balance": 8500,
       "lessons_completed": 10,
       "last_active": "2026-10-12"
     },
@@ -201,7 +201,7 @@
       "id": "m_021",
       "display_name": "Member 021",
       "tenure_days": 443,
-      "points_balance": 50,
+      "points_balance": 100,
       "lessons_completed": 1,
       "last_active": "2026-06-11"
     },
@@ -209,7 +209,7 @@
       "id": "m_024",
       "display_name": "Member 024",
       "tenure_days": 215,
-      "points_balance": 1400,
+      "points_balance": 8100,
       "lessons_completed": 6,
       "last_active": "2026-11-14"
     },
@@ -217,7 +217,7 @@
       "id": "m_026",
       "display_name": "Member 026",
       "tenure_days": 299,
-      "points_balance": 1300,
+      "points_balance": 4300,
       "lessons_completed": 8,
       "last_active": "2026-11-10"
     },
@@ -225,7 +225,7 @@
       "id": "m_027",
       "display_name": "Member 027",
       "tenure_days": 108,
-      "points_balance": 900,
+      "points_balance": 6100,
       "lessons_completed": 6,
       "last_active": "2026-08-16"
     },
@@ -233,7 +233,7 @@
       "id": "m_028",
       "display_name": "Member 028",
       "tenure_days": 174,
-      "points_balance": 450,
+      "points_balance": 4700,
       "lessons_completed": 7,
       "last_active": "2026-10-08"
     },
@@ -241,7 +241,7 @@
       "id": "m_030",
       "display_name": "Member 030",
       "tenure_days": 450,
-      "points_balance": 1450,
+      "points_balance": 3900,
       "lessons_completed": 9,
       "last_active": "2026-11-09"
     },
@@ -249,7 +249,7 @@
       "id": "m_031",
       "display_name": "Member 031",
       "tenure_days": 581,
-      "points_balance": 400,
+      "points_balance": 900,
       "lessons_completed": 4,
       "last_active": "2026-09-27"
     },
@@ -257,7 +257,7 @@
       "id": "m_032",
       "display_name": "Member 032",
       "tenure_days": 530,
-      "points_balance": 200,
+      "points_balance": 400,
       "lessons_completed": 4,
       "last_active": "2026-11-01"
     },
@@ -265,7 +265,7 @@
       "id": "m_033",
       "display_name": "Member 033",
       "tenure_days": 311,
-      "points_balance": 300,
+      "points_balance": 1500,
       "lessons_completed": 11,
       "last_active": "2026-08-05"
     },
@@ -273,7 +273,7 @@
       "id": "m_038",
       "display_name": "Member 038",
       "tenure_days": 459,
-      "points_balance": 1650,
+      "points_balance": 4400,
       "lessons_completed": 9,
       "last_active": "2026-11-03"
     },
@@ -281,7 +281,7 @@
       "id": "m_040",
       "display_name": "Member 040",
       "tenure_days": 434,
-      "points_balance": 1100,
+      "points_balance": 2800,
       "lessons_completed": 8,
       "last_active": "2026-10-28"
     },
@@ -289,15 +289,15 @@
       "id": "m_042",
       "display_name": "Member 042",
       "tenure_days": 176,
-      "points_balance": 400,
+      "points_balance": 4600,
       "lessons_completed": 6,
-      "last_active": "2026-11-09"
+      "last_active": "2026-11-13"
     },
     {
       "id": "m_043",
       "display_name": "Member 043",
       "tenure_days": 246,
-      "points_balance": 1600,
+      "points_balance": 8500,
       "lessons_completed": 11,
       "last_active": "2026-10-21"
     },
@@ -305,7 +305,7 @@
       "id": "m_044",
       "display_name": "Member 044",
       "tenure_days": 276,
-      "points_balance": 150,
+      "points_balance": 1600,
       "lessons_completed": 1,
       "last_active": "2026-08-21"
     },
@@ -321,7 +321,7 @@
       "id": "m_048",
       "display_name": "Member 048",
       "tenure_days": 270,
-      "points_balance": 1500,
+      "points_balance": 4800,
       "lessons_completed": 8,
       "last_active": "2026-11-10"
     },
@@ -329,7 +329,7 @@
       "id": "m_051",
       "display_name": "Member 051",
       "tenure_days": 317,
-      "points_balance": 1000,
+      "points_balance": 3300,
       "lessons_completed": 8,
       "last_active": "2026-11-05"
     },
@@ -337,7 +337,7 @@
       "id": "m_052",
       "display_name": "Member 052",
       "tenure_days": 238,
-      "points_balance": 750,
+      "points_balance": 6200,
       "lessons_completed": 7,
       "last_active": "2026-10-26"
     },
@@ -345,7 +345,7 @@
       "id": "m_055",
       "display_name": "Member 055",
       "tenure_days": 478,
-      "points_balance": 1000,
+      "points_balance": 500,
       "lessons_completed": 11,
       "last_active": "2026-10-06"
     },
@@ -353,7 +353,7 @@
       "id": "m_056",
       "display_name": "Member 056",
       "tenure_days": 454,
-      "points_balance": 1450,
+      "points_balance": 4000,
       "lessons_completed": 5,
       "last_active": "2026-10-28"
     },
@@ -361,7 +361,7 @@
       "id": "m_058",
       "display_name": "Member 058",
       "tenure_days": 529,
-      "points_balance": 1050,
+      "points_balance": 2700,
       "lessons_completed": 7,
       "last_active": "2026-10-08"
     },
@@ -369,7 +369,7 @@
       "id": "m_062",
       "display_name": "Member 062",
       "tenure_days": 473,
-      "points_balance": 500,
+      "points_balance": 0,
       "lessons_completed": 0,
       "last_active": "2026-10-27"
     },
@@ -377,7 +377,7 @@
       "id": "m_063",
       "display_name": "Member 063",
       "tenure_days": 422,
-      "points_balance": 1150,
+      "points_balance": 3300,
       "lessons_completed": 3,
       "last_active": "2026-10-16"
     },
@@ -385,7 +385,7 @@
       "id": "m_064",
       "display_name": "Member 064",
       "tenure_days": 347,
-      "points_balance": 700,
+      "points_balance": 1500,
       "lessons_completed": 10,
       "last_active": "2026-06-12"
     },
@@ -393,7 +393,7 @@
       "id": "m_065",
       "display_name": "Member 065",
       "tenure_days": 536,
-      "points_balance": 50,
+      "points_balance": 100,
       "lessons_completed": 1,
       "last_active": "2026-06-08"
     },
@@ -401,7 +401,7 @@
       "id": "m_066",
       "display_name": "Member 066",
       "tenure_days": 560,
-      "points_balance": 150,
+      "points_balance": 300,
       "lessons_completed": 3,
       "last_active": "2026-08-28"
     },
@@ -409,7 +409,7 @@
       "id": "m_069",
       "display_name": "Member 069",
       "tenure_days": 289,
-      "points_balance": 900,
+      "points_balance": 3600,
       "lessons_completed": 6,
       "last_active": "2026-09-14"
     },
@@ -417,7 +417,7 @@
       "id": "m_070",
       "display_name": "Member 070",
       "tenure_days": 265,
-      "points_balance": 600,
+      "points_balance": 3000,
       "lessons_completed": 0,
       "last_active": "2026-06-01"
     },
@@ -425,7 +425,7 @@
       "id": "m_071",
       "display_name": "Member 071",
       "tenure_days": 239,
-      "points_balance": 400,
+      "points_balance": 5500,
       "lessons_completed": 0,
       "last_active": "2026-10-18"
     },
@@ -433,7 +433,7 @@
       "id": "m_072",
       "display_name": "Member 072",
       "tenure_days": 664,
-      "points_balance": 900,
+      "points_balance": 1800,
       "lessons_completed": 8,
       "last_active": "2026-11-03"
     },
@@ -441,7 +441,7 @@
       "id": "m_076",
       "display_name": "Member 076",
       "tenure_days": 330,
-      "points_balance": 1000,
+      "points_balance": 3700,
       "lessons_completed": 2,
       "last_active": "2026-10-07"
     },
@@ -449,7 +449,7 @@
       "id": "m_078",
       "display_name": "Member 078",
       "tenure_days": 320,
-      "points_balance": 750,
+      "points_balance": 1400,
       "lessons_completed": 9,
       "last_active": "2026-09-29"
     },
@@ -457,7 +457,7 @@
       "id": "m_079",
       "display_name": "Member 079",
       "tenure_days": 264,
-      "points_balance": 500,
+      "points_balance": 2300,
       "lessons_completed": 8,
       "last_active": "2026-11-08"
     },
@@ -465,15 +465,15 @@
       "id": "m_080",
       "display_name": "Member 080",
       "tenure_days": 255,
-      "points_balance": 50,
+      "points_balance": 4300,
       "lessons_completed": 3,
-      "last_active": "2026-09-13"
+      "last_active": "2026-09-10"
     },
     {
       "id": "m_082",
       "display_name": "Member 082",
       "tenure_days": 263,
-      "points_balance": 250,
+      "points_balance": 300,
       "lessons_completed": 3,
       "last_active": "2026-09-18"
     },
@@ -481,7 +481,7 @@
       "id": "m_085",
       "display_name": "Member 085",
       "tenure_days": 332,
-      "points_balance": 1500,
+      "points_balance": 4800,
       "lessons_completed": 8,
       "last_active": "2026-11-04"
     },
@@ -489,7 +489,7 @@
       "id": "m_087",
       "display_name": "Member 087",
       "tenure_days": 551,
-      "points_balance": 500,
+      "points_balance": 1000,
       "lessons_completed": 10,
       "last_active": "2026-06-05"
     },
@@ -499,13 +499,13 @@
       "tenure_days": 368,
       "points_balance": 1000,
       "lessons_completed": 11,
-      "last_active": "2026-10-03"
+      "last_active": "2026-10-17"
     },
     {
       "id": "m_089",
       "display_name": "Member 089",
       "tenure_days": 191,
-      "points_balance": 1650,
+      "points_balance": 10800,
       "lessons_completed": 3,
       "last_active": "2026-09-29"
     },
@@ -513,7 +513,7 @@
       "id": "m_090",
       "display_name": "Member 090",
       "tenure_days": 177,
-      "points_balance": 400,
+      "points_balance": 4600,
       "lessons_completed": 6,
       "last_active": "2026-10-29"
     },
@@ -521,7 +521,7 @@
       "id": "m_091",
       "display_name": "Member 091",
       "tenure_days": 178,
-      "points_balance": 400,
+      "points_balance": 2300,
       "lessons_completed": 8,
       "last_active": "2026-10-12"
     },
@@ -529,7 +529,7 @@
       "id": "m_093",
       "display_name": "Member 093",
       "tenure_days": 571,
-      "points_balance": 150,
+      "points_balance": 1200,
       "lessons_completed": 7,
       "last_active": "2026-09-29"
     },
@@ -537,7 +537,7 @@
       "id": "m_094",
       "display_name": "Member 094",
       "tenure_days": 345,
-      "points_balance": 800,
+      "points_balance": 3400,
       "lessons_completed": 4,
       "last_active": "2026-10-20"
     },
@@ -545,7 +545,7 @@
       "id": "m_095",
       "display_name": "Member 095",
       "tenure_days": 182,
-      "points_balance": 1250,
+      "points_balance": 9700,
       "lessons_completed": 7,
       "last_active": "2026-09-30"
     },
@@ -553,7 +553,7 @@
       "id": "m_097",
       "display_name": "Member 097",
       "tenure_days": 615,
-      "points_balance": 450,
+      "points_balance": 1900,
       "lessons_completed": 9,
       "last_active": "2026-08-05"
     },
@@ -561,7 +561,7 @@
       "id": "m_100",
       "display_name": "Member 100",
       "tenure_days": 617,
-      "points_balance": 250,
+      "points_balance": 500,
       "lessons_completed": 5,
       "last_active": "2026-08-25"
     },
@@ -569,7 +569,7 @@
       "id": "m_102",
       "display_name": "Member 102",
       "tenure_days": 524,
-      "points_balance": 550,
+      "points_balance": 1200,
       "lessons_completed": 7,
       "last_active": "2026-11-05"
     },
@@ -577,7 +577,7 @@
       "id": "m_106",
       "display_name": "Member 106",
       "tenure_days": 473,
-      "points_balance": 400,
+      "points_balance": 800,
       "lessons_completed": 8,
       "last_active": "2026-10-29"
     },
@@ -585,7 +585,7 @@
       "id": "m_108",
       "display_name": "Member 108",
       "tenure_days": 352,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-09-16"
     },
@@ -593,23 +593,23 @@
       "id": "m_109",
       "display_name": "Member 109",
       "tenure_days": 362,
-      "points_balance": 250,
+      "points_balance": 1400,
       "lessons_completed": 9,
-      "last_active": "2026-11-13"
+      "last_active": "2026-11-12"
     },
     {
       "id": "m_110",
       "display_name": "Member 110",
       "tenure_days": 681,
-      "points_balance": 450,
+      "points_balance": 400,
       "lessons_completed": 9,
-      "last_active": "2026-11-09"
+      "last_active": "2026-11-12"
     },
     {
       "id": "m_111",
       "display_name": "Member 111",
       "tenure_days": 627,
-      "points_balance": 150,
+      "points_balance": 300,
       "lessons_completed": 3,
       "last_active": "2026-10-09"
     },
@@ -617,7 +617,7 @@
       "id": "m_112",
       "display_name": "Member 112",
       "tenure_days": 263,
-      "points_balance": 800,
+      "points_balance": 3500,
       "lessons_completed": 0,
       "last_active": "2026-10-12"
     },
@@ -625,7 +625,7 @@
       "id": "m_113",
       "display_name": "Member 113",
       "tenure_days": 373,
-      "points_balance": 550,
+      "points_balance": 1600,
       "lessons_completed": 1,
       "last_active": "2026-10-21"
     },
@@ -633,23 +633,23 @@
       "id": "m_116",
       "display_name": "Member 116",
       "tenure_days": 623,
-      "points_balance": 0,
+      "points_balance": 1000,
       "lessons_completed": 10,
-      "last_active": "2026-11-13"
+      "last_active": "2026-10-26"
     },
     {
       "id": "m_118",
       "display_name": "Member 118",
       "tenure_days": 472,
-      "points_balance": 150,
+      "points_balance": 300,
       "lessons_completed": 3,
-      "last_active": "2026-09-24"
+      "last_active": "2026-09-27"
     },
     {
       "id": "m_119",
       "display_name": "Member 119",
       "tenure_days": 367,
-      "points_balance": 1100,
+      "points_balance": 3200,
       "lessons_completed": 2,
       "last_active": "2026-08-04"
     },
@@ -657,15 +657,15 @@
       "id": "m_120",
       "display_name": "Member 120",
       "tenure_days": 214,
-      "points_balance": 450,
+      "points_balance": 5600,
       "lessons_completed": 1,
-      "last_active": "2026-10-15"
+      "last_active": "2026-08-23"
     },
     {
       "id": "m_121",
       "display_name": "Member 121",
       "tenure_days": 551,
-      "points_balance": 100,
+      "points_balance": 200,
       "lessons_completed": 2,
       "last_active": "2026-10-15"
     },
@@ -673,7 +673,7 @@
       "id": "m_122",
       "display_name": "Member 122",
       "tenure_days": 412,
-      "points_balance": 1350,
+      "points_balance": 3200,
       "lessons_completed": 7,
       "last_active": "2026-11-08"
     },
@@ -681,7 +681,7 @@
       "id": "m_123",
       "display_name": "Member 123",
       "tenure_days": 470,
-      "points_balance": 350,
+      "points_balance": 700,
       "lessons_completed": 7,
       "last_active": "2026-07-23"
     },
@@ -689,7 +689,7 @@
       "id": "m_125",
       "display_name": "Member 125",
       "tenure_days": 95,
-      "points_balance": 300,
+      "points_balance": 4000,
       "lessons_completed": 10,
       "last_active": "2026-08-26"
     },
@@ -697,7 +697,7 @@
       "id": "m_126",
       "display_name": "Member 126",
       "tenure_days": 293,
-      "points_balance": 750,
+      "points_balance": 3300,
       "lessons_completed": 3,
       "last_active": "2026-09-05"
     },
@@ -705,7 +705,7 @@
       "id": "m_127",
       "display_name": "Member 127",
       "tenure_days": 170,
-      "points_balance": 350,
+      "points_balance": 6000,
       "lessons_completed": 5,
       "last_active": "2026-10-02"
     },
@@ -713,7 +713,7 @@
       "id": "m_128",
       "display_name": "Member 128",
       "tenure_days": 664,
-      "points_balance": 550,
+      "points_balance": 1200,
       "lessons_completed": 7,
       "last_active": "2026-11-10"
     },
@@ -729,15 +729,15 @@
       "id": "m_133",
       "display_name": "Member 133",
       "tenure_days": 628,
-      "points_balance": 200,
+      "points_balance": 0,
       "lessons_completed": 10,
-      "last_active": "2026-10-16"
+      "last_active": "2026-10-22"
     },
     {
       "id": "m_134",
       "display_name": "Member 134",
       "tenure_days": 676,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-09-06"
     },
@@ -745,7 +745,7 @@
       "id": "m_137",
       "display_name": "Member 137",
       "tenure_days": 183,
-      "points_balance": 1250,
+      "points_balance": 10100,
       "lessons_completed": 1,
       "last_active": "2026-09-17"
     },
@@ -753,7 +753,7 @@
       "id": "m_139",
       "display_name": "Member 139",
       "tenure_days": 502,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-09-14"
     },
@@ -761,15 +761,15 @@
       "id": "m_140",
       "display_name": "Member 140",
       "tenure_days": 204,
-      "points_balance": 600,
+      "points_balance": 5900,
       "lessons_completed": 4,
-      "last_active": "2026-11-02"
+      "last_active": "2026-10-26"
     },
     {
       "id": "m_141",
       "display_name": "Member 141",
       "tenure_days": 266,
-      "points_balance": 600,
+      "points_balance": 1300,
       "lessons_completed": 8,
       "last_active": "2026-07-07"
     },
@@ -777,7 +777,7 @@
       "id": "m_142",
       "display_name": "Member 142",
       "tenure_days": 418,
-      "points_balance": 650,
+      "points_balance": 1800,
       "lessons_completed": 3,
       "last_active": "2026-11-13"
     },
@@ -785,7 +785,7 @@
       "id": "m_145",
       "display_name": "Member 145",
       "tenure_days": 345,
-      "points_balance": 1600,
+      "points_balance": 5000,
       "lessons_completed": 11,
       "last_active": "2026-11-10"
     },
@@ -793,7 +793,7 @@
       "id": "m_146",
       "display_name": "Member 146",
       "tenure_days": 239,
-      "points_balance": 900,
+      "points_balance": 7000,
       "lessons_completed": 0,
       "last_active": "2026-06-01"
     },
@@ -801,7 +801,7 @@
       "id": "m_147",
       "display_name": "Member 147",
       "tenure_days": 412,
-      "points_balance": 700,
+      "points_balance": 1400,
       "lessons_completed": 4,
       "last_active": "2026-11-02"
     },
@@ -809,7 +809,7 @@
       "id": "m_148",
       "display_name": "Member 148",
       "tenure_days": 530,
-      "points_balance": 100,
+      "points_balance": 1700,
       "lessons_completed": 2,
       "last_active": "2026-09-30"
     },
@@ -817,7 +817,7 @@
       "id": "m_149",
       "display_name": "Member 149",
       "tenure_days": 103,
-      "points_balance": 400,
+      "points_balance": 4200,
       "lessons_completed": 2,
       "last_active": "2026-07-04"
     },
@@ -825,7 +825,7 @@
       "id": "m_152",
       "display_name": "Member 152",
       "tenure_days": 479,
-      "points_balance": 1050,
+      "points_balance": 3100,
       "lessons_completed": 1,
       "last_active": "2026-06-15"
     },
@@ -833,7 +833,7 @@
       "id": "m_153",
       "display_name": "Member 153",
       "tenure_days": 354,
-      "points_balance": 250,
+      "points_balance": 500,
       "lessons_completed": 5,
       "last_active": "2026-10-02"
     },
@@ -841,7 +841,7 @@
       "id": "m_154",
       "display_name": "Member 154",
       "tenure_days": 399,
-      "points_balance": 850,
+      "points_balance": 2200,
       "lessons_completed": 7,
       "last_active": "2026-11-07"
     },
@@ -849,15 +849,15 @@
       "id": "m_156",
       "display_name": "Member 156",
       "tenure_days": 172,
-      "points_balance": 0,
+      "points_balance": 1400,
       "lessons_completed": 4,
-      "last_active": "2026-08-31"
+      "last_active": "2026-08-19"
     },
     {
       "id": "m_158",
       "display_name": "Member 158",
       "tenure_days": 441,
-      "points_balance": 1400,
+      "points_balance": 3800,
       "lessons_completed": 8,
       "last_active": "2026-10-15"
     },
@@ -865,7 +865,7 @@
       "id": "m_159",
       "display_name": "Member 159",
       "tenure_days": 190,
-      "points_balance": 1000,
+      "points_balance": 6600,
       "lessons_completed": 6,
       "last_active": "2026-09-04"
     },
@@ -873,7 +873,7 @@
       "id": "m_160",
       "display_name": "Member 160",
       "tenure_days": 243,
-      "points_balance": 1300,
+      "points_balance": 7900,
       "lessons_completed": 4,
       "last_active": "2026-08-06"
     },
@@ -881,7 +881,7 @@
       "id": "m_161",
       "display_name": "Member 161",
       "tenure_days": 184,
-      "points_balance": 1350,
+      "points_balance": 10300,
       "lessons_completed": 3,
       "last_active": "2026-11-09"
     },
@@ -889,7 +889,7 @@
       "id": "m_163",
       "display_name": "Member 163",
       "tenure_days": 247,
-      "points_balance": 400,
+      "points_balance": 4000,
       "lessons_completed": 0,
       "last_active": "2026-10-24"
     },
@@ -897,7 +897,7 @@
       "id": "m_164",
       "display_name": "Member 164",
       "tenure_days": 647,
-      "points_balance": 400,
+      "points_balance": 800,
       "lessons_completed": 8,
       "last_active": "2026-11-03"
     },
@@ -905,7 +905,7 @@
       "id": "m_166",
       "display_name": "Member 166",
       "tenure_days": 184,
-      "points_balance": 850,
+      "points_balance": 6900,
       "lessons_completed": 9,
       "last_active": "2026-11-07"
     },
@@ -913,15 +913,15 @@
       "id": "m_167",
       "display_name": "Member 167",
       "tenure_days": 251,
-      "points_balance": 400,
+      "points_balance": 5500,
       "lessons_completed": 0,
-      "last_active": "2026-09-12"
+      "last_active": "2026-06-06"
     },
     {
       "id": "m_168",
       "display_name": "Member 168",
       "tenure_days": 491,
-      "points_balance": 200,
+      "points_balance": 1500,
       "lessons_completed": 11,
       "last_active": "2026-11-11"
     },
@@ -929,7 +929,7 @@
       "id": "m_170",
       "display_name": "Member 170",
       "tenure_days": 206,
-      "points_balance": 1150,
+      "points_balance": 7500,
       "lessons_completed": 5,
       "last_active": "2026-11-02"
     },
@@ -937,7 +937,7 @@
       "id": "m_172",
       "display_name": "Member 172",
       "tenure_days": 431,
-      "points_balance": 1300,
+      "points_balance": 3600,
       "lessons_completed": 6,
       "last_active": "2026-10-27"
     },
@@ -945,15 +945,15 @@
       "id": "m_173",
       "display_name": "Member 173",
       "tenure_days": 373,
-      "points_balance": 1200,
+      "points_balance": 2900,
       "lessons_completed": 4,
-      "last_active": "2026-10-14"
+      "last_active": "2026-11-11"
     },
     {
       "id": "m_174",
       "display_name": "Member 174",
       "tenure_days": 566,
-      "points_balance": 100,
+      "points_balance": 1100,
       "lessons_completed": 6,
       "last_active": "2026-10-14"
     },
@@ -961,7 +961,7 @@
       "id": "m_176",
       "display_name": "Member 176",
       "tenure_days": 230,
-      "points_balance": 1300,
+      "points_balance": 7700,
       "lessons_completed": 2,
       "last_active": "2026-09-12"
     },
@@ -969,7 +969,7 @@
       "id": "m_177",
       "display_name": "Member 177",
       "tenure_days": 193,
-      "points_balance": 1700,
+      "points_balance": 10900,
       "lessons_completed": 4,
       "last_active": "2026-10-11"
     },
@@ -977,7 +977,7 @@
       "id": "m_179",
       "display_name": "Member 179",
       "tenure_days": 346,
-      "points_balance": 700,
+      "points_balance": 1300,
       "lessons_completed": 8,
       "last_active": "2026-11-11"
     },
@@ -985,15 +985,15 @@
       "id": "m_180",
       "display_name": "Member 180",
       "tenure_days": 370,
-      "points_balance": 1200,
+      "points_balance": 1500,
       "lessons_completed": 10,
-      "last_active": "2026-11-12"
+      "last_active": "2026-11-14"
     },
     {
       "id": "m_181",
       "display_name": "Member 181",
       "tenure_days": 529,
-      "points_balance": 1100,
+      "points_balance": 3200,
       "lessons_completed": 2,
       "last_active": "2026-07-20"
     },
@@ -1001,7 +1001,7 @@
       "id": "m_184",
       "display_name": "Member 184",
       "tenure_days": 193,
-      "points_balance": 950,
+      "points_balance": 10000,
       "lessons_completed": 5,
       "last_active": "2026-10-31"
     },
@@ -1009,7 +1009,7 @@
       "id": "m_192",
       "display_name": "Member 192",
       "tenure_days": 270,
-      "points_balance": 100,
+      "points_balance": 0,
       "lessons_completed": 0,
       "last_active": "2026-08-21"
     },
@@ -1017,7 +1017,7 @@
       "id": "m_193",
       "display_name": "Member 193",
       "tenure_days": 257,
-      "points_balance": 1400,
+      "points_balance": 4500,
       "lessons_completed": 11,
       "last_active": "2026-11-11"
     },
@@ -1025,7 +1025,7 @@
       "id": "m_194",
       "display_name": "Member 194",
       "tenure_days": 660,
-      "points_balance": 500,
+      "points_balance": 1100,
       "lessons_completed": 6,
       "last_active": "2026-11-03"
     },
@@ -1041,7 +1041,7 @@
       "id": "m_197",
       "display_name": "Member 197",
       "tenure_days": 418,
-      "points_balance": 550,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-11-13"
     },
@@ -1049,7 +1049,7 @@
       "id": "m_200",
       "display_name": "Member 200",
       "tenure_days": 436,
-      "points_balance": 0,
+      "points_balance": 1100,
       "lessons_completed": 6,
       "last_active": "2026-06-02"
     },
@@ -1057,7 +1057,7 @@
       "id": "m_202",
       "display_name": "Member 202",
       "tenure_days": 500,
-      "points_balance": 450,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-06-04"
     },
@@ -1065,7 +1065,7 @@
       "id": "m_205",
       "display_name": "Member 205",
       "tenure_days": 380,
-      "points_balance": 1000,
+      "points_balance": 500,
       "lessons_completed": 10,
       "last_active": "2026-11-14"
     },
@@ -1073,7 +1073,7 @@
       "id": "m_206",
       "display_name": "Member 206",
       "tenure_days": 240,
-      "points_balance": 100,
+      "points_balance": 4400,
       "lessons_completed": 4,
       "last_active": "2026-10-29"
     },
@@ -1081,7 +1081,7 @@
       "id": "m_207",
       "display_name": "Member 207",
       "tenure_days": 333,
-      "points_balance": 1250,
+      "points_balance": 4300,
       "lessons_completed": 3,
       "last_active": "2026-11-04"
     },
@@ -1089,7 +1089,7 @@
       "id": "m_208",
       "display_name": "Member 208",
       "tenure_days": 180,
-      "points_balance": 1550,
+      "points_balance": 10200,
       "lessons_completed": 7,
       "last_active": "2026-11-07"
     },
@@ -1097,7 +1097,7 @@
       "id": "m_209",
       "display_name": "Member 209",
       "tenure_days": 321,
-      "points_balance": 750,
+      "points_balance": 3300,
       "lessons_completed": 3,
       "last_active": "2026-11-08"
     },
@@ -1105,7 +1105,7 @@
       "id": "m_211",
       "display_name": "Member 211",
       "tenure_days": 264,
-      "points_balance": 400,
+      "points_balance": 1500,
       "lessons_completed": 11,
       "last_active": "2026-10-25"
     },
@@ -1113,7 +1113,7 @@
       "id": "m_213",
       "display_name": "Member 213",
       "tenure_days": 363,
-      "points_balance": 450,
+      "points_balance": 900,
       "lessons_completed": 9,
       "last_active": "2026-10-26"
     },
@@ -1121,7 +1121,7 @@
       "id": "m_214",
       "display_name": "Member 214",
       "tenure_days": 345,
-      "points_balance": 650,
+      "points_balance": 3100,
       "lessons_completed": 1,
       "last_active": "2026-06-13"
     },
@@ -1129,7 +1129,7 @@
       "id": "m_215",
       "display_name": "Member 215",
       "tenure_days": 683,
-      "points_balance": 250,
+      "points_balance": 600,
       "lessons_completed": 1,
       "last_active": "2026-09-18"
     },
@@ -1145,7 +1145,7 @@
       "id": "m_218",
       "display_name": "Member 218",
       "tenure_days": 522,
-      "points_balance": 600,
+      "points_balance": 200,
       "lessons_completed": 2,
       "last_active": "2026-09-20"
     },
@@ -1153,7 +1153,7 @@
       "id": "m_219",
       "display_name": "Member 219",
       "tenure_days": 215,
-      "points_balance": 1500,
+      "points_balance": 8100,
       "lessons_completed": 6,
       "last_active": "2026-11-14"
     },
@@ -1161,7 +1161,7 @@
       "id": "m_220",
       "display_name": "Member 220",
       "tenure_days": 279,
-      "points_balance": 800,
+      "points_balance": 3500,
       "lessons_completed": 0,
       "last_active": "2026-10-29"
     },
@@ -1169,7 +1169,7 @@
       "id": "m_222",
       "display_name": "Member 222",
       "tenure_days": 435,
-      "points_balance": 650,
+      "points_balance": 1400,
       "lessons_completed": 9,
       "last_active": "2026-11-03"
     },
@@ -1177,7 +1177,7 @@
       "id": "m_223",
       "display_name": "Member 223",
       "tenure_days": 271,
-      "points_balance": 250,
+      "points_balance": 600,
       "lessons_completed": 1,
       "last_active": "2026-06-17"
     },
@@ -1185,7 +1185,7 @@
       "id": "m_224",
       "display_name": "Member 224",
       "tenure_days": 542,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-09-18"
     },
@@ -1193,7 +1193,7 @@
       "id": "m_226",
       "display_name": "Member 226",
       "tenure_days": 438,
-      "points_balance": 1400,
+      "points_balance": 2300,
       "lessons_completed": 8,
       "last_active": "2026-11-13"
     },
@@ -1201,7 +1201,7 @@
       "id": "m_227",
       "display_name": "Member 227",
       "tenure_days": 390,
-      "points_balance": 950,
+      "points_balance": 3400,
       "lessons_completed": 9,
       "last_active": "2026-10-30"
     },
@@ -1209,7 +1209,7 @@
       "id": "m_228",
       "display_name": "Member 228",
       "tenure_days": 611,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-11-03"
     },
@@ -1217,7 +1217,7 @@
       "id": "m_229",
       "display_name": "Member 229",
       "tenure_days": 216,
-      "points_balance": 1200,
+      "points_balance": 7600,
       "lessons_completed": 6,
       "last_active": "2026-11-02"
     },
@@ -1225,7 +1225,7 @@
       "id": "m_231",
       "display_name": "Member 231",
       "tenure_days": 187,
-      "points_balance": 1200,
+      "points_balance": 9600,
       "lessons_completed": 6,
       "last_active": "2026-10-22"
     },
@@ -1233,7 +1233,7 @@
       "id": "m_233",
       "display_name": "Member 233",
       "tenure_days": 445,
-      "points_balance": 1100,
+      "points_balance": 3200,
       "lessons_completed": 2,
       "last_active": "2026-10-11"
     },
@@ -1241,7 +1241,7 @@
       "id": "m_234",
       "display_name": "Member 234",
       "tenure_days": 495,
-      "points_balance": 600,
+      "points_balance": 1700,
       "lessons_completed": 2,
       "last_active": "2026-10-17"
     },
@@ -1249,7 +1249,7 @@
       "id": "m_236",
       "display_name": "Member 236",
       "tenure_days": 60,
-      "points_balance": 450,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-06-25"
     },
@@ -1257,7 +1257,7 @@
       "id": "m_237",
       "display_name": "Member 237",
       "tenure_days": 637,
-      "points_balance": 200,
+      "points_balance": 400,
       "lessons_completed": 4,
       "last_active": "2026-10-29"
     },
@@ -1265,7 +1265,7 @@
       "id": "m_238",
       "display_name": "Member 238",
       "tenure_days": 255,
-      "points_balance": 300,
+      "points_balance": 6300,
       "lessons_completed": 8,
       "last_active": "2026-11-14"
     },
@@ -1273,7 +1273,7 @@
       "id": "m_239",
       "display_name": "Member 239",
       "tenure_days": 445,
-      "points_balance": 1400,
+      "points_balance": 3900,
       "lessons_completed": 4,
       "last_active": "2026-09-13"
     },
@@ -1281,7 +1281,7 @@
       "id": "m_240",
       "display_name": "Member 240",
       "tenure_days": 460,
-      "points_balance": 1400,
+      "points_balance": 3700,
       "lessons_completed": 2,
       "last_active": "2026-10-21"
     },
@@ -1289,7 +1289,7 @@
       "id": "m_243",
       "display_name": "Member 243",
       "tenure_days": 402,
-      "points_balance": 800,
+      "points_balance": 2200,
       "lessons_completed": 2,
       "last_active": "2026-10-15"
     },
@@ -1297,7 +1297,7 @@
       "id": "m_244",
       "display_name": "Member 244",
       "tenure_days": 668,
-      "points_balance": 700,
+      "points_balance": 1400,
       "lessons_completed": 4,
       "last_active": "2026-09-24"
     },
@@ -1305,7 +1305,7 @@
       "id": "m_245",
       "display_name": "Member 245",
       "tenure_days": 236,
-      "points_balance": 350,
+      "points_balance": 5000,
       "lessons_completed": 5,
       "last_active": "2026-11-12"
     },
@@ -1313,7 +1313,7 @@
       "id": "m_249",
       "display_name": "Member 249",
       "tenure_days": 493,
-      "points_balance": 1450,
+      "points_balance": 4000,
       "lessons_completed": 5,
       "last_active": "2026-10-20"
     },
@@ -1321,7 +1321,7 @@
       "id": "m_250",
       "display_name": "Member 250",
       "tenure_days": 281,
-      "points_balance": 750,
+      "points_balance": 4400,
       "lessons_completed": 9,
       "last_active": "2026-10-22"
     },
@@ -1329,7 +1329,7 @@
       "id": "m_251",
       "display_name": "Member 251",
       "tenure_days": 289,
-      "points_balance": 950,
+      "points_balance": 3700,
       "lessons_completed": 7,
       "last_active": "2026-11-10"
     },
@@ -1337,7 +1337,7 @@
       "id": "m_254",
       "display_name": "Member 254",
       "tenure_days": 365,
-      "points_balance": 1150,
+      "points_balance": 4400,
       "lessons_completed": 9,
       "last_active": "2026-10-30"
     },
@@ -1345,7 +1345,7 @@
       "id": "m_259",
       "display_name": "Member 259",
       "tenure_days": 264,
-      "points_balance": 1100,
+      "points_balance": 4000,
       "lessons_completed": 11,
       "last_active": "2026-11-04"
     },
@@ -1353,7 +1353,7 @@
       "id": "m_261",
       "display_name": "Member 261",
       "tenure_days": 630,
-      "points_balance": 150,
+      "points_balance": 300,
       "lessons_completed": 3,
       "last_active": "2026-10-17"
     },
@@ -1361,7 +1361,7 @@
       "id": "m_262",
       "display_name": "Member 262",
       "tenure_days": 629,
-      "points_balance": 450,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-11-08"
     },
@@ -1369,7 +1369,7 @@
       "id": "m_263",
       "display_name": "Member 263",
       "tenure_days": 316,
-      "points_balance": 600,
+      "points_balance": 3500,
       "lessons_completed": 11,
       "last_active": "2026-11-13"
     },
@@ -1377,7 +1377,7 @@
       "id": "m_264",
       "display_name": "Member 264",
       "tenure_days": 216,
-      "points_balance": 550,
+      "points_balance": 5800,
       "lessons_completed": 3,
       "last_active": "2026-10-22"
     },
@@ -1385,7 +1385,7 @@
       "id": "m_266",
       "display_name": "Member 266",
       "tenure_days": 513,
-      "points_balance": 1050,
+      "points_balance": 3100,
       "lessons_completed": 1,
       "last_active": "2026-10-23"
     },
@@ -1401,7 +1401,7 @@
       "id": "m_269",
       "display_name": "Member 269",
       "tenure_days": 481,
-      "points_balance": 600,
+      "points_balance": 1700,
       "lessons_completed": 2,
       "last_active": "2026-10-06"
     },
@@ -1409,7 +1409,7 @@
       "id": "m_270",
       "display_name": "Member 270",
       "tenure_days": 167,
-      "points_balance": 500,
+      "points_balance": 4900,
       "lessons_completed": 4,
       "last_active": "2026-11-06"
     },
@@ -1417,7 +1417,7 @@
       "id": "m_272",
       "display_name": "Member 272",
       "tenure_days": 281,
-      "points_balance": 1350,
+      "points_balance": 1400,
       "lessons_completed": 9,
       "last_active": "2026-11-07"
     },
@@ -1425,7 +1425,7 @@
       "id": "m_273",
       "display_name": "Member 273",
       "tenure_days": 487,
-      "points_balance": 1000,
+      "points_balance": 3000,
       "lessons_completed": 0,
       "last_active": "2026-06-01"
     },
@@ -1441,17 +1441,17 @@
       "id": "m_276",
       "display_name": "Member 276",
       "tenure_days": 200,
-      "points_balance": 700,
+      "points_balance": 6200,
       "lessons_completed": 2,
-      "last_active": "2026-09-15"
+      "last_active": "2026-09-12"
     },
     {
       "id": "m_277",
       "display_name": "Member 277",
       "tenure_days": 196,
-      "points_balance": 450,
+      "points_balance": 7500,
       "lessons_completed": 5,
-      "last_active": "2026-10-30"
+      "last_active": "2026-10-02"
     },
     {
       "id": "m_278",
@@ -1459,13 +1459,13 @@
       "tenure_days": 285,
       "points_balance": 500,
       "lessons_completed": 11,
-      "last_active": "2026-06-28"
+      "last_active": "2026-06-29"
     },
     {
       "id": "m_280",
       "display_name": "Member 280",
       "tenure_days": 451,
-      "points_balance": 450,
+      "points_balance": 1900,
       "lessons_completed": 9,
       "last_active": "2026-11-06"
     },
@@ -1473,7 +1473,7 @@
       "id": "m_281",
       "display_name": "Member 281",
       "tenure_days": 391,
-      "points_balance": 700,
+      "points_balance": 1900,
       "lessons_completed": 4,
       "last_active": "2026-07-03"
     },
@@ -1481,7 +1481,7 @@
       "id": "m_285",
       "display_name": "Member 285",
       "tenure_days": 231,
-      "points_balance": 250,
+      "points_balance": 500,
       "lessons_completed": 5,
       "last_active": "2026-06-08"
     },
@@ -1489,15 +1489,15 @@
       "id": "m_286",
       "display_name": "Member 286",
       "tenure_days": 647,
-      "points_balance": 0,
+      "points_balance": 500,
       "lessons_completed": 11,
-      "last_active": "2026-11-13"
+      "last_active": "2026-11-07"
     },
     {
       "id": "m_287",
       "display_name": "Member 287",
       "tenure_days": 607,
-      "points_balance": 500,
+      "points_balance": 2000,
       "lessons_completed": 10,
       "last_active": "2026-11-10"
     },
@@ -1505,7 +1505,7 @@
       "id": "m_288",
       "display_name": "Member 288",
       "tenure_days": 191,
-      "points_balance": 1600,
+      "points_balance": 10900,
       "lessons_completed": 4,
       "last_active": "2026-11-13"
     },
@@ -1521,7 +1521,7 @@
       "id": "m_292",
       "display_name": "Member 292",
       "tenure_days": 557,
-      "points_balance": 400,
+      "points_balance": 800,
       "lessons_completed": 8,
       "last_active": "2026-11-07"
     },
@@ -1529,7 +1529,7 @@
       "id": "m_293",
       "display_name": "Member 293",
       "tenure_days": 471,
-      "points_balance": 850,
+      "points_balance": 2300,
       "lessons_completed": 3,
       "last_active": "2026-11-12"
     },
@@ -1537,7 +1537,7 @@
       "id": "m_294",
       "display_name": "Member 294",
       "tenure_days": 200,
-      "points_balance": 500,
+      "points_balance": 3700,
       "lessons_completed": 2,
       "last_active": "2026-09-03"
     },
@@ -1545,7 +1545,7 @@
       "id": "m_295",
       "display_name": "Member 295",
       "tenure_days": 537,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-10-17"
     },
@@ -1553,7 +1553,7 @@
       "id": "m_296",
       "display_name": "Member 296",
       "tenure_days": 312,
-      "points_balance": 700,
+      "points_balance": 1500,
       "lessons_completed": 10,
       "last_active": "2026-07-28"
     },
@@ -1561,7 +1561,7 @@
       "id": "m_297",
       "display_name": "Member 297",
       "tenure_days": 348,
-      "points_balance": 200,
+      "points_balance": 400,
       "lessons_completed": 4,
       "last_active": "2026-10-16"
     },
@@ -1569,7 +1569,7 @@
       "id": "m_298",
       "display_name": "Member 298",
       "tenure_days": 168,
-      "points_balance": 1250,
+      "points_balance": 8400,
       "lessons_completed": 9,
       "last_active": "2026-09-28"
     },
@@ -1577,7 +1577,7 @@
       "id": "m_301",
       "display_name": "Member 301",
       "tenure_days": 646,
-      "points_balance": 800,
+      "points_balance": 1600,
       "lessons_completed": 6,
       "last_active": "2026-11-09"
     },
@@ -1585,7 +1585,7 @@
       "id": "m_302",
       "display_name": "Member 302",
       "tenure_days": 415,
-      "points_balance": 1050,
+      "points_balance": 2500,
       "lessons_completed": 5,
       "last_active": "2026-11-12"
     },
@@ -1593,9 +1593,9 @@
       "id": "m_303",
       "display_name": "Member 303",
       "tenure_days": 599,
-      "points_balance": 200,
+      "points_balance": 1300,
       "lessons_completed": 8,
-      "last_active": "2026-11-13"
+      "last_active": "2026-11-06"
     },
     {
       "id": "m_304",
@@ -1609,7 +1609,7 @@
       "id": "m_305",
       "display_name": "Member 305",
       "tenure_days": 212,
-      "points_balance": 1000,
+      "points_balance": 6700,
       "lessons_completed": 2,
       "last_active": "2026-11-01"
     },
@@ -1617,7 +1617,7 @@
       "id": "m_306",
       "display_name": "Member 306",
       "tenure_days": 204,
-      "points_balance": 750,
+      "points_balance": 6300,
       "lessons_completed": 3,
       "last_active": "2026-11-12"
     },
@@ -1625,7 +1625,7 @@
       "id": "m_307",
       "display_name": "Member 307",
       "tenure_days": 285,
-      "points_balance": 1300,
+      "points_balance": 4300,
       "lessons_completed": 8,
       "last_active": "2026-09-12"
     },
@@ -1633,7 +1633,7 @@
       "id": "m_308",
       "display_name": "Member 308",
       "tenure_days": 643,
-      "points_balance": 450,
+      "points_balance": 900,
       "lessons_completed": 9,
       "last_active": "2026-10-11"
     },
@@ -1641,7 +1641,7 @@
       "id": "m_310",
       "display_name": "Member 310",
       "tenure_days": 617,
-      "points_balance": 250,
+      "points_balance": 1400,
       "lessons_completed": 9,
       "last_active": "2026-10-25"
     },
@@ -1649,7 +1649,7 @@
       "id": "m_312",
       "display_name": "Member 312",
       "tenure_days": 238,
-      "points_balance": 400,
+      "points_balance": 5000,
       "lessons_completed": 10,
       "last_active": "2026-10-15"
     },
@@ -1657,7 +1657,7 @@
       "id": "m_313",
       "display_name": "Member 313",
       "tenure_days": 257,
-      "points_balance": 300,
+      "points_balance": 1900,
       "lessons_completed": 4,
       "last_active": "2026-09-07"
     },
@@ -1665,7 +1665,7 @@
       "id": "m_314",
       "display_name": "Member 314",
       "tenure_days": 168,
-      "points_balance": 650,
+      "points_balance": 5200,
       "lessons_completed": 7,
       "last_active": "2026-10-17"
     },
@@ -1673,7 +1673,7 @@
       "id": "m_315",
       "display_name": "Member 315",
       "tenure_days": 563,
-      "points_balance": 650,
+      "points_balance": 1300,
       "lessons_completed": 3,
       "last_active": "2026-11-13"
     },
@@ -1681,7 +1681,7 @@
       "id": "m_317",
       "display_name": "Member 317",
       "tenure_days": 336,
-      "points_balance": 750,
+      "points_balance": 1200,
       "lessons_completed": 7,
       "last_active": "2026-11-08"
     },
@@ -1689,7 +1689,7 @@
       "id": "m_318",
       "display_name": "Member 318",
       "tenure_days": 461,
-      "points_balance": 1050,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-10-19"
     },
@@ -1697,7 +1697,7 @@
       "id": "m_319",
       "display_name": "Member 319",
       "tenure_days": 215,
-      "points_balance": 1150,
+      "points_balance": 7600,
       "lessons_completed": 1,
       "last_active": "2026-08-24"
     },
@@ -1707,13 +1707,13 @@
       "tenure_days": 619,
       "points_balance": 500,
       "lessons_completed": 11,
-      "last_active": "2026-10-25"
+      "last_active": "2026-10-27"
     },
     {
       "id": "m_323",
       "display_name": "Member 323",
       "tenure_days": 552,
-      "points_balance": 100,
+      "points_balance": 1300,
       "lessons_completed": 8,
       "last_active": "2026-09-29"
     },
@@ -1721,7 +1721,7 @@
       "id": "m_325",
       "display_name": "Member 325",
       "tenure_days": 16,
-      "points_balance": 650,
+      "points_balance": 1200,
       "lessons_completed": 7,
       "last_active": "2026-06-11"
     },
@@ -1729,7 +1729,7 @@
       "id": "m_326",
       "display_name": "Member 326",
       "tenure_days": 534,
-      "points_balance": 300,
+      "points_balance": 600,
       "lessons_completed": 6,
       "last_active": "2026-10-13"
     },
@@ -1737,7 +1737,7 @@
       "id": "m_327",
       "display_name": "Member 327",
       "tenure_days": 297,
-      "points_balance": 300,
+      "points_balance": 1900,
       "lessons_completed": 4,
       "last_active": "2026-10-08"
     },
@@ -1745,7 +1745,7 @@
       "id": "m_329",
       "display_name": "Member 329",
       "tenure_days": 577,
-      "points_balance": 350,
+      "points_balance": 700,
       "lessons_completed": 7,
       "last_active": "2026-11-05"
     },
@@ -1753,7 +1753,7 @@
       "id": "m_333",
       "display_name": "Member 333",
       "tenure_days": 567,
-      "points_balance": 100,
+      "points_balance": 200,
       "lessons_completed": 2,
       "last_active": "2026-08-12"
     },
@@ -1761,7 +1761,7 @@
       "id": "m_336",
       "display_name": "Member 336",
       "tenure_days": 615,
-      "points_balance": 200,
+      "points_balance": 400,
       "lessons_completed": 4,
       "last_active": "2026-11-08"
     },
@@ -1769,7 +1769,7 @@
       "id": "m_338",
       "display_name": "Member 338",
       "tenure_days": 424,
-      "points_balance": 300,
+      "points_balance": 0,
       "lessons_completed": 11,
       "last_active": "2026-06-03"
     },
@@ -1777,15 +1777,15 @@
       "id": "m_339",
       "display_name": "Member 339",
       "tenure_days": 366,
-      "points_balance": 1250,
+      "points_balance": 2900,
       "lessons_completed": 9,
-      "last_active": "2026-11-12"
+      "last_active": "2026-11-14"
     },
     {
       "id": "m_340",
       "display_name": "Member 340",
       "tenure_days": 283,
-      "points_balance": 250,
+      "points_balance": 2900,
       "lessons_completed": 9,
       "last_active": "2026-11-11"
     },
@@ -1793,7 +1793,7 @@
       "id": "m_341",
       "display_name": "Member 341",
       "tenure_days": 573,
-      "points_balance": 450,
+      "points_balance": 800,
       "lessons_completed": 3,
       "last_active": "2026-10-25"
     },
@@ -1801,7 +1801,7 @@
       "id": "m_342",
       "display_name": "Member 342",
       "tenure_days": 246,
-      "points_balance": 750,
+      "points_balance": 6200,
       "lessons_completed": 7,
       "last_active": "2026-10-19"
     },
@@ -1809,7 +1809,7 @@
       "id": "m_344",
       "display_name": "Member 344",
       "tenure_days": 231,
-      "points_balance": 1850,
+      "points_balance": 8900,
       "lessons_completed": 9,
       "last_active": "2026-11-02"
     },
@@ -1817,7 +1817,7 @@
       "id": "m_345",
       "display_name": "Member 345",
       "tenure_days": 295,
-      "points_balance": 1150,
+      "points_balance": 4200,
       "lessons_completed": 7,
       "last_active": "2026-11-12"
     },
@@ -1825,7 +1825,7 @@
       "id": "m_346",
       "display_name": "Member 346",
       "tenure_days": 619,
-      "points_balance": 400,
+      "points_balance": 900,
       "lessons_completed": 4,
       "last_active": "2026-10-24"
     },
@@ -1833,7 +1833,7 @@
       "id": "m_349",
       "display_name": "Member 349",
       "tenure_days": 474,
-      "points_balance": 1400,
+      "points_balance": 3900,
       "lessons_completed": 4,
       "last_active": "2026-10-31"
     },
@@ -1841,7 +1841,7 @@
       "id": "m_351",
       "display_name": "Member 351",
       "tenure_days": 700,
-      "points_balance": 200,
+      "points_balance": 400,
       "lessons_completed": 4,
       "last_active": "2026-11-13"
     },
@@ -1849,7 +1849,7 @@
       "id": "m_352",
       "display_name": "Member 352",
       "tenure_days": 410,
-      "points_balance": 1200,
+      "points_balance": 3400,
       "lessons_completed": 4,
       "last_active": "2026-09-22"
     },
@@ -1857,7 +1857,7 @@
       "id": "m_353",
       "display_name": "Member 353",
       "tenure_days": 671,
-      "points_balance": 450,
+      "points_balance": 1000,
       "lessons_completed": 5,
       "last_active": "2026-10-19"
     },
@@ -1865,7 +1865,7 @@
       "id": "m_356",
       "display_name": "Member 356",
       "tenure_days": 225,
-      "points_balance": 1100,
+      "points_balance": 7400,
       "lessons_completed": 4,
       "last_active": "2026-09-30"
     },
@@ -1873,23 +1873,23 @@
       "id": "m_357",
       "display_name": "Member 357",
       "tenure_days": 687,
-      "points_balance": 150,
+      "points_balance": 1400,
       "lessons_completed": 9,
-      "last_active": "2026-11-10"
+      "last_active": "2026-10-24"
     },
     {
       "id": "m_360",
       "display_name": "Member 360",
       "tenure_days": 241,
-      "points_balance": 200,
+      "points_balance": 0,
       "lessons_completed": 10,
-      "last_active": "2026-07-13"
+      "last_active": "2026-07-20"
     },
     {
       "id": "m_366",
       "display_name": "Member 366",
       "tenure_days": 434,
-      "points_balance": 850,
+      "points_balance": 1700,
       "lessons_completed": 7,
       "last_active": "2026-11-02"
     },
@@ -1897,7 +1897,7 @@
       "id": "m_369",
       "display_name": "Member 369",
       "tenure_days": 167,
-      "points_balance": 1250,
+      "points_balance": 8200,
       "lessons_completed": 7,
       "last_active": "2026-11-14"
     },
@@ -1905,7 +1905,7 @@
       "id": "m_371",
       "display_name": "Member 371",
       "tenure_days": 250,
-      "points_balance": 450,
+      "points_balance": 900,
       "lessons_completed": 9,
       "last_active": "2026-06-05"
     },
@@ -1913,7 +1913,7 @@
       "id": "m_372",
       "display_name": "Member 372",
       "tenure_days": 523,
-      "points_balance": 1450,
+      "points_balance": 3900,
       "lessons_completed": 9,
       "last_active": "2026-11-02"
     },
@@ -1921,7 +1921,7 @@
       "id": "m_375",
       "display_name": "Member 375",
       "tenure_days": 306,
-      "points_balance": 700,
+      "points_balance": 3200,
       "lessons_completed": 2,
       "last_active": "2026-08-14"
     },
@@ -1929,7 +1929,7 @@
       "id": "m_376",
       "display_name": "Member 376",
       "tenure_days": 184,
-      "points_balance": 700,
+      "points_balance": 8500,
       "lessons_completed": 0,
       "last_active": "2026-10-14"
     },
@@ -1937,7 +1937,7 @@
       "id": "m_377",
       "display_name": "Member 377",
       "tenure_days": 488,
-      "points_balance": 850,
+      "points_balance": 1700,
       "lessons_completed": 7,
       "last_active": "2026-10-10"
     },
@@ -1945,7 +1945,7 @@
       "id": "m_379",
       "display_name": "Member 379",
       "tenure_days": 288,
-      "points_balance": 900,
+      "points_balance": 3700,
       "lessons_completed": 2,
       "last_active": "2026-08-15"
     },
@@ -1953,15 +1953,15 @@
       "id": "m_380",
       "display_name": "Member 380",
       "tenure_days": 608,
-      "points_balance": 0,
+      "points_balance": 1000,
       "lessons_completed": 10,
-      "last_active": "2026-11-13"
+      "last_active": "2026-11-12"
     },
     {
       "id": "m_384",
       "display_name": "Member 384",
       "tenure_days": 303,
-      "points_balance": 850,
+      "points_balance": 3500,
       "lessons_completed": 5,
       "last_active": "2026-09-27"
     },
@@ -1969,7 +1969,7 @@
       "id": "m_386",
       "display_name": "Member 386",
       "tenure_days": 279,
-      "points_balance": 200,
+      "points_balance": 1100,
       "lessons_completed": 6,
       "last_active": "2026-10-27"
     },
@@ -1977,7 +1977,7 @@
       "id": "m_387",
       "display_name": "Member 387",
       "tenure_days": 204,
-      "points_balance": 900,
+      "points_balance": 4500,
       "lessons_completed": 10,
       "last_active": "2026-11-05"
     },
@@ -1985,7 +1985,7 @@
       "id": "m_388",
       "display_name": "Member 388",
       "tenure_days": 344,
-      "points_balance": 1000,
+      "points_balance": 3700,
       "lessons_completed": 2,
       "last_active": "2026-10-02"
     },
@@ -1993,7 +1993,7 @@
       "id": "m_397",
       "display_name": "Member 397",
       "tenure_days": 349,
-      "points_balance": 200,
+      "points_balance": 400,
       "lessons_completed": 4,
       "last_active": "2026-09-11"
     },
@@ -2001,7 +2001,7 @@
       "id": "m_398",
       "display_name": "Member 398",
       "tenure_days": 436,
-      "points_balance": 1800,
+      "points_balance": 4600,
       "lessons_completed": 6,
       "last_active": "2026-11-10"
     },
@@ -2009,7 +2009,7 @@
       "id": "m_399",
       "display_name": "Member 399",
       "tenure_days": 482,
-      "points_balance": 1000,
+      "points_balance": 3000,
       "lessons_completed": 0,
       "last_active": "2026-06-01"
     },
@@ -2017,7 +2017,7 @@
       "id": "m_400",
       "display_name": "Member 400",
       "tenure_days": 369,
-      "points_balance": 1150,
+      "points_balance": 4300,
       "lessons_completed": 3,
       "last_active": "2026-11-03"
     }

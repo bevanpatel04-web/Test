@@ -100,6 +100,43 @@ PILOT_RULES: dict[str, Rule] = {r.name: r for r in _DEFAULT_RULES}
 TENURE_RULES: list[Rule] = sorted((r for r in _DEFAULT_RULES if r.tenure_days), key=lambda r: r.tenure_days)
 MAX_LESSONS = PILOT_RULES["lesson_completed"].max_awards
 
+# --- Reward schedules --------------------------------------------------------------------------
+# How many points each rule pays. Each employer has one schedule; the rules themselves (names,
+# labels, caps) are the same for everyone. A schedule change only affects points earned from then
+# on, because the ledger is never edited.
+#   standard: the data-contract table. At most 3,200 points ($32) in a first year.
+#   boosted:  the recommended pilot schedule (docs/pilot/decisions.md). About 5x the value and
+#             front-loaded, because new hires are the most likely to quit: $70 of the $130 in
+#             tenure rewards comes in the first 90 days. At most 15,000 points ($150) in a first year.
+SCHEDULES: dict[str, dict[str, int]] = {
+    "standard": {r.name: r.points for r in _DEFAULT_RULES},
+    "boosted": {"tenure_30": 3000, "tenure_90": 4000, "tenure_180": 3000, "tenure_365": 3000,
+                "lesson_completed": 100, "checklist_completed": 500, "savings_setup": 500},
+}
+DEFAULT_SCHEDULE = "standard"
+RECOMMENDED_SCHEDULE = "boosted"
+
+for _name, _points in SCHEDULES.items():   # every schedule must price every rule, with whole positive points
+    if set(_points) != set(PILOT_RULES) or any(not isinstance(p, int) or p <= 0 for p in _points.values()):
+        raise RuntimeError(f"reward schedule {_name!r} must give positive whole points for exactly the pilot rules")
+
+
+def check_schedule(schedule: str) -> str:
+    if schedule not in SCHEDULES:
+        raise ValueError(f"unknown reward schedule {schedule!r}; choose one of: {', '.join(SCHEDULES)}")
+    return schedule
+
+
+def schedule_points(schedule: str, rule_name: str) -> int:
+    """Points a rule pays under a schedule."""
+    return SCHEDULES[check_schedule(schedule)][pilot_rule(rule_name).name]
+
+
+def max_first_year_points(schedule: str) -> int:
+    """The most one member can earn in a first year: every tenure milestone, 10 lessons and both habits."""
+    pts = SCHEDULES[check_schedule(schedule)]
+    return sum(pts[r.name] * r.max_awards for r in _DEFAULT_RULES)
+
 # Ledger rules that are not earning rules (kind "adjust").
 REFUND_RULE = "redemption_cancelled"
 MANUAL_RULE = "manual_adjustment"

@@ -13,7 +13,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 from .db import to_date, using
-from .engine import get_employer, get_member, is_employed, pool_remaining, tenure_days
+from .engine import get_employer, get_member, is_employed, pool_remaining, rule_points, tenure_days
 from .errors import NotEligibleError
 from .rules import (ENABLED_CATALOG, MANUAL_RULE, MAX_LESSONS, PILOT_RULES, REFUND_RULE, TENURE_RULES,
                     ADJUST_LABELS, check_no_contact, ledger_label)
@@ -263,10 +263,11 @@ def _next_milestones(conn: sqlite3.Connection, m: sqlite3.Row, as_of: date, days
     if not is_employed(m, as_of):
         return []
     out = []
+    pts = {name: rule_points(conn, m["employer_id"], name) for name in PILOT_RULES}
     upcoming = [r for r in TENURE_RULES if r.tenure_days > days]
     if upcoming:
         r = upcoming[0]
-        out.append({"rule": r.name, "label": r.label, "points": r.points,
+        out.append({"rule": r.name, "label": r.label, "points": pts[r.name],
                     "progress_pct": round(100.0 * days / r.tenure_days, 1)})
     earned = dict(conn.execute(
         "SELECT rule, COUNT(*) FROM ledger WHERE member_id = ? AND kind = 'earn' AND date <= ? GROUP BY rule",
@@ -274,12 +275,12 @@ def _next_milestones(conn: sqlite3.Connection, m: sqlite3.Row, as_of: date, days
     lessons = earned.get("lesson_completed", 0)
     if lessons < MAX_LESSONS:
         r = PILOT_RULES["lesson_completed"]
-        out.append({"rule": r.name, "label": r.label, "points": r.points,
+        out.append({"rule": r.name, "label": r.label, "points": pts[r.name],
                     "progress_pct": round(100.0 * lessons / MAX_LESSONS, 1)})
     for name in ("checklist_completed", "savings_setup"):
         if not earned.get(name):
             r = PILOT_RULES[name]
-            out.append({"rule": r.name, "label": r.label, "points": r.points, "progress_pct": 0.0})
+            out.append({"rule": r.name, "label": r.label, "points": pts[r.name], "progress_pct": 0.0})
     return out
 
 
@@ -326,7 +327,7 @@ def status(conn: sqlite3.Connection, as_of: date | str) -> list[dict]:
             "SELECT COUNT(*), COALESCE(SUM(l.points), 0) FROM ledger l JOIN members m ON m.id = l.member_id"
             " WHERE m.employer_id = ?", (emp["id"],)).fetchone()
         out.append({
-            "id": emp["id"], "name": emp["name"], "plan": emp["plan"],
+            "id": emp["id"], "name": emp["name"], "plan": emp["plan"], "reward_schedule": emp["reward_schedule"],
             "eligible": len(members),
             "enrolled": sum(1 for m in members if m["enrolled_on"]),
             "employed_now": sum(1 for m in members if is_employed(m, as_of)),

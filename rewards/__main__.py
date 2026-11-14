@@ -1,6 +1,7 @@
 """Command line for the rewards pilot.
 
-  python -m rewards seed-demo [--db PATH] [--seed 42]
+  python -m rewards seed-demo [--db PATH] [--seed 42] [--schedule boosted|standard]
+  python -m rewards set-schedule --employer ID --schedule boosted|standard [--db PATH]
   python -m rewards award --as-of DATE [--employer ID] [--db PATH]
   python -m rewards status [--as-of DATE] [--db PATH]
   python -m rewards export --employer emp_demo --member m_001 --as-of 2026-11-14 --out DIR [--db PATH]
@@ -16,9 +17,10 @@ from datetime import date
 from pathlib import Path
 
 from .db import connect, get_meta, resolve_db_path, to_date
-from .engine import award_tenure
+from .engine import award_tenure, set_reward_schedule
 from .errors import RewardsError
 from .reports import export_employer, export_member, status
+from .rules import RECOMMENDED_SCHEDULE, SCHEDULES, max_first_year_points
 from .seed import SIMULATED_NOTICE, seed_demo
 
 
@@ -47,6 +49,11 @@ def main(argv: list[str] | None = None) -> int:
 
     s = sub.add_parser("seed-demo", parents=[common], help="Fill a new database with SIMULATED demo data")
     s.add_argument("--seed", type=int, default=42)
+    s.add_argument("--schedule", choices=sorted(SCHEDULES), default=RECOMMENDED_SCHEDULE,
+                   help=f"Reward schedule for the demo employer (default: {RECOMMENDED_SCHEDULE})")
+    sc = sub.add_parser("set-schedule", parents=[common], help="Change an employer's reward schedule (future points only)")
+    sc.add_argument("--employer", required=True)
+    sc.add_argument("--schedule", choices=sorted(SCHEDULES), required=True)
     a = sub.add_parser("award", parents=[common], help="Grant tenure milestones reached by a date")
     a.add_argument("--as-of", type=_iso, required=True)
     a.add_argument("--employer", default=None, help="Only this employer (default: all)")
@@ -62,8 +69,8 @@ def main(argv: list[str] | None = None) -> int:
     db_path = resolve_db_path(args.db)
     try:
         if args.cmd == "seed-demo":
-            info = seed_demo(db_path, seed=args.seed)
-            print(f"Seeded {db_path}")
+            info = seed_demo(db_path, seed=args.seed, schedule=args.schedule)
+            print(f"Seeded {db_path} (reward schedule: {info['schedule']})")
             print(f"  {info['eligible']} eligible, {info['enrolled']} enrolled, {info['left']} left by {info['as_of']}"
                   f" (seed {info['seed']})")
             print(f"NOTE: {SIMULATED_NOTICE}")
@@ -71,7 +78,11 @@ def main(argv: list[str] | None = None) -> int:
 
         conn = connect(db_path)
         try:
-            if args.cmd == "award":
+            if args.cmd == "set-schedule":
+                set_reward_schedule(conn, args.employer, args.schedule)
+                print(f"{args.employer} now uses the {args.schedule} schedule: at most "
+                      f"{max_first_year_points(args.schedule):,} points in a first year. Points already earned don't change.")
+            elif args.cmd == "award":
                 granted = award_tenure(conn, args.as_of, args.employer)
                 print(f"Granted {len(granted)} tenure milestone(s) as of {args.as_of.isoformat()}, "
                       f"{sum(g['points'] for g in granted)} points.")
@@ -84,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
                     print("No employers yet. Try: python -m rewards seed-demo --db PATH")
                 for r in rows:
                     red = r["redemptions"]
-                    print(f"{r['id']}  {r['name']}  (plan {r['plan']})")
+                    print(f"{r['id']}  {r['name']}  (plan {r['plan']}, {r['reward_schedule']} schedule)")
                     print(f"  roster: {r['eligible']} eligible, {r['enrolled']} enrolled; employed on "
                           f"{args.as_of.isoformat()}: {r['employed_now']} ({r['enrolled_employed_now']} enrolled)")
                     print(f"  ledger: {r['ledger_rows']} rows, {r['points_outstanding']} points outstanding")

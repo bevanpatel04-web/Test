@@ -14,7 +14,7 @@
 
 ## The offer: a 90-day pilot
 
-One to three locations, 50 to 500 eligible hourly staff, 90 days. Your staff earn points for staying, for finishing two-minute money lessons, and for two healthy money habits. Points turn into a payroll bonus or a gift card that you fund. At day 90 you get a retention report and decide whether to continue, change or stop.
+At least 4 locations and 250 or more eligible hourly staff, 90 days. We start the program at about half your locations; the rest start after day 90 and are the comparison group until then. Your staff earn points for staying, for finishing two-minute money lessons, and for two healthy money habits. Points turn into a payroll bonus or a gift card that you fund. At day 90 you get a retention report and decide whether to continue, change or stop.
 
 ## How it works
 
@@ -38,16 +38,16 @@ One to three locations, 50 to 500 eligible hourly staff, 90 days. Your staff ear
 
 - **A live dashboard:** eligible, enrolled and active staff, points issued and redeemed, reward pool remaining. Staff appear by display name only.
 - **A monthly redemption file** for your payroll team.
-- **A day-90 retention report:** for each month, the share of enrolled staff still employed next to the share of eligible staff who didn't join.
+- **A day-90 retention report:** month by month, the share of staff still employed at your program locations next to your waiting locations. We also show enrolled vs. not enrolled, with its limits spelled out.
 
 **Please read this part.** The report is not a controlled experiment. People who choose to join may already be more likely to stay. So a gap between the two groups can't prove the pilot caused it. To make the comparison fairer, we can also show your own retention for the same season last year, or start some locations a month later than others.
 
 ## What it costs (DRAFT)
 
 - **Platform fee:** $4 per enrolled employee per month. You pay only for staff who join. *(DRAFT assumption.)*
-- **Reward pool:** you fund it. At the default rate, one member can earn at most about $20 during a 90-day pilot (habits and lessons up to $10, plus milestones reached during the pilot). You can choose a richer points rate.
+- **Reward pool:** you fund it. Rewards are front-loaded to the first 90 days, when new hires are most likely to leave: $30 at 30 days, $40 at 90 days, $30 at 6 months and $30 at one year, plus up to $20 for lessons and two money habits. That's at most $150 per person in a first year. In a 90-day pilot one person can earn up to about $90.
 - **Payroll taxes:** your usual employer payroll taxes apply to rewards.
-- **Example (illustration, not a quote):** 200 enrolled staff for 3 months is $2,400 in platform fees plus up to $4,000 in rewards, so up to $6,400 before payroll taxes. If one replacement costs you about $4,000 (16% of a $25,000 yearly wage), the pilot costs about as much as 1.6 replacements. The report can't prove the pilot kept anyone. This is only a way to size the bet.
+- **Example (illustration, not a quote):** 150 enrolled staff for 3 months is $1,800 in platform fees plus a $4,400 reward pool (we expect about $2,900 of it to be used), so up to $6,200 before payroll taxes. If one replacement costs you about $4,000 (16% of a $25,000 yearly wage), the pilot costs about as much as 1.5 replacements. The report can't prove the pilot kept anyone. This is only a way to size the bet.
 - *DRAFT assumptions for the founder to confirm:* no setup fee, no automatic renewal, either side can end the pilot with 14 days' notice.
 
 ## What it is not

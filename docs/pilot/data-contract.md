@@ -66,16 +66,21 @@ The backend (`rewards/`) exports these two JSON files. The dashboard (`invest/si
 }
 ```
 
-## Earning rules (pilot defaults)
+## Earning rules and reward schedules
 
-| rule | label | points |
-|---|---|---|
-| `tenure_30` | 30 days on the job | 300 |
-| `tenure_90` | 90 days on the job | 300 |
-| `tenure_180` | 180 days on the job | 600 |
-| `tenure_365` | One year on the job | 1000 |
-| `lesson_completed` | Finished a lesson | 50 each, max 10 lessons |
-| `checklist_completed` | Finished the "before you invest" checklist | 200, once |
-| `savings_setup` | Set up direct deposit to savings | 300, once |
+Every employer uses the same seven rules. How many points each rule pays depends on the employer's **reward schedule** (`rewards/rules.py` `SCHEDULES`). Pilots use **boosted** (decided Nov 14, 2026; see `docs/pilot/decisions.md`). `standard` is the original table, kept for comparison. The exports don't name the schedule; they simply carry the points.
+
+| rule | label | standard | boosted (pilots) |
+|---|---|---|---|
+| `tenure_30` | 30 days on the job | 300 | 3,000 |
+| `tenure_90` | 90 days on the job | 300 | 4,000 |
+| `tenure_180` | 180 days on the job | 600 | 3,000 |
+| `tenure_365` | One year on the job | 1,000 | 3,000 |
+| `lesson_completed` | Finished a lesson | 50 each, max 10 lessons | 100 each, max 10 lessons |
+| `checklist_completed` | Finished the "before you invest" checklist | 200, once | 500, once |
+| `savings_setup` | Set up direct deposit to savings | 300, once | 500, once |
+| | **Most one person can earn in a first year** | **3,200 ($32)** | **15,000 ($150)** |
+
+A schedule change only affects points earned from then on. Past ledger rows never change.
 
 Rules that reward trading, trade counts or account balances are **not allowed**, and the backend must reject them.

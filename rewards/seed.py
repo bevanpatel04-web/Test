@@ -20,13 +20,18 @@ from datetime import date, timedelta
 from . import engine
 from .db import set_meta, to_date, transaction, using
 from .errors import PoolExhaustedError, RewardsError
+from .rules import RECOMMENDED_SCHEDULE, check_schedule
 
 SIMULATED_NOTICE = "SIMULATED demo data (made up by rewards.seed_demo). Not real pilot results."
 
 PILOT_START = date(2026, 6, 1)
 DEMO_AS_OF = date(2026, 11, 14)
 DEMO_EMPLOYER = {"employer_id": "emp_demo", "name": "Demo Diner Group", "plan": "pilot",
-                 "pepm_usd": 4.0, "points_per_usd": 100, "pool_funded_usd": 5000.0}
+                 "pepm_usd": 4.0, "points_per_usd": 100}
+# The demo runs the recommended (boosted) schedule by default, so the sales demo shows what we
+# would actually sell. Bigger rewards need a bigger pool and bigger redemptions.
+DEMO_POOL_USD = {"standard": 5000.0, "boosted": 15000.0}
+REDEEM_UNIT_POINTS = {"standard": 500, "boosted": 1500}
 N_ELIGIBLE = 400
 N_ENROLLED = 240
 HIRE_WINDOW_DAYS = 548                 # about 18 months before the pilot start
@@ -110,9 +115,10 @@ def _plan_events(rng: random.Random, people: list[dict], as_of: date) -> dict[da
 
 
 def seed_demo(db: sqlite3.Connection | str | os.PathLike | None = None, seed: int = 42,
-              as_of: date | str = DEMO_AS_OF) -> dict:
+              as_of: date | str = DEMO_AS_OF, schedule: str = RECOMMENDED_SCHEDULE) -> dict:
     """Fill an EMPTY database with simulated demo data. Refuses a database that already has data."""
     as_of = to_date(as_of)
+    check_schedule(schedule)
     rng = random.Random(seed)
     people = _roster(rng, as_of)
     events = _plan_events(rng, people, as_of)
@@ -120,7 +126,8 @@ def seed_demo(db: sqlite3.Connection | str | os.PathLike | None = None, seed: in
         if conn.execute("SELECT COUNT(*) FROM employers").fetchone()[0]:
             raise RewardsError("this database already has data; seed the demo into a new, empty file")
         with transaction(conn):
-            engine.create_employer(conn, pilot_start=PILOT_START, **DEMO_EMPLOYER)
+            engine.create_employer(conn, pilot_start=PILOT_START, reward_schedule=schedule,
+                                   pool_funded_usd=DEMO_POOL_USD.get(schedule, 5000.0), **DEMO_EMPLOYER)
             for p in people:
                 engine.add_member(conn, p["id"], "emp_demo", p["name"], p["hire"],
                                   enrolled_on=PILOT_START if p["enrolled"] else None, left_on=p["left"])
@@ -128,21 +135,24 @@ def seed_demo(db: sqlite3.Connection | str | os.PathLike | None = None, seed: in
             while day <= as_of:
                 engine.award_tenure(conn, day, "emp_demo")    # the nightly job
                 for ev in sorted(events.pop(day, []), key=lambda e: _ORDER[e[0]]):   # earn, then spend
-                    _apply(conn, rng, events, day, as_of, ev)
+                    _apply(conn, rng, events, day, as_of, ev, REDEEM_UNIT_POINTS.get(schedule, 500))
                 day += timedelta(days=1)
             set_meta(conn, "simulated", "true")
             set_meta(conn, "seed", str(seed))
+            set_meta(conn, "schedule", schedule)
             set_meta(conn, "as_of", as_of.isoformat())
             set_meta(conn, "notice", SIMULATED_NOTICE)
         return {"employer_id": "emp_demo", "eligible": len(people), "enrolled": sum(p["enrolled"] for p in people),
-                "left": sum(1 for p in people if p["left"]), "seed": seed, "as_of": as_of.isoformat()}
+                "left": sum(1 for p in people if p["left"]), "seed": seed, "as_of": as_of.isoformat(),
+                "schedule": schedule}
 
 
 _ORDER = {"lesson": 0, "checklist": 1, "savings": 2, "redeem": 3, "fulfill": 4, "cancel": 5}
 RETRY_DAYS = 14
 
 
-def _apply(conn: sqlite3.Connection, rng: random.Random, events: dict, day: date, as_of: date, ev: tuple) -> None:
+def _apply(conn: sqlite3.Connection, rng: random.Random, events: dict, day: date, as_of: date, ev: tuple,
+           unit: int = 500) -> None:
     kind, ref = ev[0], ev[1]
     if kind == "lesson":
         engine.record_lesson(conn, ref, ev[2], day)
@@ -153,12 +163,12 @@ def _apply(conn: sqlite3.Connection, rng: random.Random, events: dict, day: date
     elif kind == "redeem":
         member_id, last = ref, ev[2]
         bal = engine.balance(conn, member_id)
-        if bal < 500:                        # not enough yet: the member tries again in two weeks
+        if bal < unit:                       # not enough yet: the member tries again in two weeks
             retry = day + timedelta(days=RETRY_DAYS)
             if retry <= last:
                 events[retry].append(ev)
             return
-        points = 1000 if bal >= 1000 and rng.random() < 0.35 else 500
+        points = 2 * unit if bal >= 2 * unit and rng.random() < 0.35 else unit
         type_ = "payroll_bonus" if rng.random() < 0.65 else "gift_card"
         try:
             r = engine.request_redemption(conn, member_id, type_, points, day)

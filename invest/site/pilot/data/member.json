@@ -6,7 +6,7 @@
     "employer_name": "Demo Diner Group",
     "tenure_days": 269
   },
-  "points_balance": 100,
+  "points_balance": 1000,
   "points_per_usd": 100,
   "history": [
     {
@@ -14,110 +14,103 @@
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-08-13",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-08-17",
       "kind": "earn",
       "rule": "tenure_180",
       "label": "180 days on the job",
-      "points": 600
+      "points": 3000
     },
     {
       "date": "2026-08-18",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-08-29",
       "kind": "redeem",
-      "rule": "payroll_bonus",
-      "label": "Payroll bonus",
-      "points": -500
+      "rule": "gift_card",
+      "label": "Gift card",
+      "points": -3000
     },
     {
       "date": "2026-09-02",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-09-06",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-09-28",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-10-07",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-10-12",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     },
     {
       "date": "2026-10-12",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
-    },
-    {
-      "date": "2026-10-16",
-      "kind": "redeem",
-      "rule": "gift_card",
-      "label": "Gift card",
-      "points": -500
+      "points": 100
     },
     {
       "date": "2026-11-14",
       "kind": "earn",
       "rule": "lesson_completed",
       "label": "Finished a lesson",
-      "points": 50
+      "points": 100
     }
   ],
   "next_milestones": [
     {
       "rule": "tenure_365",
       "label": "One year on the job",
-      "points": 1000,
+      "points": 3000,
       "progress_pct": 73.7
     },
     {
       "rule": "checklist_completed",
       "label": "Finished the \"before you invest\" checklist",
-      "points": 200,
+      "points": 500,
       "progress_pct": 0.0
     },
     {
       "rule": "savings_setup",
       "label": "Set up direct deposit to savings",
-      "points": 300,
+      "points": 500,
       "progress_pct": 0.0
     }
   ],

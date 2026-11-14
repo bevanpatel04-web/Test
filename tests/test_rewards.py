@@ -429,7 +429,9 @@ def test_demo_seed_shape(demo_db):
         assert rdb.get_meta(c, "simulated") == "true"
         emp = dict(c.execute("SELECT * FROM employers").fetchone())
         assert emp == {"id": "emp_demo", "name": "Demo Diner Group", "plan": "pilot", "pepm_usd": 4.0,
-                       "points_per_usd": 100, "pool_funded_usd": 5000.0, "pilot_start": "2026-06-01"}
+                       "points_per_usd": 100, "pool_funded_usd": 15000.0, "pilot_start": "2026-06-01",
+                       "reward_schedule": "boosted"}
+        assert rdb.get_meta(c, "schedule") == "boosted"
         ids = [r[0] for r in c.execute("SELECT id FROM members ORDER BY id")]
         assert ids == [f"m_{i:03d}" for i in range(1, 401)]
         hires = [r[0] for r in c.execute("SELECT hire_date FROM members")]
@@ -484,3 +486,61 @@ def test_bad_inputs_fail_clearly(conn):
     with pytest.raises(rewards.RewardsError, match="award_tenure"):
         add(conn, "m_002", "2026-05-01")
         rewards.award(conn, "m_002", "tenure_30", "2026-06-02")
+
+
+# --- Reward schedules ------------------------------------------------------------------------------
+def test_schedules_price_every_rule_and_cap_first_year():
+    assert set(rewards.SCHEDULES) == {"standard", "boosted"}
+    for pts in rewards.SCHEDULES.values():
+        assert set(pts) == set(rewards.PILOT_RULES)
+    assert rewards.SCHEDULES["standard"] == {r.name: r.points for r in rewards.PILOT_RULES.values()}
+    assert rewards.max_first_year_points("standard") == 3200      # $32, the data-contract table
+    assert rewards.max_first_year_points("boosted") == 15000      # $150, the recommended pilot schedule
+    boosted = rewards.SCHEDULES["boosted"]
+    assert boosted["tenure_30"] + boosted["tenure_90"] > boosted["tenure_180"] + boosted["tenure_365"]  # front-loaded
+    assert rewards.RECOMMENDED_SCHEDULE == "boosted" and rewards.DEFAULT_SCHEDULE == "standard"
+
+
+def test_boosted_employer_pays_boosted_points(tmp_path):
+    c = rewards.connect(tmp_path / "b.db")
+    rewards.create_employer(c, "emp_b", "Boost Cafe", pepm_usd=4.0, points_per_usd=100, pool_funded_usd=500.0,
+                            pilot_start="2026-06-01", reward_schedule="boosted")
+    rewards.add_member(c, "m_b", "emp_b", "Member B", "2026-05-20", enrolled_on="2026-06-01")
+    granted = rewards.award_tenure(c, "2026-08-20")                 # 30 and 90 days reached after joining
+    assert [(g["rule"], g["points"]) for g in granted] == [("tenure_30", 3000), ("tenure_90", 4000)]
+    assert rewards.record_lesson(c, "m_b", "compound-growth", "2026-06-02") == 100
+    assert rewards.record_checklist(c, "m_b", "2026-06-03") == 500
+    assert rewards.record_savings_setup(c, "m_b", "2026-06-04") == 500
+    assert rewards.balance(c, "m_b") == 8100
+    nxt = rewards.export_member(c, "m_b", "2026-08-20")["next_milestones"]
+    assert nxt[0]["rule"] == "tenure_180" and nxt[0]["points"] == 3000
+    assert {m["rule"]: m["points"] for m in nxt}["lesson_completed"] == 100
+
+
+def test_schedule_change_only_affects_future_points(tmp_path):
+    c = rewards.connect(tmp_path / "s.db")
+    rewards.create_employer(c, "emp_s", "Switch Cafe", pepm_usd=4.0, points_per_usd=100, pool_funded_usd=500.0,
+                            pilot_start="2026-06-01")
+    rewards.add_member(c, "m_s", "emp_s", "Member S", "2026-05-20", enrolled_on="2026-06-01")
+    assert rewards.record_lesson(c, "m_s", "compound-growth", "2026-06-02") == 50
+    rewards.set_reward_schedule(c, "emp_s", "boosted")
+    assert rewards.record_lesson(c, "m_s", "fees-add-up", "2026-06-03") == 100
+    assert [r["points"] for r in rewards.ledger(c, "m_s")] == [50, 100]   # the first row was not rewritten
+    with pytest.raises(ValueError, match="unknown reward schedule"):
+        rewards.set_reward_schedule(c, "emp_s", "mega")
+    with pytest.raises(ValueError, match="unknown reward schedule"):
+        rewards.create_employer(c, "emp_x", "X", pepm_usd=4.0, points_per_usd=100, pool_funded_usd=1.0,
+                                reward_schedule="mega")
+
+
+def test_old_database_gets_standard_schedule(tmp_path):
+    import sqlite3
+    path = tmp_path / "old.db"
+    old = sqlite3.connect(path)
+    old.executescript(rdb.SCHEMA.replace(",\n    reward_schedule TEXT NOT NULL DEFAULT 'standard'", ""))
+    old.execute("INSERT INTO employers VALUES ('emp_o', 'Old Cafe', 'pilot', 4.0, 100, 100.0, '2026-06-01')")
+    old.commit()
+    old.close()
+    c = rewards.connect(path)
+    assert c.execute("SELECT reward_schedule FROM employers").fetchone()[0] == "standard"
+    assert rewards.rule_points(c, "emp_o", "tenure_30") == 300

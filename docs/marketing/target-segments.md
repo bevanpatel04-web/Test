@@ -7,8 +7,8 @@
 | Trait | What we want | Why |
 |---|---|---|
 | **Industry** | Restaurant groups, hotels with big food-and-beverage or resort teams, and retailers with hourly floor staff | Many young hourly workers and frequent quits |
-| **Company size** | 5 to 50 locations, or about 100 to 2,000 hourly staff in total | Big enough to have an HR or payroll system and a comparison group. Small enough that one ops or HR leader can say yes without a long procurement process |
-| **Pilot size** | 1 to 3 locations with 50 to 500 eligible hourly staff | Enough people for a readable report; small enough to run by hand |
+| **Company size** | 5 to 50 locations and about 250 to 2,000 hourly staff in total (sweet spot 400 to 1,200) | Big enough to have an HR or payroll system and a comparison group. Small enough that one ops or HR leader can say yes without a long procurement process |
+| **Pilot size** | At least 4 locations and 250+ eligible hourly staff; the program starts at about half the locations first | Our margin and the employer's payback both fall off below about 150 enrolled members, and a fair comparison needs locations that start later (see `docs/pilot/decisions.md`) |
 | **Locations** | One state for the first pilots. Metros with colleges and tight hiring markets | One set of state wage and payroll rules to check. Lots of early-career workers |
 | **Staff aged 18-25** | Employer estimates 30% or more | That's who the lessons are written for (see benchmarks below) |
 | **Turnover pain** | They can name a number, e.g. "we lose half our new hires before 90 days" | A clear baseline makes the day-90 report useful |
@@ -103,11 +103,11 @@ Benchmarks in the table come from [BLS CPS Table 18b, 2025](https://www.bls.gov/
 Use this on the first call. **Must-haves** all need a yes.
 
 **Must-haves**
-- [ ] At least 50 eligible hourly staff aged 18 or older across 1 to 3 pilot locations.
+- [ ] At least 250 eligible hourly staff aged 18 or older across at least 4 locations, willing to start at about half of them first.
 - [ ] Payroll can add a one-time bonus line, and HR can send a weekly roster (employee ID, hire date, location, status). No Social Security numbers or pay rates needed.
 - [ ] A named pilot owner in ops or HR with about 1 hour a week.
 - [ ] Budget for the platform fee and a funded reward pool (DRAFT pricing: $4 per enrolled employee per month plus the pool).
-- [ ] They accept that the day-90 report compares joiners with non-joiners and is not a controlled experiment.
+- [ ] They accept that the day-90 report compares program locations with waiting locations, and that one pilot can't prove a small effect.
 - [ ] Their counsel or HR adviser will review the DRAFT pilot terms, including tax and overtime treatment of rewards.
 - [ ] No age cap on eligibility beyond 18+ (see the age-discrimination note in the one-pager FAQ).
 - [ ] A decision maker who can sign within 30 days.

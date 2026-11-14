@@ -32,7 +32,8 @@ The research, marketing and finance agents independently flagged the same issues
 - **Eligibility is all hourly staff 18+, not "ages 18-25".** An age cap likely conflicts with federal age-discrimination law (protects workers 40+, including benefits). Young workers stay the focus of the content and marketing, not the eligibility rule.
 - **Every reward goes through the employer's payroll as taxable pay, gift cards included** (IRS Publication 15-B). Tenure bonuses also count toward overtime pay (29 CFR 778.211).
 - **Measure fairly.** "Enrolled vs. not enrolled" overstates the effect, because steady workers are the ones who sign up. Pilots should start at some locations first and compare them with the rest, and results should be pooled across employers. One 400-person employer can't prove a small effect.
-- **Open decisions for the founder:** reward size (a full first year caps near $32 today), points when someone leaves (pay out vs. expire, which is an attorney question), gift-card delivery without storing emails, credit for tenure served before joining, and pilot pricing (free vs. $1,500 flat).
+- **Decided (Nov 14, 2026), see `docs/pilot/decisions.md`:** pilots use the **boosted** reward schedule (up to $150 in a first year, front-loaded to the first 90 days), and we target employers with **250+ eligible hourly staff across 4+ locations**, starting at about half the locations first. Price stays $4 per enrolled member per month with a $500 monthly minimum.
+- **Still open for the founder:** points when someone leaves (pay out vs. expire, which is an attorney question), gift-card delivery without storing emails, credit for tenure served before joining, and pilot pricing (free vs. $1,500 flat).
 
 Details: `docs/research/`, `docs/finance/`, `docs/legal-drafts/`.
 

@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS employers (
     pepm_usd        REAL NOT NULL CHECK (pepm_usd >= 0),
     points_per_usd  INTEGER NOT NULL CHECK (points_per_usd > 0),
     pool_funded_usd REAL NOT NULL CHECK (pool_funded_usd >= 0),
-    pilot_start     TEXT NOT NULL
+    pilot_start     TEXT NOT NULL,
+    reward_schedule TEXT NOT NULL DEFAULT 'standard'
 );
 
 -- Everyone on the employer's eligible roster. enrolled_on is NULL for eligible employees who did
@@ -107,6 +108,9 @@ def connect(path: str | os.PathLike | None = None) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
+    # Databases made before reward schedules existed get the column, set to the old points table.
+    if "reward_schedule" not in {r[1] for r in conn.execute("PRAGMA table_info(employers)")}:
+        conn.execute("ALTER TABLE employers ADD COLUMN reward_schedule TEXT NOT NULL DEFAULT 'standard'")
     return conn
 
 

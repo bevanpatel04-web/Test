@@ -12,8 +12,8 @@ from datetime import date, timedelta
 from .db import opt_date, to_date, transaction
 from .errors import (BelowMinimumError, InsufficientPointsError, NotEligibleError, NotFoundError,
                      PoolExhaustedError, RedemptionError, RewardsError)
-from .rules import (MANUAL_RULE, PILOT_RULES, REFUND_RULE, TENURE_RULES, check_no_contact,
-                    check_rule_allowed, pilot_rule, redemption_type)
+from .rules import (DEFAULT_SCHEDULE, MANUAL_RULE, PILOT_RULES, REFUND_RULE, TENURE_RULES, check_no_contact,
+                    check_rule_allowed, check_schedule, pilot_rule, redemption_type, schedule_points)
 
 DEFAULT_PILOT_START = date(2026, 6, 1)
 
@@ -30,8 +30,9 @@ def _check_id(value: str, what: str) -> str:
 # --- Employers and members ---------------------------------------------------------------------
 def create_employer(conn: sqlite3.Connection, employer_id: str, name: str, *, plan: str = "pilot",
                     pepm_usd: float, points_per_usd: int, pool_funded_usd: float,
-                    pilot_start: date | str = DEFAULT_PILOT_START) -> None:
+                    pilot_start: date | str = DEFAULT_PILOT_START, reward_schedule: str = DEFAULT_SCHEDULE) -> None:
     _check_id(employer_id, "employer id")
+    check_schedule(reward_schedule)
     if not name or not name.strip():
         raise ValueError("employer name is required")
     if isinstance(points_per_usd, bool) or not isinstance(points_per_usd, int) or points_per_usd <= 0:
@@ -41,10 +42,23 @@ def create_employer(conn: sqlite3.Connection, employer_id: str, name: str, *, pl
     check_no_contact(name, "employer name")
     with transaction(conn):
         conn.execute(
-            "INSERT INTO employers (id, name, plan, pepm_usd, points_per_usd, pool_funded_usd, pilot_start)"
-            " VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO employers (id, name, plan, pepm_usd, points_per_usd, pool_funded_usd, pilot_start,"
+            " reward_schedule) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             (employer_id, name, plan, float(pepm_usd), points_per_usd, float(pool_funded_usd),
-             to_date(pilot_start).isoformat()))
+             to_date(pilot_start).isoformat(), reward_schedule))
+
+
+def set_reward_schedule(conn: sqlite3.Connection, employer_id: str, reward_schedule: str) -> None:
+    """Switch an employer's points table. Only points earned from now on change; past rows never do."""
+    check_schedule(reward_schedule)
+    with transaction(conn):
+        get_employer(conn, employer_id)
+        conn.execute("UPDATE employers SET reward_schedule = ? WHERE id = ?", (reward_schedule, employer_id))
+
+
+def rule_points(conn: sqlite3.Connection, employer_id: str, rule_name: str) -> int:
+    """Points a rule pays at this employer, under its current reward schedule."""
+    return schedule_points(get_employer(conn, employer_id)["reward_schedule"], rule_name)
 
 
 def get_employer(conn: sqlite3.Connection, employer_id: str) -> sqlite3.Row:
@@ -162,11 +176,11 @@ def award_tenure(conn: sqlite3.Connection, as_of: date | str, employer_id: str |
     the milestone was reached. Safe to run as often as you like; a second run grants nothing new.
     """
     as_of = to_date(as_of)
-    sql = ("SELECT * FROM members WHERE enrolled_on IS NOT NULL AND enrolled_on <= ?"
-           " AND (left_on IS NULL OR left_on > ?)")
+    sql = ("SELECT m.*, e.reward_schedule FROM members m JOIN employers e ON e.id = m.employer_id"
+           " WHERE m.enrolled_on IS NOT NULL AND m.enrolled_on <= ? AND (m.left_on IS NULL OR m.left_on > ?)")
     params: list = [as_of.isoformat(), as_of.isoformat()]
     if employer_id is not None:
-        sql += " AND employer_id = ?"
+        sql += " AND m.employer_id = ?"
         params.append(employer_id)
     granted: list[dict] = []
     with transaction(conn):
@@ -180,48 +194,51 @@ def award_tenure(conn: sqlite3.Connection, as_of: date | str, employer_id: str |
                     break
                 if reached < enrolled or (m["id"], rule.name) in done:
                     continue
-                if _append(conn, m["id"], reached, "earn", rule.name, rule.points, f"tenure:{m['id']}:{rule.name}"):
+                points = schedule_points(m["reward_schedule"], rule.name)
+                if _append(conn, m["id"], reached, "earn", rule.name, points, f"tenure:{m['id']}:{rule.name}"):
                     granted.append({"member_id": m["id"], "rule": rule.name, "date": reached.isoformat(),
-                                    "points": rule.points})
+                                    "points": points})
     return granted
 
 
 def record_lesson(conn: sqlite3.Connection, member_id: str, lesson_slug: str, on: date | str) -> int:
-    """50 points per distinct lesson, up to 10 lessons. Returns the points granted (0 if none)."""
+    """Points per distinct lesson (50 on the standard schedule), up to 10 lessons. Returns the points granted."""
     on = to_date(on)
     if not isinstance(lesson_slug, str) or not _SLUG.fullmatch(lesson_slug):
         raise ValueError(f"lesson slug must be lowercase letters, digits and hyphens, got {lesson_slug!r}")
     rule = PILOT_RULES["lesson_completed"]
     with transaction(conn):
-        _require_enrolled(conn, member_id, on)
+        m = _require_enrolled(conn, member_id, on)
         conn.execute("INSERT INTO completions (member_id, kind, ref, date) VALUES (?, 'lesson', ?, ?)"
                      " ON CONFLICT DO NOTHING", (member_id, lesson_slug, on.isoformat()))
         paid = conn.execute("SELECT COUNT(*) FROM ledger WHERE member_id = ? AND kind = 'earn' AND rule = ?",
                             (member_id, rule.name)).fetchone()[0]
         if paid >= rule.max_awards:
             return 0
-        ok = _append(conn, member_id, on, "earn", rule.name, rule.points, f"lesson:{member_id}:{lesson_slug}")
-        return rule.points if ok else 0
+        points = rule_points(conn, m["employer_id"], rule.name)
+        ok = _append(conn, member_id, on, "earn", rule.name, points, f"lesson:{member_id}:{lesson_slug}")
+        return points if ok else 0
 
 
 def _record_once(conn: sqlite3.Connection, member_id: str, on: date | str, rule_name: str, completion: str) -> int:
     on = to_date(on)
     rule = PILOT_RULES[rule_name]
     with transaction(conn):
-        _require_enrolled(conn, member_id, on)
+        m = _require_enrolled(conn, member_id, on)
         conn.execute("INSERT INTO completions (member_id, kind, ref, date) VALUES (?, ?, 'once', ?)"
                      " ON CONFLICT DO NOTHING", (member_id, completion, on.isoformat()))
-        ok = _append(conn, member_id, on, "earn", rule.name, rule.points, f"{rule.name}:{member_id}")
-        return rule.points if ok else 0
+        points = rule_points(conn, m["employer_id"], rule.name)
+        ok = _append(conn, member_id, on, "earn", rule.name, points, f"{rule.name}:{member_id}")
+        return points if ok else 0
 
 
 def record_checklist(conn: sqlite3.Connection, member_id: str, on: date | str) -> int:
-    """200 points, once, for finishing the "before you invest" checklist."""
+    """Points once (200 on the standard schedule) for finishing the "before you invest" checklist."""
     return _record_once(conn, member_id, on, "checklist_completed", "checklist")
 
 
 def record_savings_setup(conn: sqlite3.Connection, member_id: str, on: date | str) -> int:
-    """300 points, once, for setting up direct deposit to savings."""
+    """Points once (300 on the standard schedule) for setting up direct deposit to savings."""
     return _record_once(conn, member_id, on, "savings_setup", "savings_setup")
 
 

@@ -53,12 +53,17 @@ Even with real data, members chose to join. People who sign up may be people who
 
 ## How points work
 
-| rule | what earns it | points |
-|---|---|---|
-| `tenure_30` / `tenure_90` / `tenure_180` / `tenure_365` | 30 / 90 / 180 / 365 days since hire | 300 / 300 / 600 / 1000 |
-| `lesson_completed` | each different lesson, up to 10 | 50 |
-| `checklist_completed` | the "before you invest" checklist, once | 200 |
-| `savings_setup` | direct deposit to savings, once | 300 |
+Each employer has a **reward schedule** that sets how many points each rule pays. Pilots use `boosted` (see `docs/pilot/decisions.md`); `standard` is the original table. Change it with `python -m rewards set-schedule --employer ID --schedule boosted`. Only future points change, because the ledger is never edited.
+
+| rule | what earns it | standard | boosted |
+|---|---|---|---|
+| `tenure_30` / `tenure_90` / `tenure_180` / `tenure_365` | 30 / 90 / 180 / 365 days since hire | 300 / 300 / 600 / 1,000 | 3,000 / 4,000 / 3,000 / 3,000 |
+| `lesson_completed` | each different lesson, up to 10 | 50 | 100 |
+| `checklist_completed` | the "before you invest" checklist, once | 200 | 500 |
+| `savings_setup` | direct deposit to savings, once | 300 | 500 |
+| | most in a first year | 3,200 ($32) | 15,000 ($150) |
+
+`seed-demo` uses `boosted` by default (with a $15,000 pool); pass `--schedule standard` for the original table.
 
 ## Design decisions
 
