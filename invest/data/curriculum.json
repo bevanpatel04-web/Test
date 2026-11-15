@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "updated": "2026-11-15",
+  "note": "SEED: 3 sample lessons so builders can start. The Curriculum agent replaces this file with the full 5-level curriculum.",
+  "levels": [
+    {
+      "id": "L1",
+      "number": 1,
+      "title": "Money foundations",
+      "summary": "Where your money goes, why a cash cushion comes first, and how debt interest works.",
+      "free": true,
+      "modules": [
+        {
+          "id": "L1-M1",
+          "title": "Where your money goes",
+          "summary": "The basic map of your money.",
+          "lessons": [
+            {
+              "slug": "what-a-budget-is-for",
+              "title": "What a budget is actually for",
+              "minutes": 3,
+              "objectives": [
+                "Explain a budget as a plan for your money, not a punishment",
+                "List the three buckets most budgets use"
+              ],
+              "key_points": [
+                "A budget is a plan you make before the month starts",
+                "Most budgets split money into needs, wants and future you",
+                "A plan you can keep beats a perfect plan you quit"
+              ],
+              "prerequisites": [],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Write down your monthly take-home pay and your three biggest costs."
+              },
+              "quiz": [
+                {
+                  "q": "What is a budget mainly for?",
+                  "choices": [
+                    "Tracking every coffee",
+                    "Planning where your money goes before you spend it",
+                    "Getting a credit card"
+                  ],
+                  "answer": 1,
+                  "why": "A budget is a plan made ahead of time."
+                },
+                {
+                  "q": "Which bucket is 'future you'?",
+                  "choices": [
+                    "Rent",
+                    "Savings and paying down debt",
+                    "Streaming services"
+                  ],
+                  "answer": 1,
+                  "why": "Future you covers saving and paying down debt."
+                },
+                {
+                  "q": "Which budget usually works best?",
+                  "choices": [
+                    "The strictest one",
+                    "One you can actually keep",
+                    "One copied from a friend"
+                  ],
+                  "answer": 1,
+                  "why": "Consistency matters more than perfection."
+                }
+              ]
+            },
+            {
+              "slug": "why-a-cash-cushion-comes-first",
+              "title": "Why a cash cushion comes first",
+              "minutes": 3,
+              "objectives": [
+                "Explain what an emergency cushion is for",
+                "Explain why money you need soon shouldn't be in the stock market"
+              ],
+              "key_points": [
+                "A cushion covers surprises so they don't become debt",
+                "Money you may need soon has no time to recover from a drop",
+                "Start small: even one month of costs helps"
+              ],
+              "prerequisites": [
+                "what-a-budget-is-for"
+              ],
+              "needs_facts": [
+                "emergency_400_cash"
+              ],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Add up one month of must-pay costs. That's your first cushion target."
+              },
+              "quiz": [
+                {
+                  "q": "What is an emergency cushion for?",
+                  "choices": [
+                    "Buying stocks on sale",
+                    "Covering surprise costs without borrowing",
+                    "Paying for vacations"
+                  ],
+                  "answer": 1,
+                  "why": "It keeps surprises from turning into debt."
+                },
+                {
+                  "q": "Why keep it out of the stock market?",
+                  "choices": [
+                    "Stocks are illegal for savings",
+                    "You may need it right when prices are down",
+                    "Banks require it"
+                  ],
+                  "answer": 1,
+                  "why": "Short-term money has no time to recover from a drop."
+                },
+                {
+                  "q": "A good first target is…",
+                  "choices": [
+                    "One month of must-pay costs",
+                    "Ten years of salary",
+                    "Exactly $1 million"
+                  ],
+                  "answer": 0,
+                  "why": "Start with a reachable goal."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "number": 2,
+      "title": "Your first investments",
+      "summary": "Compound growth, risk, and what an index fund actually is.",
+      "free": false,
+      "modules": [
+        {
+          "id": "L2-M1",
+          "title": "How growth and risk work",
+          "summary": "Why time matters, and why prices swing.",
+          "lessons": [
+            {
+              "slug": "compound-growth-explained",
+              "title": "Compound growth, explained with $100 a month",
+              "minutes": 4,
+              "objectives": [
+                "Explain compound growth in plain words",
+                "Explain why starting earlier matters"
+              ],
+              "key_points": [
+                "Growth can earn growth of its own over time",
+                "Starting earlier gives money more years to grow",
+                "Growth is never promised: investments can lose value"
+              ],
+              "prerequisites": [
+                "why-a-cash-cushion-comes-first"
+              ],
+              "needs_facts": [],
+              "risk_note": "Examples are hypothetical. Investments can fall in value, including the money you put in.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Compare starting at your age with starting 5 years later."
+              },
+              "quiz": [
+                {
+                  "q": "Compound growth means…",
+                  "choices": [
+                    "Your gains can earn gains of their own",
+                    "Prices rise every single year",
+                    "Your bank pays a fixed bonus"
+                  ],
+                  "answer": 0,
+                  "why": "Growth builds on earlier growth."
+                },
+                {
+                  "q": "Why does starting earlier matter?",
+                  "choices": [
+                    "Early money gets more years to grow",
+                    "Fees disappear",
+                    "Taxes are lower for young people"
+                  ],
+                  "answer": 0,
+                  "why": "Time is the input you control most."
+                },
+                {
+                  "q": "Which is true about investment growth?",
+                  "choices": [
+                    "It's certain after 10 years",
+                    "Investments can fall in value",
+                    "It only happens in savings accounts"
+                  ],
+                  "answer": 1,
+                  "why": "No investment is free of risk."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
