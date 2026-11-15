@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Money Map | Patient Money</title>
+  <meta name="description" content="A private worksheet for your take-home pay, must-pay costs, cash cushion, debts, accounts and goals. It stays on your device. Education, not advice.">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div class="wrap app">
+    <header class="top">
+      <a class="brand" href="index.html">Patient Money</a>
+      <nav aria-label="App"><a href="index.html">Path</a><a href="money-map.html" aria-current="page">Money Map</a><a href="crash-sim.html">Crash simulator</a><a href="account.html">Account</a></nav>
+    </header>
+
+    <main id="main">
+      <p class="hidden" id="fromLesson"><a class="back" href="index.html">← Back to the lesson</a></p>
+      <h1>Your Money Map</h1>
+      <p class="lede">A private worksheet for the numbers behind your money. Fill in what you know, skip what you don't. The summary at the bottom explains what it adds up to.</p>
+
+      <div class="card private" id="privacy">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M5.5 11h13v9.5h-13z"/></svg>
+        <p><strong>It stays on this device.</strong> What you type is saved in this browser only. Nothing is sent to Patient Money or anyone else, and clearing your browser data deletes it.</p>
+      </div>
+      <p class="fine hidden" id="memberNote">The Money Map is part of membership. In this prototype it's open to everyone.</p>
+      <p class="notice hidden" id="storageNote" role="status"></p>
+
+      <form id="mapForm" novalidate>
+        <section class="card" aria-labelledby="payTitle">
+          <h2 id="payTitle">Take-home pay</h2>
+          <div class="field">
+            <label for="pay">Monthly take-home pay ($)</label>
+            <input type="number" id="pay" min="0" step="any" inputmode="decimal" autocomplete="off">
+            <p class="hint">What lands in your account each month, after taxes and deductions.</p>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="costsTitle">
+          <h2 id="costsTitle">Must-pay costs</h2>
+          <p class="hint">Bills you have to pay every month: rent, utilities, groceries, phone, getting to work, minimum debt payments.</p>
+          <ul class="entry-list" id="costsList"></ul>
+          <button type="button" class="small" id="addCost">+ Add a cost</button>
+        </section>
+
+        <section class="card" aria-labelledby="cushionTitle">
+          <h2 id="cushionTitle">Cash cushion</h2>
+          <p class="hint">Money set aside for surprises, counted in months of your must-pay costs.</p>
+          <div class="inputs">
+            <fieldset class="field">
+              <legend>Cushion target</legend>
+              <div class="chips" id="monthsChips">
+                <button type="button" class="chip" data-value="1">1 month</button>
+                <button type="button" class="chip" data-value="3">3 months</button>
+                <button type="button" class="chip" data-value="6">6 months</button>
+              </div>
+              <label class="hint" for="months">Or type the number of months (0 to 24)</label>
+              <input type="number" id="months" min="0" max="24" step="1" inputmode="numeric">
+            </fieldset>
+            <div class="field">
+              <label for="saved">Saved for it so far ($)</label>
+              <input type="number" id="saved" min="0" step="any" inputmode="decimal" autocomplete="off">
+            </div>
+          </div>
+          <p class="error" id="monthsError" role="alert"></p>
+        </section>
+
+        <section class="card" aria-labelledby="debtsTitle">
+          <h2 id="debtsTitle">Debts</h2>
+          <p class="hint">Card balances, student loans, car loans, buy now, pay later. The interest rate (APR) is on your statement.</p>
+          <ul class="entry-list" id="debtsList"></ul>
+          <button type="button" class="small" id="addDebt">+ Add a debt</button>
+        </section>
+
+        <section class="card" aria-labelledby="accountsTitle">
+          <h2 id="accountsTitle">Accounts you have</h2>
+          <fieldset class="field">
+            <legend class="sr-only">Accounts you have</legend>
+            <div class="checks" id="accountChecks"></div>
+          </fieldset>
+          <div class="field">
+            <label for="otherAccounts">Anything else</label>
+            <input type="text" id="otherAccounts" maxlength="120" autocomplete="off">
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="goalsTitle">
+          <h2 id="goalsTitle">Goals</h2>
+          <p class="hint">Things you're saving for, with a rough amount and a month to reach it by.</p>
+          <ul class="entry-list" id="goalsList"></ul>
+          <button type="button" class="small" id="addGoal">+ Add a goal</button>
+        </section>
+      </form>
+
+      <section class="card summary" id="summary" aria-labelledby="summaryTitle">
+        <h2 id="summaryTitle">Your summary</h2>
+        <p class="fine">This explains what you entered. It isn't advice about what to do with your money.</p>
+        <div id="summaryBody"></div>
+        <p class="saved" id="savedNote" role="status"></p>
+      </section>
+
+      <section class="card" aria-labelledby="clearTitle">
+        <h2 id="clearTitle">Start over</h2>
+        <button type="button" class="small danger" id="clearBtn">Clear my Money Map</button>
+        <div class="confirm hidden" id="clearConfirm">
+          <p>This deletes everything on this page from this device.</p>
+          <button type="button" class="small danger" id="clearYes">Yes, clear it</button>
+          <button type="button" class="small" id="clearNo">Cancel</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="card fine disclaimer">
+      <p><strong>Education, not advice.</strong> The Money Map adds up and sorts the numbers you type. It doesn't know your full situation and doesn't recommend what to do. For advice about your own money, talk to a licensed professional.</p>
+      <p><a href="../index.html">Calculator</a> · <a href="../rules.html">Our rules</a></p>
+    </footer>
+  </div>
+  <script src="../assets/calc.js"></script>
+  <script src="assets/learn.js"></script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/money-map.js"></script>
+</body>
+</html>
