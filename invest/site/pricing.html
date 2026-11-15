@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing (Draft) | Patient Money</title>
+  <meta name="description" content="Patient Money is paid by members, not by banks. Level 1 is free. Membership unlocks all five levels, the crash simulator and your Money Map. Draft prices, waitlist open.">
+  <!-- Draft prices: keep this page out of search results until they're final. -->
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Page-only additions. They use the shared tokens from assets/style.css, so light and dark both work. */
+    .plans { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 16px 0; }
+    @media (min-width: 640px) { .plans { grid-template-columns: 1fr 1fr; } }
+    .plans .card { margin: 0; display: flex; flex-direction: column; }
+    .plan-featured { border: 2px solid var(--accent); }
+    .plan-name { margin: 0 0 4px; }
+    .price { margin: 8px 0 0; font-size: 2.4rem; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+    .price small { font-size: 1rem; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+    .price-alt { margin: 4px 0 0; font-weight: 600; }
+    .draft { display: inline-block; vertical-align: middle; margin-left: 6px; padding: 2px 8px; border-radius: 999px;
+             border: 1px dashed var(--field-border); background: var(--accent-soft); color: var(--text);
+             font-size: .7rem; font-weight: 800; letter-spacing: .06em; }
+    ul.ticks { list-style: none; padding: 0; margin: 16px 0; flex: 1; }
+    ul.ticks li { position: relative; padding-left: 26px; margin: 0 0 8px; }
+    ul.ticks li::before { content: ""; position: absolute; left: 4px; top: .45em; width: 10px; height: 6px;
+                          border-left: 2px solid var(--s3); border-bottom: 2px solid var(--s3); transform: rotate(-45deg); }
+    ol.levels { list-style: none; padding: 0; margin: 0; }
+    ol.levels li { padding: 12px 0; border-bottom: 1px solid var(--grid); }
+    ol.levels li:last-child { border-bottom: 0; }
+    .level-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+    .tag { font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--axis); color: var(--muted); }
+    .tag.free { background: var(--accent-soft); color: var(--text); border-color: transparent; }
+    .faq details { border-bottom: 1px solid var(--grid); padding: 4px 0 12px; margin: 0 0 4px; }
+    .faq details:last-child { border-bottom: 0; }
+    .faq summary { color: var(--text); padding: 8px 0 0; }
+    .faq details p { margin: 8px 0 0; }
+    .check { display: flex; align-items: center; gap: 10px; margin: 4px 0 0; font-size: .95rem; cursor: pointer; }
+    form.signup .check { flex-basis: 100%; }
+    form.signup .check input { flex: none; } /* style.css stretches every input in a sign-up form */
+    .check input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="./">Patient Money</a>
+      <nav><a href="app/index.html">Learning path</a><a href="learn/index.html">Learn</a><a href="rules.html">Our rules</a></nav>
+    </header>
+
+    <main>
+    <p class="pill">Draft pricing · Membership isn't open yet · No payments taken here</p>
+    <h1>Paid by you, not by banks.</h1>
+    <p class="lede">Learn money in the right order, from your first paycheck to advanced investing. Many free money apps earn when you open a card, take a loan or start a brokerage account. We earn only from members, so we never push a product.</p>
+
+    <section aria-labelledby="plansTitle">
+      <h2 id="plansTitle" class="sr-only">Plans</h2>
+      <div class="plans">
+        <div class="card">
+          <h3 class="plan-name">Free</h3>
+          <p class="price">$0</p>
+          <p class="fine">No payment details needed.</p>
+          <ul class="ticks">
+            <li>All of Level 1: Money foundations</li>
+            <li>Level 1 video lessons and 3-question checks</li>
+            <li>Level 1 worksheets with your own numbers</li>
+            <li>The start-now-vs-later calculator</li>
+          </ul>
+          <p><a class="btn" href="app/index.html">Try Level 1 free</a></p>
+        </div>
+
+        <div class="card plan-featured">
+          <h3 class="plan-name">Membership</h3>
+          <p class="price">$8 <small>a month</small> <span class="draft">DRAFT</span></p>
+          <p class="price-alt">or $60 a year, about $5 a month <span class="draft">DRAFT</span></p>
+          <ul class="ticks">
+            <li>Everything in Free</li>
+            <li>Levels 2 to 5, unlocked in order</li>
+            <li>Every video lesson, with captions</li>
+            <li>Spaced review that brings old ideas back</li>
+            <li>Your full Money Map, private on your device</li>
+            <li>The crash simulator</li>
+          </ul>
+          <p><a class="btn" href="#waitlist">Join the waitlist</a></p>
+        </div>
+      </div>
+
+      <div class="card" id="gift">
+        <h3 class="plan-name">Give a year <span class="draft">DRAFT</span></h3>
+        <p class="price">$60 <small>once</small></p>
+        <p>For a graduate or someone starting their first job: a clear path from budgets to how markets work, and nobody trying to sell them a credit card along the way.</p>
+        <ul class="ticks">
+          <li>They get a code by email on the date you choose.</li>
+          <li>It doesn't renew automatically. After a year, they decide.</li>
+          <li>It's private: you won't see their progress, checks or Money Map.</li>
+          <li>Recipients must be 18 or older.</li>
+        </ul>
+        <p><a class="btn" href="#waitlist" data-gift>Tell me when gifts open</a></p>
+      </div>
+      <p class="fine">All prices are drafts we're still testing, in US dollars. Nothing can be bought on this page yet.</p>
+    </section>
+
+    <section class="card" aria-labelledby="levelsTitle">
+      <h2 id="levelsTitle">What's included at each level</h2>
+      <p>Five levels from beginner to advanced. Short lessons unlock in order, and each one ends with a 3-question check: get 2 of 3 right to complete it.</p>
+      <ol class="levels">
+        <li>
+          <div class="level-head"><strong>Level 1 · Money foundations</strong> <span class="tag free">Free</span></div>
+          <div class="fine">Where your money goes, why a cash cushion comes first, and how debt interest works.</div>
+        </li>
+        <li>
+          <div class="level-head"><strong>Level 2 · Your first investments</strong> <span class="tag">Members</span></div>
+          <div class="fine">Compound growth, risk, and what an index fund actually is.</div>
+        </li>
+        <li>
+          <div class="level-head"><strong>Level 3 · Accounts and taxes</strong> <span class="tag">Members</span></div>
+          <div class="fine">How a 401(k) and an employer match work, IRAs, Roth vs. traditional, and what fees do over time.</div>
+        </li>
+        <li>
+          <div class="level-head"><strong>Level 4 · Markets and your behavior</strong> <span class="tag">Members</span></div>
+          <div class="fine">Diversification, why markets crash, and the crash simulator: live through 2000-02, 2008-09, 2020 and 2022 with a hypothetical index portfolio, using public historical index data. No real money and no picks.</div>
+        </li>
+        <li>
+          <div class="level-head"><strong>Level 5 · Advanced topics, with their risks</strong> <span class="tag">Members</span></div>
+          <div class="fine">How options, leverage and crypto work, and why they can lose money fast. Explained, never offered as strategies.</div>
+        </li>
+      </ol>
+      <p class="fine">Levels 3 to 5 are being written now, so their titles and lessons may change.</p>
+    </section>
+
+    <section class="card" aria-labelledby="promiseTitle">
+      <h2 id="promiseTitle">Our promise: paid by you, not by banks</h2>
+      <p>Member fees are our only income. That's the reason there's a price, and here's what it means in practice:</p>
+      <ul>
+        <li>No ads, and no affiliate links.</li>
+        <li>No referral fees from banks, brokers, lenders, card companies or crypto platforms.</li>
+        <li>We never tell you what to buy, sell or hold. No stock, fund or crypto picks.</li>
+        <li>We don't sell your data.</li>
+        <li>Every statistic has a source and a date, and risk sits next to every return.</li>
+      </ul>
+      <p class="fine">The full list is on <a href="rules.html">Our rules</a>.</p>
+    </section>
+
+    <section class="card" aria-labelledby="aiTitle">
+      <h2 id="aiTitle">How our videos are made</h2>
+      <p>Our video lessons are <strong>made with AI</strong>: narrated motion graphics with real charts. Some use an AI voice and some are captions only. There are no fake human presenters.</p>
+      <ul>
+        <li>AI drafts each script from the lesson plan.</li>
+        <li>Facts come only from official sources, with their dates.</li>
+        <li>An automatic check flags hype, predictions and advice-style language.</li>
+        <li>A person reviews and approves every video before members see it.</li>
+      </ul>
+      <p>Every video is labeled <strong>"Made with AI, reviewed by a person."</strong> The review checks accuracy, sources and tone. It isn't personal advice. If you spot a mistake, email <a href="mailto:hello@example.com">hello@example.com</a> and we'll fix it and say so.</p>
+    </section>
+
+    <section class="card faq" aria-labelledby="faqTitle">
+      <h2 id="faqTitle">Questions</h2>
+      <details>
+        <summary>Can I cancel anytime?</summary>
+        <p>Yes. Once membership opens, you'll be able to cancel from your account whenever you like. You keep access until the end of the month or year you've already paid for, and you won't be charged again. <span class="draft">DRAFT</span></p>
+      </details>
+      <details>
+        <summary>What's your refund policy?</summary>
+        <p>If membership isn't for you, email <a href="mailto:hello@example.com">hello@example.com</a> within 14 days of your first payment, or of a yearly renewal, and we'll refund that payment in full. Unused gift codes can be refunded within 30 days of purchase. <span class="draft">DRAFT for attorney review</span></p>
+      </details>
+      <details>
+        <summary>Is this financial advice?</summary>
+        <p>No. Patient Money is general education about how money and investing work. We don't know your situation, and we never tell anyone what to buy, sell or hold. The crash simulator replays history with a hypothetical portfolio. It isn't a prediction. For advice about your own situation, talk to a licensed professional.</p>
+      </details>
+      <details>
+        <summary>What happens to my data?</summary>
+        <p>In this version, your progress, check results and Money Map are stored in your browser, on your device. We don't receive them. Clearing your browser data erases them, and they don't sync between devices yet.</p>
+        <p>If you join the waitlist, we keep your email address to send you lessons and launch news. Every email has an unsubscribe link. We don't sell your data or show ads. When payments open, a payment processor will handle your card details, and we won't see your full card number. A full privacy notice will be published before membership opens. <span class="draft">DRAFT for attorney review</span></p>
+      </details>
+      <details>
+        <summary>Who is it for?</summary>
+        <p>Adults 18 and over, especially people starting to earn. Gift recipients must be 18 or older too.</p>
+      </details>
+      <details>
+        <summary>When does membership open?</summary>
+        <p>We're building it now. Join the waitlist and we'll email you when it opens. Level 1 is free to try in the meantime.</p>
+      </details>
+    </section>
+
+    <section class="card" id="waitlist" aria-labelledby="waitlistTitle">
+      <h2 id="waitlistTitle">Join the waitlist</h2>
+      <p>We'll email you when membership opens, plus one short lesson a week. No stock tips, ever. Unsubscribe anytime.</p>
+      <form id="waitlistForm" class="signup" method="post" target="_blank">
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email" autocomplete="email" required>
+        <input type="hidden" name="source" value="pricing">
+        <button type="submit" class="primary">Join the waitlist</button>
+        <label class="check"><input type="checkbox" name="gift" value="yes" id="giftInterest"> I might give a membership as a gift</label>
+      </form>
+      <p class="fine hidden" id="waitlistMsg" role="status"></p>
+      <p class="fine">For adults 18 and over. Prefer to try first? <a href="app/index.html">Start Level 1 free</a>.</p>
+    </section>
+    </main>
+
+    <footer class="card fine disclaimer">
+      <p><strong>Education, not advice.</strong> Patient Money explains how money and investing work in general. It isn't investment, tax or legal advice, and it doesn't recommend any security, account or strategy for you.</p>
+      <p>Examples in our lessons are hypothetical illustrations, not predictions. Investing involves risk, including losing money you put in. Past performance doesn't guarantee future results.</p>
+      <p>Prices on this page are drafts. No payments are taken here. <a href="rules.html">Our rules</a> · <a href="learn/index.html">Learn</a> · <a href="mailto:hello@example.com">hello@example.com</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/config.js"></script>
+  <script>
+  // Waitlist form: same behavior as the calculator sign-up in assets/app.js. With no
+  // signupEndpoint in assets/config.js, it says sign-ups aren't connected and sends nothing.
+  (function () {
+    "use strict";
+    var cfg = window.SITE_CONFIG || {};
+    var form = document.getElementById("waitlistForm");
+    var msg = document.getElementById("waitlistMsg");
+    var gift = document.getElementById("giftInterest");
+
+    // "Tell me when gifts open" ticks the gift box on its way to the form.
+    var giftLinks = document.querySelectorAll("[data-gift]");
+    for (var i = 0; i < giftLinks.length; i++) {
+      giftLinks[i].addEventListener("click", function () { gift.checked = true; });
+    }
+
+    form.addEventListener("submit", function (e) {
+      msg.classList.remove("hidden");
+      if (!cfg.signupEndpoint) {
+        e.preventDefault();
+        msg.textContent = "Sign-ups aren't connected yet. Add your email provider's form URL in assets/config.js.";
+        return;
+      }
+      form.action = cfg.signupEndpoint;
+      msg.textContent = "Thanks! Check your inbox to confirm.";
+    });
+  })();
+  </script>
+</body>
+</html>
