@@ -19,17 +19,17 @@ At least 4 locations and 250 or more eligible hourly staff, 90 days. We start th
 ## How it works
 
 1. **Set up (week 0, about 2 hours of your time).** Pick the locations and fund the reward pool. Send a roster file: employee ID, hire date, location, and active or end date. No Social Security numbers, bank details or pay rates. We send a QR-code poster and a 60-second pre-shift huddle script.
-2. **Staff join and earn (days 1-90).** Joining is optional and takes a phone. Pilot default points, at 100 points = $1:
+2. **Staff join and earn (days 1-90).** Joining is optional and takes a phone. Pilot points, at 100 points = $1, front-loaded to the first 90 days:
 
    | What the employee does | Points |
    |---|---|
-   | Reaches 30 days on the job | 300 |
-   | Reaches 90 days | 300 |
-   | Reaches 180 days | 600 |
-   | Reaches one year | 1,000 |
-   | Finishes a two-minute lesson | 50 each, up to 10 |
-   | Finishes the "before you invest" checklist | 200, once |
-   | Sets up direct deposit to a savings account | 300, once |
+   | Reaches 30 days on the job | 3,000 ($30) |
+   | Reaches 90 days | 4,000 ($40) |
+   | Reaches 180 days | 3,000 ($30) |
+   | Reaches one year | 3,000 ($30) |
+   | Finishes a two-minute lesson | 100 ($1) each, up to 10 |
+   | Finishes the "before you invest" checklist | 500 ($5), once |
+   | Sets up direct deposit to a savings account | 500 ($5), once |
 
    Points are **never** given for trading, number of trades or account balances.
 3. **Pay out and review (monthly, then day 90).** Members redeem 500 points or more as a payroll bonus (you pay it in your next payroll run, from a file we send) or a gift card. At day 90 we walk you through the retention report.
