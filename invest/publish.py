@@ -73,8 +73,24 @@ def published_slugs() -> list[str]:
 
 
 # ---- Site -----------------------------------------------------------------------------------------
+# The learning app's pages, listed in the sitemap. lesson.html is left out: it's one page that shows
+# a lesson by its #slug, and search engines ignore the part after the #.
+APP_PAGES = ("app/", "app/money-map.html", "app/crash-sim.html", "app/account.html")
+
+
+def build_app_data() -> str:
+    """Copy data/curriculum.json to site/app/data/ so the app (which can only read files under site/) can load it."""
+    text = (config.DATA_DIR / "curriculum.json").read_text()
+    json.loads(text)  # refuse to publish a broken file
+    out = config.SITE_DIR / "app" / "data" / "curriculum.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(text)
+    return str(out)
+
+
 def build_site() -> None:
-    """Regenerate site/data/facts.json (verified facts only), the lessons index and sitemap.xml."""
+    """Regenerate site/data/facts.json (verified facts only), the app's curriculum copy, the lessons index and sitemap.xml."""
+    build_app_data()
     out = config.SITE_DIR / "data"
     out.mkdir(parents=True, exist_ok=True)
     public = [{k: f.get(k) for k in PUBLIC_FACT_FIELDS} for f in verified_facts().values()]
@@ -95,8 +111,7 @@ def build_site() -> None:
     (config.SITE_DIR / "learn" / "index.html").write_text(
         _page("Learn to Invest: Plain-English Lessons", "Short, honest lessons on investing basics for your 20s.", body, nav="learn"))
 
-    urls = [f"{config.SITE_URL}/", f"{config.SITE_URL}/rules.html", f"{config.SITE_URL}/employers.html",
-            f"{config.SITE_URL}/learn/"] + [
+    urls = [f"{config.SITE_URL}/{p}" for p in ("", "rules.html", "pricing.html", *APP_PAGES, "learn/")] + [
         f"{config.SITE_URL}/learn/{s}.html" for s in sorted(published)]
     (config.SITE_DIR / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -151,7 +166,7 @@ def _page(title: str, description: str, body: str, nav: str = "") -> str:
 <link rel="stylesheet" href="../assets/style.css"></head>
 <body><div class="wrap lesson">
 <header class="top"><a class="brand" href="../">{escape(config.BRAND)}</a>
-<nav><a href="../learn/"{current if nav == "learn" else ""}>Learn</a><a href="../rules.html">Our rules</a><a href="../employers.html">For employers</a></nav></header>
+<nav><a href="../app/index.html">Learning path</a><a href="../learn/"{current if nav == "learn" else ""}>Learn</a><a href="../rules.html">Our rules</a></nav></header>
 {body}
 <footer class="card fine disclaimer"><p><strong>Education, not advice.</strong> This is general information about how investing works,
 not investment, tax or legal advice, and not a recommendation to buy or sell anything. Examples are hypothetical.

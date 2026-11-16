@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Account | Patient Money</title>
+  <meta name="description" content="Demo membership and progress settings for the Patient Money learning app prototype. Everything stays on this device.">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div class="wrap app">
+    <header class="top">
+      <a class="brand" href="index.html">Patient Money</a>
+      <nav aria-label="App"><a href="index.html">Path</a><a href="money-map.html">Money Map</a><a href="crash-sim.html">Crash simulator</a><a href="account.html" aria-current="page">Account</a></nav>
+    </header>
+
+    <main id="main">
+      <h1>Your account</h1>
+      <p class="lede">This is a prototype. There's no sign-in: your progress and Money Map live in this browser on this device.</p>
+      <p class="notice hidden" id="storageNote" role="status"></p>
+
+      <section class="card" aria-labelledby="memberTitle">
+        <h2 id="memberTitle">Membership</h2>
+        <p id="memberStatus" role="status"></p>
+        <div id="memberOff">
+          <p>Level 1 is free. Membership unlocks Levels 2 to 5. <a href="../pricing.html">See membership</a></p>
+          <p class="notice"><strong>Demo only.</strong> The button below doesn't take a payment, doesn't ask for a card and doesn't send anything anywhere. It flips a switch on this device so you can try the members' levels.</p>
+          <button type="button" class="primary" id="demoCheckout">Demo checkout (no payment)</button>
+        </div>
+        <div id="memberOn" class="hidden">
+          <p>Levels 2 to 5 are unlocked on this device. <a href="index.html">Go to your path</a></p>
+          <button type="button" class="ghost" id="endDemo">End the demo membership</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="progressTitle">
+        <h2 id="progressTitle">Your progress</h2>
+        <p id="progressSummary"></p>
+        <button type="button" class="small danger" id="resetBtn">Reset progress</button>
+        <div class="confirm hidden" id="resetConfirm">
+          <p>This clears your completed lessons, quiz scores and review dates on this device. Your Money Map and membership stay as they are.</p>
+          <button type="button" class="small danger" id="resetYes">Yes, reset my progress</button>
+          <button type="button" class="small" id="resetNo">Cancel</button>
+        </div>
+        <p class="fine" id="resetMsg" role="status"></p>
+      </section>
+
+      <section class="card" aria-labelledby="privacyTitle">
+        <h2 id="privacyTitle">Your data</h2>
+        <p>Everything the app knows about you is stored in this browser under one entry: lessons you've completed, your quiz scores, review dates, your Money Map and the demo membership switch. It isn't sent to Patient Money or anyone else. Clearing your browser's data for this site deletes it. The Money Map has its own clear button.</p>
+      </section>
+    </main>
+
+    <footer class="card fine disclaimer">
+      <p><strong>Education, not advice.</strong> Patient Money explains how money and investing work in general. It isn't investment, tax or legal advice. Investing involves risk, including losing money you put in.</p>
+      <p><a href="../index.html">Calculator</a> · <a href="../rules.html">Our rules</a></p>
+    </footer>
+  </div>
+  <script src="assets/learn.js"></script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/account.js"></script>
+</body>
+</html>

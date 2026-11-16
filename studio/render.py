@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from . import charts, config
 from .captions import Cue, chunks, to_vtt, validate_vtt, wrap as cap_wrap
@@ -270,9 +270,7 @@ def _path_motif(level_no: int | None, L: Layout) -> Image.Image | None:
         pts = [(r + 10 * u + i * 62 * u, r + 14 * u + (4 - i) * 46 * u) for i in range(5)]
     w = int(max(p[0] for p in pts) + r + 14 * u)
     h = int(max(p[1] for p in pts) + r + 14 * u)
-    im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    from PIL import ImageDraw
-    big = im.resize((w * 3, h * 3))
+    big = Image.new("RGBA", (w * 3, h * 3), (0, 0, 0, 0))
     d = ImageDraw.Draw(big)
     for a, b in zip(pts, pts[1:]):
         d.line([(a[0] * 3, a[1] * 3), (b[0] * 3, b[1] * 3)], fill=THEME["axis"], width=int(4 * u * 3))
@@ -385,9 +383,8 @@ def build_quiz(sc, st, L: Layout) -> Built:
         asc_l = f_l.getmetrics()[0]
         letter.alpha_composite(lt, (int((letter.width - lt.width) / 2), int(letter.height / 2 - asc_l * 0.62)))
         card.alpha_composite(letter, (int(ch_h * 0.22), int((ch_h - letter.height) / 2)))
-        _, c_lines = fit(c, "md", f_c.size, box_w - ch_h * 1.2, 1, 0.7)
-        f_cc = font("md", f_c.size) if len(c_lines) == 1 else f_c
-        ct = text_sprite(c_lines[:1], fit(c, "md", f_c.size, box_w - ch_h * 1.2, 1, 0.7)[0], THEME["text"], lh=1.0)
+        f_cc, c_lines = fit(c, "md", f_c.size, box_w - ch_h * 1.2, 1, 0.7)
+        ct = text_sprite(c_lines[:1], f_cc, THEME["text"], lh=1.0)
         asc_c = f_cc.getmetrics()[0]
         card.alpha_composite(ct, (int(ch_h * 0.22 + letter.width + 18 * u), int(ch_h / 2 - asc_c * 0.6)))
         items.append(Item(card, L.mx, cy, max(0.6, s0 + 0.5 + i * 0.3)))

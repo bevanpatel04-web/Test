@@ -28,7 +28,7 @@
 
 ## The 3 numbers that matter most
 
-1. **Free-to-paid conversion (base 4%).** It sets how many free users we need and what we can afford to pay for them. Each free signup is worth about $2.44 of lifetime gross profit at 4% ($0.79 at 2%, $6.67 at 7%). A paid channel is healthy (LTV/CAC of 3) only if a free signup costs under **$0.81**. Today's creator and ad estimates are $4.80 to $6.67. Table 7a shows the trade-off.
+1. **Free-to-paid conversion (base 4%).** It sets how many free users we need and what we can afford to pay for them. Each free signup is worth about $2.44 of lifetime gross profit in the base case ($0.79 in the conservative case, $6.67 in the optimistic one). A paid channel is healthy (LTV/CAC of 3) only if a free signup costs under **$0.81**. Today's creator and ad estimates are $4.80 to $6.67. Table 7a shows the trade-off.
 2. **Retention: monthly churn and the annual renewal (base 15% and 30%).** Together they set LTV. A monthly member pays for about 6.7 months; an annual member for about 1.7 years. The curriculum is finite: 45 lessons is about 135 minutes of video, so a motivated member can finish Levels 2-5 in a few weeks. The Money Map, spaced review and the crash simulator have to give people a reason to stay after they finish. This is why the annual plan matters: annual members are worth almost twice as much ($80 vs $42).
 3. **Organic free signups per month (base 300 in month 1, growing 10% a month to 8,000).** This is the least certain input and it drives the timeline. $10K MRR needs about 3,500 free signups a month to hold, and $100K needs about 35,000. If short-video reach stalls at 4,000 a month, $10K MRR slips from month 35 to month 50 (table 7c).
 

@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "note": "Empty on purpose. Real index history goes here only after its licensing is checked. Each series needs id, label, index_name, monthly points [{date: YYYY-MM, level}], source_name, source_url (https), retrieved (YYYY-MM-DD), license and verified: true. The crash simulator ignores anything incomplete. Format: validHistory() in app/assets/learn.js.",
+  "series": []
+}

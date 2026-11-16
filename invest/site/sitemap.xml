@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://example.com/</loc></url>
   <url><loc>https://example.com/rules.html</loc></url>
-  <url><loc>https://example.com/employers.html</loc></url>
+  <url><loc>https://example.com/pricing.html</loc></url>
+  <url><loc>https://example.com/app/</loc></url>
+  <url><loc>https://example.com/app/money-map.html</loc></url>
+  <url><loc>https://example.com/app/crash-sim.html</loc></url>
+  <url><loc>https://example.com/app/account.html</loc></url>
   <url><loc>https://example.com/learn/</loc></url>
 </urlset>

@@ -1,0 +1,2732 @@
+{
+  "version": 1,
+  "updated": "2026-11-15",
+  "levels": [
+    {
+      "id": "L1",
+      "number": 1,
+      "title": "Money foundations",
+      "summary": "Where your money goes, why a cash cushion comes first, and how debt and credit work. Free for everyone.",
+      "free": true,
+      "modules": [
+        {
+          "id": "L1-M1",
+          "title": "Where your money goes",
+          "summary": "What comes in, what goes out, and a plan you can keep.",
+          "lessons": [
+            {
+              "slug": "what-a-budget-is-for",
+              "title": "What a budget is actually for",
+              "minutes": 3,
+              "objectives": [
+                "Explain a budget as a plan for your money, not a punishment",
+                "List the three buckets most budgets use"
+              ],
+              "key_points": [
+                "A budget is a plan you make before the month starts",
+                "Most budgets split money into needs, wants and future you",
+                "A plan you can keep beats a perfect plan you quit"
+              ],
+              "prerequisites": [],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Write down your monthly take-home pay and your three biggest costs."
+              },
+              "quiz": [
+                {
+                  "q": "What is a budget mainly for?",
+                  "choices": [
+                    "Tracking every coffee",
+                    "Planning where your money goes before you spend it",
+                    "Getting a credit card"
+                  ],
+                  "answer": 1,
+                  "why": "A budget is a plan made ahead of time."
+                },
+                {
+                  "q": "Which bucket is ‘future you’?",
+                  "choices": [
+                    "Rent",
+                    "Savings and paying down debt",
+                    "Streaming services"
+                  ],
+                  "answer": 1,
+                  "why": "Future you covers saving and paying down debt."
+                },
+                {
+                  "q": "Which budget usually works best?",
+                  "choices": [
+                    "The strictest one",
+                    "One you can actually keep",
+                    "One copied from a friend"
+                  ],
+                  "answer": 1,
+                  "why": "Consistency matters more than perfection."
+                }
+              ]
+            },
+            {
+              "slug": "reading-your-paycheck",
+              "title": "Reading your paycheck: gross pay, take-home pay and deductions",
+              "minutes": 4,
+              "objectives": [
+                "Tell the difference between gross pay and take-home pay",
+                "Name the common deductions on a pay stub"
+              ],
+              "key_points": [
+                "Gross pay is what you earn; take-home pay is what lands in your account",
+                "Income tax, Social Security and Medicare are taken out before you see the money",
+                "Benefits like health insurance and retirement savings can come out too"
+              ],
+              "prerequisites": [
+                "what-a-budget-is-for"
+              ],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Find your last pay stub and enter your gross pay, take-home pay and three biggest deductions."
+              },
+              "quiz": [
+                {
+                  "q": "What is take-home pay?",
+                  "choices": [
+                    "Your pay before any deductions",
+                    "What's left after taxes and other deductions",
+                    "Your yearly salary divided by 12"
+                  ],
+                  "answer": 1,
+                  "why": "Take-home (net) pay is what actually reaches your account."
+                },
+                {
+                  "q": "Which of these usually comes out of a paycheck before you get it?",
+                  "choices": [
+                    "Federal income tax withholding",
+                    "Your rent",
+                    "Your phone bill"
+                  ],
+                  "answer": 0,
+                  "why": "Employers withhold income tax, Social Security and Medicare from each paycheck."
+                },
+                {
+                  "q": "Why plan with take-home pay instead of gross pay?",
+                  "choices": [
+                    "Gross pay is always smaller",
+                    "Lenders require it",
+                    "It's the money you can actually spend or save"
+                  ],
+                  "answer": 2,
+                  "why": "You can only budget money that actually reaches you."
+                }
+              ]
+            },
+            {
+              "slug": "tracking-your-spending",
+              "title": "Tracking a month of spending, without the guilt",
+              "minutes": 3,
+              "objectives": [
+                "Explain why tracking comes before cutting",
+                "Sort spending into fixed costs and flexible costs"
+              ],
+              "key_points": [
+                "Track one normal month before you change anything",
+                "Fixed costs stay the same; flexible costs are where change is easiest",
+                "Small repeat costs, like subscriptions, add up over a year"
+              ],
+              "prerequisites": [
+                "what-a-budget-is-for",
+                "reading-your-paycheck"
+              ],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Go through last month's bank and card statements and total your fixed and flexible costs."
+              },
+              "quiz": [
+                {
+                  "q": "What's the point of tracking a month of spending?",
+                  "choices": [
+                    "To feel bad about past choices",
+                    "To cancel everything you enjoy",
+                    "To see where money actually goes before you plan"
+                  ],
+                  "answer": 2,
+                  "why": "Real numbers make a better plan than guesses."
+                },
+                {
+                  "q": "Which is usually a flexible cost?",
+                  "choices": [
+                    "Rent",
+                    "Eating out",
+                    "A car loan payment"
+                  ],
+                  "answer": 1,
+                  "why": "Flexible costs change month to month, so they're the easiest to adjust."
+                },
+                {
+                  "q": "A $15 monthly subscription costs about how much a year?",
+                  "choices": [
+                    "$15",
+                    "$100",
+                    "$180"
+                  ],
+                  "answer": 2,
+                  "why": "$15 a month times 12 months is $180."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L1-M2",
+          "title": "Your safety net",
+          "summary": "Why a cash cushion comes first, and where to keep it.",
+          "lessons": [
+            {
+              "slug": "why-a-cash-cushion-comes-first",
+              "title": "Why a cash cushion comes first",
+              "minutes": 3,
+              "objectives": [
+                "Explain what an emergency cushion is for",
+                "Explain why money you need soon shouldn't be in the stock market"
+              ],
+              "key_points": [
+                "A cushion covers surprises so they don't become debt",
+                "Money you may need soon has no time to recover from a drop",
+                "Start small: even one month of costs helps"
+              ],
+              "prerequisites": [
+                "what-a-budget-is-for",
+                "tracking-your-spending"
+              ],
+              "needs_facts": [
+                "emergency_400_cash"
+              ],
+              "risk_note": "Stock prices can drop at any time, which is why money needed soon is often kept in savings instead.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Add up one month of must-pay costs. That's your first cushion target."
+              },
+              "quiz": [
+                {
+                  "q": "What is an emergency cushion for?",
+                  "choices": [
+                    "Buying stocks on sale",
+                    "Covering surprise costs without borrowing",
+                    "Paying for vacations"
+                  ],
+                  "answer": 1,
+                  "why": "It keeps surprises from turning into debt."
+                },
+                {
+                  "q": "Why keep it out of the stock market?",
+                  "choices": [
+                    "Stocks can only be sold once a year",
+                    "You may need it right when prices are down",
+                    "Banks require it"
+                  ],
+                  "answer": 1,
+                  "why": "Short-term money has no time to recover from a drop."
+                },
+                {
+                  "q": "A good first target is…",
+                  "choices": [
+                    "One month of must-pay costs",
+                    "Ten years of salary",
+                    "Whatever a friend has saved"
+                  ],
+                  "answer": 0,
+                  "why": "Start with a goal you can reach."
+                }
+              ]
+            },
+            {
+              "slug": "where-to-keep-your-cushion",
+              "title": "Where to keep your cushion",
+              "minutes": 3,
+              "objectives": [
+                "Compare checking and savings accounts for a cash cushion",
+                "Explain what deposit insurance does"
+              ],
+              "key_points": [
+                "A separate savings account keeps the cushion easy to reach but less tempting to spend",
+                "Savings accounts pay interest, and rates differ a lot between banks",
+                "Government deposit insurance protects money at insured banks and credit unions, up to a limit"
+              ],
+              "prerequisites": [
+                "why-a-cash-cushion-comes-first"
+              ],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Note where your cushion lives now, its interest rate, and whether the bank or credit union is insured."
+              },
+              "quiz": [
+                {
+                  "q": "Why keep a cushion in a separate savings account?",
+                  "choices": [
+                    "It can't be withdrawn",
+                    "It pays exactly the same as checking",
+                    "It's easy to reach but less tempting to spend"
+                  ],
+                  "answer": 2,
+                  "why": "Separation makes the cushion harder to spend by accident."
+                },
+                {
+                  "q": "What does deposit insurance do?",
+                  "choices": [
+                    "Protects deposits at an insured bank or credit union, up to a limit, if it fails",
+                    "Pays you extra interest",
+                    "Covers money lost to impulse spending"
+                  ],
+                  "answer": 0,
+                  "why": "It protects your deposits if an insured institution fails, up to the legal limit."
+                },
+                {
+                  "q": "Interest rates on savings accounts…",
+                  "choices": [
+                    "Are set by law and identical everywhere",
+                    "Can differ a lot from bank to bank",
+                    "Only apply to balances over $10,000"
+                  ],
+                  "answer": 1,
+                  "why": "Rates vary, so it's worth comparing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L1-M3",
+          "title": "Debt and credit",
+          "summary": "How interest on debt works, ways to pay it down, and what a credit score measures.",
+          "lessons": [
+            {
+              "slug": "how-debt-interest-works",
+              "title": "How credit card interest really works",
+              "minutes": 4,
+              "objectives": [
+                "Explain what an APR is",
+                "Explain why paying only the minimum keeps debt around for years"
+              ],
+              "key_points": [
+                "APR is the yearly interest rate charged on a balance you carry",
+                "Paying only the minimum can keep a balance around for years",
+                "Paying the full statement balance by the due date usually avoids interest on purchases"
+              ],
+              "prerequisites": [
+                "tracking-your-spending"
+              ],
+              "needs_facts": [
+                "cc_apr_assessed"
+              ],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "List each debt with its balance, interest rate and minimum payment."
+              },
+              "quiz": [
+                {
+                  "q": "What is a card's APR?",
+                  "choices": [
+                    "The yearly interest rate on a balance you carry",
+                    "The fee for opening the card",
+                    "Your credit limit"
+                  ],
+                  "answer": 0,
+                  "why": "APR means annual percentage rate: the yearly cost of carrying a balance."
+                },
+                {
+                  "q": "If you carry a balance, what happens to the interest charged?",
+                  "choices": [
+                    "It disappears at the end of the year",
+                    "It's added to what you owe",
+                    "The bank pays it for you"
+                  ],
+                  "answer": 1,
+                  "why": "Interest is added to the balance, so unpaid interest can grow too."
+                },
+                {
+                  "q": "Paying only the minimum each month usually means…",
+                  "choices": [
+                    "The debt is gone within a month",
+                    "Your rate drops to zero",
+                    "The debt can last for years and cost more in interest"
+                  ],
+                  "answer": 2,
+                  "why": "Minimum payments mostly cover interest, so the balance shrinks slowly."
+                }
+              ]
+            },
+            {
+              "slug": "paying-down-debt",
+              "title": "Paying down debt: avalanche or snowball",
+              "minutes": 4,
+              "objectives": [
+                "Describe the avalanche and snowball approaches",
+                "Explain the trade-off between saving interest and staying motivated"
+              ],
+              "key_points": [
+                "Avalanche: pay extra on the highest-rate debt first, which usually saves the most interest",
+                "Snowball: pay extra on the smallest balance first, for quick wins",
+                "Either way, keep paying at least the minimum on every debt"
+              ],
+              "prerequisites": [
+                "how-debt-interest-works"
+              ],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Sort your debts by interest rate and by balance, and see which one each approach would tackle first."
+              },
+              "quiz": [
+                {
+                  "q": "The avalanche approach pays extra on…",
+                  "choices": [
+                    "The highest interest rate first",
+                    "The smallest balance first",
+                    "The newest debt first"
+                  ],
+                  "answer": 0,
+                  "why": "Avalanche targets the most expensive debt first."
+                },
+                {
+                  "q": "What's the main appeal of the snowball approach?",
+                  "choices": [
+                    "It always costs the least interest",
+                    "It lowers your interest rates",
+                    "Quick wins that help people stay motivated"
+                  ],
+                  "answer": 2,
+                  "why": "Clearing small balances fast can keep people going."
+                },
+                {
+                  "q": "While focusing on one debt, what happens with the others?",
+                  "choices": [
+                    "Skip their payments for now",
+                    "Keep paying at least the minimum on each",
+                    "Close the accounts right away"
+                  ],
+                  "answer": 1,
+                  "why": "Missing minimums brings fees and can hurt your credit."
+                }
+              ]
+            },
+            {
+              "slug": "credit-scores-explained",
+              "title": "What a credit score is, and what moves it",
+              "minutes": 4,
+              "objectives": [
+                "Explain what a credit score measures and why lenders use it",
+                "Name the habits that affect a score most"
+              ],
+              "key_points": [
+                "A credit score sums up how you've handled borrowing, based on your credit reports",
+                "Paying on time and keeping balances low compared with your limits matter most",
+                "Checking your own credit reports is free and doesn't lower your score"
+              ],
+              "prerequisites": [
+                "how-debt-interest-works"
+              ],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Note when you last checked your credit reports, and set a reminder to check them again."
+              },
+              "quiz": [
+                {
+                  "q": "A credit score is mainly based on…",
+                  "choices": [
+                    "Your income",
+                    "Your credit reports",
+                    "Your bank balance"
+                  ],
+                  "answer": 1,
+                  "why": "Scores are calculated from the borrowing history in your credit reports."
+                },
+                {
+                  "q": "Which habit tends to help a score most?",
+                  "choices": [
+                    "Paying every bill on time",
+                    "Opening many new cards at once",
+                    "Using all of your credit limit"
+                  ],
+                  "answer": 0,
+                  "why": "On-time payment history is one of the biggest parts of a score."
+                },
+                {
+                  "q": "Does checking your own credit report lower your score?",
+                  "choices": [
+                    "Yes, every time",
+                    "Yes, if you check more than once a year",
+                    "No, checking your own report doesn't affect it"
+                  ],
+                  "answer": 2,
+                  "why": "Checking your own report is a ‘soft’ check that doesn't change your score."
+                }
+              ]
+            },
+            {
+              "slug": "debt-or-invest-first",
+              "title": "Paying down a card or investing: comparing the math",
+              "minutes": 4,
+              "objectives": [
+                "Compare a debt's interest rate with uncertain investment growth",
+                "Explain why many people pay off high-interest debt before investing"
+              ],
+              "key_points": [
+                "Paying off a card saves its interest rate, with no market ups and downs",
+                "Investment growth isn't certain and can be negative in any year",
+                "Many people keep a small cushion, clear high-interest debt, then invest"
+              ],
+              "prerequisites": [
+                "why-a-cash-cushion-comes-first",
+                "paying-down-debt"
+              ],
+              "needs_facts": [
+                "cc_apr_assessed"
+              ],
+              "risk_note": "Investments can fall in value, including the money you put in. This is general education, not advice for your situation.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Next to each debt in your Money Map, write its interest rate, and circle any in double digits."
+              },
+              "quiz": [
+                {
+                  "q": "Paying off a card with a high interest rate is a bit like…",
+                  "choices": [
+                    "Losing money",
+                    "Taking on more risk",
+                    "Earning that rate, without market swings"
+                  ],
+                  "answer": 2,
+                  "why": "Every dollar paid off stops that interest from being charged."
+                },
+                {
+                  "q": "Why is investment growth hard to compare with a debt's rate?",
+                  "choices": [
+                    "It's fixed in advance, like a loan rate",
+                    "It's never certain and can be negative",
+                    "It's never taxed"
+                  ],
+                  "answer": 1,
+                  "why": "A debt's rate is known; investment results aren't."
+                },
+                {
+                  "q": "What order do many people follow?",
+                  "choices": [
+                    "A small cushion, then high-interest debt, then investing",
+                    "Invest first, then deal with debt",
+                    "Skip the cushion and invest everything"
+                  ],
+                  "answer": 0,
+                  "why": "A cushion prevents new debt, and clearing costly debt comes next for many people."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "number": 2,
+      "title": "Your first investments",
+      "summary": "What investing is, how growth and risk go together, and what you pay along the way.",
+      "free": false,
+      "modules": [
+        {
+          "id": "L2-M1",
+          "title": "How growth and risk work",
+          "summary": "Owning vs. lending, why time matters, and why prices swing.",
+          "lessons": [
+            {
+              "slug": "what-investing-is",
+              "title": "What investing is: owning and lending",
+              "minutes": 3,
+              "objectives": [
+                "Explain the difference between owning (stocks) and lending (bonds)",
+                "Explain why investing is for money you won't need for years"
+              ],
+              "key_points": [
+                "A stock is a small piece of ownership in a company",
+                "A bond is a loan to a company or government that pays interest",
+                "Investing is for money you can leave alone for years, because prices can drop"
+              ],
+              "prerequisites": [
+                "debt-or-invest-first"
+              ],
+              "needs_facts": [],
+              "risk_note": "Stocks and bonds can both lose value, including the money you put in.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Mark which of your goals are more than five years away."
+              },
+              "quiz": [
+                {
+                  "q": "Buying a share of stock means…",
+                  "choices": [
+                    "Lending money to a company",
+                    "Owning a small piece of a company",
+                    "Opening a savings account"
+                  ],
+                  "answer": 1,
+                  "why": "A share is a slice of ownership."
+                },
+                {
+                  "q": "Buying a bond means…",
+                  "choices": [
+                    "Owning part of a company",
+                    "Buying a building",
+                    "Lending money that's paid back with interest, if the borrower can pay"
+                  ],
+                  "answer": 2,
+                  "why": "A bond is a loan, and the borrower might not be able to pay."
+                },
+                {
+                  "q": "Why is investing usually for money you won't need soon?",
+                  "choices": [
+                    "Prices can drop, and money needed soon might have to be sold low",
+                    "Investment accounts are locked for 30 years",
+                    "Banks don't allow early sales"
+                  ],
+                  "answer": 0,
+                  "why": "Time gives more room to wait out a drop."
+                }
+              ]
+            },
+            {
+              "slug": "compound-growth-explained",
+              "title": "Compound growth, explained with $100 a month",
+              "minutes": 4,
+              "objectives": [
+                "Explain compound growth in plain words",
+                "Explain why starting earlier matters"
+              ],
+              "key_points": [
+                "Growth can earn growth of its own over time",
+                "Starting earlier gives money more years to grow",
+                "Growth is never promised: investments can lose value"
+              ],
+              "prerequisites": [
+                "why-a-cash-cushion-comes-first",
+                "what-investing-is"
+              ],
+              "needs_facts": [],
+              "risk_note": "Examples are hypothetical. Investments can fall in value, including the money you put in.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Compare starting at your age with starting 5 years later."
+              },
+              "quiz": [
+                {
+                  "q": "Compound growth means…",
+                  "choices": [
+                    "Your gains can earn gains of their own",
+                    "Prices rise every single year",
+                    "Your bank pays a fixed bonus"
+                  ],
+                  "answer": 0,
+                  "why": "Growth builds on earlier growth."
+                },
+                {
+                  "q": "Why does starting earlier matter?",
+                  "choices": [
+                    "Early money gets more years to grow",
+                    "Fees disappear",
+                    "Taxes are lower for young people"
+                  ],
+                  "answer": 0,
+                  "why": "Time is the input you control most."
+                },
+                {
+                  "q": "Which is true about investment growth?",
+                  "choices": [
+                    "It's certain after 10 years",
+                    "Investments can fall in value",
+                    "It only happens in savings accounts"
+                  ],
+                  "answer": 1,
+                  "why": "Every investment carries risk."
+                }
+              ]
+            },
+            {
+              "slug": "what-risk-means",
+              "title": "What “risk” actually means when you invest",
+              "minutes": 4,
+              "objectives": [
+                "Explain volatility as how much prices swing",
+                "Explain the link between risk and potential return",
+                "Explain how time horizon changes how much a drop matters"
+              ],
+              "key_points": [
+                "Risk means prices can swing, and you can lose money, including what you put in",
+                "Investments with higher potential returns usually come with bigger swings",
+                "Money needed soon has less time to wait out a drop"
+              ],
+              "prerequisites": [
+                "compound-growth-explained"
+              ],
+              "needs_facts": [],
+              "risk_note": "Past swings don't tell you future ones. Any investment can lose value.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Turn on “Show a market drop” and compare a drop near the start with one near the end."
+              },
+              "quiz": [
+                {
+                  "q": "Volatility describes…",
+                  "choices": [
+                    "How much and how fast prices swing",
+                    "A fee your broker charges",
+                    "A type of savings account"
+                  ],
+                  "answer": 0,
+                  "why": "Volatility is the size and speed of price swings."
+                },
+                {
+                  "q": "Investments with higher potential returns usually…",
+                  "choices": [
+                    "Have smaller swings",
+                    "Come with bigger swings and more chance of loss",
+                    "Are certain after ten years"
+                  ],
+                  "answer": 1,
+                  "why": "Higher potential reward usually means more risk."
+                },
+                {
+                  "q": "Why does a drop matter more for money you need next year?",
+                  "choices": [
+                    "It doesn't matter at all",
+                    "Drops only happen to long-term money",
+                    "There's little time to wait out the drop"
+                  ],
+                  "answer": 2,
+                  "why": "Short-term money may have to be used while prices are down."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L2-M2",
+          "title": "Spreading risk",
+          "summary": "Why one company is risky, and how funds spread money across many.",
+          "lessons": [
+            {
+              "slug": "diversification",
+              "title": "Diversification: not keeping all your eggs in one basket",
+              "minutes": 3,
+              "objectives": [
+                "Explain diversification in plain words",
+                "Explain why one company's bad news hurts less when you own many"
+              ],
+              "key_points": [
+                "Diversification means spreading money across many investments",
+                "One company's bad news matters less when it's a small part of what you own",
+                "It lowers some risk, but a whole market can still fall together"
+              ],
+              "prerequisites": [
+                "what-risk-means"
+              ],
+              "needs_facts": [],
+              "risk_note": "Diversification can reduce risk but doesn't remove it. Diversified investments can still lose value.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Note anywhere your money is concentrated in one place, such as one company or one account."
+              },
+              "quiz": [
+                {
+                  "q": "Diversification means…",
+                  "choices": [
+                    "Spreading money across many investments",
+                    "Putting all your money in one great company",
+                    "Moving money every week"
+                  ],
+                  "answer": 0,
+                  "why": "It spreads risk across many holdings."
+                },
+                {
+                  "q": "Why does diversification help?",
+                  "choices": [
+                    "It makes losses impossible",
+                    "It removes all fees",
+                    "One company's trouble is a smaller part of the whole"
+                  ],
+                  "answer": 2,
+                  "why": "No single company can sink the whole portfolio."
+                },
+                {
+                  "q": "Can a diversified portfolio still lose value?",
+                  "choices": [
+                    "No, never",
+                    "Yes, a whole market can fall together",
+                    "Only if you check it daily"
+                  ],
+                  "answer": 1,
+                  "why": "Diversification doesn't protect against a market-wide drop."
+                }
+              ]
+            },
+            {
+              "slug": "what-a-fund-is",
+              "title": "What a fund is: mutual funds and ETFs",
+              "minutes": 4,
+              "objectives": [
+                "Explain how a fund pools money to buy many investments",
+                "Tell the difference between a mutual fund and an ETF"
+              ],
+              "key_points": [
+                "A fund pools money from many people to buy many investments at once",
+                "Mutual funds trade once a day at a set price; ETFs trade during the day like stocks",
+                "Every fund charges a yearly fee, shown as its expense ratio"
+              ],
+              "prerequisites": [
+                "diversification"
+              ],
+              "needs_facts": [],
+              "risk_note": "Funds can lose value. A fund's past results don't predict its future.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Next time you see a fund's name, look for its expense ratio and what it holds."
+              },
+              "quiz": [
+                {
+                  "q": "What does a fund do?",
+                  "choices": [
+                    "Lends you money",
+                    "Pools money to buy many investments",
+                    "Insures your deposits"
+                  ],
+                  "answer": 1,
+                  "why": "A fund combines many people's money into one basket of investments."
+                },
+                {
+                  "q": "One difference between ETFs and mutual funds is…",
+                  "choices": [
+                    "ETFs trade during the day; mutual funds trade once a day",
+                    "ETFs are insured by the government",
+                    "Mutual funds have no fees"
+                  ],
+                  "answer": 0,
+                  "why": "Mutual funds are priced once a day after markets close."
+                },
+                {
+                  "q": "A fund's expense ratio is…",
+                  "choices": [
+                    "Its return last year",
+                    "Its number of holdings",
+                    "Its yearly fee, as a share of the money invested"
+                  ],
+                  "answer": 2,
+                  "why": "The expense ratio is the yearly cost of owning the fund."
+                }
+              ]
+            },
+            {
+              "slug": "index-funds-vs-single-stocks",
+              "title": "Index funds vs. single stocks: what's the difference?",
+              "minutes": 4,
+              "objectives": [
+                "Explain what an index fund tracks",
+                "Compare the risk of one stock with the risk of a broad index fund"
+              ],
+              "key_points": [
+                "An index fund aims to match a market index instead of picking winners",
+                "A single stock depends on one company; a broad index fund spreads across many",
+                "Index funds still fall when the market falls"
+              ],
+              "prerequisites": [
+                "what-a-fund-is"
+              ],
+              "needs_facts": [],
+              "risk_note": "Index funds and single stocks can both lose value. This lesson compares how they work; it doesn't recommend either.",
+              "try_it": {
+                "tool": "crash-sim",
+                "prompt": "Run the 2020 crash with the hypothetical index portfolio and note its lowest point."
+              },
+              "quiz": [
+                {
+                  "q": "An index fund tries to…",
+                  "choices": [
+                    "Beat every other fund",
+                    "Find the next big winner",
+                    "Match a market index"
+                  ],
+                  "answer": 2,
+                  "why": "Index funds aim to track an index, not beat it."
+                },
+                {
+                  "q": "Which carries more single-company risk?",
+                  "choices": [
+                    "A broad index fund",
+                    "One company's stock",
+                    "Both carry the same"
+                  ],
+                  "answer": 1,
+                  "why": "One stock depends entirely on one company."
+                },
+                {
+                  "q": "When the overall market falls, a broad index fund…",
+                  "choices": [
+                    "Usually falls too",
+                    "Is unaffected",
+                    "Rises automatically"
+                  ],
+                  "answer": 0,
+                  "why": "A broad index fund holds the market, so it moves with it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L2-M3",
+          "title": "Costs and accounts",
+          "summary": "What investing costs, and the kinds of accounts that hold investments.",
+          "lessons": [
+            {
+              "slug": "fees-add-up",
+              "title": "How a 1% fee adds up over time",
+              "minutes": 4,
+              "objectives": [
+                "Name common investing fees",
+                "Explain why a small yearly fee matters over decades"
+              ],
+              "key_points": [
+                "Common fees include fund expense ratios, advisory fees and trading costs",
+                "A yearly fee is charged whether the investment gained or lost",
+                "Over decades, a small yearly fee can make a big difference, because money paid in fees can't grow"
+              ],
+              "prerequisites": [
+                "compound-growth-explained",
+                "what-a-fund-is"
+              ],
+              "needs_facts": [],
+              "risk_note": "The 1% fee is a hypothetical example. Growth isn't certain, and fees apply even when investments lose value.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Run your numbers, then lower the growth rate by 1 point to see roughly what a 1% yearly fee could cost."
+              },
+              "quiz": [
+                {
+                  "q": "When is a fund's yearly fee charged?",
+                  "choices": [
+                    "Only in years it gains",
+                    "Every year, in good years and bad",
+                    "Only when you sell"
+                  ],
+                  "answer": 1,
+                  "why": "Fees don't depend on results."
+                },
+                {
+                  "q": "Why can a 1% fee matter so much over 40 years?",
+                  "choices": [
+                    "It's charged only once",
+                    "It shrinks over time",
+                    "Money paid in fees can't keep growing for you"
+                  ],
+                  "answer": 2,
+                  "why": "Fees compound too: what you pay can't earn growth later."
+                },
+                {
+                  "q": "Two similar funds differ only in fees. Over 30 years, the lower-fee one…",
+                  "choices": [
+                    "Leaves more of any growth in your account",
+                    "Is certain to grow",
+                    "Always has more risk"
+                  ],
+                  "answer": 0,
+                  "why": "Lower costs leave more of whatever the fund earns."
+                }
+              ]
+            },
+            {
+              "slug": "account-types-overview",
+              "title": "Account types: where investments live",
+              "minutes": 4,
+              "objectives": [
+                "Name the main types of accounts that can hold investments",
+                "Explain what ‘tax-advantaged’ means"
+              ],
+              "key_points": [
+                "A regular brokerage account is flexible, but you may owe tax on gains and dividends",
+                "Retirement accounts like 401(k)s and IRAs give tax breaks but limit early withdrawals",
+                "The account is the container; the investments inside it are a separate choice"
+              ],
+              "prerequisites": [
+                "what-investing-is",
+                "fees-add-up"
+              ],
+              "needs_facts": [],
+              "risk_note": "Tax breaks don't protect against losses. Investments in any account can fall in value.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "List the accounts you already have, and note whether each is a bank, retirement or regular investing account."
+              },
+              "quiz": [
+                {
+                  "q": "What's the difference between an account and an investment?",
+                  "choices": [
+                    "They're the same thing",
+                    "Accounts can only hold cash",
+                    "The account holds investments; what's inside is a separate choice"
+                  ],
+                  "answer": 2,
+                  "why": "A retirement account can hold cash, funds or other investments."
+                },
+                {
+                  "q": "A main trade-off of retirement accounts is…",
+                  "choices": [
+                    "Tax breaks, in exchange for limits on early withdrawals",
+                    "No tax breaks at all",
+                    "They can only hold cash"
+                  ],
+                  "answer": 0,
+                  "why": "The tax breaks come with rules about when you can take money out."
+                },
+                {
+                  "q": "In a regular taxable brokerage account…",
+                  "choices": [
+                    "You never owe tax",
+                    "You may owe tax on gains and dividends",
+                    "Withdrawals are banned before age 60"
+                  ],
+                  "answer": 1,
+                  "why": "Taxable accounts are flexible, but gains and dividends can be taxed."
+                }
+              ]
+            },
+            {
+              "slug": "before-you-open-an-account",
+              "title": "Before you open an investing account: what to check",
+              "minutes": 3,
+              "objectives": [
+                "List the questions to ask before opening an account",
+                "Explain what SIPC protection does and doesn't cover",
+                "Explain how to check that a firm is registered"
+              ],
+              "key_points": [
+                "Check the costs: account fees, trading costs and the funds' expense ratios",
+                "SIPC protection can help if a brokerage firm fails, but not if investments lose value",
+                "You can look up a firm or broker for free on FINRA BrokerCheck"
+              ],
+              "prerequisites": [
+                "account-types-overview"
+              ],
+              "needs_facts": [],
+              "risk_note": "No account type or firm protects you from market losses. Investments can fall in value.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Write down three questions you'd ask any firm before opening an account."
+              },
+              "quiz": [
+                {
+                  "q": "What does SIPC protection cover?",
+                  "choices": [
+                    "Some losses if a brokerage firm fails and customer assets are missing",
+                    "Losses when your investments drop",
+                    "Any loss at all"
+                  ],
+                  "answer": 0,
+                  "why": "SIPC doesn't cover market losses."
+                },
+                {
+                  "q": "Where can you check whether a broker is registered?",
+                  "choices": [
+                    "A social media post",
+                    "FINRA BrokerCheck",
+                    "The firm's own ad"
+                  ],
+                  "answer": 1,
+                  "why": "BrokerCheck is a free public lookup run by FINRA."
+                },
+                {
+                  "q": "Which question is most useful before opening an account?",
+                  "choices": [
+                    "What does the firm's newest ad say?",
+                    "How many people follow it online?",
+                    "What will I pay in account, trading and fund costs?"
+                  ],
+                  "answer": 2,
+                  "why": "Costs come out of your money every year."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L3",
+      "number": 3,
+      "title": "Building a long-term plan",
+      "summary": "Workplace plans, IRAs and HSAs, choosing a mix, and putting good habits on autopilot.",
+      "free": false,
+      "modules": [
+        {
+          "id": "L3-M1",
+          "title": "Retirement and health accounts",
+          "summary": "How 401(k)s, employer matches, IRAs and HSAs work.",
+          "lessons": [
+            {
+              "slug": "how-a-401k-works",
+              "title": "How a 401(k) works",
+              "minutes": 4,
+              "objectives": [
+                "Explain how 401(k) contributions come out of your paycheck",
+                "Compare traditional (pre-tax) and Roth contributions",
+                "Explain the yearly contribution limit"
+              ],
+              "key_points": [
+                "You choose a share of each paycheck to go into the plan automatically",
+                "Traditional contributions lower your taxes now; Roth contributions can mean tax-free withdrawals later, if the rules are met",
+                "There's a yearly limit on how much you can put in, announced by the IRS"
+              ],
+              "prerequisites": [
+                "account-types-overview",
+                "reading-your-paycheck"
+              ],
+              "needs_facts": [
+                "limit_401k_2027"
+              ],
+              "risk_note": "Money in a 401(k) is invested and can lose value. Withdrawing early can mean taxes and penalties.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Enter the monthly amount you'd put in, and compare starting now with waiting 3 years."
+              },
+              "quiz": [
+                {
+                  "q": "How does money usually get into a 401(k)?",
+                  "choices": [
+                    "Automatically, from each paycheck",
+                    "Only by mailing a check",
+                    "Your bank moves it without asking"
+                  ],
+                  "answer": 0,
+                  "why": "Contributions are taken from your pay before it reaches you."
+                },
+                {
+                  "q": "Traditional vs. Roth 401(k): the main difference is…",
+                  "choices": [
+                    "Only one of them can lose value",
+                    "One has no limit",
+                    "When you pay income tax: now or later"
+                  ],
+                  "answer": 2,
+                  "why": "Traditional saves tax now; Roth can save tax later."
+                },
+                {
+                  "q": "Who announces the yearly 401(k) contribution limit?",
+                  "choices": [
+                    "Your employer, at any amount it likes",
+                    "The IRS",
+                    "Your bank"
+                  ],
+                  "answer": 1,
+                  "why": "The IRS publishes the limits, usually each fall for the next year."
+                }
+              ]
+            },
+            {
+              "slug": "how-a-401k-match-works",
+              "title": "What a 401(k) match is, and why people call it “free money”",
+              "minutes": 4,
+              "objectives": [
+                "Explain how an employer match works",
+                "Explain what vesting means"
+              ],
+              "key_points": [
+                "Some employers add money to your account when you contribute, up to a set amount",
+                "For example, a plan might add 50 cents per dollar you put in, up to 6% of your pay (hypothetical)",
+                "Vesting rules decide when the employer's money is fully yours"
+              ],
+              "prerequisites": [
+                "how-a-401k-works"
+              ],
+              "needs_facts": [],
+              "risk_note": "The match goes into an account that's invested and can fall in value. The formula here is a hypothetical example; your plan's documents have the real one.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Find your plan's match formula and vesting schedule in your benefits papers and add them to your Money Map."
+              },
+              "quiz": [
+                {
+                  "q": "Hypothetically, a plan adds 50 cents per dollar up to 6% of pay. You earn $40,000 and put in 6%. What's the match for the year?",
+                  "choices": [
+                    "$600",
+                    "$1,200",
+                    "$2,400"
+                  ],
+                  "answer": 1,
+                  "why": "6% of $40,000 is $2,400, and half of that is $1,200."
+                },
+                {
+                  "q": "What does vesting mean?",
+                  "choices": [
+                    "When the employer's contributions become fully yours",
+                    "When you can first log in",
+                    "The day your salary is paid"
+                  ],
+                  "answer": 0,
+                  "why": "Your own contributions are always yours; vesting applies to the employer's money."
+                },
+                {
+                  "q": "If you put in less than the amount the match is based on, what happens?",
+                  "choices": [
+                    "You get the full match anyway",
+                    "Your salary goes up",
+                    "You get less match money"
+                  ],
+                  "answer": 2,
+                  "why": "The match is tied to what you contribute."
+                }
+              ]
+            },
+            {
+              "slug": "iras-and-roth-iras",
+              "title": "IRAs and Roth IRAs: when you pay the tax",
+              "minutes": 4,
+              "objectives": [
+                "Explain what an IRA is",
+                "Compare traditional and Roth IRAs",
+                "Explain the yearly limit and the income rules for Roth IRAs"
+              ],
+              "key_points": [
+                "An IRA is a retirement account you open yourself, separate from work",
+                "Traditional: a possible tax break now. Roth: you pay tax now, and qualified withdrawals can be tax-free later",
+                "There's a yearly limit, and who can put money into a Roth IRA depends on income"
+              ],
+              "prerequisites": [
+                "how-a-401k-works"
+              ],
+              "needs_facts": [
+                "limit_ira_2027"
+              ],
+              "risk_note": "An IRA is a tax wrapper, not an investment: what's inside can lose value. Tax rules here are general; check IRS.gov or a tax professional for your situation.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Enter a monthly amount you could set aside for an IRA, and compare starting now with waiting 5 years."
+              },
+              "quiz": [
+                {
+                  "q": "Who opens an IRA?",
+                  "choices": [
+                    "Only your employer",
+                    "Only a bank, on your behalf",
+                    "You do, on your own"
+                  ],
+                  "answer": 2,
+                  "why": "IRA stands for individual retirement account."
+                },
+                {
+                  "q": "With a Roth IRA, you…",
+                  "choices": [
+                    "Never pay any tax on anything",
+                    "Pay tax now, and qualified withdrawals later can be tax-free",
+                    "Get a tax break now and pay tax later"
+                  ],
+                  "answer": 1,
+                  "why": "That's the Roth trade: tax now, not later."
+                },
+                {
+                  "q": "What can limit who can put money into a Roth IRA?",
+                  "choices": [
+                    "Income",
+                    "Credit score",
+                    "The size of your bank"
+                  ],
+                  "answer": 0,
+                  "why": "Roth IRAs have income limits set by the IRS."
+                }
+              ]
+            },
+            {
+              "slug": "hsa-basics",
+              "title": "HSA basics: a health account with tax breaks",
+              "minutes": 4,
+              "objectives": [
+                "Explain who can open an HSA",
+                "Explain the three tax breaks of an HSA"
+              ],
+              "key_points": [
+                "An HSA is for people covered by an eligible high-deductible health plan",
+                "Money can go in tax-free, grow tax-free, and come out tax-free for qualified medical costs",
+                "Unused money stays yours from year to year, and some people invest it"
+              ],
+              "prerequisites": [
+                "account-types-overview"
+              ],
+              "needs_facts": [],
+              "risk_note": "HSA money that's invested can lose value. Tax rules here are federal and general; some states treat HSAs differently, so check IRS.gov for your situation.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Check whether your health plan is HSA-eligible, and note what you spent on medical costs last year."
+              },
+              "quiz": [
+                {
+                  "q": "Who can contribute to an HSA?",
+                  "choices": [
+                    "Anyone with a bank account",
+                    "People covered by an eligible high-deductible health plan",
+                    "Only people over 65"
+                  ],
+                  "answer": 1,
+                  "why": "HSAs are tied to specific health plans."
+                },
+                {
+                  "q": "HSA withdrawals are tax-free when used for…",
+                  "choices": [
+                    "Vacations",
+                    "Anything at all",
+                    "Qualified medical costs"
+                  ],
+                  "answer": 2,
+                  "why": "Other uses can mean taxes and penalties."
+                },
+                {
+                  "q": "What happens to unused HSA money at the end of the year?",
+                  "choices": [
+                    "It stays yours",
+                    "It's lost",
+                    "It goes to your employer"
+                  ],
+                  "answer": 0,
+                  "why": "Unlike many flexible spending accounts, HSA money rolls over."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L3-M2",
+          "title": "Choosing and keeping a mix",
+          "summary": "Asset allocation, rebalancing and target-date funds, as ideas.",
+          "lessons": [
+            {
+              "slug": "asset-allocation",
+              "title": "Asset allocation: your mix of stocks, bonds and cash",
+              "minutes": 4,
+              "objectives": [
+                "Explain asset allocation",
+                "Explain how time horizon and comfort with swings shape a mix"
+              ],
+              "key_points": [
+                "Asset allocation is how money is split between stocks, bonds and cash",
+                "More stocks usually means bigger swings; more bonds and cash usually means smaller ones",
+                "When you'll need the money, and how you handle drops, both shape a mix"
+              ],
+              "prerequisites": [
+                "diversification",
+                "what-risk-means"
+              ],
+              "needs_facts": [],
+              "risk_note": "Every mix can lose value. Mixes in this lesson explain the idea; they aren't suggestions for you.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "For each goal in your Money Map, note when you'll need the money: under 3 years, 3 to 10 years, or more than 10."
+              },
+              "quiz": [
+                {
+                  "q": "Asset allocation means…",
+                  "choices": [
+                    "Picking one stock",
+                    "Moving money every day",
+                    "How your money is split between stocks, bonds and cash"
+                  ],
+                  "answer": 2,
+                  "why": "It's the overall mix, not any single pick."
+                },
+                {
+                  "q": "A mix with more stocks usually has…",
+                  "choices": [
+                    "Bigger swings",
+                    "Smaller swings",
+                    "No swings"
+                  ],
+                  "answer": 0,
+                  "why": "Stocks usually swing more than bonds and cash."
+                },
+                {
+                  "q": "Which matters when thinking about a mix?",
+                  "choices": [
+                    "What a friend owns",
+                    "When you'll need the money and how you handle drops",
+                    "Yesterday's headlines"
+                  ],
+                  "answer": 1,
+                  "why": "Time horizon and comfort with drops shape a mix."
+                }
+              ]
+            },
+            {
+              "slug": "rebalancing",
+              "title": "Rebalancing: why your mix drifts",
+              "minutes": 3,
+              "objectives": [
+                "Explain why a mix drifts over time",
+                "Describe two common ways people rebalance"
+              ],
+              "key_points": [
+                "When some investments grow faster than others, your mix drifts",
+                "Rebalancing means moving back toward the mix you chose",
+                "Some people rebalance on a schedule, others when the mix drifts past a set amount"
+              ],
+              "prerequisites": [
+                "asset-allocation"
+              ],
+              "needs_facts": [],
+              "risk_note": "Rebalancing doesn't prevent losses, and selling in a taxable account can create taxes.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Picture a mix that started half stocks and half bonds. After stocks jump, what would rebalancing do?"
+              },
+              "quiz": [
+                {
+                  "q": "Why does a mix drift?",
+                  "choices": [
+                    "Different investments grow at different speeds",
+                    "Banks change it",
+                    "It never drifts"
+                  ],
+                  "answer": 0,
+                  "why": "Uneven growth changes the proportions."
+                },
+                {
+                  "q": "After stocks rose a lot, rebalancing would usually mean…",
+                  "choices": [
+                    "Buying even more stocks",
+                    "Selling some stocks and adding to bonds or cash",
+                    "Never changing anything"
+                  ],
+                  "answer": 1,
+                  "why": "It moves the mix back to where it started."
+                },
+                {
+                  "q": "Which is a common way to rebalance?",
+                  "choices": [
+                    "Every time the news changes",
+                    "Only when a friend does",
+                    "On a set schedule, like once a year"
+                  ],
+                  "answer": 2,
+                  "why": "A schedule or a drift limit keeps it rule-based."
+                }
+              ]
+            },
+            {
+              "slug": "target-date-funds",
+              "title": "Target-date funds, as a concept",
+              "minutes": 3,
+              "objectives": [
+                "Explain how a target-date fund changes its mix over time",
+                "Explain why two funds with the same date can differ"
+              ],
+              "key_points": [
+                "A target-date fund holds a mix that gets more cautious as its target year nears",
+                "Funds with the same target year can hold different mixes and charge different fees",
+                "The target date isn't a promise: the fund can lose value, even near or after that year"
+              ],
+              "prerequisites": [
+                "rebalancing"
+              ],
+              "needs_facts": [],
+              "risk_note": "Target-date funds can lose value at any time, including near the target date. This explains the idea; it isn't a recommendation.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "If your workplace plan offers target-date funds, look up how the mix changes over time (often called the glide path)."
+              },
+              "quiz": [
+                {
+                  "q": "A target-date fund's mix usually…",
+                  "choices": [
+                    "Gets more cautious as the target year nears",
+                    "Stays the same forever",
+                    "Gets riskier every year"
+                  ],
+                  "answer": 0,
+                  "why": "The shift over time is called the glide path."
+                },
+                {
+                  "q": "Two funds with the same target year…",
+                  "choices": [
+                    "Are always identical",
+                    "Are certain to end at the same value",
+                    "Can hold different mixes and charge different fees"
+                  ],
+                  "answer": 2,
+                  "why": "Always compare the mix and the fees."
+                },
+                {
+                  "q": "What does the target date mean?",
+                  "choices": [
+                    "The fund is certain to reach a goal by then",
+                    "The year the fund's mix is designed around, often a retirement year",
+                    "The fund closes that year"
+                  ],
+                  "answer": 1,
+                  "why": "It's a planning date, not a promise."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L3-M3",
+          "title": "Putting it on autopilot",
+          "summary": "Automating good habits and pulling your plan onto one page.",
+          "lessons": [
+            {
+              "slug": "automating-your-money",
+              "title": "Automating your money: pay future you first",
+              "minutes": 3,
+              "objectives": [
+                "Explain why automatic transfers help people stick to a plan",
+                "Explain investing a set amount on a schedule"
+              ],
+              "key_points": [
+                "Automatic transfers on payday move money before you can spend it",
+                "Investing the same amount on a schedule is called dollar-cost averaging",
+                "Small automatic increases, like after a raise, add up over time"
+              ],
+              "prerequisites": [
+                "what-a-budget-is-for",
+                "how-a-401k-works"
+              ],
+              "needs_facts": [],
+              "risk_note": "Investing on a schedule doesn't prevent losses. Investments can fall in value, including money you put in.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Try raising your monthly amount by $25 and see how the hypothetical result changes."
+              },
+              "quiz": [
+                {
+                  "q": "Why do automatic transfers help?",
+                  "choices": [
+                    "They pay a higher rate",
+                    "Money moves before you can spend it",
+                    "They're required by law"
+                  ],
+                  "answer": 1,
+                  "why": "Automation takes willpower out of it."
+                },
+                {
+                  "q": "Dollar-cost averaging means…",
+                  "choices": [
+                    "Investing a set amount on a regular schedule",
+                    "Buying only when prices drop",
+                    "Investing only in U.S. dollars"
+                  ],
+                  "answer": 0,
+                  "why": "The same amount goes in at regular times, whatever prices do."
+                },
+                {
+                  "q": "Does investing on a schedule prevent losses?",
+                  "choices": [
+                    "Yes, always",
+                    "Yes, after five years",
+                    "No"
+                  ],
+                  "answer": 2,
+                  "why": "It can smooth the price you pay, but losses are still possible."
+                }
+              ]
+            },
+            {
+              "slug": "your-plan-on-one-page",
+              "title": "Your money plan on one page",
+              "minutes": 5,
+              "objectives": [
+                "Put the pieces of a money plan in an order that makes sense to you",
+                "Explain why a plan gets reviewed, not set once"
+              ],
+              "key_points": [
+                "Many plans follow a similar order: cushion, high-interest debt, any match, then other goals",
+                "Write down each goal, its timeline, and where its money lives",
+                "Check in once or twice a year, or when life changes"
+              ],
+              "prerequisites": [
+                "debt-or-invest-first",
+                "how-a-401k-match-works",
+                "automating-your-money"
+              ],
+              "needs_facts": [],
+              "risk_note": "This is a general framework, not advice for your situation. Investments can fall in value.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Fill in your one-page plan: goals, timelines, accounts and monthly amounts."
+              },
+              "quiz": [
+                {
+                  "q": "Why put a plan on one page?",
+                  "choices": [
+                    "To share it publicly",
+                    "Because banks require it",
+                    "To see goals, timelines and accounts together"
+                  ],
+                  "answer": 2,
+                  "why": "One view makes trade-offs easier to see."
+                },
+                {
+                  "q": "A common order many plans follow starts with…",
+                  "choices": [
+                    "Picking stocks",
+                    "A cash cushion and high-interest debt",
+                    "Buying a house"
+                  ],
+                  "answer": 1,
+                  "why": "Those steps protect the rest of the plan."
+                },
+                {
+                  "q": "When is it worth revisiting your plan?",
+                  "choices": [
+                    "Once or twice a year, or when life changes",
+                    "Never, once it's written",
+                    "Every hour"
+                  ],
+                  "answer": 0,
+                  "why": "Plans change as your life does."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L4",
+      "number": 4,
+      "title": "Advanced investor",
+      "summary": "Bonds, interest rates and inflation, how investments are taxed, and how markets and minds behave in a crash.",
+      "free": false,
+      "modules": [
+        {
+          "id": "L4-M1",
+          "title": "Bonds, rates and inflation",
+          "summary": "How bonds work, why interest rates move their prices, and what inflation does to money.",
+          "lessons": [
+            {
+              "slug": "how-bonds-work",
+              "title": "How bonds work: lending with an end date",
+              "minutes": 4,
+              "objectives": [
+                "Explain a bond's face value, interest payments and maturity",
+                "Explain credit risk: the chance a borrower can't pay"
+              ],
+              "key_points": [
+                "A bond is a loan: the issuer pays interest and plans to repay the face value at maturity",
+                "Government and company bonds differ in how likely the borrower is to pay",
+                "Higher interest usually comes with more risk that the borrower won't pay"
+              ],
+              "prerequisites": [
+                "what-investing-is",
+                "asset-allocation"
+              ],
+              "needs_facts": [],
+              "risk_note": "Bonds can lose value, and a borrower can fail to pay. Most bond funds have no maturity date, so their value keeps moving.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "Look at the mix in your Money Map and note which part, if any, is in bonds."
+              },
+              "quiz": [
+                {
+                  "q": "A bond's maturity is…",
+                  "choices": [
+                    "Its interest rate",
+                    "When the issuer plans to repay the face value",
+                    "The day you buy it"
+                  ],
+                  "answer": 1,
+                  "why": "Maturity is the bond's end date."
+                },
+                {
+                  "q": "Credit risk is the chance that…",
+                  "choices": [
+                    "Interest rates change",
+                    "You forget your password",
+                    "The borrower can't pay as promised"
+                  ],
+                  "answer": 2,
+                  "why": "Weaker borrowers carry more credit risk."
+                },
+                {
+                  "q": "Why might one bond pay more interest than another?",
+                  "choices": [
+                    "Its borrower is seen as riskier",
+                    "It's better in every way",
+                    "Its issuer is the government"
+                  ],
+                  "answer": 0,
+                  "why": "Investors want extra interest for extra risk."
+                }
+              ]
+            },
+            {
+              "slug": "bonds-and-interest-rates",
+              "title": "Why bond prices fall when interest rates rise",
+              "minutes": 4,
+              "objectives": [
+                "Explain the seesaw between interest rates and bond prices",
+                "Explain why longer-term bonds swing more"
+              ],
+              "key_points": [
+                "When rates rise, older bonds paying less become less valuable, so their prices fall",
+                "When rates fall, older bonds paying more become more valuable",
+                "Longer-term bonds usually swing more when rates change"
+              ],
+              "prerequisites": [
+                "how-bonds-work"
+              ],
+              "needs_facts": [],
+              "risk_note": "Bonds and bond funds can lose value, especially when interest rates rise quickly.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Picture a hypothetical old bond paying 2% when new ones pay 5%. Would a buyer pay full price for it?"
+              },
+              "quiz": [
+                {
+                  "q": "If interest rates rise, prices of existing bonds usually…",
+                  "choices": [
+                    "Rise",
+                    "Stay exactly the same",
+                    "Fall"
+                  ],
+                  "answer": 2,
+                  "why": "Rates and bond prices move like a seesaw."
+                },
+                {
+                  "q": "Why do older bonds lose value when rates rise?",
+                  "choices": [
+                    "New bonds pay more, so older ones paying less are less attractive",
+                    "Old bonds stop paying interest",
+                    "The government cancels them"
+                  ],
+                  "answer": 0,
+                  "why": "Buyers compare old bonds with new ones."
+                },
+                {
+                  "q": "Which usually swings more when rates change?",
+                  "choices": [
+                    "A 1-year bond",
+                    "A 20-year bond",
+                    "Cash in savings"
+                  ],
+                  "answer": 1,
+                  "why": "The longer the bond, the more a rate change matters."
+                }
+              ]
+            },
+            {
+              "slug": "inflation-explained",
+              "title": "Inflation: why a dollar buys less over time",
+              "minutes": 4,
+              "objectives": [
+                "Explain inflation and how it's measured",
+                "Explain the difference between nominal and real returns"
+              ],
+              "key_points": [
+                "Inflation is the general rise in prices, which makes each dollar buy less",
+                "In the U.S., the Bureau of Labor Statistics tracks it with the Consumer Price Index",
+                "A real return is growth after inflation, which is what changes what you can buy"
+              ],
+              "prerequisites": [
+                "compound-growth-explained",
+                "bonds-and-interest-rates"
+              ],
+              "needs_facts": [],
+              "risk_note": "Investments meant to outpace inflation can still lose value, and nobody knows inflation's future path.",
+              "try_it": {
+                "tool": "calculator",
+                "prompt": "Run your numbers, then lower the growth rate by 3 points as a rough, hypothetical stand-in for inflation."
+              },
+              "quiz": [
+                {
+                  "q": "Inflation means…",
+                  "choices": [
+                    "Prices in general are rising",
+                    "Your balance is growing",
+                    "Interest rates are zero"
+                  ],
+                  "answer": 0,
+                  "why": "Each dollar buys a little less."
+                },
+                {
+                  "q": "Hypothetically, an account grows 4% in a year while prices rise 3%. Real growth is about…",
+                  "choices": [
+                    "1%",
+                    "4%",
+                    "7%"
+                  ],
+                  "answer": 0,
+                  "why": "Real growth is roughly growth minus inflation: 4% minus 3%."
+                },
+                {
+                  "q": "Cash kept under a mattress during inflation…",
+                  "choices": [
+                    "Buys more over time",
+                    "Keeps the same buying power",
+                    "Buys less over time"
+                  ],
+                  "answer": 2,
+                  "why": "The amount stays the same while prices rise."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L4-M2",
+          "title": "Taxes and fund details",
+          "summary": "How investments are taxed, what total return means, and how to read a fund fact sheet.",
+          "lessons": [
+            {
+              "slug": "taxes-on-investments",
+              "title": "Taxes on investments: gains, dividends and time held",
+              "minutes": 5,
+              "objectives": [
+                "Explain when selling an investment can create tax",
+                "Compare short-term and long-term capital gains",
+                "Explain why account type changes the tax picture"
+              ],
+              "key_points": [
+                "In a regular taxable account, a gain is usually taxed when you sell",
+                "Long-term gains are often taxed at lower rates than short-term gains",
+                "Retirement accounts and HSAs follow their own tax rules"
+              ],
+              "prerequisites": [
+                "iras-and-roth-iras",
+                "hsa-basics"
+              ],
+              "needs_facts": [],
+              "risk_note": "Tax rules change and depend on your situation. This is general education; check IRS.gov or a tax professional. Investments can lose value.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "If you have a tax form from an investing account, find the lines for gains and dividends."
+              },
+              "quiz": [
+                {
+                  "q": "In a regular taxable account, a gain is usually taxed when…",
+                  "choices": [
+                    "You sell",
+                    "The price goes up",
+                    "You open the account"
+                  ],
+                  "answer": 0,
+                  "why": "A gain on paper usually isn't taxed until you sell."
+                },
+                {
+                  "q": "Long-term capital gains are often taxed…",
+                  "choices": [
+                    "At higher rates than short-term gains",
+                    "Never",
+                    "At lower rates than short-term gains"
+                  ],
+                  "answer": 2,
+                  "why": "How long you held something can change the rate."
+                },
+                {
+                  "q": "Dividends in a regular taxable account are usually…",
+                  "choices": [
+                    "Never taxed",
+                    "Taxed in the year you receive them",
+                    "Taxed only at retirement"
+                  ],
+                  "answer": 1,
+                  "why": "Dividends count as income in the year they're paid."
+                }
+              ]
+            },
+            {
+              "slug": "dividends-and-total-return",
+              "title": "Dividends and total return",
+              "minutes": 3,
+              "objectives": [
+                "Explain what a dividend is",
+                "Explain total return as price change plus income"
+              ],
+              "key_points": [
+                "A dividend is a cash payment some companies make to shareholders",
+                "When a dividend is paid, the share price usually drops by about that amount",
+                "Total return counts both price change and income, so it's the fairer way to compare"
+              ],
+              "prerequisites": [
+                "taxes-on-investments"
+              ],
+              "needs_facts": [],
+              "risk_note": "Dividends can be cut or stopped at any time, and share prices can fall. Past returns don't predict future ones.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Next time you see a fund's past results, check whether they show total return or price change only."
+              },
+              "quiz": [
+                {
+                  "q": "A dividend is…",
+                  "choices": [
+                    "A fee",
+                    "A cash payment some companies make to shareholders",
+                    "A type of loan"
+                  ],
+                  "answer": 1,
+                  "why": "Companies can choose to pay out part of their profits."
+                },
+                {
+                  "q": "When a company pays a dividend, its share price usually…",
+                  "choices": [
+                    "Drops by about that amount",
+                    "Rises by that amount",
+                    "Doesn't change"
+                  ],
+                  "answer": 0,
+                  "why": "Money paid out leaves the company, so the price adjusts."
+                },
+                {
+                  "q": "Total return includes…",
+                  "choices": [
+                    "Only price change",
+                    "Only dividends",
+                    "Price change plus dividends and interest"
+                  ],
+                  "answer": 2,
+                  "why": "It counts everything an investment produced."
+                }
+              ]
+            },
+            {
+              "slug": "reading-a-fund-fact-sheet",
+              "title": "Reading a fund fact sheet",
+              "minutes": 4,
+              "objectives": [
+                "Find a fund's fees, holdings and benchmark on a fact sheet",
+                "Explain why past performance doesn't predict future results"
+              ],
+              "key_points": [
+                "Look for the expense ratio, the top holdings and how many holdings there are",
+                "The benchmark is the index the fund is compared with",
+                "Past performance is shown, but it doesn't predict future results"
+              ],
+              "prerequisites": [
+                "fees-add-up",
+                "dividends-and-total-return"
+              ],
+              "needs_facts": [],
+              "risk_note": "A fact sheet describes a fund; it isn't a recommendation. Funds can lose value.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Find any fund fact sheet and locate five things: expense ratio, holdings, benchmark, turnover and total return."
+              },
+              "quiz": [
+                {
+                  "q": "Where would you look for what a fund costs each year?",
+                  "choices": [
+                    "The benchmark",
+                    "The fund's logo",
+                    "The expense ratio"
+                  ],
+                  "answer": 2,
+                  "why": "The expense ratio is the yearly cost."
+                },
+                {
+                  "q": "A fund's benchmark is…",
+                  "choices": [
+                    "Its yearly fee",
+                    "The index it's compared with",
+                    "Its manager's name"
+                  ],
+                  "answer": 1,
+                  "why": "The benchmark shows what the fund is measured against."
+                },
+                {
+                  "q": "What does strong past performance tell you about next year?",
+                  "choices": [
+                    "Nothing certain: past results don't predict future ones",
+                    "That it will repeat",
+                    "That losses are impossible"
+                  ],
+                  "answer": 0,
+                  "why": "Strong periods can be followed by weak ones."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L4-M3",
+          "title": "Markets and your mind",
+          "summary": "What past crashes looked like, why timing is hard, and the mind traps that cost people money.",
+          "lessons": [
+            {
+              "slug": "market-crashes-in-history",
+              "title": "Market crashes: 2000, 2008, 2020 and 2022",
+              "minutes": 5,
+              "objectives": [
+                "Describe four major U.S. market drops and what set them off",
+                "Explain why recovery times have varied so much"
+              ],
+              "key_points": [
+                "Big drops have happened many times, each with a different cause",
+                "Some recoveries took months; others took years",
+                "Nobody knows in advance when a drop will start or end"
+              ],
+              "prerequisites": [
+                "what-risk-means",
+                "inflation-explained"
+              ],
+              "needs_facts": [],
+              "risk_note": "Past crashes don't predict future ones. A future drop could be bigger or last longer than any of these.",
+              "try_it": {
+                "tool": "crash-sim",
+                "prompt": "Live through the 2008-09 crash with the hypothetical index portfolio, and note what holding and selling would have done."
+              },
+              "quiz": [
+                {
+                  "q": "What do the drops of 2000, 2008, 2020 and 2022 have in common?",
+                  "choices": [
+                    "They had the same cause",
+                    "Each was a big drop, with a different cause",
+                    "They all ended within a week"
+                  ],
+                  "answer": 1,
+                  "why": "Tech stocks, a financial crisis, a pandemic, then inflation and rising rates."
+                },
+                {
+                  "q": "How long did recoveries take?",
+                  "choices": [
+                    "Always a few days",
+                    "Exactly ten years each time",
+                    "It varied, from months to years"
+                  ],
+                  "answer": 2,
+                  "why": "Each recovery had its own pace."
+                },
+                {
+                  "q": "Which is true about the next crash?",
+                  "choices": [
+                    "Nobody knows when it will come or how deep it will be",
+                    "It's scheduled every ten years",
+                    "Experts can predict the exact date"
+                  ],
+                  "answer": 0,
+                  "why": "Drops don't follow a timetable."
+                }
+              ]
+            },
+            {
+              "slug": "why-timing-the-market-is-hard",
+              "title": "Why “waiting for the dip” is harder than it sounds",
+              "minutes": 4,
+              "objectives": [
+                "Explain why timing the market means being right twice",
+                "Explain why missing a few strong days can matter"
+              ],
+              "key_points": [
+                "Timing the market means being right twice: when to get out and when to get back in",
+                "Big up days and big down days often come close together, in the same rough stretch",
+                "A plan written in calm times can make drops easier to sit through"
+              ],
+              "prerequisites": [
+                "market-crashes-in-history"
+              ],
+              "needs_facts": [],
+              "risk_note": "Holding through a drop doesn't prevent losses, and selling can make sense for someone who needs the money. Investments can fall in value.",
+              "try_it": {
+                "tool": "crash-sim",
+                "prompt": "Run the 2020 crash twice, once holding and once selling at the low point, and compare the results."
+              },
+              "quiz": [
+                {
+                  "q": "Why is market timing hard?",
+                  "choices": [
+                    "It's illegal",
+                    "Prices never change",
+                    "You have to be right about when to get out and when to get back in"
+                  ],
+                  "answer": 2,
+                  "why": "Two correct calls in a row is a lot harder than one."
+                },
+                {
+                  "q": "What has often happened around the worst days in the market?",
+                  "choices": [
+                    "Some of the best days came close by",
+                    "Nothing for years",
+                    "Markets closed for good"
+                  ],
+                  "answer": 0,
+                  "why": "People who sold after a bad day sometimes missed the rebound days."
+                },
+                {
+                  "q": "What can make a drop easier to sit through?",
+                  "choices": [
+                    "Checking prices every hour",
+                    "A plan written ahead of time, in calm conditions",
+                    "Following the loudest voices online"
+                  ],
+                  "answer": 1,
+                  "why": "Decisions made in calm times tend to be clearer."
+                }
+              ]
+            },
+            {
+              "slug": "behavioral-biases",
+              "title": "Mind traps: the biases that cost people money",
+              "minutes": 4,
+              "objectives": [
+                "Name common biases, like loss aversion, herd behavior and recency bias",
+                "Explain one way to notice each of them in yourself"
+              ],
+              "key_points": [
+                "Losses feel worse than equal gains feel good, which can push people to sell in a panic",
+                "Following the crowd and fear of missing out can push people to buy after big run-ups",
+                "Recent events feel more likely to repeat than they really are"
+              ],
+              "prerequisites": [
+                "why-timing-the-market-is-hard"
+              ],
+              "needs_facts": [],
+              "risk_note": "Knowing about biases doesn't remove risk. Investments can fall in value.",
+              "try_it": {
+                "tool": "crash-sim",
+                "prompt": "Run a crash and write down, at the lowest point, what you felt like doing."
+              },
+              "quiz": [
+                {
+                  "q": "Loss aversion means…",
+                  "choices": [
+                    "Losses feel worse than equal gains feel good",
+                    "Preferring cash to stocks",
+                    "Avoiding all spending"
+                  ],
+                  "answer": 0,
+                  "why": "This feeling can push people to sell at the worst time."
+                },
+                {
+                  "q": "Buying something because everyone else is buying is called…",
+                  "choices": [
+                    "Rebalancing",
+                    "Herd behavior",
+                    "Diversification"
+                  ],
+                  "answer": 1,
+                  "why": "Crowds can push prices far in either direction."
+                },
+                {
+                  "q": "Recency bias makes people…",
+                  "choices": [
+                    "Ignore recent events",
+                    "Read every fact sheet",
+                    "Expect recent events to keep repeating"
+                  ],
+                  "answer": 2,
+                  "why": "The latest trend feels more permanent than it is."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L5",
+      "number": 5,
+      "title": "Expert topics explained",
+      "summary": "How leverage, options, crypto and real estate work and how they can hurt, plus retirement math, estate basics and spotting scams. Explained, never recommended.",
+      "free": false,
+      "modules": [
+        {
+          "id": "L5-M1",
+          "title": "High-risk products, explained",
+          "summary": "How leverage, options and crypto work, and why beginners get hurt.",
+          "lessons": [
+            {
+              "slug": "how-leverage-works",
+              "title": "Leverage: how borrowing magnifies gains and losses",
+              "minutes": 4,
+              "objectives": [
+                "Explain how borrowing to invest magnifies both gains and losses",
+                "Explain a margin call",
+                "Explain why leveraged funds can drift from what people expect"
+              ],
+              "key_points": [
+                "Leverage means investing with borrowed money, so gains and losses both get bigger",
+                "If a margin account falls too far, the firm can demand more cash or sell your holdings",
+                "Leveraged funds reset daily, so over longer periods results can differ a lot from what people expect"
+              ],
+              "prerequisites": [
+                "how-debt-interest-works",
+                "behavioral-biases"
+              ],
+              "needs_facts": [],
+              "risk_note": "Leverage can lose more than you put in. This lesson explains how it works; it isn't a strategy to use.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Work through a hypothetical: $1,000 of your own money plus $1,000 borrowed, and the investment falls by half. What's left of your money?"
+              },
+              "quiz": [
+                {
+                  "q": "Leverage makes…",
+                  "choices": [
+                    "Both gains and losses bigger",
+                    "Only gains bigger",
+                    "Losses smaller"
+                  ],
+                  "answer": 0,
+                  "why": "Borrowing magnifies results in both directions."
+                },
+                {
+                  "q": "Hypothetically, you invest $1,000 of your own plus $1,000 borrowed. The investment falls by half. After repaying the loan, how much of your own money is left?",
+                  "choices": [
+                    "$500",
+                    "$1,000",
+                    "$0"
+                  ],
+                  "answer": 2,
+                  "why": "$2,000 falls to $1,000, and all of it goes to repay the loan."
+                },
+                {
+                  "q": "A margin call is…",
+                  "choices": [
+                    "A phone call offering a bonus",
+                    "A demand for more cash, or a forced sale, when a margin account falls too far",
+                    "A free account upgrade"
+                  ],
+                  "answer": 1,
+                  "why": "The firm can sell your holdings without waiting for you."
+                }
+              ]
+            },
+            {
+              "slug": "how-options-work",
+              "title": "Options: how calls and puts work",
+              "minutes": 5,
+              "objectives": [
+                "Explain what call and put options are",
+                "Explain premium, strike price and expiration",
+                "Explain why an option can expire worthless"
+              ],
+              "key_points": [
+                "An option is a contract giving the right, not the duty, to buy (call) or sell (put) at a set price by a set date",
+                "The buyer pays a premium; if the option expires worthless, that premium is gone",
+                "Options lose value as time passes, even if the stock price doesn't move"
+              ],
+              "prerequisites": [
+                "how-leverage-works"
+              ],
+              "needs_facts": [],
+              "risk_note": "Options are complex and risky. Buyers can lose everything they paid, and some option sellers can lose far more. Explained here, never recommended.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Read a hypothetical: a call with a $50 strike price that cost $2. Above what price does the buyer come out ahead at expiration?"
+              },
+              "quiz": [
+                {
+                  "q": "A call option gives the buyer the right to…",
+                  "choices": [
+                    "Sell at a set price by a set date",
+                    "Buy at a set price by a set date",
+                    "Receive dividends"
+                  ],
+                  "answer": 1,
+                  "why": "A put is the right to sell."
+                },
+                {
+                  "q": "If an option expires worthless, the buyer…",
+                  "choices": [
+                    "Loses the premium paid",
+                    "Gets the premium back",
+                    "Receives a refund from the exchange"
+                  ],
+                  "answer": 0,
+                  "why": "The premium is the price of the contract, and it's gone."
+                },
+                {
+                  "q": "Hypothetically, a call has a $50 strike and cost $2. At expiration, the stock must be above what price for the buyer to come out ahead?",
+                  "choices": [
+                    "$48",
+                    "$50",
+                    "$52"
+                  ],
+                  "answer": 2,
+                  "why": "The buyer needs the strike plus the premium: $50 plus $2, ignoring fees."
+                }
+              ]
+            },
+            {
+              "slug": "how-options-hurt-beginners",
+              "title": "How options can hurt beginners",
+              "minutes": 4,
+              "objectives": [
+                "Explain how time decay and leverage work against option buyers",
+                "Explain why selling options can mean very large losses",
+                "Explain why brokers have to approve options trading"
+              ],
+              "key_points": [
+                "A small move in the stock can mean a big swing in an option's value",
+                "Time works against option buyers: value drains away as expiration nears",
+                "Some option-selling positions can lose far more than the money received"
+              ],
+              "prerequisites": [
+                "how-options-work"
+              ],
+              "needs_facts": [],
+              "risk_note": "Options can lose all their value quickly, and some positions can lose more than you put in. Brokers must give the official options risk disclosure before approving an account.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Read the opening pages of the official options disclosure, “Characteristics and Risks of Standardized Options,” and list two risks it names."
+              },
+              "quiz": [
+                {
+                  "q": "As expiration nears, an option's time value…",
+                  "choices": [
+                    "Grows",
+                    "Stays the same",
+                    "Drains away"
+                  ],
+                  "answer": 2,
+                  "why": "This is called time decay."
+                },
+                {
+                  "q": "Why can an option's value swing so much?",
+                  "choices": [
+                    "Options are insured",
+                    "A small move in the stock can mean a big move in the option",
+                    "Options pay fixed interest"
+                  ],
+                  "answer": 1,
+                  "why": "Options work like leverage."
+                },
+                {
+                  "q": "Before approving options trading, a broker must…",
+                  "choices": [
+                    "Give you the official options risk disclosure",
+                    "Promise you profits",
+                    "Waive all fees"
+                  ],
+                  "answer": 0,
+                  "why": "Approval also depends on your experience and finances."
+                }
+              ]
+            },
+            {
+              "slug": "crypto-risks",
+              "title": "Crypto: how it works and what can go wrong",
+              "minutes": 5,
+              "objectives": [
+                "Explain what a cryptocurrency and a blockchain are",
+                "Name the main risks: price swings, hacks, scams and platform failures",
+                "Explain why crypto on an app isn't like money in an insured bank"
+              ],
+              "key_points": [
+                "Crypto is digital money recorded on a shared ledger called a blockchain",
+                "Prices can swing wildly, and coins can lose most or all of their value",
+                "Crypto isn't covered by bank deposit insurance, and transfers usually can't be reversed"
+              ],
+              "prerequisites": [
+                "where-to-keep-your-cushion",
+                "how-leverage-works"
+              ],
+              "needs_facts": [],
+              "risk_note": "Crypto is highly speculative and can lose all its value. Explained here, never recommended.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "If you hold any crypto, note in your Money Map where it's held and who controls the keys."
+              },
+              "quiz": [
+                {
+                  "q": "A blockchain is…",
+                  "choices": [
+                    "A type of bank account",
+                    "A shared digital record of transactions",
+                    "An insured savings product"
+                  ],
+                  "answer": 1,
+                  "why": "It's a ledger copied across many computers."
+                },
+                {
+                  "q": "If a crypto platform fails, bank deposit insurance…",
+                  "choices": [
+                    "Covers you fully",
+                    "Pays twice your balance",
+                    "Doesn't cover your crypto"
+                  ],
+                  "answer": 2,
+                  "why": "Deposit insurance covers bank deposits, not crypto."
+                },
+                {
+                  "q": "If you send crypto to a scammer, can you usually reverse it?",
+                  "choices": [
+                    "Usually not: crypto transfers are hard to reverse",
+                    "Yes, with one click",
+                    "Yes, your bank will refund it"
+                  ],
+                  "answer": 0,
+                  "why": "That's why scammers often ask for crypto."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L5-M2",
+          "title": "The long game",
+          "summary": "Real estate, making savings last in retirement, and naming who gets your money.",
+          "lessons": [
+            {
+              "slug": "real-estate-and-reits",
+              "title": "Real estate and REITs: the basics",
+              "minutes": 4,
+              "objectives": [
+                "Explain the difference between a home you live in and property owned as an investment",
+                "Explain what a REIT is",
+                "Name the risks of real estate: borrowing, costs and being hard to sell"
+              ],
+              "key_points": [
+                "A home is a place to live with big ongoing costs, not only an investment",
+                "A REIT is a company that owns property; many trade on exchanges like stocks",
+                "Property often involves a mortgage, which is leverage, and can be slow and costly to sell"
+              ],
+              "prerequisites": [
+                "how-leverage-works",
+                "what-a-fund-is"
+              ],
+              "needs_facts": [],
+              "risk_note": "Property values and REITs can fall, and borrowing magnifies losses. Non-traded REITs can be hard to sell. Explained here, not recommended.",
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "List the true monthly costs of where you live: payment or rent, insurance, taxes, repairs and fees."
+              },
+              "quiz": [
+                {
+                  "q": "A REIT is…",
+                  "choices": [
+                    "A type of mortgage",
+                    "A government bond",
+                    "A company that owns property, often traded like a stock"
+                  ],
+                  "answer": 2,
+                  "why": "REIT stands for real estate investment trust."
+                },
+                {
+                  "q": "Which is a real cost of owning a home beyond the mortgage?",
+                  "choices": [
+                    "Repairs, insurance and property taxes",
+                    "Nothing else",
+                    "Only the down payment"
+                  ],
+                  "answer": 0,
+                  "why": "Ongoing costs are part of the true price."
+                },
+                {
+                  "q": "Why is a property hard to sell quickly?",
+                  "choices": [
+                    "It's illegal to sell within ten years",
+                    "Selling takes time and comes with big costs",
+                    "Banks own it forever"
+                  ],
+                  "answer": 1,
+                  "why": "Property is far less liquid than a fund."
+                }
+              ]
+            },
+            {
+              "slug": "retirement-withdrawal-math",
+              "title": "Retirement withdrawal math: making savings last",
+              "minutes": 5,
+              "objectives": [
+                "Explain what a withdrawal rate is",
+                "Explain sequence-of-returns risk",
+                "Explain why rules of thumb aren't promises"
+              ],
+              "key_points": [
+                "A withdrawal rate is the share of savings taken out each year",
+                "Big losses early in retirement hurt more than the same losses later",
+                "Popular rules of thumb come from studies of past markets, and they aren't promises"
+              ],
+              "prerequisites": [
+                "inflation-explained",
+                "market-crashes-in-history"
+              ],
+              "needs_facts": [],
+              "risk_note": "Savings can run out if returns are poor or withdrawals are high. This is general education, not advice for your situation.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Picture two retirees with the same savings: one hits a crash in year one, the other in year fifteen. Whose savings are under more strain, and why?"
+              },
+              "quiz": [
+                {
+                  "q": "Hypothetically, someone takes $20,000 a year from $500,000 in savings. What's the withdrawal rate?",
+                  "choices": [
+                    "2%",
+                    "4%",
+                    "20%"
+                  ],
+                  "answer": 1,
+                  "why": "$20,000 divided by $500,000 is 4%."
+                },
+                {
+                  "q": "Sequence-of-returns risk means…",
+                  "choices": [
+                    "Returns arrive in a fixed order",
+                    "The order of good and bad years matters once withdrawals start",
+                    "Only fees matter"
+                  ],
+                  "answer": 1,
+                  "why": "Selling during an early drop leaves less to recover with."
+                },
+                {
+                  "q": "Rules of thumb for retirement withdrawals…",
+                  "choices": [
+                    "Are promises backed by law",
+                    "Work the same in every market",
+                    "Come from past data and aren't promises"
+                  ],
+                  "answer": 2,
+                  "why": "The future can differ from the past."
+                }
+              ]
+            },
+            {
+              "slug": "beneficiaries-and-estate-basics",
+              "title": "Beneficiaries and estate basics",
+              "minutes": 4,
+              "objectives": [
+                "Explain what a beneficiary designation is",
+                "Explain why beneficiary forms can matter more than a will for some accounts",
+                "Name the basic documents: will, power of attorney and health care directive"
+              ],
+              "key_points": [
+                "A beneficiary is the person you name to receive an account or policy if you die",
+                "For many retirement accounts and insurance policies, the beneficiary form decides who gets the money, even over a will",
+                "A will, a financial power of attorney and a health care directive are where many adults start; rules vary by state"
+              ],
+              "prerequisites": [
+                "how-a-401k-works"
+              ],
+              "needs_facts": [],
+              "risk_note": null,
+              "try_it": {
+                "tool": "money-map",
+                "prompt": "List each account and policy you have, and note whether a beneficiary is named and who it is."
+              },
+              "quiz": [
+                {
+                  "q": "A beneficiary is…",
+                  "choices": [
+                    "The person you name to receive an account if you die",
+                    "Your bank's manager",
+                    "A tax form"
+                  ],
+                  "answer": 0,
+                  "why": "You name beneficiaries on the account's own form."
+                },
+                {
+                  "q": "For many retirement accounts, what usually decides who receives the money?",
+                  "choices": [
+                    "Whoever asks first",
+                    "The bank",
+                    "The beneficiary form on file"
+                  ],
+                  "answer": 2,
+                  "why": "The form usually controls, even if a will says something else."
+                },
+                {
+                  "q": "Why review beneficiaries after big life changes?",
+                  "choices": [
+                    "Forms update themselves",
+                    "An old form can send money to someone you didn't intend",
+                    "It lowers your taxes"
+                  ],
+                  "answer": 1,
+                  "why": "Marriage, divorce or a new child are common reasons to update."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L5-M3",
+          "title": "Protecting yourself",
+          "summary": "Spotting scams and hype, and checking anyone who offers money advice.",
+          "lessons": [
+            {
+              "slug": "spotting-investment-scams",
+              "title": "Spotting investment scams",
+              "minutes": 4,
+              "objectives": [
+                "Name the warning signs of an investment scam",
+                "Explain how to check a person or firm before handing over money",
+                "Explain where to report a suspected scam"
+              ],
+              "key_points": [
+                "Anyone promising high returns with little risk is waving a classic red flag",
+                "Pressure to decide fast, secrecy, and requests to pay in crypto or gift cards are warning signs",
+                "Check registration on FINRA BrokerCheck or the SEC's adviser search, and report scams to the SEC or the FTC"
+              ],
+              "prerequisites": [
+                "before-you-open-an-account",
+                "crypto-risks"
+              ],
+              "needs_facts": [],
+              "risk_note": "Every investment can lose value. Anyone who says otherwise is showing a red flag.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Look up one person or firm you've seen online on FINRA BrokerCheck or the SEC's adviser search."
+              },
+              "quiz": [
+                {
+                  "q": "Which is a classic red flag?",
+                  "choices": [
+                    "A registered firm that explains its fees",
+                    "Pressure to decide today and keep it secret",
+                    "A written explanation of the risks"
+                  ],
+                  "answer": 1,
+                  "why": "Real opportunities don't need secrecy or a deadline."
+                },
+                {
+                  "q": "Someone asks you to pay for an investment with gift cards. This is…",
+                  "choices": [
+                    "A common sign of a scam",
+                    "A normal way to invest",
+                    "Required by law"
+                  ],
+                  "answer": 0,
+                  "why": "Legitimate firms don't take gift cards."
+                },
+                {
+                  "q": "Where can you report a suspected investment scam?",
+                  "choices": [
+                    "Only to the person who pitched it",
+                    "Nowhere",
+                    "The SEC or the FTC"
+                  ],
+                  "answer": 2,
+                  "why": "Reports help regulators stop scams."
+                }
+              ]
+            },
+            {
+              "slug": "hype-and-finfluencers",
+              "title": "Hype, finfluencers and red flags online",
+              "minutes": 4,
+              "objectives": [
+                "Recognize hype language and pressure tactics online",
+                "Explain why paid promotions and cherry-picked results mislead",
+                "Explain how to slow down before acting on a tip"
+              ],
+              "key_points": [
+                "Phrases like “to the moon,” “can't lose” and “act now” are red flags",
+                "Creators may be paid to promote something, and they may show only their wins",
+                "A tip that makes you feel rushed is a reason to pause, not to act"
+              ],
+              "prerequisites": [
+                "behavioral-biases",
+                "spotting-investment-scams"
+              ],
+              "needs_facts": [],
+              "risk_note": "No one can promise returns. Any investment can lose value.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Pick one money video from your feed and check: is it paid, does it show losses, and does it rush you?"
+              },
+              "quiz": [
+                {
+                  "q": "Which is a warning sign in a money video?",
+                  "choices": [
+                    "It explains risks and fees",
+                    "It shows losses as well as gains",
+                    "It promises big gains in a short time"
+                  ],
+                  "answer": 2,
+                  "why": "Promised gains are a classic hype signal."
+                },
+                {
+                  "q": "Why can a creator's results be misleading?",
+                  "choices": [
+                    "Creators must show every trade",
+                    "They may show only wins, or be paid to promote",
+                    "Regulators review every video first"
+                  ],
+                  "answer": 1,
+                  "why": "What you see is often a highlight reel."
+                },
+                {
+                  "q": "A tip makes you feel rushed. A sensible first step is…",
+                  "choices": [
+                    "Pausing to check the source and the risks",
+                    "Acting before others do",
+                    "Borrowing to act bigger"
+                  ],
+                  "answer": 0,
+                  "why": "Urgency is a pressure tactic, not information."
+                }
+              ]
+            },
+            {
+              "slug": "checking-who-gives-advice",
+              "title": "Getting help: checking who gives money advice",
+              "minutes": 4,
+              "objectives": [
+                "Explain the difference between an adviser's duty and a salesperson's",
+                "Explain how advisers get paid and why it matters",
+                "Explain how to look up an adviser's record"
+              ],
+              "key_points": [
+                "Investment advisers owe clients a fiduciary duty; brokers follow a different standard, and job titles alone won't tell you which",
+                "Advisers may be paid flat fees, a share of your assets, or commissions on products they sell",
+                "You can look up registration and any disciplinary history on FINRA BrokerCheck or the SEC's adviser search"
+              ],
+              "prerequisites": [
+                "before-you-open-an-account",
+                "hype-and-finfluencers"
+              ],
+              "needs_facts": [],
+              "risk_note": "Good advice can't remove investment risk. Investments can fall in value.",
+              "try_it": {
+                "tool": "none",
+                "prompt": "Write down three questions for any adviser: how are you paid, are you a fiduciary, and where can I see your record?"
+              },
+              "quiz": [
+                {
+                  "q": "Why does it matter how an adviser is paid?",
+                  "choices": [
+                    "It doesn't matter",
+                    "Pay can create conflicts, like commissions on products sold",
+                    "Higher fees mean better results"
+                  ],
+                  "answer": 1,
+                  "why": "Knowing how someone is paid shows their incentives."
+                },
+                {
+                  "q": "Can you tell an adviser's legal duty from their job title alone?",
+                  "choices": [
+                    "Yes, all titles are strictly regulated",
+                    "Yes, if the title includes the word ‘wealth’",
+                    "Not always: ask, and check their registration"
+                  ],
+                  "answer": 2,
+                  "why": "Many titles aren't regulated."
+                },
+                {
+                  "q": "Where can you look up a broker's or adviser's record?",
+                  "choices": [
+                    "FINRA BrokerCheck or the SEC's adviser search",
+                    "Their own social media",
+                    "A review in an ad"
+                  ],
+                  "answer": 0,
+                  "why": "Both are free public lookups."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
