@@ -27,7 +27,7 @@ App benchmarks come from in-app (App Store / Google Play) purchases. We launch o
 
 **Peers we'd be compared with** (official unless marked)
 
-| Product | Monthly | Annual | Annual discount vs 12x monthly | Source, date |
+| Product | Monthly | Annual | Annual discount vs 12 monthly payments | Source, date |
 |---|---|---|---|---|
 | Patient Money draft | $8 | $60 | 38% | BRIEF.md |
 | Financebro: AI Finance Teacher | $14.99 | $59.99 | 67% | [App Store](https://apps.apple.com/app/id6769393561) via search, 2026 (**unverified**) |
