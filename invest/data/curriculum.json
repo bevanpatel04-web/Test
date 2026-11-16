@@ -850,7 +850,7 @@
               "risk_note": "Index funds and single stocks can both lose value. This lesson compares how they work; it doesn't recommend either.",
               "try_it": {
                 "tool": "crash-sim",
-                "prompt": "Run the 2020 crash with the hypothetical index portfolio and note its lowest point."
+                "prompt": "Run a hypothetical crash with the pretend index portfolio and note its lowest point."
               },
               "quiz": [
                 {
@@ -1982,7 +1982,7 @@
               "risk_note": "Past crashes don't predict future ones. A future drop could be bigger or last longer than any of these.",
               "try_it": {
                 "tool": "crash-sim",
-                "prompt": "Live through the 2008-09 crash with the hypothetical index portfolio, and note what holding and selling would have done."
+                "prompt": "Live through a hypothetical crash with a pretend index portfolio, and note what holding and selling would have done."
               },
               "quiz": [
                 {
@@ -2037,7 +2037,7 @@
               "risk_note": "Holding through a drop doesn't prevent losses, and selling can make sense for someone who needs the money. Investments can fall in value.",
               "try_it": {
                 "tool": "crash-sim",
-                "prompt": "Run the 2020 crash twice, once holding and once selling at the low point, and compare the results."
+                "prompt": "Run a hypothetical crash twice, once holding and once selling at the low point, and compare the results."
               },
               "quiz": [
                 {
