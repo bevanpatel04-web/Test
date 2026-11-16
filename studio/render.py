@@ -165,7 +165,8 @@ def _truncate(tl: Timeline, seconds: float) -> Timeline:
         cues = [Cue(c.start, min(c.end, seconds - 0.01), c.text) for c in s.cues if c.start < seconds - 0.2]
         scenes.append(SceneTime(s.start, min(s.end, seconds), s.speech_start, min(s.speech_end, seconds), cues, s.words))
     audio = tl.audio[: int(seconds * tl.sample_rate) + 1] if tl.audio is not None else None
-    return Timeline(scenes, seconds, tl.narration, audio, tl.sample_rate, tl.words, tl.speech_seconds)
+    words = sum(word_count(c.text) for s in scenes for c in s.cues)
+    return Timeline(scenes, seconds, tl.narration, audio, tl.sample_rate, words, tl.speech_seconds)
 
 
 # ---- Layout ---------------------------------------------------------------------------------------
