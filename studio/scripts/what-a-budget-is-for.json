@@ -1,0 +1,84 @@
+{
+  "slug": "what-a-budget-is-for",
+  "title": "What a budget is actually for",
+  "scenes": [
+    {
+      "kind": "title",
+      "heading": "What a budget is actually for",
+      "narration": "A budget has a bad reputation. People picture tracking every coffee and feeling guilty. Here's what a budget is really for.",
+      "on_screen": "A plan, not a punishment",
+      "chart": null
+    },
+    {
+      "kind": "concept",
+      "heading": "A plan made before the month starts",
+      "narration": "A budget is a plan for your money, made before the month starts. You decide where your pay goes, instead of wondering where it went. It's not about saying no. It's about saying yes on purpose.",
+      "on_screen": "Decide first\nThen spend",
+      "chart": null
+    },
+    {
+      "kind": "chart",
+      "heading": "Three buckets",
+      "narration": "Most budgets sort money into three buckets. Needs are the must-pays, like rent, groceries and minimum debt payments. Wants are the fun stuff. And future you is saving and paying down debt. One common starting split is 50, 30 and 20 percent.",
+      "on_screen": "One common starting split",
+      "chart": {
+        "type": "bars",
+        "title": "",
+        "monthly": null,
+        "rate": null,
+        "start_age": null,
+        "end_age": null,
+        "delay_years": null,
+        "labels": [
+          "Needs",
+          "Wants",
+          "Future you"
+        ],
+        "values": [
+          50.0,
+          30.0,
+          20.0
+        ],
+        "unit": "%",
+        "note": "One common starting split, not a rule. Yours can be different."
+      }
+    },
+    {
+      "kind": "example",
+      "heading": "Example: $2,400 take-home pay",
+      "narration": "Say you take home $2,400 a month. With that split, $1,200 goes to needs, $720 to wants, and $480 to future you. If rent is high, needs can take more for a while, and the other buckets shrink.",
+      "on_screen": "Needs: $1,200\nWants: $720\nFuture you: $480",
+      "chart": null
+    },
+    {
+      "kind": "concept",
+      "heading": "Keep it simple",
+      "narration": "Here's the part most people miss. A plan you can keep beats a perfect plan you quit in week two. Round the numbers, check in once a week, and adjust next month if you overspend.",
+      "on_screen": "Round the numbers\nCheck in once a week\nAdjust next month",
+      "chart": null
+    },
+    {
+      "kind": "recap",
+      "heading": "Recap",
+      "narration": "Quick recap. A budget is a plan you make before the month starts. Most budgets use three buckets: needs, wants and future you. And a plan you can keep beats a perfect plan you quit.",
+      "on_screen": "A plan made before the month\nNeeds, wants and future you\nA plan you can keep wins",
+      "chart": null
+    },
+    {
+      "kind": "quiz_teaser",
+      "heading": "Quick check",
+      "narration": "Time for a quick check. What is a budget mainly for? Answer three short questions below the video to finish the lesson.",
+      "on_screen": "What is a budget mainly for?\nTracking every coffee\nPlanning where your money goes before you spend it\nGetting a credit card",
+      "chart": null
+    },
+    {
+      "kind": "end",
+      "heading": "Your turn",
+      "narration": "Now try it. In your Money Map, write down your monthly take-home pay and your three biggest costs.",
+      "on_screen": "Write down your monthly take-home pay and your three biggest costs.",
+      "chart": null
+    }
+  ],
+  "facts_used": [],
+  "risk_note": null
+}

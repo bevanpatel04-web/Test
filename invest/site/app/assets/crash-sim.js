@@ -181,8 +181,8 @@
   function renderChart(model) {
     last = model;
     var box = $("chart"), s = model.scenario;
-    var W = Math.max(280, Math.round(box.clientWidth || 640)), H = 280;
-    var mg = { t: 28, r: 58, b: 28, l: 52 };
+    var W = Math.max(280, Math.round(box.clientWidth || 640)), H = 300;
+    var mg = { t: 28, r: 58, b: 46, l: 52 };
     var N = model.months, upto = model.upto;
     var maxY = 0;
     model.series.forEach(function (sr) { for (var i = 0; i <= upto; i++) maxY = Math.max(maxY, sr.values[i]); });
@@ -204,18 +204,17 @@
     });
     svg.appendChild(svgEl("line", { "class": "baseline", x1: mg.l, x2: W - mg.r, y1: y(0), y2: y(0) }));
 
-    // X axis: years (or dates for a real series). Thin out labels when space is short.
-    var years = Math.floor(N / 12), per = (W - mg.l - mg.r) / Math.max(1, N / 12), stepY = per < 34 ? 2 : 1;
-    var x0 = svgEl("text", { "class": "tick", x: x(0), y: H - 8, "text-anchor": "start" });
-    x0.textContent = s.dates ? s.dates[0].slice(0, 4) : "Start";
-    svg.appendChild(x0);
-    for (var yr = stepY; yr <= years; yr += stepY) {
-      var m = yr * 12;
-      if (x(m) - x(0) < 44 || (m !== N && x(N) - x(m) < 30)) continue;
-      var tx = svgEl("text", { "class": "tick", x: x(m), y: H - 8, "text-anchor": m === N ? "end" : "middle" });
-      tx.textContent = s.dates ? s.dates[m].slice(0, 4) : (m === N || yr === years && x(N) - x(m) < 60 ? "Year " + yr : String(yr));
+    // X axis: years from the start (calendar years for a real series), thinned out when space is short.
+    var years = Math.floor(N / 12), per = (W - mg.l - mg.r) / Math.max(1, N / 12);
+    var stepY = per >= (s.dates ? 34 : 18) ? 1 : 2;
+    for (var yr = 0; yr <= years; yr += stepY) {
+      var tx = svgEl("text", { "class": "tick", x: x(yr * 12), y: H - 26, "text-anchor": "middle" });
+      tx.textContent = s.dates ? s.dates[yr * 12].slice(0, 4) : String(yr);
       svg.appendChild(tx);
     }
+    var axisTitle = svgEl("text", { "class": "axis-title", x: (x(0) + x(N)) / 2, y: H - 6, "text-anchor": "middle" });
+    axisTitle.textContent = s.dates ? "Year" : "Years from the start";
+    svg.appendChild(axisTitle);
 
     if (upto < N) { // the unknown future, before the member decides
       svg.appendChild(svgEl("rect", { "class": "future", x: x(upto), y: mg.t, width: x(N) - x(upto), height: y(0) - mg.t }));
@@ -329,10 +328,18 @@
     $("fromLesson").querySelector("a").setAttribute("href", A.lessonHref(from));
     $("fromLesson").classList.remove("hidden");
   }
-  if (!A.loadProgress().member) $("memberNote").classList.remove("hidden");
+  // Free visitors see the scenario and the drop; making the call is part of membership.
+  function applyMembership() {
+    var member = A.loadProgress().member;
+    $("choices").classList.toggle("hidden", !member);
+    $("simLocked").classList.toggle("hidden", member);
+    if (!member && state.pick) { state.pick = null; update(); }
+  }
+  window.addEventListener("pageshow", function (e) { if (e.persisted) applyMembership(); });
 
   renderScenarioChips();
   renderChoices();
+  applyMembership();
   update();
 
   // Verified historical series, when there are any, join the list after the made-up ones.

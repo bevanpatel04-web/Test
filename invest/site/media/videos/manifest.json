@@ -1,0 +1,41 @@
+{
+  "updated": "2026-11-16",
+  "videos": {
+    "what-a-budget-is-for": {
+      "mp4": "media/videos/what-a-budget-is-for.mp4",
+      "captions": "media/videos/what-a-budget-is-for.vtt",
+      "poster": "media/videos/what-a-budget-is-for.jpg",
+      "duration_s": 114,
+      "narration": "flite",
+      "ai_label": "Made with AI, reviewed by a person",
+      "approved": false
+    },
+    "reading-your-paycheck": {
+      "mp4": "media/videos/reading-your-paycheck.mp4",
+      "captions": "media/videos/reading-your-paycheck.vtt",
+      "poster": "media/videos/reading-your-paycheck.jpg",
+      "duration_s": 116,
+      "narration": "flite",
+      "ai_label": "Made with AI, reviewed by a person",
+      "approved": false
+    },
+    "why-a-cash-cushion-comes-first": {
+      "mp4": "media/videos/why-a-cash-cushion-comes-first.mp4",
+      "captions": "media/videos/why-a-cash-cushion-comes-first.vtt",
+      "poster": "media/videos/why-a-cash-cushion-comes-first.jpg",
+      "duration_s": 118,
+      "narration": "flite",
+      "ai_label": "Made with AI, reviewed by a person",
+      "approved": false
+    },
+    "compound-growth-explained": {
+      "mp4": "media/videos/compound-growth-explained.mp4",
+      "captions": "media/videos/compound-growth-explained.vtt",
+      "poster": "media/videos/compound-growth-explained.jpg",
+      "duration_s": 114,
+      "narration": "flite",
+      "ai_label": "Made with AI, reviewed by a person",
+      "approved": false
+    }
+  }
+}

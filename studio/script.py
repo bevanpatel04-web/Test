@@ -47,8 +47,8 @@ class Scene(BaseModel):
     heading: str = Field(description="Short heading shown at the top of the scene, under 45 characters")
     narration: str = Field(description="The words spoken over this scene, plain and warm, in full sentences")
     on_screen: str = Field(description="Short text on screen: up to 4 lines separated by newlines, each under "
-                           "40 characters. 'Label: value' lines show as two columns. quiz_teaser: the question, "
-                           "then its 3 choices, one per line")
+                           "40 characters. 'Label: value' lines show as two columns. title and end: one sentence under "
+                           "120 characters. quiz_teaser: the question, then its 3 choices, one per line")
     chart: Optional[ChartSpec] = Field(None, description="Required when kind is chart; otherwise null")
 
 
@@ -168,7 +168,10 @@ def structure_issues(s: VideoScript, verified: dict | None = None) -> list[str]:
         if not sc.narration.strip():
             issues.append(f"scene {i} has no narration")
         lines = [x for x in sc.on_screen.split("\n") if x.strip()]
-        if len(lines) > (4 if sc.kind == "quiz_teaser" else 5) or any(len(x) > 60 for x in lines):
+        if sc.kind in ("title", "end"):
+            if len(sc.on_screen) > 120:
+                issues.append(f"scene {i} on_screen is too long: one sentence under 120 characters")
+        elif len(lines) > (4 if sc.kind == "quiz_teaser" else 5) or any(len(x) > 60 for x in lines):
             issues.append(f"scene {i} on_screen is too long: up to 4 short lines, each under 40 characters")
         if sc.kind == "quiz_teaser" and len(lines) != 4:
             issues.append(f"scene {i} (quiz_teaser) on_screen must be the question then exactly 3 choices")

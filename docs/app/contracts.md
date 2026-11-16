@@ -85,3 +85,10 @@ Rules:
 
 - **Prototype only:** this lives on the member's device and is never sent anywhere.
 - **`member`:** `true` after the mock checkout, which unlocks Levels 2-5 in the prototype.
+- **Dates:** calendar days (`YYYY-MM-DD`, the member's local date). `review_due` holds the next review: 3, then 10, then 30 days after `completed`. It's removed after the last one.
+- **`money_map`:** written by `app/money-map.html`. Every number is a number or `null`; months are `YYYY-MM`. The worksheet is open to everyone; the combined summary is members-only.
+  `{ "pay": 3000, "gross": 3800, "costs": [{"name": "Rent", "amount": 1200}], "flexible": 350,
+  "cushion": {"months": 1, "saved": 500, "where": "Savings account", "rate": 3.5, "insured": true},
+  "debts": [{"name": "Card", "balance": 2000, "rate": 24, "minimum": 60}], "credit_checked": "2026-03",
+  "accounts": {"checking": true}, "other_accounts": "", "goals": [{"name": "Trip", "amount": 1200, "by": "2027-11"}], "updated": "<ISO time>" }`
+  Account keys: `checking`, `savings`, `workplace`, `roth_ira`, `traditional_ira`, `brokerage`, `hsa`. Code: `normalizeMoneyMap()` in `invest/site/app/assets/learn.js`.

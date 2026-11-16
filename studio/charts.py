@@ -12,7 +12,7 @@ from typing import Callable
 
 from PIL import Image, ImageDraw
 
-from .draw import THEME, badge, bar_shape, font, rounded, text_sprite, wrap
+from .draw import THEME, badge, balanced, bar_shape, font, rounded, text_sprite, wrap
 
 
 # ---- Math (port of calc.js) ----------------------------------------------------------------------
@@ -130,7 +130,7 @@ class LinePlot:
 
     SS = 2
 
-    def __init__(self, box, L, series, x_ticks, unit, t0, dur, legend=True):
+    def __init__(self, box, L, series, x_ticks, unit, t0, dur, legend=True, spoken=None):
         self.L, self.unit, self.t0, self.dur = L, unit, t0, dur
         u, fs = L.u, L.px("chart")
         x0, y0, x1, y1 = box
@@ -140,7 +140,6 @@ class LinePlot:
         xs = [p[0] for s in series for p in s[3]]
         self.xmin, self.xmax = min(xs), max(xs)
         ymax = max(p[1] for s in series for p in s[3])
-        self.ticks = nice_ticks(ymax, 4)
         parts: list[Item] = []
 
         # Legend: a short colored key line beside each name (text stays in text colors).
@@ -158,14 +157,16 @@ class LinePlot:
                 gx += need + 28 * u
             top = gy + row_h + 14 * u
 
+        self.py0 = top + self.f_val.size * 0.6
+        self.py1 = y1 - self.f_tick.size * 1.9
+        # Fewer gridlines when the plot is short, so tick labels never crowd each other.
+        self.ticks = nice_ticks(ymax, max(2, min(4, int((self.py1 - self.py0) / (self.f_tick.size * 2.4)))))
         tick_labels = [fmt_tick(v, unit) for v in self.ticks]
         ytw = max(self.f_tick.getlength(t) for t in tick_labels)
         self.end_vals = [(s[4] if len(s) > 4 else s[0], s[3][-1][1]) for s in series]
         end_w = max(max(self.f_val.getlength(fmt(v, unit)), self.f_name.getlength(n)) for n, v in self.end_vals)
         self.px0 = x0 + ytw + 14 * u
         self.px1 = x1 - end_w - 26 * u
-        self.py0 = top + self.f_val.size * 0.6
-        self.py1 = y1 - self.f_tick.size * 1.9
         # Static frame: grid, baseline and tick labels, drawn once.
         frame = Image.new("RGBA", (int(x1 - x0) + 2, int(y1 - y0) + 2), (0, 0, 0, 0))
         d = ImageDraw.Draw(frame)
@@ -196,10 +197,11 @@ class LinePlot:
             min_y = blocks[i - 1][0] + blocks[i - 1][1].height + 6 * u
             blocks[i][0] = max(blocks[i][0], min_y)
         overflow = blocks[-1][0] + blocks[-1][1].height - (y1 + 4 * u) if blocks else 0
-        for b in blocks:
+        for b, (name, v) in zip(blocks, sorted(self.end_vals, key=lambda e: -e[1])):
             if overflow > 0:
                 b[0] -= overflow
-            parts.append(Item(b[1], self.px1 + 18 * u, b[0], t0 + dur, "fade"))
+            said = spoken(fmt(v, unit)) if spoken else None  # each value appears as the narration says it
+            parts.append(Item(b[1], self.px1 + 18 * u, b[0], max(t0 + dur, (said or 0) - 0.1), "fade"))
         self.items = parts
         self._cache_key, self._cache = None, None
 
@@ -244,7 +246,7 @@ class LinePlot:
         return key, self._cache
 
 
-def growth_chart(spec, box, L, t0: float, dur: float) -> ChartParts:
+def growth_chart(spec, box, L, t0: float, dur: float, spoken=None) -> ChartParts:
     start, end = int(spec.start_age), int(spec.end_age)
     now = project(start, end, spec.monthly, spec.rate)
     series = [(f"Start at {start}", THEME["s1"], 4.5, [(a, b) for a, b, _ in now])]
@@ -258,17 +260,17 @@ def growth_chart(spec, box, L, t0: float, dur: float) -> ChartParts:
     if ages[-1] != end and end - ages[-1] >= step / 2:
         ages.append(end)
     x_ticks = [(a, f"Age {a}" if i == 0 else str(a)) for i, a in enumerate(ages)]
-    plot = LinePlot(box, L, series, x_ticks, "$", t0, dur)
+    plot = LinePlot(box, L, series, x_ticks, "$", t0, dur, spoken=spoken)
     return ChartParts(plot.items, plot.dynamic, t0 + dur)
 
 
-def line_chart(spec, box, L, t0: float, dur: float) -> ChartParts:
+def line_chart(spec, box, L, t0: float, dur: float, spoken=None) -> ChartParts:
     pts = list(enumerate(spec.values))
     n = len(pts)
     idx = sorted({0, n // 2, n - 1})
     x_ticks = [(i, spec.labels[i]) for i in idx]
     plot = LinePlot(box, L, [(spec.title or "Hypothetical", THEME["s1"], 4.5, pts)], x_ticks, spec.unit, t0, dur,
-                    legend=False)
+                    legend=False, spoken=spoken)
     return ChartParts(plot.items, plot.dynamic, t0 + dur)
 
 
@@ -278,8 +280,8 @@ def bars_chart(spec, box, L, t0: float, dur: float) -> ChartParts:
     f_lab, f_val = font("sb", fs * 1.3), font("b", fs * 1.4)
     n = len(spec.values)
     vmax = max(spec.values) or 1
-    lab_w = min(max(f_lab.getlength(x) for x in spec.labels), (x1 - x0) * (0.30 if not L.vertical else 0.36))
-    labels = [wrap(x, f_lab, lab_w) for x in spec.labels]
+    lab_w = min(max(f_lab.getlength(x) for x in spec.labels), (x1 - x0) * (0.36 if not L.vertical else 0.4))
+    labels = [balanced(x, f_lab, lab_w) for x in spec.labels]
     lab_w = max(f_lab.getlength(line) for ls in labels for line in ls)
     val_w = max(f_val.getlength(fmt(v, spec.unit)) for v in spec.values)
     bx = x0 + lab_w + 28 * u
@@ -324,7 +326,7 @@ def stat_chart(spec, box, L, t0: float, dur: float, body_px: float) -> ChartPart
     v = float(spec.values[0])
     f_hero = font("xb", L.px("hero"))
     f_lab = font("sb", body_px)
-    hero_w = f_hero.getlength("100%")
+    hero_w = f_hero.getlength(f"{v:.0f}%")
     asc, desc = f_hero.getmetrics()
     if L.vertical:
         lab_lines = wrap(spec.labels[0], f_lab, x1 - x0)
@@ -375,14 +377,14 @@ def stat_chart(spec, box, L, t0: float, dur: float, body_px: float) -> ChartPart
     return ChartParts(items, dynamic, t0 + grow)
 
 
-def build(spec, box, L, t0: float, dur: float, body_px: float) -> ChartParts:
+def build(spec, box, L, t0: float, dur: float, body_px: float, spoken=None) -> ChartParts:
     if spec.type == "growth":
-        return growth_chart(spec, box, L, t0, dur)
+        return growth_chart(spec, box, L, t0, dur, spoken)
     if spec.type == "bars":
         return bars_chart(spec, box, L, t0, dur)
     if spec.type == "stat":
         return stat_chart(spec, box, L, t0, dur, body_px)
-    return line_chart(spec, box, L, t0, dur)
+    return line_chart(spec, box, L, t0, dur, spoken)
 
 
 __all__ = ["project", "money", "compact_money", "nice_ticks", "build", "Item", "ChartParts", "badge"]

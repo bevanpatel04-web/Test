@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 
 from . import config, manifest
@@ -26,11 +27,14 @@ def cmd_script(a) -> int:
         llm = FakeLLM()
         out = config.OUT_DIR / "dry-run" / f"{a.slug}.json"
     else:
+        if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
+            print("No Claude API key: set ANTHROPIC_API_KEY, or use --dry-run.", file=sys.stderr)
+            return 2
         try:
             from company.llm import ClaudeLLM
             llm = ClaudeLLM()
-        except Exception as exc:  # no key or package: say so plainly
-            print(f"Can't reach Claude ({exc}). Set ANTHROPIC_API_KEY, or use --dry-run.", file=sys.stderr)
+        except Exception as exc:  # package missing or misconfigured: say so plainly
+            print(f"Can't reach Claude ({exc}). Use --dry-run to test without it.", file=sys.stderr)
             return 2
         out = scripts.script_path(a.slug)
         if out.exists() and not a.force:

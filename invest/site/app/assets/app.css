@@ -14,7 +14,7 @@
 :root[data-theme="dark"] { --good: #5cc790; --warn: #f2b65c; --warn-soft: #33270f; --good-soft: #14281d; }
 
 /* Header: four app links wrap under the brand on a phone. */
-.app .top nav { flex-wrap: wrap; gap: 4px 18px; }
+.app .top nav { flex-wrap: wrap; gap: 4px 14px; }
 .app .top nav a { padding: 6px 0; }
 .app main { min-height: 50vh; }
 .app h1:focus { outline: none; }
@@ -82,10 +82,11 @@
 .video { margin: 16px 0; }
 .video-frame { position: relative; border-radius: var(--radius); overflow: hidden; background: #000; aspect-ratio: 16 / 9; }
 .video-frame video { display: block; width: 100%; height: 100%; }
+.video-frame video:focus, .video-frame video:focus-within { outline: 3px solid var(--accent); outline-offset: -3px; }
 .video figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 8px; color: var(--muted); font-size: .875rem; }
 .video-soon {
-  aspect-ratio: 16 / 9; border-radius: var(--radius); background: var(--accent-soft); display: flex; flex-direction: column;
-  align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 16px; color: var(--text);
+  min-height: 180px; border-radius: var(--radius); background: var(--accent-soft); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 28px 16px; color: var(--text);
 }
 .video-soon .icon { width: 44px; height: 44px; stroke-width: 1.5; color: var(--accent); }
 .video-soon strong { font-size: 1.1rem; }
@@ -114,6 +115,8 @@
 .choice.is-wrong { border-color: var(--critical); }
 .choice.is-wrong .mark { color: var(--critical); }
 .quiz.checked .choice { cursor: default; }
+.quiz.checked .choice.is-answer { background: var(--good-soft); border-color: var(--good); }
+.quiz.checked .choice.is-wrong { background: transparent; border-color: var(--critical); }
 .why { margin: 4px 0 0; padding: 10px 14px; border-radius: 12px; background: var(--bg); }
 .why b { margin-right: 4px; }
 .result { border-radius: 12px; padding: 14px 16px; margin: 4px 0 12px; font-weight: 600; }
@@ -124,6 +127,8 @@
 .result p + p { margin-top: 6px; font-weight: 400; }
 .done-note { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .locked-panel { text-align: left; }
+.app.lesson .card > h2:first-child, .app.lesson .card > .kicker + h2, .app.lesson .locked-panel h2 { margin-top: 8px; }
+.app.lesson .card > h2:first-child { margin-top: 0; }
 .locked-panel .icon { width: 32px; height: 32px; color: var(--muted); }
 .sources ul { margin: 0; padding-left: 1.2rem; }
 
@@ -133,6 +138,12 @@ input[type="text"], input[type="month"] {
   border: 1px solid var(--field-border); border-radius: 12px; background: var(--bg); color: var(--text);
 }
 .hint { color: var(--muted); font-size: .85rem; margin: 0; }
+.spaced { margin-top: 16px; }
+.card > .hint { margin-bottom: 12px; }
+#result { margin-top: 16px; }
+#result p { margin: 0 0 10px; }
+#mapForm h3 { font-size: 1rem; margin: 16px 0 4px; }
+#mapForm h2 + h3 { margin-top: 0; }
 .entry-list { list-style: none; padding: 0; margin: 0 0 12px; }
 .entry { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; align-items: end; padding: 12px 0; border-bottom: 1px solid var(--grid); }
 .entry:first-child { padding-top: 0; }
@@ -140,9 +151,13 @@ input[type="text"], input[type="month"] {
 .entry .field label { font-size: .85rem; font-weight: 600; }
 .entry .remove { grid-column: 1 / -1; justify-self: start; }
 .entry:not(.three) .remove { grid-column: 2; }
+.entry.three { grid-template-columns: 1fr; }
+.entry.three .remove { grid-column: 1; }
 @media (min-width: 640px) {
   .entry { grid-template-columns: 2fr 1fr auto; }
-  .entry.three { grid-template-columns: 2fr 1fr 1fr auto; }
+  .entry.three { grid-template-columns: 1.4fr 1fr 1.4fr auto; }
+  .entry.three .remove { grid-column: auto; }
+  .entry.four { grid-template-columns: 2fr 1fr 1fr 1fr auto; }
   .entry .field.wide { grid-column: auto; }
   .entry .remove, .entry:not(.three) .remove { grid-column: auto; }
 }
@@ -179,6 +194,7 @@ button.danger { color: var(--critical); border-color: var(--critical); }
 .chart .event { stroke: var(--axis); stroke-width: 1; }
 .chart .event-label { fill: var(--muted); font-size: 11px; font-weight: 600; }
 .chart .future { fill: var(--grid); opacity: .35; }
+.chart .axis-title { fill: var(--muted); font-size: 11px; font-weight: 600; }
 .tiles.three { grid-template-columns: 1fr; }
 @media (min-width: 560px) { .tiles.three { grid-template-columns: repeat(3, 1fr); } }
 .tile.pick { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }

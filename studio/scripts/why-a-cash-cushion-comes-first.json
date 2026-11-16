@@ -1,0 +1,100 @@
+{
+  "slug": "why-a-cash-cushion-comes-first",
+  "title": "Why a cash cushion comes first",
+  "scenes": [
+    {
+      "kind": "title",
+      "heading": "Why a cash cushion comes first",
+      "narration": "A car repair. A vet bill. A gap between jobs. Surprises happen. A cash cushion keeps them from turning into debt.",
+      "on_screen": "Your buffer against surprises",
+      "chart": null
+    },
+    {
+      "kind": "chart",
+      "heading": "How many people could cover $400?",
+      "narration": "In a Federal Reserve survey for 2025, 63% of adults said they would cover a surprise $400 expense with cash or its equivalent. So more than a third would have to borrow, sell something, or couldn't pay it right away.",
+      "on_screen": "Federal Reserve survey, 2025",
+      "chart": {
+        "type": "stat",
+        "title": "",
+        "monthly": null,
+        "rate": null,
+        "start_age": null,
+        "end_age": null,
+        "delay_years": null,
+        "labels": [
+          "of adults would cover a surprise $400 expense with cash or its equivalent"
+        ],
+        "values": [
+          63.0
+        ],
+        "unit": "",
+        "note": "Source: Federal Reserve, Economic Well-Being of U.S. Households in 2025 (SHED), published May 2026."
+      }
+    },
+    {
+      "kind": "concept",
+      "heading": "What a cushion is for",
+      "narration": "A cushion is money set aside only for surprises. When something breaks, you pay from the cushion instead of a credit card. Then you refill it, one paycheck at a time.",
+      "on_screen": "Covers surprise costs\nKeeps them off a credit card\nRefill it after you use it",
+      "chart": null
+    },
+    {
+      "kind": "chart",
+      "heading": "Why not invest it?",
+      "narration": "Why not invest it? Because you might need it right when prices are down. Picture a $1,000 cushion. In savings, it's still $1,000. Invested, a 20% drop would leave $800. Stock prices can drop at any time, which is why money needed soon is often kept in savings instead.",
+      "on_screen": "A $1,000 cushion when you need it",
+      "chart": {
+        "type": "bars",
+        "title": "",
+        "monthly": null,
+        "rate": null,
+        "start_age": null,
+        "end_age": null,
+        "delay_years": null,
+        "labels": [
+          "Kept in savings",
+          "Invested, after a 20% drop"
+        ],
+        "values": [
+          1000.0,
+          800.0
+        ],
+        "unit": "$",
+        "note": "Hypothetical example. Real drops can be bigger or smaller, and nobody can say when they will happen."
+      }
+    },
+    {
+      "kind": "example",
+      "heading": "Start small",
+      "narration": "Your first target can be small: one month of must-pay costs. If rent, food, transport and minimum debt payments add up to $1,800, that's your goal. Saving $150 a month gets you there in 12 months.",
+      "on_screen": "Must-pay costs: $1,800\nSaved each month: $150\nMonths to your target: 12",
+      "chart": null
+    },
+    {
+      "kind": "recap",
+      "heading": "Recap",
+      "narration": "Quick recap. A cushion covers surprises so they don't become debt. Money you may need soon has no time to recover from a drop. And you can start small: even one month of costs helps.",
+      "on_screen": "Covers surprises without new debt\nMoney needed soon can't wait out a drop\nStart with one month of costs",
+      "chart": null
+    },
+    {
+      "kind": "quiz_teaser",
+      "heading": "Quick check",
+      "narration": "Quick check. What is an emergency cushion for? Answer three short questions below the video to finish the lesson.",
+      "on_screen": "What is an emergency cushion for?\nBuying stocks on sale\nCovering surprise costs without borrowing\nPaying for vacations",
+      "chart": null
+    },
+    {
+      "kind": "end",
+      "heading": "Your turn",
+      "narration": "Now open your Money Map and add up one month of must-pay costs. That's your first cushion target.",
+      "on_screen": "Add up one month of must-pay costs. That's your first cushion target.",
+      "chart": null
+    }
+  ],
+  "facts_used": [
+    "emergency_400_cash"
+  ],
+  "risk_note": "Stock prices can drop at any time, which is why money needed soon is often kept in savings instead."
+}

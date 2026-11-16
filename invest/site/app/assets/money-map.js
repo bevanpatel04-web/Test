@@ -11,10 +11,11 @@
     costs: { list: "costsList", add: "addCost", noun: "cost", start: 3, blank: { name: "", amount: null },
              fields: [{ key: "name", label: "What it is", type: "text", wide: true, examples: ["Rent", "Groceries", "Phone"] },
                       { key: "amount", label: "Per month ($)", type: "number" }] },
-    debts: { list: "debtsList", add: "addDebt", noun: "debt", start: 1, cls: "three", blank: { name: "", balance: null, rate: null },
-             fields: [{ key: "name", label: "Debt", type: "text", wide: true, examples: ["Credit card"] },
+    debts: { list: "debtsList", add: "addDebt", noun: "debt", start: 1, cls: "four", blank: { name: "", balance: null, rate: null, minimum: null },
+             fields: [{ key: "name", label: "Debt", type: "text", wide: true, examples: ["Credit card", "Student loan"] },
                       { key: "balance", label: "Balance ($)", type: "number" },
-                      { key: "rate", label: "Interest rate (APR %)", type: "number", step: "0.01", max: 100 }] },
+                      { key: "rate", label: "Interest rate (APR %)", type: "number", step: "0.01", max: 100 },
+                      { key: "minimum", label: "Minimum payment ($/month)", type: "number" }] },
     goals: { list: "goalsList", add: "addGoal", noun: "goal", start: 1, cls: "three", blank: { name: "", amount: null, by: "" },
              fields: [{ key: "name", label: "Goal", type: "text", wide: true, examples: ["Trip, laptop, moving costs"] },
                       { key: "amount", label: "Amount ($)", type: "number" },
@@ -95,6 +96,12 @@
 
   function fillForm() {
     $("pay").value = mm.pay == null ? "" : mm.pay;
+    $("gross").value = mm.gross == null ? "" : mm.gross;
+    $("flexible").value = mm.flexible == null ? "" : mm.flexible;
+    $("cushionWhere").value = mm.cushion.where;
+    $("cushionRate").value = mm.cushion.rate == null ? "" : mm.cushion.rate;
+    $("cushionInsured").checked = mm.cushion.insured;
+    $("creditChecked").value = mm.credit_checked;
     $("months").value = mm.cushion.months;
     $("saved").value = mm.cushion.saved == null ? "" : mm.cushion.saved;
     $("otherAccounts").value = mm.other_accounts;
@@ -105,6 +112,15 @@
   }
 
   $("pay").addEventListener("input", function () { mm.pay = num(this.value); changed(); });
+  $("gross").addEventListener("input", function () { mm.gross = num(this.value); changed(); });
+  $("flexible").addEventListener("input", function () { mm.flexible = num(this.value); changed(); });
+  $("cushionWhere").addEventListener("input", function () { mm.cushion.where = this.value.slice(0, 80); changed(); });
+  $("cushionRate").addEventListener("input", function () { mm.cushion.rate = num(this.value, 100); changed(); });
+  $("cushionInsured").addEventListener("change", function () { mm.cushion.insured = this.checked; changed(); });
+  $("creditChecked").addEventListener("input", function () {
+    mm.credit_checked = /^\d{4}-(0[1-9]|1[0-2])$/.test(this.value) ? this.value : "";
+    changed();
+  });
   $("saved").addEventListener("input", function () { mm.cushion.saved = num(this.value); changed(); });
   $("otherAccounts").addEventListener("input", function () { mm.other_accounts = this.value.slice(0, 120); changed(); });
   $("months").addEventListener("input", function () {
@@ -133,8 +149,13 @@
   }
   function months(n) { return A.plural(n, "month"); }
 
+  // The worksheet is open to everyone; the combined summary is part of membership.
   function renderSummary() {
+    var member = A.loadProgress().member;
+    $("summaryLocked").classList.toggle("hidden", member);
+    $("summaryOpen").classList.toggle("hidden", !member);
     var s = L.moneyMapSummary(mm, L.today()), box = A.clear($("summaryBody")), $m = A.money;
+    if (!member) return;
     if (s.isEmpty) {
       box.appendChild(el("p", { class: "meta", id: "summaryEmpty", text: "Fill in any part above and your summary shows up here." }));
       return;
@@ -143,6 +164,10 @@
 
     var month = [];
     if (s.pay !== null) month.push(el("p", {}, ["Take-home pay: ", el("strong", { text: $m(s.pay) }), " a month."]));
+    if (s.deductions !== null) {
+      month.push(el("p", { text: "Gross pay: " + $m(s.gross) + ". Taxes and deductions take " + $m(s.deductions) +
+        " (" + pct(s.deductionShare) + ") before it reaches you." }));
+    } else if (s.gross !== null) month.push(el("p", { text: "Gross pay: " + $m(s.gross) + " a month." }));
     if (s.costsCount) {
       month.push(el("p", {}, ["Must-pay costs: ", el("strong", { text: $m(s.costsTotal) }), " a month, across " + A.plural(s.costsCount, "item") + "."]));
       if (s.costShare !== null) {
@@ -151,13 +176,19 @@
           : "That's " + $m(-s.leftover) + " a month more than your take-home pay." }));
       }
     }
+    if (s.flexible !== null) {
+      month.push(el("p", { text: "Flexible spending: " + $m(s.flexible) + " a month." +
+        (s.leftoverAfterFlexible === null ? "" : s.leftoverAfterFlexible >= 0
+          ? " After must-pay costs and flexible spending, " + $m(s.leftoverAfterFlexible) + " is left."
+          : " Together with must-pay costs, that's " + $m(-s.leftoverAfterFlexible) + " more than your take-home pay.") }));
+    }
     if (month.length) section("Each month", "sumMonth", month);
 
     var cushion = [];
     if (s.cushion) {
       var c = s.cushion;
       cushion.push(el("p", {}, ["Your cushion target is " + months(c.months) + " of the costs you entered: ",
-        el("strong", { class: "big", text: $m(c.target) }), "."]));
+        el("strong", { text: $m(c.target) }), "."]));
       if (c.saved !== null) {
         cushion.push(el("p", { text: c.remaining > 0
           ? "You've saved " + $m(c.saved) + " of it (" + pct(c.share) + "), with " + $m(c.remaining) + " to go."
@@ -168,23 +199,40 @@
     } else {
       cushion.push(el("p", { class: "meta", text: "Add your must-pay costs to see a cushion target." }));
     }
+    if (s.cushionPlace) {
+      var cp = s.cushionPlace, bits = [];
+      if (cp.where) bits.push("Kept in: " + cp.where + ".");
+      if (cp.rate !== null) bits.push("Interest rate you entered: " + rate(cp.rate) + " APY.");
+      if (cp.insured) bits.push("You noted it's at a federally insured bank or credit union.");
+      cushion.push(el("p", { text: bits.join(" ") }));
+    }
     section("Cash cushion", "sumCushion", cushion);
 
     if (s.debts.length) {
       var ol = el("ol", { id: "debtOrder" });
       s.debts.forEach(function (d) {
-        ol.appendChild(el("li", { text: d.rate === null
+        ol.appendChild(el("li", { text: (d.rate === null
           ? d.name + ": " + $m(d.balance) + " (no rate entered)"
-          : d.name + ": " + $m(d.balance) + " at " + rate(d.rate) + " APR, about " + $m(d.monthlyInterest) + " a month in interest" }));
+          : d.name + ": " + $m(d.balance) + " at " + rate(d.rate) + " APR, about " + $m(d.monthlyInterest) + " a month in interest") +
+          (d.minimum ? ", minimum " + $m(d.minimum) + " a month" : "") }));
       });
       section("Debts, by the interest rate you typed", "sumDebts", [
         el("p", { class: "meta", text: "Highest rate first. On the same balance, a higher rate adds more interest each month." }),
         ol,
-        el("p", { text: "Total owed: " + $m(s.debtTotal) + ". At these rates, that's about " + $m(s.debtMonthlyInterest) + " a month in interest." }),
+        el("p", { text: "Total owed: " + $m(s.debtTotal) + ". At these rates, that's about " + $m(s.debtMonthlyInterest) + " a month in interest." +
+          (s.debtMinimums ? " Minimum payments add up to " + $m(s.debtMinimums) + " a month." : "") }),
+        s.debts.length > 1 ? el("p", { text: s.debts[0] === s.debtsByBalance[0]
+          ? "Two common payoff orders, highest rate first and smallest balance first, both start with " + s.debts[0].name + "."
+          : "Two common payoff orders: highest rate first starts with " + s.debts[0].name +
+            "; smallest balance first starts with " + s.debtsByBalance[0].name + "." }) : null,
         el("p", { class: "fine", text: "Monthly interest here is the balance times the rate, divided by 12. Your statement's figure can differ." })
       ]);
     }
 
+    if (s.creditChecked) {
+      section("Credit reports", "sumCredit", [el("p", { text: "You last checked your credit reports in " + monthName(s.creditChecked) +
+        (s.creditMonthsAgo > 0 ? " (" + months(s.creditMonthsAgo) + " ago)." : ".") })]);
+    }
     if (s.accounts.length || s.otherAccounts) {
       var ul = el("ul", {});
       s.accounts.forEach(function (a) { ul.appendChild(el("li", { text: a })); });
@@ -238,7 +286,7 @@
     $("fromLesson").querySelector("a").setAttribute("href", A.lessonHref(from));
     $("fromLesson").classList.remove("hidden");
   }
-  if (!A.loadProgress().member) $("memberNote").classList.remove("hidden");
+  window.addEventListener("pageshow", function (e) { if (e.persisted) renderSummary(); });
 
   fillForm();
   renderSummary();

@@ -18,13 +18,12 @@
     <main id="main">
       <p class="hidden" id="fromLesson"><a class="back" href="index.html">← Back to the lesson</a></p>
       <h1>Your Money Map</h1>
-      <p class="lede">A private worksheet for the numbers behind your money. Fill in what you know, skip what you don't. The summary at the bottom explains what it adds up to.</p>
+      <p class="lede">A private worksheet for the numbers behind your money. Fill in what you know, skip what you don't. Members also get a summary that explains what it all adds up to.</p>
 
       <div class="card private" id="privacy">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M5.5 11h13v9.5h-13z"/></svg>
         <p><strong>It stays on this device.</strong> What you type is saved in this browser only. Nothing is sent to Patient Money or anyone else, and clearing your browser data deletes it.</p>
       </div>
-      <p class="fine hidden" id="memberNote">The Money Map is part of membership. In this prototype it's open to everyone.</p>
       <p class="notice hidden" id="storageNote" role="status"></p>
 
       <form id="mapForm" novalidate>
@@ -35,13 +34,24 @@
             <input type="number" id="pay" min="0" step="any" inputmode="decimal" autocomplete="off">
             <p class="hint">What lands in your account each month, after taxes and deductions.</p>
           </div>
+          <div class="field">
+            <label for="gross">Monthly gross pay, before taxes and deductions ($)</label>
+            <input type="number" id="gross" min="0" step="any" inputmode="decimal" autocomplete="off">
+            <p class="hint">It's on your pay stub. Optional.</p>
+          </div>
         </section>
 
         <section class="card" aria-labelledby="costsTitle">
-          <h2 id="costsTitle">Must-pay costs</h2>
-          <p class="hint">Bills you have to pay every month: rent, utilities, groceries, phone, getting to work, minimum debt payments.</p>
+          <h2 id="costsTitle">Monthly costs</h2>
+          <h3>Must-pay costs</h3>
+          <p class="hint">Fixed bills you have to pay every month: rent, utilities, groceries, phone, getting to work, minimum debt payments.</p>
           <ul class="entry-list" id="costsList"></ul>
           <button type="button" class="small" id="addCost">+ Add a cost</button>
+          <div class="field spaced">
+            <label for="flexible">Flexible spending per month ($)</label>
+            <input type="number" id="flexible" min="0" step="any" inputmode="decimal" autocomplete="off">
+            <p class="hint">Things that change month to month: eating out, shopping, fun.</p>
+          </div>
         </section>
 
         <section class="card" aria-labelledby="cushionTitle">
@@ -64,6 +74,19 @@
             </div>
           </div>
           <p class="error" id="monthsError" role="alert"></p>
+          <div class="inputs spaced">
+            <div class="field">
+              <label for="cushionWhere">Where it's kept</label>
+              <input type="text" id="cushionWhere" maxlength="80" autocomplete="off" placeholder="Savings account at my bank">
+            </div>
+            <div class="field">
+              <label for="cushionRate">Its interest rate (APY %)</label>
+              <input type="number" id="cushionRate" min="0" max="100" step="0.01" inputmode="decimal" autocomplete="off">
+            </div>
+          </div>
+          <div class="checks spaced">
+            <label for="cushionInsured"><input type="checkbox" id="cushionInsured"> It's at a federally insured bank (FDIC) or credit union (NCUA)</label>
+          </div>
         </section>
 
         <section class="card" aria-labelledby="debtsTitle">
@@ -71,6 +94,11 @@
           <p class="hint">Card balances, student loans, car loans, buy now, pay later. The interest rate (APR) is on your statement.</p>
           <ul class="entry-list" id="debtsList"></ul>
           <button type="button" class="small" id="addDebt">+ Add a debt</button>
+          <div class="field spaced">
+            <label for="creditChecked">Month you last checked your credit reports</label>
+            <input type="month" id="creditChecked" autocomplete="off" placeholder="YYYY-MM">
+            <p class="hint">Your credit reports list your accounts and payment history.</p>
+          </div>
         </section>
 
         <section class="card" aria-labelledby="accountsTitle">
@@ -95,8 +123,18 @@
 
       <section class="card summary" id="summary" aria-labelledby="summaryTitle">
         <h2 id="summaryTitle">Your summary</h2>
-        <p class="fine">This explains what you entered. It isn't advice about what to do with your money.</p>
-        <div id="summaryBody"></div>
+        <div id="summaryLocked" class="hidden">
+          <p class="done-note"><span class="lock-pill"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M5.5 11h13v9.5h-13z"/></svg>Members</span> The combined summary is part of membership.</p>
+          <p>On the free plan you can fill in every part of the worksheet, and it's saved on this device. Membership adds this summary, which puts it all together: what's left each month, your cushion target, and your debts sorted by the interest rates you typed.</p>
+          <div class="row-actions">
+            <a class="btn" href="../pricing.html">See membership</a>
+            <a class="btn ghost-btn" href="account.html">Try the demo membership</a>
+          </div>
+        </div>
+        <div id="summaryOpen">
+          <p class="fine">This explains what you entered. It isn't advice about what to do with your money.</p>
+          <div id="summaryBody"></div>
+        </div>
         <p class="saved" id="savedNote" role="status"></p>
       </section>
 

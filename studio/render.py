@@ -10,6 +10,7 @@ from __future__ import annotations
 import bisect
 import json
 import math
+import re
 import subprocess
 import tempfile
 import time
@@ -23,8 +24,8 @@ from PIL import Image, ImageDraw
 from . import charts, config
 from .captions import Cue, chunks, to_vtt, validate_vtt, wrap as cap_wrap
 from .charts import Item, ease
-from .draw import (BORDER, CAPTION_BG, THEME, badge, brand_mark, check_icon, circle, faded, fit, font, rounded,
-                   text_sprite, wrap)
+from .draw import (BORDER, CAPTION_BG, THEME, badge, balanced, brand_mark, check_icon, circle, faded, fit, font,
+                   rounded, text_sprite, wrap)
 from .script import VideoScript, find_lesson, word_count
 
 # Timing (seconds)
@@ -38,8 +39,7 @@ FADE_OUT = 0.35
 
 PILLS = {"concept": "Key idea", "chart": "The numbers", "example": "Example", "recap": "Recap",
          "quiz_teaser": "Quick check"}
-QUIZ_FOOTER = {False: "Answer the questions below the video to finish the lesson.",
-               True: "Answer the questions in the Patient Money app."}
+QUIZ_FOOTER = "Answer the questions below the video to finish the lesson."
 
 
 # ---- Timeline -------------------------------------------------------------------------------------
@@ -50,6 +50,39 @@ class SceneTime:
     speech_start: float
     speech_end: float
     cues: list[Cue]
+    words: list[tuple[str, float]] = field(default_factory=list)  # (spoken word, absolute time it starts)
+
+    def spoken_at(self, phrase: str, after: float = 0.0) -> float | None:
+        """Seconds into the scene when the narration says `phrase` (or most of its words), else None."""
+        want = _tokens(phrase)
+        if not want:
+            return None
+        need = max(1, math.ceil(len(want) * 0.5))
+        stems = [w for w, _ in self.words]
+        for i, (w, t) in enumerate(self.words):
+            if t - self.start < after or w not in want:
+                continue
+            if len(set(stems[i:i + len(want) + 5]) & set(want)) >= need:
+                return t - self.start
+        return None
+
+
+_STOP = set("the a an and or of to in on for is are be it its it's you your that this with at by as from can "
+            "but not no so if into what when than then".split())
+
+
+def _tokens(text: str) -> list[str]:
+    """Comparable word stems: '$191,700' -> '191700', 'Promised' -> 'promi'."""
+    out = []
+    for raw in text.lower().split():
+        digits = re.sub(r"[^0-9]", "", raw)
+        if digits and re.search(r"\d", raw):
+            out.append(digits)
+            continue
+        w = re.sub(r"[^a-z]", "", raw)
+        if len(w) >= 3 and w not in _STOP:
+            out.append(w[:5])
+    return out
 
 
 @dataclass
@@ -79,7 +112,7 @@ def plan_timeline(script: VideoScript, voice=None) -> Timeline:
     t, scenes, clips, words, speech = 0.0, [], [], 0, 0.0
     for sc in script.scenes:
         lead = LEAD.get(sc.kind, DEFAULT_LEAD)
-        cur, cues = t + lead, []
+        cur, cues, words_t = t + lead, [], []
         for ch in chunks(sc.narration):
             n = word_count(ch)
             words += n
@@ -91,13 +124,20 @@ def plan_timeline(script: VideoScript, voice=None) -> Timeline:
                 d = max(0.9, n / config.WPM * 60)
             speech += d
             cues.append(Cue(cur, cur + d, ch))
+            total = max(1, len(ch))
+            pos = 0
+            for raw in ch.split():  # word start times, spread by character count within the chunk
+                idx = ch.index(raw, pos)
+                for tok in _tokens(raw):
+                    words_t.append((tok, cur + d * idx / total))
+                pos = idx + len(raw)
             cur += d + (GAP_SENTENCE if ch.rstrip("\"”’)")[-1:] in ".!?" else GAP_CLAUSE)
         speech_end = cues[-1].end if cues else t + lead
         end = max(speech_end + TAIL, t + MIN_SCENE.get(sc.kind, DEFAULT_MIN_SCENE))
         for i, c in enumerate(cues):  # let each caption linger briefly, never into the next one
             limit = cues[i + 1].start - 0.04 if i + 1 < len(cues) else end - 0.05
             c.end = min(c.end + 0.3, limit)
-        scenes.append(SceneTime(t, end, t + lead, speech_end, cues))
+        scenes.append(SceneTime(t, end, t + lead, speech_end, cues, words_t))
         t = end
     tl = Timeline(scenes, t, words=words, speech_seconds=speech)
     if clips:
@@ -123,17 +163,17 @@ def _truncate(tl: Timeline, seconds: float) -> Timeline:
         if s.start >= seconds:
             break
         cues = [Cue(c.start, min(c.end, seconds - 0.01), c.text) for c in s.cues if c.start < seconds - 0.2]
-        scenes.append(SceneTime(s.start, min(s.end, seconds), s.speech_start, min(s.speech_end, seconds), cues))
+        scenes.append(SceneTime(s.start, min(s.end, seconds), s.speech_start, min(s.speech_end, seconds), cues, s.words))
     audio = tl.audio[: int(seconds * tl.sample_rate) + 1] if tl.audio is not None else None
     return Timeline(scenes, seconds, tl.narration, audio, tl.sample_rate, tl.words, tl.speech_seconds)
 
 
 # ---- Layout ---------------------------------------------------------------------------------------
 BASE = {
-    False: dict(margin=88, brand_y=44, top=132, bottom=64, cap_top=566, brand=22, pill=17, title=70, heading=48,
-                body=40, small=20, chart=20, caption=29, hero=150),
+    False: dict(margin=88, brand_y=44, top=132, bottom=64, cap_top=604, brand=22, pill=17, title=70, heading=48,
+                body=40, small=20, chart=22, caption=29, hero=150),
     True: dict(margin=96, brand_y=150, top=290, bottom=330, cap_top=1330, brand=32, pill=26, title=92, heading=68,
-               body=50, small=30, chart=30, caption=44, hero=210),
+               body=54, small=32, chart=34, caption=44, hero=210),
 }
 
 
@@ -189,10 +229,18 @@ def _lines(text: str) -> list[str]:
     return [x.strip() for x in text.split("\n") if x.strip()]
 
 
-def _reveal_times(n: int, st: SceneTime) -> list[float]:
-    """When each on-screen line appears: spread across the narration, relative to the scene start."""
+def _reveal_times(lines: list[str], st: SceneTime) -> list[float]:
+    """When each on-screen line appears (seconds into the scene): as the narration says it, or, if the
+    narration never does, spread evenly across the narration."""
     s0, span = st.speech_start - st.start, max(0.1, st.speech_end - st.speech_start)
-    return [max(0.35, s0 - 0.1 + span * k / max(1, n)) for k in range(n)]
+    n, out, prev = len(lines), [], 0.0
+    for k, line in enumerate(lines):
+        t = st.spoken_at(line, after=prev)
+        t = (t - 0.15) if t is not None else (s0 - 0.1 + span * k / max(1, n))
+        t = max(0.35, t, (out[-1] + 0.3) if out else 0.0)
+        out.append(t)
+        prev = t
+    return out
 
 
 def _split_label(line: str):
@@ -208,7 +256,7 @@ def build_rows(sc, st: SceneTime, L: Layout, y: float, style: str) -> list[Item]
     u, lines = L.u, _lines(sc.on_screen)
     if not lines:
         return []
-    times = _reveal_times(len(lines), st)
+    times = _reveal_times(lines, st)
     avail = L.bottom - y - 36 * u
     card = style in ("concept", "example")
     pad = 36 * u if card else 0
@@ -221,11 +269,11 @@ def build_rows(sc, st: SceneTime, L: Layout, y: float, style: str) -> list[Item]
         for line in lines:
             pair = _split_label(line) if style == "example" else None
             if pair:
-                lab = text_sprite(wrap(pair[0], f_lab, inner_w * 0.62), f_lab, THEME["muted"], lh=1.15)
+                lab = text_sprite(balanced(pair[0], f_lab, inner_w * 0.62), f_lab, THEME["muted"], lh=1.15)
                 val = text_sprite(pair[1], f_val, THEME["text"], lh=1.0)
                 rows.append(("pair", lab, val, max(lab.height, val.height)))
             else:
-                t = text_sprite(wrap(line, f_txt, inner_w - icon - gap_icon), f_txt, THEME["text"], lh=1.18)
+                t = text_sprite(balanced(line, f_txt, inner_w - icon - gap_icon), f_txt, THEME["text"], lh=1.18)
                 rows.append(("text", t, None, t.height))
         row_gap = size * (0.75 if style == "recap" else 0.6)
         total = sum(r[3] for r in rows) + row_gap * (len(rows) - 1) + 2 * pad
@@ -297,7 +345,7 @@ def build_title(sc, st, L: Layout, level) -> Built:
     items: list[Item] = []
     label = f"Level {level['number']} · {level['title']}" if level else "Lesson"
     pill = badge(label, font("sb", L.px("pill") * 1.2), THEME["accent"], THEME["accent_soft"], 16 * u, 8 * u)
-    text_w = L.cw if L.vertical else L.cw * 0.7
+    text_w = L.cw if L.vertical else L.cw * 0.64
     f_t, t_lines = fit(sc.heading, "xb", L.px("title"), text_w, 3)
     title = text_sprite(t_lines, f_t, THEME["text"], lh=1.06)
     sub = None
@@ -347,7 +395,7 @@ def build_chart(sc, st, L: Layout) -> Built:
     note_y = L.bottom
     if spec.note.strip():
         f_n = font("rg", L.px("small") * 1.05)
-        note = text_sprite(wrap(spec.note, f_n, L.cw)[:3], f_n, THEME["muted"], lh=1.25)
+        note = text_sprite(balanced(spec.note, f_n, L.cw)[:3], f_n, THEME["muted"], lh=1.25)
         note_y = L.bottom - note.height
         items.append(Item(note, L.mx, note_y, 0.6, "fade"))
     box = (L.mx, y + (40 if L.vertical else 30) * u, L.W - L.mx, note_y - (40 if L.vertical else 22) * u)
@@ -357,7 +405,7 @@ def build_chart(sc, st, L: Layout) -> Built:
         box = (box[0], mid - h / 2, box[2], mid + h / 2)
     s0, span = st.speech_start - st.start, max(1.0, st.speech_end - st.speech_start)
     t0, dur = s0 + 0.3, min(9.0, max(3.0, span * 0.55))
-    parts = charts.build(spec, box, L, t0, dur, L.px("body"))
+    parts = charts.build(spec, box, L, t0, dur, L.px("body"), st.spoken_at)
     return Built(items + parts.items, parts)
 
 
@@ -372,7 +420,7 @@ def build_quiz(sc, st, L: Layout) -> Built:
     box_w = L.cw if L.vertical else min(L.cw, 860 * u)
     ch_h = f_c.size * 2.3
     gap = 16 * u if not L.vertical else 24 * u
-    foot = text_sprite(QUIZ_FOOTER[L.vertical], font("md", L.px("small") * 1.05), THEME["muted"], lh=1.0)
+    foot = text_sprite(QUIZ_FOOTER, font("md", L.px("small") * 1.05), THEME["muted"], lh=1.0)
     block = qs.height + 30 * u + len(choices) * (ch_h + gap) - gap + 30 * u + foot.height
     y0 = y + 36 * u + max(0, (L.bottom - y - 36 * u - block) * (0.4 if L.vertical else 0.2))
     items.append(Item(qs, L.mx, y0, 0.4))
@@ -407,7 +455,7 @@ def build_end(sc, st, L: Layout, risk_note: str | None) -> Built:
         parts.append((text_sprite(o_lines, f_o, THEME["text"], lh=1.22, align="center"), 0.5, 26 * u))
     if risk_note:
         f_r = font("rg", L.px("small") * 1.1)
-        r_lines = wrap(risk_note, f_r, L.cw * (0.95 if L.vertical else 0.72))[:3]
+        r_lines = balanced(risk_note, f_r, L.cw * (0.95 if L.vertical else 0.72))[:3]
         parts.append((text_sprite(r_lines, f_r, THEME["muted"], lh=1.3, align="center"), 0.7, 34 * u))
     a = text_sprite(config.AI_LABEL, font("sb", L.px("body") * 0.66), THEME["text"], lh=1.0)
     b = text_sprite(config.EDU_LABEL, font("md", L.px("body") * 0.56), THEME["muted"], lh=1.0)
@@ -603,6 +651,8 @@ def render(script: VideoScript, *, vertical: bool = False, voice=None, size: tup
            crf: int | None = None, update_manifest: bool = True, poster: bool = True) -> RenderResult:
     """Render one script. `voice` is a voice object from studio.voice (None means captions only)."""
     t_start = time.time()
+    if vertical:  # social cut: the quiz lives in the app, so "answer below the video" doesn't belong in a clip
+        script = script.model_copy(update={"scenes": [x for x in script.scenes if x.kind != "quiz_teaser"]})
     W, H = size or ((1080, 1920) if vertical else (1280, 720))
     W, H = W - W % 2, H - H % 2
     tl = plan_timeline(script, voice)
@@ -611,11 +661,13 @@ def render(script: VideoScript, *, vertical: bool = False, voice=None, size: tup
         tl = _truncate(tl, seconds)
     burn = vertical or tl.audio is None  # a video with no voice carries its words on screen
     L = Layout(W, H, vertical, captions=burn)
+    if out_dir is None and not full:  # previews never overwrite real lesson media
+        out_dir = config.OUT_DIR / "preview"
     out_dir = Path(out_dir or (config.VERTICAL_DIR if vertical else config.MEDIA_DIR))
     out_dir.mkdir(parents=True, exist_ok=True)
     mp4, vtt = out_dir / f"{script.slug}.mp4", out_dir / f"{script.slug}.vtt"
     vtt_text = to_vtt(tl.cues)
-    problems = validate_vtt(vtt_text, tl.duration)
+    problems = [x for x in validate_vtt(vtt_text, tl.duration) if full or x != "no cues"]
     if problems:
         raise RuntimeError("caption timing problem: " + "; ".join(problems))
     maker = FrameMaker(script, tl, L, burn)

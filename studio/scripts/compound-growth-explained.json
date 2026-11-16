@@ -1,0 +1,69 @@
+{
+  "slug": "compound-growth-explained",
+  "title": "Compound growth, explained with $100 a month",
+  "scenes": [
+    {
+      "kind": "title",
+      "heading": "Compound growth, explained with $100 a month",
+      "narration": "Compound growth sounds complicated. It isn't. Let's walk through it with $100 a month.",
+      "on_screen": "Why starting earlier matters",
+      "chart": null
+    },
+    {
+      "kind": "concept",
+      "heading": "Growth on growth",
+      "narration": "Compound growth means your gains can earn gains of their own. If an investment grows this year, next year that growth can grow too. Over many years, that adds up, which is why time matters so much.",
+      "on_screen": "Gains can earn gains\nThe effect builds over the years",
+      "chart": null
+    },
+    {
+      "kind": "chart",
+      "heading": "$100 a month, two start dates",
+      "narration": "Here's a hypothetical. One person puts in $100 a month from age 25. Another starts at 30. Both assume a steady 6% a year. By 65, the early starter has put in $48,000, and the balance could be about $191,700. The later starter could have about $138,000. Waiting five years means $6,000 less put in, but about $53,700 less at the end.",
+      "on_screen": "Start at 25 or at 30",
+      "chart": {
+        "type": "growth",
+        "title": "",
+        "monthly": 100.0,
+        "rate": 0.06,
+        "start_age": 25,
+        "end_age": 65,
+        "delay_years": 5,
+        "labels": [],
+        "values": [],
+        "unit": "",
+        "note": "Hypothetical: $100 added at the start of each month, 6% a year compounded monthly, ages 25 to 65. Not a prediction."
+      }
+    },
+    {
+      "kind": "concept",
+      "heading": "The catch",
+      "narration": "Now the catch. Real markets don't move in a smooth line like this chart. Some years they fall, sometimes a lot, and recovering can take years. A steady 6% is a simplification, not a promise.",
+      "on_screen": "Real markets go up and down\nSome years they fall a lot\nGrowth is never promised",
+      "chart": null
+    },
+    {
+      "kind": "recap",
+      "heading": "Recap",
+      "narration": "Quick recap. Growth can earn growth of its own over time. Starting earlier gives money more years to grow. And growth is never promised. Examples are hypothetical. Investments can fall in value, including the money you put in.",
+      "on_screen": "Gains can earn gains\nEarlier means more years\nGrowth is never promised",
+      "chart": null
+    },
+    {
+      "kind": "quiz_teaser",
+      "heading": "Quick check",
+      "narration": "Quick check. What does compound growth mean? Answer three short questions below the video to finish the lesson.",
+      "on_screen": "Compound growth means...\nYour gains can earn gains of their own\nPrices rise every single year\nYour bank pays a fixed bonus",
+      "chart": null
+    },
+    {
+      "kind": "end",
+      "heading": "Your turn",
+      "narration": "Now try the calculator. Compare starting at your age with starting five years later.",
+      "on_screen": "Compare starting at your age with starting 5 years later.",
+      "chart": null
+    }
+  ],
+  "facts_used": [],
+  "risk_note": "Examples are hypothetical. Investments can fall in value, including the money you put in."
+}

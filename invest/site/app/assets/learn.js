@@ -232,9 +232,15 @@
     var months = amount(cushion.months, 24);
     return {
       pay: amount(r.pay),
+      gross: amount(r.gross),
       costs: rows(r.costs, function (c) { return { name: text(c.name), amount: amount(c.amount) }; }),
-      cushion: { months: months === null ? 1 : months, saved: amount(cushion.saved) },
-      debts: rows(r.debts, function (d) { return { name: text(d.name), balance: amount(d.balance), rate: amount(d.rate, 100) }; }),
+      flexible: amount(r.flexible),
+      cushion: { months: months === null ? 1 : months, saved: amount(cushion.saved), where: text(cushion.where),
+                 rate: amount(cushion.rate, 100), insured: cushion.insured === true },
+      debts: rows(r.debts, function (d) {
+        return { name: text(d.name), balance: amount(d.balance), rate: amount(d.rate, 100), minimum: amount(d.minimum) };
+      }),
+      credit_checked: isMonth(r.credit_checked) ? r.credit_checked : "",
       accounts: accounts,
       other_accounts: text(r.other_accounts, 120),
       goals: rows(r.goals, function (g) { return { name: text(g.name), amount: amount(g.amount), by: isMonth(g.by) ? g.by : "" }; }),
@@ -254,16 +260,30 @@
     var costs = mm.costs.filter(function (c) { return c.amount !== null && c.amount > 0; });
     var costsTotal = costs.reduce(function (s, c) { return s + c.amount; }, 0);
     var pay = mm.pay !== null && mm.pay > 0 ? mm.pay : null;
+    var gross = mm.gross !== null && mm.gross > 0 ? mm.gross : null;
+    var flexible = mm.flexible !== null && mm.flexible > 0 ? mm.flexible : null;
+    var c0 = mm.cushion;
     var out = {
       pay: pay,
+      gross: gross,
+      deductions: gross !== null && pay !== null && gross >= pay ? gross - pay : null,
+      deductionShare: gross !== null && pay !== null && gross >= pay ? (gross - pay) / gross : null,
       costsTotal: costsTotal,
       costsCount: costs.length,
       leftover: pay !== null && costs.length ? pay - costsTotal : null,
       costShare: pay !== null && costs.length ? costsTotal / pay : null,
+      flexible: flexible,
+      leftoverAfterFlexible: pay !== null && flexible !== null ? pay - costsTotal - flexible : null,
       cushion: null,
+      cushionPlace: c0.where.trim() || c0.rate !== null || c0.insured
+        ? { where: c0.where.trim(), rate: c0.rate, insured: c0.insured } : null,
       debts: [],
+      debtsByBalance: [],
       debtTotal: 0,
       debtMonthlyInterest: 0,
+      debtMinimums: 0,
+      creditChecked: mm.credit_checked || null,
+      creditMonthsAgo: mm.credit_checked ? -monthsUntil(mm.credit_checked, day) : null,
       accounts: ACCOUNT_TYPES.filter(function (t) { return mm.accounts[t.key]; }).map(function (t) { return t.label; }),
       otherAccounts: mm.other_accounts.trim(),
       goals: []
@@ -277,7 +297,7 @@
     // Sorted by the rate the member typed, highest first; debts with no rate go last.
     out.debts = mm.debts.filter(function (d) { return d.balance !== null && d.balance > 0; })
       .map(function (d, i) {
-        return { name: d.name.trim() || "Debt " + (i + 1), balance: d.balance, rate: d.rate,
+        return { name: d.name.trim() || "Debt " + (i + 1), balance: d.balance, rate: d.rate, minimum: d.minimum,
                  monthlyInterest: d.rate === null ? null : d.balance * d.rate / 100 / 12, order: i };
       })
       .sort(function (a, b) {
@@ -286,12 +306,16 @@
       });
     out.debtTotal = out.debts.reduce(function (s, d) { return s + d.balance; }, 0);
     out.debtMonthlyInterest = out.debts.reduce(function (s, d) { return s + (d.monthlyInterest || 0); }, 0);
+    out.debtMinimums = out.debts.reduce(function (s, d) { return s + (d.minimum || 0); }, 0);
+    // The other common payoff order: smallest balance first.
+    out.debtsByBalance = out.debts.slice().sort(function (a, b) { return a.balance - b.balance || a.order - b.order; });
     out.goals = mm.goals.filter(function (g) { return g.name.trim() || g.amount; }).map(function (g, i) {
       var months = g.by ? monthsUntil(g.by, day) : null;
       return { name: g.name.trim() || "Goal " + (i + 1), amount: g.amount, by: g.by, months: months,
                perMonth: g.amount && months && months > 0 ? g.amount / months : null, past: months !== null && months <= 0 };
     });
-    out.isEmpty = pay === null && !costs.length && !out.debts.length && !out.accounts.length && !out.otherAccounts && !out.goals.length;
+    out.isEmpty = pay === null && gross === null && flexible === null && !costs.length && !out.cushionPlace &&
+      !out.debts.length && !out.creditChecked && !out.accounts.length && !out.otherAccounts && !out.goals.length;
     return out;
   }
 

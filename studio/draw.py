@@ -59,14 +59,32 @@ def wrap(text: str, f, max_w: float) -> list[str]:
     return [x for x in lines if x] or [""]
 
 
+def balanced(text: str, f, max_w: float) -> list[str]:
+    """Wrap into as few lines as greedy wrapping needs, but with even line lengths (no orphan last word)."""
+    out = []
+    for para in text.split("\n"):
+        lines = wrap(para, f, max_w)
+        if len(lines) > 1:
+            lo, hi = max(f.getlength(w) for w in para.split()), max_w
+            for _ in range(14):
+                mid = (lo + hi) / 2
+                if len(wrap(para, f, mid)) <= len(lines):
+                    hi = mid
+                else:
+                    lo = mid
+            lines = wrap(para, f, hi + 0.5)
+        out += lines
+    return [x for x in out if x] or [""]
+
+
 def fit(text: str, style: str, px: float, max_w: float, max_lines: int, min_ratio: float = 0.6):
-    """Largest font size (down to min_ratio of px) at which the text wraps into max_lines."""
+    """Largest font size (down to min_ratio of px) at which the text wraps into max_lines (balanced)."""
     size = px
     while True:
         f = font(style, size)
         lines = wrap(text, f, max_w)
         if len(lines) <= max_lines or size <= px * min_ratio:
-            return f, lines
+            return f, balanced(text, f, max_w)
         size *= 0.93
 
 

@@ -43,11 +43,6 @@
     ]);
   }
 
-  function duration(s) {
-    s = Math.round(+s);
-    return s > 0 ? Math.floor(s / 60) + ":" + (s % 60 < 10 ? "0" : "") + (s % 60) : "";
-  }
-
   function videoBlock(entry) {
     var v = data.manifest.videos[entry.lesson.slug];
     var mp4 = v && typeof v === "object" ? A.mediaUrl(v.mp4) : null;
@@ -70,10 +65,7 @@
     var label = typeof v.ai_label === "string" && v.ai_label.trim() ? v.ai_label.trim() : "Made with AI, reviewed by a person";
     // Until it's approved, nobody has signed off on it, so the label says so.
     cap.appendChild(el("span", { class: "ai-label", text: approved ? label : "Made with AI. Not yet approved by a person." }));
-    var bits = [];
-    if (duration(v.duration_s)) bits.push(duration(v.duration_s));
-    if (v.narration === "none") bits.push("captions only, no voice");
-    if (bits.length) cap.appendChild(el("span", { text: "· " + bits.join(" · ") }));
+    if (v.narration === "none") cap.appendChild(el("span", { text: "\u00b7 Captions only, no voice" }));
     fig.appendChild(el("div", { class: "video-frame" }, video));
     fig.appendChild(cap);
     return fig;

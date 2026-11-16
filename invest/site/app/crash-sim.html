@@ -20,7 +20,6 @@
       <p class="pill" id="kindPill">Hypothetical scenario · Not real market history · Not a forecast</p>
       <h1>Crash simulator</h1>
       <p class="lede">Live through a market crash with a pretend portfolio. At the bottom, make your call. Then see what holding, selling, or selling and buying back later would have done.</p>
-      <p class="fine hidden" id="memberNote">The crash simulator is part of membership. In this prototype it's open to everyone.</p>
 
       <section class="card" aria-labelledby="setupTitle">
         <h2 id="setupTitle">1. Pick a scenario</h2>
@@ -42,6 +41,14 @@
         <p class="sr-only" id="chartReadout" aria-live="polite"></p>
         <h3 class="sr-only" id="choiceTitle">Your call</h3>
         <div class="choices" id="choices" role="group" aria-labelledby="choiceTitle"></div>
+        <div class="callout hidden" id="simLocked">
+          <p class="done-note"><span class="lock-pill"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M5.5 11h13v9.5h-13z"/></svg>Members</span> Making the call is part of membership.</p>
+          <p>Members pick hold, sell at the bottom, or sell and buy back a year later, then see what each choice would have done over the whole scenario.</p>
+          <div class="row-actions">
+            <a class="btn" href="../pricing.html">See membership</a>
+            <a class="btn ghost-btn" href="account.html">Try the demo membership</a>
+          </div>
+        </div>
         <div id="result" aria-live="polite"></div>
         <div class="tiles three hidden" id="tiles"></div>
         <div class="row-actions hidden" id="againRow"><button type="button" class="ghost" id="againBtn">Live through it again</button></div>

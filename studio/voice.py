@@ -119,7 +119,7 @@ class FliteVoice:
 
     name = "flite"
     LIB, VOICE_LIB, REGISTER = "libflite.so.1", "libflite_cmu_us_slt.so.1", "register_cmu_us_slt"
-    STRETCH = 1.12   # >1 is slower; measured on the sample scripts to land at about 140 words per minute
+    STRETCH = 1.16   # >1 is slower; measured on the sample scripts to land at 130-150 words per minute
 
     @classmethod
     def available(cls) -> bool:
