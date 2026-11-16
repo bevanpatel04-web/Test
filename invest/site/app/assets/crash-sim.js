@@ -42,7 +42,7 @@
     L.CHOICES.forEach(function (c) {
       var b = el("button", { type: "button", "data-choice": c.id, "aria-pressed": String(state.pick === c.id) },
         [el("span", { class: "key s" + SLOT[c.id], "aria-hidden": "true" }), c.label]);
-      b.addEventListener("click", function () { state.pick = c.id; update(); $("result").focus && null; });
+      b.addEventListener("click", function () { state.pick = c.id; update(); });
       box.appendChild(b);
     });
   }
@@ -225,7 +225,7 @@
     }
     model.events.forEach(function (e) {
       svg.appendChild(svgEl("line", { "class": "event", x1: x(e.m), x2: x(e.m), y1: mg.t - 12, y2: y(0) }));
-      var t = svgEl("text", { "class": "event-label", x: x(e.m) + (e.anchor === "end" ? -4 : 4), y: mg.t - 16 + 8, "text-anchor": e.anchor });
+      var t = svgEl("text", { "class": "event-label", x: x(e.m) + (e.anchor === "end" ? -4 : 4), y: mg.t - 10, "text-anchor": e.anchor });
       t.textContent = e.label;
       svg.appendChild(t);
     });

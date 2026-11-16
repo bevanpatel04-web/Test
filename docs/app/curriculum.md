@@ -50,12 +50,12 @@ Lessons per level: L1 9, L2 9, L3 9, L4 9, L5 10. Minutes per level: 32, 33, 34,
 
 - **Free:** Level 1 (9 lessons, 32 minutes) and the existing calculator.
 - **Members:** Levels 2-5 (37 lessons), the crash simulator and the Money Map. No free lesson uses the crash simulator.
-- **Decision needed:** 8 of the 9 Level 1 lessons end with a Money Map worksheet, as the seed lessons did. The suggestion is that free users can fill in those worksheets on their own device, as a taste of the product, while the combined Money Map and the Level 2-5 worksheets stay members-only.
+- **Decision needed:** All 9 Level 1 lessons end with a Money Map worksheet, as the seed lessons did. The suggestion is that free users can fill in those worksheets on their own device, as a taste of the product, while the combined Money Map and the Level 2-5 worksheets stay members-only.
 
 ## Content rules applied
 
 - **No advice:** no securities, funds, coins, brokers or apps are named. The only names used are public regulator tools and agencies: FINRA BrokerCheck, the SEC's adviser search, the FDIC and NCUA, SIPC, the IRS, the BLS, and the official options disclosure document.
-- **Risk notes:** every lesson that touches returns, investing products, leverage, options or crypto has one (34 of 46).
+- **Risk notes:** every lesson that touches returns, investing products, leverage, options or crypto has one (38 of 46).
 - **Numbers:** statistics come only from verified facts in `invest/data/facts.json`, listed under each lesson's `needs_facts` (5 lessons cite one). Lesson text holds no statistics; the video and page pull the current figure from the registry. Any other number is simple arithmetic labeled "hypothetical".
 - **Level 5:** these lessons explain how things work and how they go wrong. They never present anything as a strategy to use.
 - **Claims filter:** every string passes, including the wrong quiz answers.
