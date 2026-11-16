@@ -12,7 +12,7 @@
 
 1. **A path, not a pile.** Five levels, about 45 short lessons, unlocked in order. Each lesson ends with a 3-question check, and you need 2 of 3 right to complete it. Spaced review brings old ideas back. You always know what's next and what you've actually learned.
 2. **Nothing to sell you.** No ads. No affiliate links. No card, loan, brokerage or crypto referrals. Every lesson cites official sources with dates, passes an automatic check for hype and advice-style language, and is approved by a person before it goes live. Our rules are public (`rules.html`).
-3. **Practice with your own numbers.** Worksheets build a private Money Map that stays on your device. The crash simulator lets you live through 2000-02, 2008-09, 2020 and 2022 with a hypothetical index portfolio, so you see what holding or selling would have done before it's ever your real money.
+3. **Practice with your own numbers.** Worksheets build a private Money Map that stays on your device. The crash simulator lets you live through hypothetical market crashes with a pretend index portfolio, so you see what holding or selling would do before it's ever your real money. (Replaying real crashes like 2008-09 needs licensed index data first; see `docs/app-research/rules.md`.)
 
 **What we are not:** an advisor, a broker, a bank or a stock-picking service. We explain how money works; members make their own calls.
 

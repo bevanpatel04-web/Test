@@ -353,7 +353,7 @@ def build_title(sc, st, L: Layout, level) -> Built:
     if sc.on_screen.strip():
         f_s, s_lines = fit(" ".join(_lines(sc.on_screen)), "md", L.px("body") * 0.95, text_w, 2)
         sub = text_sprite(s_lines, f_s, THEME["muted"], lh=1.2)
-    foot = text_sprite(f"{config.AI_LABEL} · {config.EDU_LABEL}", font("rg", L.px("small")), THEME["faint"], lh=1.0)
+    foot = text_sprite(f"{config.VIDEO_AI_LABEL} · {config.EDU_LABEL}", font("rg", L.px("small")), THEME["faint"], lh=1.0)
     motif = _path_motif(level["number"] if level else None, L)
     g1, g2 = 26 * u, 24 * u
     group_h = pill.height + g1 + title.height + (g2 + sub.height if sub else 0)
@@ -458,7 +458,7 @@ def build_end(sc, st, L: Layout, risk_note: str | None) -> Built:
         f_r = font("rg", L.px("small") * 1.1)
         r_lines = balanced(risk_note, f_r, L.cw * (0.95 if L.vertical else 0.72))[:3]
         parts.append((text_sprite(r_lines, f_r, THEME["muted"], lh=1.3, align="center"), 0.7, 34 * u))
-    a = text_sprite(config.AI_LABEL, font("sb", L.px("body") * 0.66), THEME["text"], lh=1.0)
+    a = text_sprite(config.VIDEO_AI_LABEL, font("sb", L.px("body") * 0.66), THEME["text"], lh=1.0)
     b = text_sprite(config.EDU_LABEL, font("md", L.px("body") * 0.56), THEME["muted"], lh=1.0)
     pw, ph = max(a.width, b.width) + 56 * u, a.height + b.height + 12 * u + 36 * u
     card = rounded(pw, ph, 18 * u, THEME["surface"], THEME["axis"], max(1, 2 * u))

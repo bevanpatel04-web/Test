@@ -17,7 +17,9 @@ MANIFEST = MEDIA_DIR / "manifest.json"
 FONT_DIR = Path(os.environ.get("STUDIO_FONT_DIR", "/usr/share/fonts/opentype/inter"))
 FFMPEG = os.environ.get("STUDIO_FFMPEG", "ffmpeg")
 
-AI_LABEL = "Made with AI, reviewed by a person"
+AI_LABEL = "Made with AI, reviewed by a person"   # manifest label; the app shows it only once approved
+# Burned into the picture, so it must be true before the founder reviews the video too.
+VIDEO_AI_LABEL = "Made with AI"
 EDU_LABEL = "Education, not advice"
 
 FPS = 24
