@@ -147,7 +147,7 @@ class LinePlot:
         top = y0
         if legend and len(series) > 1:
             gx, gy, row_h = x0, y0, self.f_leg.size * 1.5
-            for name, color, width, _ in series:
+            for name, color, *_ in series:
                 key = rounded(22 * u, max(2, 4 * u), 2 * u, color)
                 t = text_sprite(name, self.f_leg, THEME["muted"], lh=1.0)
                 need = key.width + 8 * u + t.width
@@ -160,7 +160,7 @@ class LinePlot:
 
         tick_labels = [fmt_tick(v, unit) for v in self.ticks]
         ytw = max(self.f_tick.getlength(t) for t in tick_labels)
-        self.end_vals = [(s[0], s[3][-1][1]) for s in series]
+        self.end_vals = [(s[4] if len(s) > 4 else s[0], s[3][-1][1]) for s in series]
         end_w = max(max(self.f_val.getlength(fmt(v, unit)), self.f_name.getlength(n)) for n, v in self.end_vals)
         self.px0 = x0 + ytw + 14 * u
         self.px1 = x1 - end_w - 26 * u
@@ -223,7 +223,7 @@ class LinePlot:
         d = ImageDraw.Draw(layer)
         cut = self.xmin + p * (self.xmax - self.xmin)
         heads = []
-        for name, color, width, pts in self.series:
+        for name, color, width, pts, *_ in reversed(self.series):  # first series drawn last, on top
             vis = [(x, y) for x, y in pts if x <= cut]
             nxt = next(((x, y) for x, y in pts if x > cut), None)
             if vis and nxt and p < 1:
@@ -252,13 +252,13 @@ def growth_chart(spec, box, L, t0: float, dur: float) -> ChartParts:
         later = project(start, end, spec.monthly, spec.rate, int(spec.delay_years))
         series.append((f"Start at {start + spec.delay_years}", THEME["s2"], 4.5,
                        [(a, b) for a, b, _ in later if a >= start + spec.delay_years]))
-    series.append((f"Money put in (start at {start})", THEME["field"], 3.0, [(a, c) for a, _, c in now]))
+    series.append((f"Money put in (start at {start})", THEME["field"], 3.0, [(a, c) for a, _, c in now], "Put in"))
     step = 10 if end - start >= 30 else 5
     ages = list(range(start, end + 1, step))
     if ages[-1] != end and end - ages[-1] >= step / 2:
         ages.append(end)
     x_ticks = [(a, f"Age {a}" if i == 0 else str(a)) for i, a in enumerate(ages)]
-    plot = LinePlot(box, L, series[::-1], x_ticks, "$", t0, dur)   # put-in drawn first, at the back
+    plot = LinePlot(box, L, series, x_ticks, "$", t0, dur)
     return ChartParts(plot.items, plot.dynamic, t0 + dur)
 
 

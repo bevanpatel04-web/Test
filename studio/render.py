@@ -37,7 +37,7 @@ DEFAULT_MIN_SCENE = 3.5
 FADE_OUT = 0.35
 
 PILLS = {"concept": "Key idea", "chart": "The numbers", "example": "Example", "recap": "Recap",
-         "quiz_teaser": "Quick check", "end": "Your turn"}
+         "quiz_teaser": "Quick check"}
 QUIZ_FOOTER = {False: "Answer the questions below the video to finish the lesson.",
                True: "Answer the questions in the Patient Money app."}
 
@@ -68,7 +68,9 @@ class Timeline:
 
     @property
     def wpm(self) -> float:
-        return self.words / self.duration * 60 if self.duration else 0.0
+        """Narration pace: words per minute from each scene's first word to its last (pauses included)."""
+        span = sum(s.speech_end - s.speech_start for s in self.scenes)
+        return self.words / span * 60 if span else 0.0
 
 
 def plan_timeline(script: VideoScript, voice=None) -> Timeline:
@@ -129,7 +131,7 @@ def _truncate(tl: Timeline, seconds: float) -> Timeline:
 # ---- Layout ---------------------------------------------------------------------------------------
 BASE = {
     False: dict(margin=88, brand_y=44, top=132, bottom=64, cap_top=566, brand=22, pill=17, title=70, heading=48,
-                body=36, small=20, chart=20, caption=29, hero=150),
+                body=40, small=20, chart=20, caption=29, hero=150),
     True: dict(margin=96, brand_y=150, top=290, bottom=330, cap_top=1330, brand=32, pill=26, title=92, heading=68,
                body=50, small=30, chart=30, caption=44, hero=210),
 }
@@ -336,7 +338,7 @@ def build_title(sc, st, L: Layout, level) -> Built:
 def build_chart(sc, st, L: Layout) -> Built:
     u = L.u
     items, y = _heading(sc.heading, L)
-    if sc.on_screen.strip():
+    if sc.on_screen.strip() and sc.chart.type in ("bars", "stat"):  # line charts carry a legend instead
         f_s, lines = fit(" · ".join(_lines(sc.on_screen)), "md", L.px("body") * 0.78, L.cw, 2)
         sub = text_sprite(lines, f_s, THEME["muted"], lh=1.2)
         items.append(Item(sub, L.mx, y + 12 * u, 0.3))
@@ -490,6 +492,7 @@ class FrameMaker:
         found = find_lesson(script.slug) if config.CURRICULUM.exists() else None
         self.level = found[0] if found else None
         self.base = chrome(L)
+        self.plain = Image.new("RGBA", (L.W, L.H), THEME["bg"] + (255,))  # end card shows its own brand mark
         self.starts = [s.start for s in tl.scenes]
         self.built: dict[int, Built] = {}
         self.cues = tl.cues
@@ -512,7 +515,7 @@ class FrameMaker:
         last = i == len(self.tl.scenes) - 1
         exit_a = 1.0 if last else min(1.0, max(0.0, (st.end - t) / FADE_OUT))
         key: list = [i, round(exit_a, 2)]
-        im = self.base.copy()
+        im = (self.plain if self.script.scenes[i].kind == "end" else self.base).copy()
         for n, it in enumerate(b.items):
             p = (tau - it.t_in) / it.dur
             if p <= 0:
