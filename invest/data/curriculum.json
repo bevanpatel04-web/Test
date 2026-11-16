@@ -1632,7 +1632,7 @@
               "needs_facts": [],
               "risk_note": "Bonds can lose value, and a borrower can fail to pay. Most bond funds have no maturity date, so their value keeps moving.",
               "try_it": {
-                "tool": "none",
+                "tool": "money-map",
                 "prompt": "Look at the mix in your Money Map and note which part, if any, is in bonds."
               },
               "quiz": [
@@ -2037,7 +2037,7 @@
               "risk_note": "Holding through a drop doesn't prevent losses, and selling can make sense for someone who needs the money. Investments can fall in value.",
               "try_it": {
                 "tool": "crash-sim",
-                "prompt": "Run the 2020 crash twice: once holding, once selling at the low point and buying back later. Compare the results."
+                "prompt": "Run the 2020 crash twice, once holding and once selling at the low point, and compare the results."
               },
               "quiz": [
                 {

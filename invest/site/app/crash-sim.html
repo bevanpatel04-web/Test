@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crash Simulator | Patient Money</title>
+  <meta name="description" content="Live through a hypothetical market crash with a pretend portfolio and compare holding, selling at the bottom, and selling then buying back a year later. Education, not advice.">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div class="wrap app">
+    <header class="top">
+      <a class="brand" href="index.html">Patient Money</a>
+      <nav aria-label="App"><a href="index.html">Path</a><a href="money-map.html">Money Map</a><a href="crash-sim.html" aria-current="page">Crash simulator</a><a href="account.html">Account</a></nav>
+    </header>
+
+    <main id="main">
+      <p class="hidden" id="fromLesson"><a class="back" href="index.html">← Back to the lesson</a></p>
+      <p class="pill" id="kindPill">Hypothetical scenario · Not real market history · Not a forecast</p>
+      <h1>Crash simulator</h1>
+      <p class="lede">Live through a market crash with a pretend portfolio. At the bottom, make your call. Then see what holding, selling, or selling and buying back later would have done.</p>
+      <p class="fine hidden" id="memberNote">The crash simulator is part of membership. In this prototype it's open to everyone.</p>
+
+      <section class="card" aria-labelledby="setupTitle">
+        <h2 id="setupTitle">1. Pick a scenario</h2>
+        <div class="chips" id="scenarioChips" role="group" aria-label="Scenario"></div>
+        <p id="scenarioText"></p>
+        <p class="fine source-line" id="scenarioSource"></p>
+        <div class="field">
+          <label for="amount">Pretend amount invested at the start ($)</label>
+          <input type="number" id="amount" min="100" max="1000000" step="any" inputmode="decimal">
+        </div>
+        <p class="error" id="amountError" role="alert"></p>
+      </section>
+
+      <section class="card" id="simCard" aria-labelledby="momentTitle">
+        <h2 id="momentTitle">2. The drop</h2>
+        <p class="moment" id="momentText"></p>
+        <div class="legend" id="legend"></div>
+        <div class="chart" id="chart"></div>
+        <p class="sr-only" id="chartReadout" aria-live="polite"></p>
+        <h3 class="sr-only" id="choiceTitle">Your call</h3>
+        <div class="choices" id="choices" role="group" aria-labelledby="choiceTitle"></div>
+        <div id="result" aria-live="polite"></div>
+        <div class="tiles three hidden" id="tiles"></div>
+        <div class="row-actions hidden" id="againRow"><button type="button" class="ghost" id="againBtn">Live through it again</button></div>
+        <details>
+          <summary>Show as a table</summary>
+          <div class="table-wrap"><table id="table"></table></div>
+        </details>
+        <p class="fine" id="assumptions">Assumptions: selling happens at the lowest point, cash earns nothing while you wait, and taxes and fees are left out. In real life, nobody knows where the bottom is while it's happening.</p>
+      </section>
+
+      <section class="card" aria-labelledby="limitsTitle">
+        <h2 id="limitsTitle">What this shows, and what it doesn't</h2>
+        <ul>
+          <li>It shows how the timing of selling and buying back changes the result in one example. It doesn't predict what any real market does next.</li>
+          <li>In these made-up scenarios the index gets back to where it started. Real recoveries can take much longer, and an investment that falls doesn't have to come back.</li>
+          <li>Money you might need soon has no time to wait out a drop, which is one reason people keep a cash cushion.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="card fine disclaimer">
+      <p><strong>Education, not advice.</strong> The crash simulator uses a pretend portfolio and hypothetical numbers. It isn't a forecast, it doesn't use real money, and it doesn't recommend buying, selling or holding anything. Investing involves risk, including losing money you put in. Past performance doesn't guarantee future results.</p>
+      <p><a href="../index.html">Calculator</a> · <a href="../rules.html">Our rules</a></p>
+    </footer>
+  </div>
+  <script src="../assets/calc.js"></script>
+  <script src="assets/learn.js"></script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/crash-sim.js"></script>
+</body>
+</html>
