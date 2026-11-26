@@ -1,0 +1,454 @@
+<title>Hotel Labor Planner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: inputs on the left (property, then staff roster), a sticky scorecard on the right; stress test and scenario grid run full width below. */
+:root{
+  --bg:#f3f6f6; --surface:#ffffff; --sunk:#e8eeee; --line:#d3dcdc; --fg:#132326; --muted:#5a6b6e;
+  --accent:#0f6b73; --accent-soft:#d5ebec;
+  --good:#1d7a46; --good-soft:#dcefe2; --warn:#a86400; --warn-soft:#f8ead2; --bad:#b3261e; --bad-soft:#f7dcd9;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1617; --surface:#152123; --sunk:#1b2a2c; --line:#2a3b3e; --fg:#e4eeee; --muted:#93a6a8;
+  --accent:#4fbcc4; --accent-soft:#163a3d;
+  --good:#5cc98a; --good-soft:#143224; --warn:#e8a64a; --warn-soft:#3a2a12; --bad:#f07b72; --bad-soft:#3d1a18;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1617; --surface:#152123; --sunk:#1b2a2c; --line:#2a3b3e; --fg:#e4eeee; --muted:#93a6a8;
+  --accent:#4fbcc4; --accent-soft:#163a3d;
+  --good:#5cc98a; --good-soft:#143224; --warn:#e8a64a; --warn-soft:#3a2a12; --bad:#f07b72; --bad-soft:#3d1a18;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px;
+  font-variant-numeric:tabular-nums}
+.wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:1.75rem;font-weight:800}
+h2{font-size:1.1rem;font-weight:700}
+.lede{color:var(--muted);margin:4px 0 0;max-width:68ch}
+.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:7px 12px;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn.primary:hover{color:var(--surface);filter:brightness(1.08)}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+@media (max-width:980px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.78rem;color:var(--muted);font-weight:500}
+input,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:7px 9px;width:100%;min-width:0}
+input[type=number]{text-align:right}
+.derived{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);color:var(--muted);font-size:.85rem}
+.derived b{color:var(--fg);font-weight:600}
+/* staff table */
+.tbl-wrap{overflow-x:auto;margin:0 -18px;padding:0 18px}
+table{border-collapse:collapse;width:100%}
+.staff{min-width:900px}
+.staff th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;text-align:left;padding:0 6px 8px;white-space:nowrap}
+.staff th.r,.staff td.r{text-align:right}
+.staff td{padding:6px;border-top:1px solid var(--line);vertical-align:top}
+.staff td input,.staff td select{padding:6px 7px}
+.staff .w-name{width:170px}.staff .w-type{width:100px}.staff .w-rate{width:110px}.staff .w-sm{width:68px}.staff .w-vol{width:170px}
+.hint{font-size:.72rem;color:var(--muted);margin-top:3px;white-space:nowrap}
+.vol{display:flex;gap:4px}.vol select{width:96px;flex:none}
+.cost{font-weight:600;white-space:nowrap;padding-top:12px!important}
+.x{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:4px 6px;border-radius:6px}
+.x:hover{color:var(--bad);background:var(--bad-soft)}
+.pill{display:inline-block;font-size:.7rem;font-weight:600;padding:1px 7px;border-radius:99px;margin-top:3px}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.ok{background:var(--good-soft);color:var(--good)}
+.tbl-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+.legend{font-size:.78rem;color:var(--muted)}
+/* scorecard */
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+@media (max-width:980px){.score{position:static}}
+.big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big .num{font-family:var(--display);font-weight:800;font-size:3rem;line-height:1}
+.status{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:99px}
+.s-good{background:var(--good-soft);color:var(--good)}.s-warn{background:var(--warn-soft);color:var(--warn)}.s-bad{background:var(--bad-soft);color:var(--bad)}
+.meter{position:relative;height:12px;background:var(--sunk);border-radius:99px;margin:16px 0 6px;overflow:visible}
+.meter .fill{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent);transition:width .25s}
+.meter .mark{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--fg)}
+.meter-scale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin-top:16px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-weight:600}
+.kv .neg{color:var(--bad)}.kv .pos{color:var(--good)}
+.sep{border:none;border-top:1px solid var(--line);margin:16px 0}
+.cap h3{font-size:.95rem;margin-bottom:8px}
+.cap-list{display:flex;flex-direction:column;gap:8px}
+.cap-item{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.cap-item span:first-child{color:var(--muted);min-width:0}
+.cap-item strong{font-family:var(--display);font-size:1.05rem;white-space:nowrap}
+.mix{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.mix-row{display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:8px;font-size:.78rem;align-items:center}
+.mix-bar{height:6px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:2px}
+.mix-bar i{display:block;height:100%;background:var(--accent)}
+.mix-row .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* stress */
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 24px}
+.sl{display:flex;flex-direction:column;gap:6px}
+.sl-top{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}
+.sl-top b{font-family:var(--display)}
+input[type=range]{padding:0;border:none;background:none;accent-color:var(--accent)}
+.compare{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:16px;padding:12px 14px;background:var(--sunk);border-radius:10px;font-size:.9rem}
+.compare b{font-family:var(--display)}
+.mx-wrap{overflow-x:auto}
+.mx{min-width:620px}
+.mx th,.mx td{padding:7px 8px;text-align:center;font-size:.82rem}
+.mx thead th{color:var(--muted);font-weight:600;font-size:.72rem}
+.mx thead th small{display:block;color:var(--fg);font-size:.8rem;font-weight:700}
+.mx tbody th{text-align:right;color:var(--muted);font-weight:600;white-space:nowrap}
+.mx td{border:2px solid var(--surface);border-radius:6px;font-weight:600}
+.c-good{background:var(--good-soft);color:var(--good)}.c-warn{background:var(--warn-soft);color:var(--warn)}.c-bad{background:var(--bad-soft);color:var(--bad)}
+.mx td.cur{outline:2px solid var(--fg);outline-offset:-2px}
+.note{font-size:.78rem;color:var(--muted);margin:10px 0 0;max-width:80ch}
+.sample{font-size:.72rem;font-weight:600;color:var(--warn);background:var(--warn-soft);padding:2px 8px;border-radius:99px}
+@media (prefers-reduced-motion:reduce){.meter .fill{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Labor budget · piece work + hourly + salary</div>
+      <h1>Hotel Labor Planner</h1>
+      <p class="lede">Enter revenue drivers and your roster. Salaries convert to hourly (annual ÷ 2,080) and cost out at 8 hrs/day or the approved hours you enter. Piece work costs out per unit. Then stress the numbers to see what you can pay and still hold your labor target.</p>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span class="sample" id="sampleTag">Sample numbers — replace with yours</span>
+      <button class="btn" id="resetBtn" type="button">Reset to sample</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="col">
+      <section class="panel" aria-labelledby="h-prop">
+        <div class="panel-head"><h2 id="h-prop">Property &amp; budget</h2><span class="eyebrow">Revenue drivers for the period</span></div>
+        <div class="fields">
+          <label class="f">Rooms available<input id="p-rooms" type="number" min="0" step="1"></label>
+          <label class="f">Occupancy %<input id="p-occ" type="number" min="0" max="100" step="0.5"></label>
+          <label class="f">ADR ($)<input id="p-adr" type="number" min="0" step="1"></label>
+          <label class="f">Other revenue / day ($)<input id="p-other" type="number" min="0" step="10"></label>
+          <label class="f">Days in period<input id="p-days" type="number" min="1" step="1"></label>
+          <label class="f">Labor target %<input id="p-target" type="number" min="1" max="100" step="0.5"></label>
+          <label class="f">Payroll taxes &amp; benefits %<input id="p-burden" type="number" min="0" max="100" step="0.5"></label>
+          <label class="f">Minimum wage check ($/hr)<input id="p-minwage" type="number" min="0" step="0.25"></label>
+        </div>
+        <div class="derived" id="propDerived"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-staff">
+        <div class="panel-head"><h2 id="h-staff">Staff roster</h2><span class="eyebrow">Costs for the period, before taxes &amp; benefits</span></div>
+        <div class="tbl-wrap">
+          <table class="staff">
+            <thead><tr>
+              <th>Position</th><th>Pay type</th><th class="r">Rate</th><th class="r">Heads</th><th class="r">Hrs/day</th><th class="r">Days</th><th>Piece volume / day</th><th class="r">Period cost</th><th></th>
+            </tr></thead>
+            <tbody id="staffBody"></tbody>
+          </table>
+        </div>
+        <div class="tbl-foot">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn primary" type="button" data-add="piece">+ Piece-work row</button>
+            <button class="btn" type="button" data-add="hourly">+ Hourly</button>
+            <button class="btn" type="button" data-add="salary">+ Salary</button>
+          </div>
+          <div class="legend">Piece volume “% of occupied” ties units to occupancy, so it moves when you stress occupancy.</div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="panel score" aria-labelledby="h-score">
+      <div class="panel-head" style="margin-bottom:6px"><h2 id="h-score">Labor %</h2><span class="eyebrow" id="scenarioTag">Base case</span></div>
+      <div class="big"><span class="num" id="o-pct">–</span><span class="status" id="o-status">–</span></div>
+      <div class="meter" aria-hidden="true"><div class="fill" id="o-fill"></div><div class="mark" id="o-mark"></div></div>
+      <div class="meter-scale"><span>0%</span><span id="o-targetLbl">target</span><span>40%</span></div>
+      <dl class="kv">
+        <dt>Revenue</dt><dd id="o-rev">–</dd>
+        <dt>Labor budget at target</dt><dd id="o-allowed">–</dd>
+        <dt>Wages</dt><dd id="o-wages">–</dd>
+        <dt>Taxes &amp; benefits</dt><dd id="o-burden">–</dd>
+        <dt>Total labor</dt><dd id="o-total">–</dd>
+        <dt id="o-headLbl">Room left in budget</dt><dd id="o-head">–</dd>
+      </dl>
+      <hr class="sep">
+      <div class="cap">
+        <h3>What you can pay at target</h3>
+        <div class="cap-list" id="capList"></div>
+      </div>
+      <hr class="sep">
+      <div class="cap">
+        <h3>Labor mix</h3>
+        <div class="mix" id="mix"></div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="panel" aria-labelledby="h-stress">
+    <div class="panel-head"><h2 id="h-stress">Stress test</h2><button class="btn" type="button" id="stressReset">Clear stress</button></div>
+    <div class="sliders">
+      <div class="sl"><div class="sl-top"><label for="s-occ">Occupancy change</label><b id="s-occ-v"></b></div><input id="s-occ" type="range" min="-40" max="20" step="1"></div>
+      <div class="sl"><div class="sl-top"><label for="s-adr">ADR change</label><b id="s-adr-v"></b></div><input id="s-adr" type="range" min="-30" max="30" step="1"></div>
+      <div class="sl"><div class="sl-top"><label for="s-piece">Piece rate change</label><b id="s-piece-v"></b></div><input id="s-piece" type="range" min="-30" max="60" step="1"></div>
+      <div class="sl"><div class="sl-top"><label for="s-wage">Hourly &amp; salary raise</label><b id="s-wage-v"></b></div><input id="s-wage" type="range" min="-10" max="30" step="0.5"></div>
+    </div>
+    <div class="compare" id="compare"></div>
+
+    <hr class="sep">
+    <div class="panel-head" style="margin-bottom:8px"><h3 style="font-size:1rem">Occupancy × piece rate</h3><span class="eyebrow">Labor % with ADR and raise sliders applied</span></div>
+    <div class="mx-wrap"><table class="mx" id="matrix"></table></div>
+    <p class="note"><span class="pill ok">green</span> at or under target · <span class="pill" style="background:var(--warn-soft);color:var(--warn)">amber</span> up to 2 pts over · <span class="pill bad">red</span> more than 2 pts over. Outlined cell is the current stress setting. Column rates show the first piece-work row; all piece rows move by the same %.</p>
+  </section>
+
+  <p class="note">Math: salary hourly = annual ÷ 2,080. Hourly &amp; salary cost = hourly rate × hrs/day × days × heads. Piece cost = units/day × days × rate. Total labor = wages × (1 + taxes &amp; benefits %). Labor % = total labor ÷ revenue. Revenue = (rooms × occupancy × ADR + other revenue/day) × days. Your inputs are saved in this browser only.</p>
+</div>
+
+<script>
+(function(){
+const KEY='hotel-labor-planner-v1';
+const SAMPLE={
+  prop:{rooms:120,occ:72,adr:129,other:800,days:7,target:20,burden:12,minwage:7.25},
+  staff:[
+    {name:'Housekeepers (per room)',type:'piece',rate:5.5,heads:8,hrs:8,days:7,mode:'occ',pct:90,units:0},
+    {name:'Laundry (per lb)',type:'piece',rate:0.12,heads:1,hrs:8,days:7,mode:'fixed',pct:0,units:900},
+    {name:'General Manager',type:'salary',rate:75000,heads:1,hrs:8,days:5},
+    {name:'Housekeeping Supervisor',type:'salary',rate:42000,heads:1,hrs:8,days:5},
+    {name:'Front Desk',type:'hourly',rate:16,heads:3,hrs:8,days:7},
+    {name:'Night Audit',type:'hourly',rate:16.5,heads:1,hrs:8,days:7},
+    {name:'Maintenance',type:'hourly',rate:21,heads:1,hrs:8,days:5},
+    {name:'Breakfast Attendant',type:'hourly',rate:14,heads:1,hrs:5,days:7}
+  ],
+  stress:{occ:0,adr:0,piece:0,wage:0},
+  edited:false
+};
+const clone=o=>JSON.parse(JSON.stringify(o));
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!S.prop||!Array.isArray(S.staff))S=clone(SAMPLE);
+S.stress=Object.assign({occ:0,adr:0,piece:0,wage:0},S.stress||{});
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+const $=id=>document.getElementById(id);
+const usd0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+const usd2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+const n1=v=>(Math.round(v*10)/10).toLocaleString('en-US');
+const pct=v=>isFinite(v)?(v*100).toFixed(1)+'%':'–';
+const num=v=>{v=parseFloat(v);return isFinite(v)?v:0};
+const sign=v=>(v>0?'+':'')+v;
+
+/* ---------- core math ---------- */
+function compute(mods){
+  const p=S.prop, m=Object.assign({occ:0,adr:0,piece:0,wage:0},mods||{});
+  const occ=Math.max(0,Math.min(100,num(p.occ)+m.occ));
+  const occRooms=num(p.rooms)*occ/100;
+  const adr=num(p.adr)*(1+m.adr/100);
+  const days=Math.max(1,num(p.days));
+  const revenue=(occRooms*adr+num(p.other))*days;
+  const burden=num(p.burden)/100, target=num(p.target)/100;
+  let wages=0,piece=0,fixed=0;
+  const rows=S.staff.map(r=>{
+    const heads=num(r.heads),hrs=num(r.hrs),d=num(r.days);
+    let cost=0,hourly=0,unitsDay=0,rate=num(r.rate);
+    if(r.type==='piece'){
+      rate=rate*(1+m.piece/100);
+      unitsDay=r.mode==='occ'?occRooms*num(r.pct)/100:num(r.units);
+      cost=unitsDay*d*rate;
+      hourly=heads>0&&hrs>0?unitsDay*rate/heads/hrs:0;
+      piece+=cost;
+    }else{
+      hourly=(r.type==='salary'?rate/2080:rate)*(1+m.wage/100);
+      cost=hourly*hrs*d*heads;
+      fixed+=cost;
+    }
+    wages+=cost;
+    return {cost,hourly,unitsDay,rate};
+  });
+  const total=wages*(1+burden);
+  const allowed=revenue*target;
+  return {occ,occRooms,adr,revenue,wages,burdenAmt:wages*burden,total,allowed,head:allowed-total,
+    pct:revenue>0?total/revenue:Infinity,rows,piece,fixed,burden,target};
+}
+function minOcc(mods){
+  for(let o=1;o<=100;o+=0.5){
+    const r=compute(Object.assign({},mods,{occ:o-num(S.prop.occ)}));
+    if(r.pct<=r.target)return o;
+  }
+  return null;
+}
+
+/* ---------- property inputs ---------- */
+const PF=['rooms','occ','adr','other','days','target','burden','minwage'];
+PF.forEach(k=>{
+  const el=$('p-'+k); el.value=S.prop[k];
+  el.addEventListener('input',()=>{S.prop[k]=el.value===''?0:num(el.value);touch();update()});
+});
+
+/* ---------- staff table ---------- */
+const HINT={salary:'annual salary',hourly:'$ / hour',piece:'$ / unit'};
+function cell(html){const td=document.createElement('td');td.innerHTML=html;return td}
+function renderStaff(){
+  const tb=$('staffBody'); tb.innerHTML='';
+  S.staff.forEach((r,i)=>{
+    const tr=document.createElement('tr');
+    const isP=r.type==='piece';
+    tr.appendChild(cell(`<input class="w-name" id="r${i}-name" aria-label="Position">`));
+    tr.appendChild(cell(`<select class="w-type" id="r${i}-type" aria-label="Pay type"><option value="piece">Piece</option><option value="hourly">Hourly</option><option value="salary">Salary</option></select>`));
+    tr.appendChild(cell(`<input class="w-rate" id="r${i}-rate" type="number" min="0" step="${r.type==='salary'?500:isP?0.05:0.25}" aria-label="Rate"><div class="hint" id="r${i}-hint"></div>`));
+    tr.appendChild(cell(`<input class="w-sm" id="r${i}-heads" type="number" min="0" step="1" aria-label="Heads">`));
+    tr.appendChild(cell(`<input class="w-sm" id="r${i}-hrs" type="number" min="0" step="0.25" aria-label="Hours per day">`));
+    tr.appendChild(cell(`<input class="w-sm" id="r${i}-days" type="number" min="0" step="1" aria-label="Days">`));
+    tr.appendChild(cell(isP?`<div class="vol w-vol"><select id="r${i}-mode" aria-label="Volume basis"><option value="occ">% occupied</option><option value="fixed">Units/day</option></select><input id="r${i}-vol" type="number" min="0" step="1" aria-label="Volume"></div><div class="hint" id="r${i}-volhint"></div>`:`<span class="hint">—</span>`));
+    const c=cell(`<span id="r${i}-cost"></span><div class="hint" id="r${i}-sub"></div><div id="r${i}-flag"></div>`);c.className='r cost';tr.appendChild(c);
+    tr.appendChild(cell(`<button class="x" type="button" aria-label="Remove row" data-del="${i}">×</button>`));
+    tb.appendChild(tr);
+    const bind=(f,key,isNum)=>{const el=$(`r${i}-${f}`);if(!el)return;el.value=r[key];
+      el.addEventListener('input',()=>{r[key]=isNum?(el.value===''?0:num(el.value)):el.value;touch();update()})};
+    bind('name','name',false);bind('rate','rate',true);bind('heads','heads',true);bind('hrs','hrs',true);bind('days','days',true);
+    $(`r${i}-type`).value=r.type;
+    $(`r${i}-type`).addEventListener('change',e=>{r.type=e.target.value;if(r.type==='piece'&&!r.mode){r.mode='occ';r.pct=100;r.units=0}touch();renderStaff();update()});
+    if(isP){
+      const mode=$(`r${i}-mode`),vol=$(`r${i}-vol`);
+      mode.value=r.mode||'occ';vol.value=r.mode==='fixed'?r.units:r.pct;
+      mode.addEventListener('change',()=>{r.mode=mode.value;vol.value=r.mode==='fixed'?r.units:r.pct;touch();update()});
+      vol.addEventListener('input',()=>{const v=vol.value===''?0:num(vol.value);if(r.mode==='fixed')r.units=v;else r.pct=v;touch();update()});
+    }
+  });
+  tb.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{S.staff.splice(+b.dataset.del,1);touch();renderStaff();update()}));
+}
+document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>{
+  const t=b.dataset.add,d=num(S.prop.days)||7;
+  S.staff.push(t==='piece'?{name:'New piece work',type:'piece',rate:5,heads:1,hrs:8,days:d,mode:'occ',pct:100,units:0}
+    :t==='hourly'?{name:'New hourly',type:'hourly',rate:15,heads:1,hrs:8,days:Math.min(d,5)}
+    :{name:'New salary',type:'salary',rate:45000,heads:1,hrs:8,days:Math.min(d,5)});
+  touch();renderStaff();update();
+  const last=document.getElementById(`r${S.staff.length-1}-name`);if(last){last.focus();last.select()}
+}));
+
+/* ---------- stress sliders ---------- */
+const SL={occ:v=>sign(v)+' pts',adr:v=>sign(v)+'%',piece:v=>sign(v)+'%',wage:v=>sign(v)+'%'};
+Object.keys(SL).forEach(k=>{
+  const el=$('s-'+k);el.value=S.stress[k];
+  el.addEventListener('input',()=>{S.stress[k]=num(el.value);save();update()});
+});
+$('stressReset').addEventListener('click',()=>{Object.keys(SL).forEach(k=>{S.stress[k]=0;$('s-'+k).value=0});save();update()});
+$('resetBtn').addEventListener('click',()=>{S=clone(SAMPLE);PF.forEach(k=>$('p-'+k).value=S.prop[k]);Object.keys(SL).forEach(k=>$('s-'+k).value=0);save();renderStaff();update()});
+function touch(){S.edited=true;save()}
+
+/* ---------- render outputs ---------- */
+function statusOf(p,t){return p<=t?'good':p<=t+0.02?'warn':'bad'}
+function update(){
+  $('sampleTag').hidden=!!S.edited;
+  const st=S.stress, stressed=Object.values(st).some(v=>v!==0);
+  const base=compute(), R=compute(st);
+  Object.keys(SL).forEach(k=>$('s-'+k+'-v').textContent=SL[k](st[k]));
+  $('scenarioTag').textContent=stressed?'Stressed scenario':'Base case';
+
+  // property derived
+  $('propDerived').innerHTML=`<span>Occupied rooms/day <b>${n1(R.occRooms)}</b></span><span>Room nights <b>${Math.round(R.occRooms*num(S.prop.days)).toLocaleString()}</b></span><span>RevPAR <b>${usd2.format(num(S.prop.rooms)?R.occRooms*R.adr/num(S.prop.rooms):0)}</b></span><span>Labor $ per occupied room <b>${R.occRooms?usd2.format(R.total/(R.occRooms*num(S.prop.days))):'–'}</b></span>`;
+
+  // rows
+  const mw=num(S.prop.minwage);
+  S.staff.forEach((r,i)=>{
+    const x=R.rows[i]; if(!$(`r${i}-cost`))return;
+    $(`r${i}-cost`).textContent=usd0.format(x.cost);
+    $(`r${i}-hint`).textContent=r.type==='salary'?`= ${usd2.format(num(r.rate)/2080)}/hr`:HINT[r.type];
+    let sub='',flag='';
+    if(r.type==='piece'){
+      sub=`${usd2.format(x.hourly)}/hr each · ${n1(x.unitsDay/(num(r.heads)||1))}/day each`;
+      const vh=$(`r${i}-volhint`); if(vh)vh.textContent=r.mode==='occ'?`= ${n1(x.unitsDay)} units/day`:'fixed units per day';
+      if(st.piece)sub=`at ${usd2.format(x.rate)}/unit · `+sub;
+    }else{
+      sub=`${usd2.format(x.hourly)}/hr · ${n1(num(r.hrs)*num(r.days))} hrs each`;
+    }
+    if(mw>0&&num(r.heads)>0&&x.hourly<mw)flag=`<span class="pill bad">below min wage</span>`;
+    $(`r${i}-sub`).textContent=sub;$(`r${i}-flag`).innerHTML=flag;
+  });
+
+  // scorecard
+  const s=statusOf(R.pct,R.target);
+  $('o-pct').textContent=pct(R.pct);
+  const so=$('o-status');so.className='status s-'+s;
+  so.textContent=s==='good'?'Within target':s==='warn'?'Slightly over':'Over target';
+  const scaleMax=Math.max(0.4,R.target*1.6);
+  $('o-fill').style.width=Math.min(100,(isFinite(R.pct)?R.pct:1)/scaleMax*100)+'%';
+  $('o-fill').style.background=`var(--${s==='good'?'accent':s})`;
+  $('o-mark').style.left=(R.target/scaleMax*100)+'%';
+  $('o-targetLbl').textContent='target '+(R.target*100).toFixed(1).replace(/\.0$/,'')+'%';
+  document.querySelector('.meter-scale span:last-child').textContent=Math.round(scaleMax*100)+'%';
+  $('o-rev').textContent=usd0.format(R.revenue);
+  $('o-allowed').textContent=usd0.format(R.allowed);
+  $('o-wages').textContent=usd0.format(R.wages);
+  $('o-burden').textContent=usd0.format(R.burdenAmt);
+  $('o-total').textContent=usd0.format(R.total);
+  $('o-headLbl').textContent=R.head>=0?'Room left in budget':'Over budget by';
+  const h=$('o-head');h.textContent=usd0.format(Math.abs(R.head));h.className=R.head>=0?'pos':'neg';
+
+  // capacity
+  const cap=[];
+  const pieceBudget=R.allowed/(1+R.burden)-R.fixed;
+  S.staff.forEach((r,i)=>{
+    if(r.type!=='piece')return;
+    const x=R.rows[i];
+    let txt='–';
+    if(R.piece>0&&pieceBudget>0)txt=usd2.format(x.rate*pieceBudget/R.piece)+' / unit';
+    else if(pieceBudget<=0)txt='no room';
+    cap.push([`Max rate · ${r.name||'piece row'}`,txt]);
+  });
+  if(R.piece>0)cap.push(['Max piece-work payroll',usd0.format(Math.max(0,pieceBudget))]);
+  const fixedBudget=R.allowed/(1+R.burden)-R.piece;
+  if(R.fixed>0){
+    const raise=fixedBudget/R.fixed-1;
+    cap.push(['Max raise · hourly & salary',isFinite(raise)?(raise>=0?'+':'')+(raise*100).toFixed(1)+'%':'–']);
+  }
+  const mo=minOcc({adr:st.adr,piece:st.piece,wage:st.wage});
+  cap.push(['Lowest occupancy that holds target',mo===null?'not reachable':mo.toFixed(1)+'%']);
+  $('capList').innerHTML=cap.map(([a,b])=>`<div class="cap-item"><span>${esc(a)}</span><strong>${b}</strong></div>`).join('');
+
+  // mix
+  const order=S.staff.map((r,i)=>({n:r.name||'(unnamed)',c:R.rows[i].cost,t:r.type})).sort((a,b)=>b.c-a.c);
+  $('mix').innerHTML=order.map(o=>{const share=R.wages?o.c/R.wages:0;
+    return `<div class="mix-row"><div><div class="lbl">${esc(o.n)}</div><div class="mix-bar"><i style="width:${share*100}%;${o.t==='piece'?'':'opacity:.55'}"></i></div></div><div style="text-align:right">${(share*100).toFixed(0)}%</div></div>`}).join('')
+    +`<div class="legend" style="margin-top:4px">Darker bars are piece work.</div>`;
+
+  // compare
+  const d=R.pct-base.pct;
+  $('compare').innerHTML=`<span>Base <b>${pct(base.pct)}</b></span><span>Stressed <b>${pct(R.pct)}</b> <span style="color:var(--${d>0.0005?'bad':d<-0.0005?'good':'muted'})">(${d>=0?'+':''}${(d*100).toFixed(1)} pts)</span></span><span>Revenue <b>${usd0.format(R.revenue)}</b></span><span>Total labor <b>${usd0.format(R.total)}</b></span><span>${R.head>=0?'Room left':'Over by'} <b>${usd0.format(Math.abs(R.head))}</b></span>`;
+
+  renderMatrix(st);
+}
+function renderMatrix(st){
+  const t=$('matrix');
+  const firstP=S.staff.find(r=>r.type==='piece');
+  const cols=[-20,-10,0,10,20,30,40];
+  const baseOcc=num(S.prop.occ);
+  const curOcc=Math.round(Math.max(0,Math.min(100,baseOcc+st.occ)));
+  let rowsO=[];for(let o=40;o<=95;o+=5)rowsO.push(o);
+  if(!rowsO.includes(curOcc))rowsO.push(curOcc);
+  rowsO=rowsO.filter(o=>o>=0&&o<=100).sort((a,b)=>b-a);
+  let html='<thead><tr><th style="text-align:right">Occupancy</th>'+cols.map(c=>{
+    const lbl=firstP?usd2.format(num(firstP.rate)*(1+c/100)):'';
+    return `<th>${c>0?'+':''}${c}%<small>${lbl}</small></th>`}).join('')+'</tr></thead><tbody>';
+  rowsO.forEach(o=>{
+    html+=`<tr><th>${o}%${o===curOcc?' ◂':''}</th>`;
+    cols.forEach(c=>{
+      const r=compute({occ:o-baseOcc,adr:st.adr,wage:st.wage,piece:c});
+      const s=statusOf(r.pct,r.target);
+      const isCur=o===curOcc&&c===Math.round(st.piece/10)*10&&Math.abs(st.piece-c)<5;
+      html+=`<td class="c-${s}${isCur?' cur':''}">${pct(r.pct)}</td>`;
+    });
+    html+='</tr>';
+  });
+  t.innerHTML=html+'</tbody>';
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+renderStaff();update();
+})();
+</script>
