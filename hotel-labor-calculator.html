@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: inputs on the left (property, then staff roster), a sticky scorecard on the right; stress test and scenario grid run full width below. */
+/* Layout: inputs on the left (week settings, then staff roster), a sticky scorecard on the right; stress test and scenario grid run full width below. */
 :root{
   --bg:#f3f6f6; --surface:#ffffff; --sunk:#e8eeee; --line:#d3dcdc; --fg:#132326; --muted:#5a6b6e;
   --accent:#0f6b73; --accent-soft:#d5ebec;
@@ -37,7 +37,7 @@ header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
 .btn.primary:hover{color:var(--surface);filter:brightness(1.08)}
 .btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}
 @media (max-width:980px){.grid{grid-template-columns:minmax(0,1fr)}}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
 .panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -48,34 +48,32 @@ input,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid 
 input[type=number]{text-align:right}
 .derived{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);color:var(--muted);font-size:.85rem}
 .derived b{color:var(--fg);font-weight:600}
-/* staff table */
 .tbl-wrap{overflow-x:auto;margin:0 -18px;padding:0 18px}
 table{border-collapse:collapse;width:100%}
-.staff{min-width:960px}
+.staff{min-width:820px}
 .staff th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;text-align:left;padding:0 6px 8px;white-space:nowrap}
 .staff th.r,.staff td.r{text-align:right}
-.staff td{padding:6px;border-top:1px solid var(--line);vertical-align:top}
+.staff td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:top}
 .staff td input,.staff td select{padding:6px 7px}
-.staff .w-name{width:190px}.staff .w-type{width:100px}.staff .w-rate{width:110px}.staff .w-sm{width:68px}.staff .w-vol{width:200px}
+.staff .w-name{width:140px}.staff .w-type{width:132px}.staff .w-rate{width:92px}.staff .w-sm{width:60px}
+.calc{display:block;text-align:right;padding:7px 8px;color:var(--muted);font-weight:600}
 .hint{font-size:.72rem;color:var(--muted);margin-top:3px;white-space:nowrap}
-.vol{display:flex;gap:4px}.vol select{width:104px;flex:none}
-.req{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:1px 7px;border-radius:99px;margin-top:4px}
 .cost{font-weight:600;white-space:nowrap;padding-top:12px!important}
 .x{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:4px 6px;border-radius:6px}
 .x:hover{color:var(--bad);background:var(--bad-soft)}
 .pill{display:inline-block;font-size:.7rem;font-weight:600;padding:1px 7px;border-radius:99px;margin-top:3px}
 .pill.bad{background:var(--bad-soft);color:var(--bad)}
 .pill.ok{background:var(--good-soft);color:var(--good)}
+.req{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:1px 7px;border-radius:99px;margin-top:4px}
 .tbl-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
-.legend{font-size:.78rem;color:var(--muted)}
-/* scorecard */
+.legend{font-size:.78rem;color:var(--muted);max-width:70ch}
 .score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
 @media (max-width:980px){.score{position:static}}
 .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .big .num{font-family:var(--display);font-weight:800;font-size:3rem;line-height:1}
 .status{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:99px}
 .s-good{background:var(--good-soft);color:var(--good)}.s-warn{background:var(--warn-soft);color:var(--warn)}.s-bad{background:var(--bad-soft);color:var(--bad)}
-.meter{position:relative;height:12px;background:var(--sunk);border-radius:99px;margin:16px 0 6px;overflow:visible}
+.meter{position:relative;height:12px;background:var(--sunk);border-radius:99px;margin:16px 0 6px}
 .meter .fill{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent);transition:width .25s}
 .meter .mark{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--fg)}
 .meter-scale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted)}
@@ -93,21 +91,20 @@ table{border-collapse:collapse;width:100%}
 .mix-bar{height:6px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:2px}
 .mix-bar i{display:block;height:100%;background:var(--accent)}
 .mix-row .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-/* stress */
 .sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 24px}
 .sl{display:flex;flex-direction:column;gap:6px}
 .sl-top{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}
-.sl-top b{font-family:var(--display)}
+.sl-top b{font-family:var(--display);white-space:nowrap}
 input[type=range]{padding:0;border:none;background:none;accent-color:var(--accent)}
 .compare{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:16px;padding:12px 14px;background:var(--sunk);border-radius:10px;font-size:.9rem}
 .compare b{font-family:var(--display)}
 .mx-wrap{overflow-x:auto}
-.mx{min-width:620px}
+.mx{min-width:640px}
 .mx th,.mx td{padding:7px 8px;text-align:center;font-size:.82rem}
 .mx thead th{color:var(--muted);font-weight:600;font-size:.72rem}
 .mx thead th small{display:block;color:var(--fg);font-size:.8rem;font-weight:700}
 .mx tbody th{text-align:right;color:var(--muted);font-weight:600;white-space:nowrap}
-.mx td{border:2px solid var(--surface);border-radius:6px;font-weight:600}
+.mx td{border:2px solid var(--surface);font-weight:600}
 .c-good{background:var(--good-soft);color:var(--good)}.c-warn{background:var(--warn-soft);color:var(--warn)}.c-bad{background:var(--bad-soft);color:var(--bad)}
 .mx td.cur{outline:2px solid var(--fg);outline-offset:-2px}
 .note{font-size:.78rem;color:var(--muted);margin:10px 0 0;max-width:80ch}
@@ -118,12 +115,12 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">Labor budget · piece work + hourly + salary</div>
+      <div class="eyebrow">Weekly labor budget · hourly + salary</div>
       <h1>Hotel Labor Planner</h1>
-      <p class="lede">Enter revenue drivers and your roster. Salaries convert to hourly (annual ÷ 2,080) and cost out at 8 hrs/day or the approved hours you enter. Piece work costs out per room cleaned, using the rooms you clean for the week. Then stress the numbers to see what you can pay and still hold your labor target.</p>
+      <p class="lede">Enter your weekly revenue and roster. Salaries convert to hourly (annual ÷ 2,080). Managers get 40 regular hours plus 8 guaranteed overtime hours at time and a half. Housekeeping hours come from the rooms cleaned this week, so you can change the room count and see the effect.</p>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <span class="sample" id="sampleTag">Sample numbers — replace with yours</span>
+      <span class="sample" id="sampleTag">Sample numbers. Replace with yours.</span>
       <button class="btn" id="resetBtn" type="button">Reset to sample</button>
     </div>
   </header>
@@ -131,50 +128,50 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
   <div class="grid">
     <div class="col">
       <section class="panel" aria-labelledby="h-prop">
-        <div class="panel-head"><h2 id="h-prop">Property &amp; budget</h2><span class="eyebrow">One week · rooms cleaned drive revenue and housekeeping pay</span></div>
+        <div class="panel-head"><h2 id="h-prop">This week</h2><span class="eyebrow">Revenue and budget settings</span></div>
         <div class="fields">
-          <label class="f">Rooms available<input id="p-rooms" type="number" min="0" step="1"></label>
+          <label class="f">Weekly revenue ($)<input id="p-revenue" type="number" min="0" step="100"></label>
           <label class="f">Rooms cleaned this week<input id="p-roomsWeek" type="number" min="0" step="1"></label>
-          <label class="f">ADR ($)<input id="p-adr" type="number" min="0" step="1"></label>
-          <label class="f">Other revenue / day ($)<input id="p-other" type="number" min="0" step="10"></label>
           <label class="f">Labor target %<input id="p-target" type="number" min="1" max="100" step="0.5"></label>
-          <label class="f">Payroll taxes &amp; benefits %<input id="p-burden" type="number" min="0" max="100" step="0.5"></label>
+          <label class="f">Payroll taxes %<input id="p-burden" type="number" min="0" max="100" step="0.1"></label>
+          <label class="f">Overtime multiplier<input id="p-otMult" type="number" min="1" max="3" step="0.25"></label>
           <label class="f">Minimum wage check ($/hr)<input id="p-minwage" type="number" min="0" step="0.25"></label>
         </div>
         <div class="derived" id="propDerived"></div>
       </section>
 
       <section class="panel" aria-labelledby="h-staff">
-        <div class="panel-head"><h2 id="h-staff">Staff roster</h2><span class="eyebrow">Weekly costs, before taxes &amp; benefits</span></div>
+        <div class="panel-head"><h2 id="h-staff">Staff roster</h2><span class="eyebrow">Weekly wages, before payroll taxes</span></div>
         <div class="tbl-wrap">
           <table class="staff">
             <thead><tr>
-              <th>Position</th><th>Pay type</th><th class="r">Rate</th><th class="r">Heads</th><th class="r">Hrs/day</th><th class="r">Days</th><th>Piece volume / week</th><th class="r">Weekly cost</th><th></th>
+              <th>Position</th><th>Pay type</th><th class="r">Rate</th><th class="r">Heads</th><th class="r">Reg hrs/wk</th><th class="r">OT hrs/wk</th><th class="r">Min/room</th><th class="r">Weekly cost</th><th></th>
             </tr></thead>
             <tbody id="staffBody"></tbody>
           </table>
         </div>
         <div class="tbl-foot">
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn primary" type="button" data-add="piece">+ Piece-work row</button>
+            <button class="btn primary" type="button" data-add="hk">+ Housekeeping</button>
             <button class="btn" type="button" data-add="hourly">+ Hourly</button>
             <button class="btn" type="button" data-add="salary">+ Salary</button>
           </div>
-          <div class="legend">The 4 required managers can’t be removed. “% of rooms” ties piece pay to rooms cleaned, so it moves when you change the weekly room count.</div>
+          <div class="legend">Hours are per person. The 4 required managers can't be removed. Housekeeping hours = rooms cleaned × minutes per room, split evenly across heads, and anything over 40 hrs per person is paid as overtime.</div>
         </div>
       </section>
     </div>
 
     <aside class="panel score" aria-labelledby="h-score">
-      <div class="panel-head" style="margin-bottom:6px"><h2 id="h-score">Labor %</h2><span class="eyebrow" id="scenarioTag">Base case</span></div>
+      <div class="panel-head" style="margin-bottom:6px"><h2 id="h-score">Labor %</h2><span class="eyebrow" id="scenarioTag">Base week</span></div>
       <div class="big"><span class="num" id="o-pct">–</span><span class="status" id="o-status">–</span></div>
       <div class="meter" aria-hidden="true"><div class="fill" id="o-fill"></div><div class="mark" id="o-mark"></div></div>
-      <div class="meter-scale"><span>0%</span><span id="o-targetLbl">target</span><span>40%</span></div>
+      <div class="meter-scale"><span>0%</span><span id="o-targetLbl">target</span><span id="o-scaleMax">40%</span></div>
       <dl class="kv">
-        <dt>Revenue</dt><dd id="o-rev">–</dd>
+        <dt>Weekly revenue</dt><dd id="o-rev">–</dd>
         <dt>Labor budget at target</dt><dd id="o-allowed">–</dd>
-        <dt>Wages</dt><dd id="o-wages">–</dd>
-        <dt>Taxes &amp; benefits</dt><dd id="o-burden">–</dd>
+        <dt>Regular wages</dt><dd id="o-reg">–</dd>
+        <dt>Overtime wages</dt><dd id="o-ot">–</dd>
+        <dt>Payroll taxes</dt><dd id="o-burden">–</dd>
         <dt>Total labor</dt><dd id="o-total">–</dd>
         <dt id="o-headLbl">Room left in budget</dt><dd id="o-head">–</dd>
       </dl>
@@ -194,54 +191,48 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
   <section class="panel" aria-labelledby="h-stress">
     <div class="panel-head"><h2 id="h-stress">Stress test</h2><button class="btn" type="button" id="stressReset">Clear stress</button></div>
     <div class="sliders">
-      <div class="sl"><div class="sl-top"><label for="s-rooms">Rooms cleaned change</label><b id="s-rooms-v"></b></div><input id="s-rooms" type="range" min="-50" max="40" step="1"></div>
-      <div class="sl"><div class="sl-top"><label for="s-adr">ADR change</label><b id="s-adr-v"></b></div><input id="s-adr" type="range" min="-30" max="30" step="1"></div>
-      <div class="sl"><div class="sl-top"><label for="s-piece">Piece rate change</label><b id="s-piece-v"></b></div><input id="s-piece" type="range" min="-30" max="60" step="1"></div>
-      <div class="sl"><div class="sl-top"><label for="s-wage">Hourly &amp; salary raise</label><b id="s-wage-v"></b></div><input id="s-wage" type="range" min="-10" max="30" step="0.5"></div>
+      <div class="sl"><div class="sl-top"><label for="s-rev">Revenue change</label><b id="s-rev-v"></b></div><input id="s-rev" type="range" min="-40" max="30" step="1"></div>
+      <div class="sl"><div class="sl-top"><label for="s-rooms">Rooms cleaned change</label><b id="s-rooms-v"></b></div><input id="s-rooms" type="range" min="-40" max="40" step="1"></div>
+      <div class="sl"><div class="sl-top"><label for="s-hk">Housekeeping pay change</label><b id="s-hk-v"></b></div><input id="s-hk" type="range" min="-10" max="40" step="0.5"></div>
+      <div class="sl"><div class="sl-top"><label for="s-wage">Other staff raise</label><b id="s-wage-v"></b></div><input id="s-wage" type="range" min="-10" max="30" step="0.5"></div>
     </div>
     <div class="compare" id="compare"></div>
 
     <hr class="sep">
-    <div class="panel-head" style="margin-bottom:8px"><h3 style="font-size:1rem">Rooms cleaned per week × piece rate</h3><span class="eyebrow">Labor % with ADR and raise sliders applied</span></div>
+    <div class="panel-head" style="margin-bottom:8px"><h3 style="font-size:1rem">Weekly revenue × housekeeping pay</h3><span class="eyebrow">Labor % with rooms and raise sliders applied</span></div>
     <div class="mx-wrap"><table class="mx" id="matrix"></table></div>
-    <p class="note"><span class="pill ok">green</span> at or under target · <span class="pill" style="background:var(--warn-soft);color:var(--warn)">amber</span> up to 2 pts over · <span class="pill bad">red</span> more than 2 pts over. Outlined cell is the current stress setting. Column rates show the first piece-work row; all piece rows move by the same %.</p>
+    <p class="note"><span class="pill ok">green</span> at or under target · <span class="pill" style="background:var(--warn-soft);color:var(--warn)">amber</span> up to 2 pts over · <span class="pill bad">red</span> more than 2 pts over. The outlined cell is the current stress setting. Column rates show the first housekeeping row.</p>
   </section>
 
-  <p class="note">Math: salary hourly = annual ÷ 2,080. Hourly &amp; salary cost = hourly rate × hrs/day × days × heads. Piece cost = units for the week × rate. Total labor = wages × (1 + taxes &amp; benefits %). Labor % = total labor ÷ revenue. Revenue = rooms cleaned this week × ADR + other revenue/day × 7. Your inputs are saved in this browser only.</p>
+  <p class="note">Math: salary hourly rate = annual ÷ 2,080. Weekly cost per person = rate × regular hrs + rate × OT multiplier × OT hrs, times heads. Housekeeping hours = rooms cleaned × minutes per room ÷ 60. Total labor = wages × (1 + payroll taxes %). Labor % = total labor ÷ weekly revenue. Your inputs are saved in this browser only.</p>
 </div>
 
 <script>
 (function(){
-const KEY='hotel-labor-planner-v2';
-const DAYS=7;
+const KEY='hotel-labor-planner-v3';
 const REQUIRED=[
-  {code:'GM',name:'GM',rate:75000},
-  {code:'AGM',name:'AGM',rate:55000},
-  {code:'FOM',name:'FOM',rate:48000},
-  {code:'FDS',name:'FDS',rate:40000}
+  {code:'GM',rate:75000},{code:'AGM',rate:55000},{code:'FOM',rate:48000},{code:'FDS',rate:40000}
 ];
+const mgrRow=r=>({req:r.code,name:r.code,type:'salary',rate:r.rate,heads:1,reg:40,ot:8});
 const SAMPLE={
-  prop:{rooms:120,roomsWeek:605,adr:129,other:800,target:20,burden:12,minwage:7.25},
+  prop:{revenue:83645,roomsWeek:605,target:20,burden:7,otMult:1.5,minwage:7.25},
   staff:[
-    ...REQUIRED.map(r=>({req:r.code,name:r.name,type:'salary',rate:r.rate,heads:1,hrs:8,days:5})),
-    {name:'Housekeepers (per room)',type:'piece',rate:5.5,heads:8,hrs:8,days:7,mode:'rooms',pct:100,units:0},
-    {name:'Laundry (per lb)',type:'piece',rate:0.12,heads:1,hrs:8,days:7,mode:'fixed',pct:0,units:6300},
-    {name:'Front Desk Agents',type:'hourly',rate:16,heads:2,hrs:8,days:7},
-    {name:'Night Audit',type:'hourly',rate:16.5,heads:1,hrs:8,days:7},
-    {name:'Maintenance',type:'hourly',rate:21,heads:1,hrs:8,days:5}
+    ...REQUIRED.map(mgrRow),
+    {name:'Housekeepers',type:'hk',rate:13,heads:8,mins:30},
+    {name:'Laundry',type:'hourly',rate:13,heads:1,reg:40,ot:0},
+    {name:'Front Desk Agents',type:'hourly',rate:16,heads:3,reg:40,ot:0},
+    {name:'Night Audit',type:'hourly',rate:16.5,heads:1,reg:40,ot:0},
+    {name:'Maintenance',type:'hourly',rate:21,heads:1,reg:40,ot:0}
   ],
-  stress:{rooms:0,adr:0,piece:0,wage:0},
+  stress:{rev:0,rooms:0,hk:0,wage:0},
   edited:false
 };
 const clone=o=>JSON.parse(JSON.stringify(o));
 let S;
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!S.prop||!Array.isArray(S.staff))S=clone(SAMPLE);
-S.stress=Object.assign({rooms:0,adr:0,piece:0,wage:0},S.stress||{});
-// make sure all 4 required managers are always on the roster
-REQUIRED.slice().reverse().forEach(r=>{
-  if(!S.staff.some(x=>x.req===r.code))S.staff.unshift({req:r.code,name:r.name,type:'salary',rate:r.rate,heads:1,hrs:8,days:5});
-});
+S.stress=Object.assign({rev:0,rooms:0,hk:0,wage:0},S.stress||{});
+REQUIRED.slice().reverse().forEach(r=>{if(!S.staff.some(x=>x.req===r.code))S.staff.unshift(mgrRow(r))});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 const $=id=>document.getElementById(id);
@@ -254,100 +245,91 @@ const num=v=>{v=parseFloat(v);return isFinite(v)?v:0};
 const sign=v=>(v>0?'+':'')+v;
 
 /* ---------- core math (one week) ---------- */
-// mods.rooms = % change to rooms cleaned; mods.roomsAbs overrides with an exact weekly count
+// mods: rev/rooms/hk/wage are % changes; revAbs and minsMult override for solving
 function compute(mods){
-  const p=S.prop, m=Object.assign({rooms:0,adr:0,piece:0,wage:0},mods||{});
-  const roomsWk=Math.max(0,m.roomsAbs!=null?m.roomsAbs:num(p.roomsWeek)*(1+m.rooms/100));
-  const cap=num(p.rooms)*DAYS;
-  const occ=cap>0?roomsWk/cap:0;
-  const adr=num(p.adr)*(1+m.adr/100);
-  const revenue=roomsWk*adr+num(p.other)*DAYS;
-  const burden=num(p.burden)/100, target=num(p.target)/100;
-  let wages=0,piece=0,fixed=0;
+  const p=S.prop, m=Object.assign({rev:0,rooms:0,hk:0,wage:0,minsMult:1},mods||{});
+  const revenue=Math.max(0,m.revAbs!=null?m.revAbs:num(p.revenue)*(1+m.rev/100));
+  const roomsWk=Math.max(0,num(p.roomsWeek)*(1+m.rooms/100));
+  const burden=num(p.burden)/100, target=num(p.target)/100, otM=num(p.otMult)||1.5;
+  let reg=0,ot=0,hk=0,other=0,hkHours=0;
   const rows=S.staff.map(r=>{
-    const heads=num(r.heads),hrs=num(r.hrs),d=num(r.days);
-    let cost=0,hourly=0,unitsWk=0,rate=num(r.rate);
-    if(r.type==='piece'){
-      rate=rate*(1+m.piece/100);
-      unitsWk=r.mode==='fixed'?num(r.units):roomsWk*num(r.pct)/100;
-      cost=unitsWk*rate;
-      hourly=heads>0&&hrs*d>0?cost/heads/(hrs*d):0;
-      piece+=cost;
+    const heads=num(r.heads);
+    let rate,regH,otH;
+    if(r.type==='hk'){
+      rate=num(r.rate)*(1+m.hk/100);
+      const total=roomsWk*num(r.mins)*m.minsMult/60;
+      const each=heads>0?total/heads:0;
+      regH=Math.min(40,each);otH=Math.max(0,each-40);
+      hkHours+=total;
     }else{
-      hourly=(r.type==='salary'?rate/2080:rate)*(1+m.wage/100);
-      cost=hourly*hrs*d*heads;
-      fixed+=cost;
+      rate=(r.type==='salary'?num(r.rate)/2080:num(r.rate))*(1+m.wage/100);
+      regH=num(r.reg);otH=num(r.ot);
     }
-    wages+=cost;
-    return {cost,hourly,unitsWk,rate};
+    const regC=rate*regH*heads, otC=rate*otM*otH*heads, cost=regC+otC;
+    reg+=regC;ot+=otC;
+    if(r.type==='hk')hk+=cost;else other+=cost;
+    return {rate,regH,otH,regC,otC,cost};
   });
-  const total=wages*(1+burden);
-  const allowed=revenue*target;
-  return {roomsWk,occ,cap,adr,revenue,wages,burdenAmt:wages*burden,total,allowed,head:allowed-total,
-    pct:revenue>0?total/revenue:Infinity,rows,piece,fixed,burden,target};
-}
-function minRooms(mods){
-  const cap=Math.max(1,num(S.prop.rooms)*DAYS);
-  for(let x=0;x<=cap;x++){
-    const r=compute(Object.assign({},mods,{roomsAbs:x}));
-    if(r.pct<=r.target)return x;
-  }
-  return null;
+  const wages=reg+ot,total=wages*(1+burden),allowed=revenue*target;
+  return {revenue,roomsWk,reg,ot,wages,burdenAmt:wages*burden,total,allowed,head:allowed-total,
+    pct:revenue>0?total/revenue:Infinity,rows,hk,other,hkHours,burden,target};
 }
 
-/* ---------- property inputs ---------- */
-const PF=['rooms','roomsWeek','adr','other','target','burden','minwage'];
+/* ---------- week inputs ---------- */
+const PF=['revenue','roomsWeek','target','burden','otMult','minwage'];
 PF.forEach(k=>{
   const el=$('p-'+k); el.value=S.prop[k];
   el.addEventListener('input',()=>{S.prop[k]=el.value===''?0:num(el.value);touch();update()});
 });
 
 /* ---------- staff table ---------- */
-const HINT={salary:'annual salary',hourly:'$ / hour',piece:'$ / unit'};
-function cell(html){const td=document.createElement('td');td.innerHTML=html;return td}
+function cell(html,cls){const td=document.createElement('td');td.innerHTML=html;if(cls)td.className=cls;return td}
 function renderStaff(){
   const tb=$('staffBody'); tb.innerHTML='';
   S.staff.forEach((r,i)=>{
     const tr=document.createElement('tr');
-    const isP=r.type==='piece';
+    const isHK=r.type==='hk';
     tr.appendChild(cell(`<input class="w-name" id="r${i}-name" aria-label="Position">${r.req?'<div class="req">Required</div>':''}`));
-    tr.appendChild(cell(`<select class="w-type" id="r${i}-type" aria-label="Pay type"><option value="piece">Piece</option><option value="hourly">Hourly</option><option value="salary">Salary</option></select>`));
-    tr.appendChild(cell(`<input class="w-rate" id="r${i}-rate" type="number" min="0" step="${r.type==='salary'?500:isP?0.05:0.25}" aria-label="Rate"><div class="hint" id="r${i}-hint"></div>`));
+    tr.appendChild(cell(`<select class="w-type" id="r${i}-type" aria-label="Pay type"><option value="salary">Salary</option><option value="hourly">Hourly</option><option value="hk">Hourly, by rooms</option></select>`));
+    tr.appendChild(cell(`<input class="w-rate" id="r${i}-rate" type="number" min="0" step="${r.type==='salary'?500:0.25}" aria-label="Rate"><div class="hint" id="r${i}-hint"></div>`));
     tr.appendChild(cell(`<input class="w-sm" id="r${i}-heads" type="number" min="${r.req?1:0}" step="1" aria-label="Heads">`));
-    tr.appendChild(cell(`<input class="w-sm" id="r${i}-hrs" type="number" min="0" step="0.25" aria-label="Hours per day">`));
-    tr.appendChild(cell(`<input class="w-sm" id="r${i}-days" type="number" min="0" max="7" step="1" aria-label="Days worked this week">`));
-    tr.appendChild(cell(isP?`<div class="vol w-vol"><select id="r${i}-mode" aria-label="Volume basis"><option value="rooms">% of rooms</option><option value="fixed">Units/week</option></select><input id="r${i}-vol" type="number" min="0" step="1" aria-label="Volume"></div><div class="hint" id="r${i}-volhint"></div>`:`<span class="hint">—</span>`));
-    const c=cell(`<span id="r${i}-cost"></span><div class="hint" id="r${i}-sub"></div><div id="r${i}-flag"></div>`);c.className='r cost';tr.appendChild(c);
+    if(isHK){
+      tr.appendChild(cell(`<span class="calc" id="r${i}-regc"></span>`));
+      tr.appendChild(cell(`<span class="calc" id="r${i}-otc"></span>`));
+      tr.appendChild(cell(`<input class="w-sm" id="r${i}-mins" type="number" min="0" step="1" aria-label="Minutes per room"><div class="hint" id="r${i}-hrs"></div>`));
+    }else{
+      tr.appendChild(cell(`<input class="w-sm" id="r${i}-reg" type="number" min="0" step="0.5" aria-label="Regular hours per week">`));
+      tr.appendChild(cell(`<input class="w-sm" id="r${i}-ot" type="number" min="0" step="0.5" aria-label="Overtime hours per week">`));
+      tr.appendChild(cell(`<span class="calc">—</span>`));
+    }
+    tr.appendChild(cell(`<span id="r${i}-cost"></span><div class="hint" id="r${i}-sub"></div><div id="r${i}-flag"></div>`,'r cost'));
     tr.appendChild(cell(r.req?'':`<button class="x" type="button" aria-label="Remove row" data-del="${i}">×</button>`));
     tb.appendChild(tr);
-    const bind=(f,key,isNum)=>{const el=$(`r${i}-${f}`);if(!el)return;el.value=r[key];
-      el.addEventListener('input',()=>{let v=isNum?(el.value===''?0:num(el.value)):el.value;if(r.req&&key==='heads'&&v<1)v=1;r[key]=v;touch();update()})};
-    bind('name','name',false);bind('rate','rate',true);bind('heads','heads',true);bind('hrs','hrs',true);bind('days','days',true);
+    const bind=(f,isNum)=>{const el=$(`r${i}-${f}`);if(!el)return;el.value=r[f]??'';
+      el.addEventListener('input',()=>{let v=isNum?(el.value===''?0:num(el.value)):el.value;if(r.req&&f==='heads'&&v<1)v=1;r[f]=v;touch();update()})};
+    bind('name',false);['rate','heads','reg','ot','mins'].forEach(f=>bind(f,true));
     $(`r${i}-type`).value=r.type;
-    $(`r${i}-type`).addEventListener('change',e=>{r.type=e.target.value;if(r.type==='piece'&&!r.mode){r.mode='rooms';r.pct=100;r.units=0}touch();renderStaff();update()});
-    if(isP){
-      if(r.mode!=='fixed')r.mode='rooms';
-      const mode=$(`r${i}-mode`),vol=$(`r${i}-vol`);
-      mode.value=r.mode;vol.value=r.mode==='fixed'?r.units:r.pct;
-      mode.addEventListener('change',()=>{r.mode=mode.value;vol.value=r.mode==='fixed'?r.units:r.pct;touch();update()});
-      vol.addEventListener('input',()=>{const v=vol.value===''?0:num(vol.value);if(r.mode==='fixed')r.units=v;else r.pct=v;touch();update()});
-    }
+    $(`r${i}-type`).addEventListener('change',e=>{r.type=e.target.value;
+      if(r.type==='hk'&&r.mins==null)r.mins=30;
+      if(r.type!=='hk'&&r.reg==null){r.reg=40;r.ot=0}
+      touch();renderStaff();update()});
   });
   tb.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{S.staff.splice(+b.dataset.del,1);touch();renderStaff();update()}));
 }
 document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>{
   const t=b.dataset.add;
-  S.staff.push(t==='piece'?{name:'New piece work',type:'piece',rate:5,heads:1,hrs:8,days:7,mode:'rooms',pct:100,units:0}
-    :t==='hourly'?{name:'New hourly',type:'hourly',rate:15,heads:1,hrs:8,days:5}
-    :{name:'New salary',type:'salary',rate:45000,heads:1,hrs:8,days:5});
+  S.staff.push(t==='hk'?{name:'Housekeeping',type:'hk',rate:13,heads:1,mins:30}
+    :t==='hourly'?{name:'New hourly',type:'hourly',rate:15,heads:1,reg:40,ot:0}
+    :{name:'New salary',type:'salary',rate:45000,heads:1,reg:40,ot:0});
   touch();renderStaff();update();
-  const last=document.getElementById(`r${S.staff.length-1}-name`);if(last){last.focus();last.select()}
+  const last=$(`r${S.staff.length-1}-name`);if(last){last.focus();last.select()}
 }));
 
 /* ---------- stress sliders ---------- */
 const SL={
+  rev:v=>`${sign(v)}% · ${usd0.format(num(S.prop.revenue)*(1+v/100))}`,
   rooms:v=>`${sign(v)}% · ${int(num(S.prop.roomsWeek)*(1+v/100))} rooms`,
-  adr:v=>sign(v)+'%',piece:v=>sign(v)+'%',wage:v=>sign(v)+'%'
+  hk:v=>sign(v)+'%', wage:v=>sign(v)+'%'
 };
 Object.keys(SL).forEach(k=>{
   const el=$('s-'+k);el.value=S.stress[k];
@@ -366,24 +348,25 @@ function update(){
   Object.keys(SL).forEach(k=>$('s-'+k+'-v').textContent=SL[k](st[k]));
   $('scenarioTag').textContent=stressed?'Stressed week':'Base week';
 
-  $('propDerived').innerHTML=`<span>Occupancy <b>${pct(R.occ)}</b>${R.occ>1?' <span class="pill bad">over capacity</span>':''}</span><span>Rooms/day <b>${n1(R.roomsWk/DAYS)}</b></span><span>Room revenue <b>${usd0.format(R.roomsWk*R.adr)}</b></span><span>Labor $ per room cleaned <b>${R.roomsWk?usd2.format(R.total/R.roomsWk):'–'}</b></span>`;
+  const totalHrs=R.rows.reduce((a,x,i)=>a+(x.regH+x.otH)*num(S.staff[i].heads),0);
+  $('propDerived').innerHTML=`<span>Labor budget <b>${usd0.format(R.allowed)}</b></span><span>Total paid hours <b>${n1(totalHrs)}</b></span><span>Housekeeping hours <b>${n1(R.hkHours)}</b></span><span>Labor $ per room cleaned <b>${R.roomsWk?usd2.format(R.total/R.roomsWk):'–'}</b></span>`;
 
   const mw=num(S.prop.minwage);
   S.staff.forEach((r,i)=>{
     const x=R.rows[i]; if(!$(`r${i}-cost`))return;
     $(`r${i}-cost`).textContent=usd0.format(x.cost);
-    $(`r${i}-hint`).textContent=r.type==='salary'?`= ${usd2.format(num(r.rate)/2080)}/hr`:HINT[r.type];
-    let sub='',flag='';
-    if(r.type==='piece'){
-      const each=x.unitsWk/(num(r.heads)||1);
-      sub=`${usd2.format(x.hourly)}/hr each · ${int(each)}/wk each`;
-      const vh=$(`r${i}-volhint`); if(vh)vh.textContent=r.mode==='fixed'?'fixed units per week':`= ${int(x.unitsWk)} rooms this week`;
-      if(st.piece)sub=`at ${usd2.format(x.rate)}/unit · `+sub;
-    }else{
-      sub=`${usd2.format(x.hourly)}/hr · ${n1(num(r.hrs)*num(r.days))} hrs/wk each`;
+    $(`r${i}-hint`).textContent=r.type==='salary'?`= ${usd2.format(num(r.rate)/2080)}/hr`:'$ / hour';
+    if(r.type==='hk'){
+      $(`r${i}-regc`).textContent=n1(x.regH);
+      $(`r${i}-otc`).textContent=n1(x.otH);
+      $(`r${i}-hrs`).textContent=`${n1(x.regH+x.otH)} hrs each`;
     }
-    if(mw>0&&num(r.heads)>0&&x.hourly<mw)flag=`<span class="pill bad">below min wage</span>`;
-    $(`r${i}-sub`).textContent=sub;$(`r${i}-flag`).innerHTML=flag;
+    const heads=num(r.heads)||0;
+    let sub=x.otC>0?`${usd0.format(x.otC)} is OT`:'no OT';
+    if(heads>1)sub+=` · ${usd0.format(x.cost/heads)} each`;
+    if(stressed&&(r.type==='hk'?st.hk:st.wage))sub=`at ${usd2.format(x.rate)}/hr · `+sub;
+    $(`r${i}-sub`).textContent=sub;
+    $(`r${i}-flag`).innerHTML=mw>0&&heads>0&&x.rate<mw?`<span class="pill bad">below min wage</span>`:'';
   });
 
   const s=statusOf(R.pct,R.target);
@@ -395,64 +378,67 @@ function update(){
   $('o-fill').style.background=`var(--${s==='good'?'accent':s})`;
   $('o-mark').style.left=(R.target/scaleMax*100)+'%';
   $('o-targetLbl').textContent='target '+(R.target*100).toFixed(1).replace(/\.0$/,'')+'%';
-  document.querySelector('.meter-scale span:last-child').textContent=Math.round(scaleMax*100)+'%';
+  $('o-scaleMax').textContent=Math.round(scaleMax*100)+'%';
   $('o-rev').textContent=usd0.format(R.revenue);
   $('o-allowed').textContent=usd0.format(R.allowed);
-  $('o-wages').textContent=usd0.format(R.wages);
+  $('o-reg').textContent=usd0.format(R.reg);
+  $('o-ot').textContent=usd0.format(R.ot);
   $('o-burden').textContent=usd0.format(R.burdenAmt);
   $('o-total').textContent=usd0.format(R.total);
   $('o-headLbl').textContent=R.head>=0?'Room left in budget':'Over budget by';
   const h=$('o-head');h.textContent=usd0.format(Math.abs(R.head));h.className=R.head>=0?'pos':'neg';
 
   const cap=[];
-  const mgr=S.staff.reduce((a,r,i)=>a+(r.req?R.rows[i].cost:0),0)*(1+R.burden);
-  cap.push(['4 required managers (loaded)',usd0.format(mgr)]);
-  const pieceBudget=R.allowed/(1+R.burden)-R.fixed;
-  S.staff.forEach((r,i)=>{
-    if(r.type!=='piece')return;
-    const x=R.rows[i];
-    let txt='–';
-    if(R.piece>0&&pieceBudget>0)txt=usd2.format(x.rate*pieceBudget/R.piece)+' / unit';
-    else if(pieceBudget<=0)txt='no room';
-    cap.push([`Max rate · ${r.name||'piece row'}`,txt]);
-  });
-  if(R.piece>0)cap.push(['Max piece-work payroll',usd0.format(Math.max(0,pieceBudget))]);
-  const fixedBudget=R.allowed/(1+R.burden)-R.piece;
-  if(R.fixed>0){
-    const raise=fixedBudget/R.fixed-1;
-    cap.push(['Max raise · hourly & salary',isFinite(raise)?(raise>=0?'+':'')+(raise*100).toFixed(1)+'%':'–']);
+  const mgrWages=S.staff.reduce((a,r,i)=>a+(r.req?R.rows[i].cost:0),0);
+  const mgrOT=S.staff.reduce((a,r,i)=>a+(r.req?R.rows[i].otC:0),0);
+  cap.push(['4 required managers, with taxes',usd0.format(mgrWages*(1+R.burden))]);
+  cap.push(['Of that, guaranteed OT',usd0.format(mgrOT*(1+R.burden))]);
+  const wageBudget=R.allowed/(1+R.burden);
+  const hkBudget=wageBudget-R.other;
+  const firstHK=S.staff.findIndex(r=>r.type==='hk');
+  if(R.hk>0){
+    cap.push(['Max housekeeping pay',hkBudget>0?usd2.format(R.rows[firstHK].rate*hkBudget/R.hk)+' / hr':'no room']);
+    cap.push(['Max housekeeping payroll',usd0.format(Math.max(0,hkBudget))]);
+    // longest minutes per room at current pay
+    let lo=0,hi=20;
+    for(let k=0;k<40;k++){const mid=(lo+hi)/2;const r=compute(Object.assign({},st,{minsMult:mid}));if(r.pct<=r.target)lo=mid;else hi=mid}
+    const mins=num(S.staff[firstHK].mins)*lo;
+    cap.push(['Max minutes per room at this pay',lo>=19.9?'no limit':n1(mins)+' min']);
   }
-  const mr=minRooms({adr:st.adr,piece:st.piece,wage:st.wage});
-  cap.push(['Fewest rooms/week that holds target',mr===null?'not reachable':int(mr)+' rooms']);
+  if(R.other>0){
+    const raise=(wageBudget-R.hk)/R.other-1;
+    cap.push(['Max raise for everyone else',isFinite(raise)?(raise>=0?'+':'')+(raise*100).toFixed(1)+'%':'–']);
+  }
+  cap.push(['Lowest weekly revenue that holds target',R.target>0?usd0.format(R.total/R.target):'–']);
   $('capList').innerHTML=cap.map(([a,b])=>`<div class="cap-item"><span>${esc(a)}</span><strong>${b}</strong></div>`).join('');
 
-  const order=S.staff.map((r,i)=>({n:r.name||'(unnamed)',c:R.rows[i].cost,t:r.type})).sort((a,b)=>b.c-a.c);
+  const order=S.staff.map((r,i)=>({n:r.name||'(unnamed)',c:R.rows[i].cost,m:!!r.req})).sort((a,b)=>b.c-a.c);
   $('mix').innerHTML=order.map(o=>{const share=R.wages?o.c/R.wages:0;
-    return `<div class="mix-row"><div><div class="lbl">${esc(o.n)}</div><div class="mix-bar"><i style="width:${share*100}%;${o.t==='piece'?'':'opacity:.55'}"></i></div></div><div style="text-align:right">${(share*100).toFixed(0)}%</div></div>`}).join('')
-    +`<div class="legend" style="margin-top:4px">Darker bars are piece work.</div>`;
+    return `<div class="mix-row"><div><div class="lbl">${esc(o.n)}</div><div class="mix-bar"><i style="width:${share*100}%;${o.m?'':'opacity:.55'}"></i></div></div><div style="text-align:right">${(share*100).toFixed(0)}%</div></div>`}).join('')
+    +`<div class="legend" style="margin-top:4px">Darker bars are the required managers.</div>`;
 
   const d=R.pct-base.pct;
-  $('compare').innerHTML=`<span>Base <b>${pct(base.pct)}</b></span><span>Stressed <b>${pct(R.pct)}</b> <span style="color:var(--${d>0.0005?'bad':d<-0.0005?'good':'muted'})">(${d>=0?'+':''}${(d*100).toFixed(1)} pts)</span></span><span>Rooms <b>${int(R.roomsWk)}</b></span><span>Revenue <b>${usd0.format(R.revenue)}</b></span><span>Total labor <b>${usd0.format(R.total)}</b></span><span>${R.head>=0?'Room left':'Over by'} <b>${usd0.format(Math.abs(R.head))}</b></span>`;
+  $('compare').innerHTML=`<span>Base <b>${pct(base.pct)}</b></span><span>Stressed <b>${pct(R.pct)}</b> <span style="color:var(--${d>0.0005?'bad':d<-0.0005?'good':'muted'})">(${d>=0?'+':''}${(d*100).toFixed(1)} pts)</span></span><span>Revenue <b>${usd0.format(R.revenue)}</b></span><span>Rooms <b>${int(R.roomsWk)}</b></span><span>Total labor <b>${usd0.format(R.total)}</b></span><span>${R.head>=0?'Room left':'Over by'} <b>${usd0.format(Math.abs(R.head))}</b></span>`;
 
   renderMatrix(st);
 }
 function renderMatrix(st){
   const t=$('matrix');
-  const firstP=S.staff.find(r=>r.type==='piece');
-  const cols=[-20,-10,0,10,20,30,40];
-  const baseRooms=num(S.prop.roomsWeek);
-  const steps=[30,20,10,0,-10,-20,-30,-40];
-  if(!steps.includes(st.rooms))steps.push(st.rooms);
+  const firstHK=S.staff.find(r=>r.type==='hk');
+  const cols=[-10,0,10,20,30,40];
+  const baseRev=num(S.prop.revenue);
+  const steps=[20,10,0,-10,-20,-30,-40];
+  if(!steps.includes(st.rev))steps.push(st.rev);
   steps.sort((a,b)=>b-a);
-  const curCol=cols.reduce((a,c)=>Math.abs(c-st.piece)<Math.abs(a-st.piece)?c:a,cols[0]);
-  let html='<thead><tr><th style="text-align:right">Rooms / week</th>'+cols.map(c=>{
-    const lbl=firstP?usd2.format(num(firstP.rate)*(1+c/100)):'';
+  const curCol=cols.reduce((a,c)=>Math.abs(c-st.hk)<Math.abs(a-st.hk)?c:a,cols[0]);
+  let html='<thead><tr><th style="text-align:right">Weekly revenue</th>'+cols.map(c=>{
+    const lbl=firstHK?usd2.format(num(firstHK.rate)*(1+c/100))+'/hr':'';
     return `<th>${c>0?'+':''}${c}%<small>${lbl}</small></th>`}).join('')+'</tr></thead><tbody>';
   steps.forEach(k=>{
-    const rooms=baseRooms*(1+k/100), cur=k===st.rooms;
-    html+=`<tr><th>${int(rooms)} <span style="font-weight:400">(${k>0?'+':''}${k}%)</span>${cur?' ◂':''}</th>`;
+    const cur=k===st.rev;
+    html+=`<tr><th>${usd0.format(baseRev*(1+k/100))} <span style="font-weight:400">(${k>0?'+':''}${k}%)</span>${cur?' ◂':''}</th>`;
     cols.forEach(c=>{
-      const r=compute({rooms:k,adr:st.adr,wage:st.wage,piece:c});
+      const r=compute({rev:k,rooms:st.rooms,wage:st.wage,hk:c});
       const s=statusOf(r.pct,r.target);
       html+=`<td class="c-${s}${cur&&c===curCol?' cur':''}">${pct(r.pct)}</td>`;
     });
@@ -464,5 +450,4 @@ function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 
 renderStaff();update();
 })();
-
 </script>
