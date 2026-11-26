@@ -51,14 +51,15 @@ input[type=number]{text-align:right}
 /* staff table */
 .tbl-wrap{overflow-x:auto;margin:0 -18px;padding:0 18px}
 table{border-collapse:collapse;width:100%}
-.staff{min-width:900px}
+.staff{min-width:960px}
 .staff th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;text-align:left;padding:0 6px 8px;white-space:nowrap}
 .staff th.r,.staff td.r{text-align:right}
 .staff td{padding:6px;border-top:1px solid var(--line);vertical-align:top}
 .staff td input,.staff td select{padding:6px 7px}
-.staff .w-name{width:170px}.staff .w-type{width:100px}.staff .w-rate{width:110px}.staff .w-sm{width:68px}.staff .w-vol{width:170px}
+.staff .w-name{width:190px}.staff .w-type{width:100px}.staff .w-rate{width:110px}.staff .w-sm{width:68px}.staff .w-vol{width:200px}
 .hint{font-size:.72rem;color:var(--muted);margin-top:3px;white-space:nowrap}
-.vol{display:flex;gap:4px}.vol select{width:96px;flex:none}
+.vol{display:flex;gap:4px}.vol select{width:104px;flex:none}
+.req{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:1px 7px;border-radius:99px;margin-top:4px}
 .cost{font-weight:600;white-space:nowrap;padding-top:12px!important}
 .x{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:4px 6px;border-radius:6px}
 .x:hover{color:var(--bad);background:var(--bad-soft)}
@@ -119,7 +120,7 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
     <div>
       <div class="eyebrow">Labor budget · piece work + hourly + salary</div>
       <h1>Hotel Labor Planner</h1>
-      <p class="lede">Enter revenue drivers and your roster. Salaries convert to hourly (annual ÷ 2,080) and cost out at 8 hrs/day or the approved hours you enter. Piece work costs out per unit. Then stress the numbers to see what you can pay and still hold your labor target.</p>
+      <p class="lede">Enter revenue drivers and your roster. Salaries convert to hourly (annual ÷ 2,080) and cost out at 8 hrs/day or the approved hours you enter. Piece work costs out per room cleaned, using the rooms you clean for the week. Then stress the numbers to see what you can pay and still hold your labor target.</p>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       <span class="sample" id="sampleTag">Sample numbers — replace with yours</span>
@@ -130,13 +131,12 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
   <div class="grid">
     <div class="col">
       <section class="panel" aria-labelledby="h-prop">
-        <div class="panel-head"><h2 id="h-prop">Property &amp; budget</h2><span class="eyebrow">Revenue drivers for the period</span></div>
+        <div class="panel-head"><h2 id="h-prop">Property &amp; budget</h2><span class="eyebrow">One week · rooms cleaned drive revenue and housekeeping pay</span></div>
         <div class="fields">
           <label class="f">Rooms available<input id="p-rooms" type="number" min="0" step="1"></label>
-          <label class="f">Occupancy %<input id="p-occ" type="number" min="0" max="100" step="0.5"></label>
+          <label class="f">Rooms cleaned this week<input id="p-roomsWeek" type="number" min="0" step="1"></label>
           <label class="f">ADR ($)<input id="p-adr" type="number" min="0" step="1"></label>
           <label class="f">Other revenue / day ($)<input id="p-other" type="number" min="0" step="10"></label>
-          <label class="f">Days in period<input id="p-days" type="number" min="1" step="1"></label>
           <label class="f">Labor target %<input id="p-target" type="number" min="1" max="100" step="0.5"></label>
           <label class="f">Payroll taxes &amp; benefits %<input id="p-burden" type="number" min="0" max="100" step="0.5"></label>
           <label class="f">Minimum wage check ($/hr)<input id="p-minwage" type="number" min="0" step="0.25"></label>
@@ -145,11 +145,11 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
       </section>
 
       <section class="panel" aria-labelledby="h-staff">
-        <div class="panel-head"><h2 id="h-staff">Staff roster</h2><span class="eyebrow">Costs for the period, before taxes &amp; benefits</span></div>
+        <div class="panel-head"><h2 id="h-staff">Staff roster</h2><span class="eyebrow">Weekly costs, before taxes &amp; benefits</span></div>
         <div class="tbl-wrap">
           <table class="staff">
             <thead><tr>
-              <th>Position</th><th>Pay type</th><th class="r">Rate</th><th class="r">Heads</th><th class="r">Hrs/day</th><th class="r">Days</th><th>Piece volume / day</th><th class="r">Period cost</th><th></th>
+              <th>Position</th><th>Pay type</th><th class="r">Rate</th><th class="r">Heads</th><th class="r">Hrs/day</th><th class="r">Days</th><th>Piece volume / week</th><th class="r">Weekly cost</th><th></th>
             </tr></thead>
             <tbody id="staffBody"></tbody>
           </table>
@@ -160,7 +160,7 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
             <button class="btn" type="button" data-add="hourly">+ Hourly</button>
             <button class="btn" type="button" data-add="salary">+ Salary</button>
           </div>
-          <div class="legend">Piece volume “% of occupied” ties units to occupancy, so it moves when you stress occupancy.</div>
+          <div class="legend">The 4 required managers can’t be removed. “% of rooms” ties piece pay to rooms cleaned, so it moves when you change the weekly room count.</div>
         </div>
       </section>
     </div>
@@ -194,7 +194,7 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
   <section class="panel" aria-labelledby="h-stress">
     <div class="panel-head"><h2 id="h-stress">Stress test</h2><button class="btn" type="button" id="stressReset">Clear stress</button></div>
     <div class="sliders">
-      <div class="sl"><div class="sl-top"><label for="s-occ">Occupancy change</label><b id="s-occ-v"></b></div><input id="s-occ" type="range" min="-40" max="20" step="1"></div>
+      <div class="sl"><div class="sl-top"><label for="s-rooms">Rooms cleaned change</label><b id="s-rooms-v"></b></div><input id="s-rooms" type="range" min="-50" max="40" step="1"></div>
       <div class="sl"><div class="sl-top"><label for="s-adr">ADR change</label><b id="s-adr-v"></b></div><input id="s-adr" type="range" min="-30" max="30" step="1"></div>
       <div class="sl"><div class="sl-top"><label for="s-piece">Piece rate change</label><b id="s-piece-v"></b></div><input id="s-piece" type="range" min="-30" max="60" step="1"></div>
       <div class="sl"><div class="sl-top"><label for="s-wage">Hourly &amp; salary raise</label><b id="s-wage-v"></b></div><input id="s-wage" type="range" min="-10" max="30" step="0.5"></div>
@@ -202,65 +202,76 @@ input[type=range]{padding:0;border:none;background:none;accent-color:var(--accen
     <div class="compare" id="compare"></div>
 
     <hr class="sep">
-    <div class="panel-head" style="margin-bottom:8px"><h3 style="font-size:1rem">Occupancy × piece rate</h3><span class="eyebrow">Labor % with ADR and raise sliders applied</span></div>
+    <div class="panel-head" style="margin-bottom:8px"><h3 style="font-size:1rem">Rooms cleaned per week × piece rate</h3><span class="eyebrow">Labor % with ADR and raise sliders applied</span></div>
     <div class="mx-wrap"><table class="mx" id="matrix"></table></div>
     <p class="note"><span class="pill ok">green</span> at or under target · <span class="pill" style="background:var(--warn-soft);color:var(--warn)">amber</span> up to 2 pts over · <span class="pill bad">red</span> more than 2 pts over. Outlined cell is the current stress setting. Column rates show the first piece-work row; all piece rows move by the same %.</p>
   </section>
 
-  <p class="note">Math: salary hourly = annual ÷ 2,080. Hourly &amp; salary cost = hourly rate × hrs/day × days × heads. Piece cost = units/day × days × rate. Total labor = wages × (1 + taxes &amp; benefits %). Labor % = total labor ÷ revenue. Revenue = (rooms × occupancy × ADR + other revenue/day) × days. Your inputs are saved in this browser only.</p>
+  <p class="note">Math: salary hourly = annual ÷ 2,080. Hourly &amp; salary cost = hourly rate × hrs/day × days × heads. Piece cost = units for the week × rate. Total labor = wages × (1 + taxes &amp; benefits %). Labor % = total labor ÷ revenue. Revenue = rooms cleaned this week × ADR + other revenue/day × 7. Your inputs are saved in this browser only.</p>
 </div>
 
 <script>
 (function(){
-const KEY='hotel-labor-planner-v1';
+const KEY='hotel-labor-planner-v2';
+const DAYS=7;
+const REQUIRED=[
+  {code:'GM',name:'GM',rate:75000},
+  {code:'AGM',name:'AGM',rate:55000},
+  {code:'FOM',name:'FOM',rate:48000},
+  {code:'FDS',name:'FDS',rate:40000}
+];
 const SAMPLE={
-  prop:{rooms:120,occ:72,adr:129,other:800,days:7,target:20,burden:12,minwage:7.25},
+  prop:{rooms:120,roomsWeek:605,adr:129,other:800,target:20,burden:12,minwage:7.25},
   staff:[
-    {name:'Housekeepers (per room)',type:'piece',rate:5.5,heads:8,hrs:8,days:7,mode:'occ',pct:90,units:0},
-    {name:'Laundry (per lb)',type:'piece',rate:0.12,heads:1,hrs:8,days:7,mode:'fixed',pct:0,units:900},
-    {name:'General Manager',type:'salary',rate:75000,heads:1,hrs:8,days:5},
-    {name:'Housekeeping Supervisor',type:'salary',rate:42000,heads:1,hrs:8,days:5},
-    {name:'Front Desk',type:'hourly',rate:16,heads:3,hrs:8,days:7},
+    ...REQUIRED.map(r=>({req:r.code,name:r.name,type:'salary',rate:r.rate,heads:1,hrs:8,days:5})),
+    {name:'Housekeepers (per room)',type:'piece',rate:5.5,heads:8,hrs:8,days:7,mode:'rooms',pct:100,units:0},
+    {name:'Laundry (per lb)',type:'piece',rate:0.12,heads:1,hrs:8,days:7,mode:'fixed',pct:0,units:6300},
+    {name:'Front Desk Agents',type:'hourly',rate:16,heads:2,hrs:8,days:7},
     {name:'Night Audit',type:'hourly',rate:16.5,heads:1,hrs:8,days:7},
-    {name:'Maintenance',type:'hourly',rate:21,heads:1,hrs:8,days:5},
-    {name:'Breakfast Attendant',type:'hourly',rate:14,heads:1,hrs:5,days:7}
+    {name:'Maintenance',type:'hourly',rate:21,heads:1,hrs:8,days:5}
   ],
-  stress:{occ:0,adr:0,piece:0,wage:0},
+  stress:{rooms:0,adr:0,piece:0,wage:0},
   edited:false
 };
 const clone=o=>JSON.parse(JSON.stringify(o));
 let S;
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!S.prop||!Array.isArray(S.staff))S=clone(SAMPLE);
-S.stress=Object.assign({occ:0,adr:0,piece:0,wage:0},S.stress||{});
+S.stress=Object.assign({rooms:0,adr:0,piece:0,wage:0},S.stress||{});
+// make sure all 4 required managers are always on the roster
+REQUIRED.slice().reverse().forEach(r=>{
+  if(!S.staff.some(x=>x.req===r.code))S.staff.unshift({req:r.code,name:r.name,type:'salary',rate:r.rate,heads:1,hrs:8,days:5});
+});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 const $=id=>document.getElementById(id);
 const usd0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
 const usd2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
 const n1=v=>(Math.round(v*10)/10).toLocaleString('en-US');
+const int=v=>Math.round(v).toLocaleString('en-US');
 const pct=v=>isFinite(v)?(v*100).toFixed(1)+'%':'–';
 const num=v=>{v=parseFloat(v);return isFinite(v)?v:0};
 const sign=v=>(v>0?'+':'')+v;
 
-/* ---------- core math ---------- */
+/* ---------- core math (one week) ---------- */
+// mods.rooms = % change to rooms cleaned; mods.roomsAbs overrides with an exact weekly count
 function compute(mods){
-  const p=S.prop, m=Object.assign({occ:0,adr:0,piece:0,wage:0},mods||{});
-  const occ=Math.max(0,Math.min(100,num(p.occ)+m.occ));
-  const occRooms=num(p.rooms)*occ/100;
+  const p=S.prop, m=Object.assign({rooms:0,adr:0,piece:0,wage:0},mods||{});
+  const roomsWk=Math.max(0,m.roomsAbs!=null?m.roomsAbs:num(p.roomsWeek)*(1+m.rooms/100));
+  const cap=num(p.rooms)*DAYS;
+  const occ=cap>0?roomsWk/cap:0;
   const adr=num(p.adr)*(1+m.adr/100);
-  const days=Math.max(1,num(p.days));
-  const revenue=(occRooms*adr+num(p.other))*days;
+  const revenue=roomsWk*adr+num(p.other)*DAYS;
   const burden=num(p.burden)/100, target=num(p.target)/100;
   let wages=0,piece=0,fixed=0;
   const rows=S.staff.map(r=>{
     const heads=num(r.heads),hrs=num(r.hrs),d=num(r.days);
-    let cost=0,hourly=0,unitsDay=0,rate=num(r.rate);
+    let cost=0,hourly=0,unitsWk=0,rate=num(r.rate);
     if(r.type==='piece'){
       rate=rate*(1+m.piece/100);
-      unitsDay=r.mode==='occ'?occRooms*num(r.pct)/100:num(r.units);
-      cost=unitsDay*d*rate;
-      hourly=heads>0&&hrs>0?unitsDay*rate/heads/hrs:0;
+      unitsWk=r.mode==='fixed'?num(r.units):roomsWk*num(r.pct)/100;
+      cost=unitsWk*rate;
+      hourly=heads>0&&hrs*d>0?cost/heads/(hrs*d):0;
       piece+=cost;
     }else{
       hourly=(r.type==='salary'?rate/2080:rate)*(1+m.wage/100);
@@ -268,23 +279,24 @@ function compute(mods){
       fixed+=cost;
     }
     wages+=cost;
-    return {cost,hourly,unitsDay,rate};
+    return {cost,hourly,unitsWk,rate};
   });
   const total=wages*(1+burden);
   const allowed=revenue*target;
-  return {occ,occRooms,adr,revenue,wages,burdenAmt:wages*burden,total,allowed,head:allowed-total,
+  return {roomsWk,occ,cap,adr,revenue,wages,burdenAmt:wages*burden,total,allowed,head:allowed-total,
     pct:revenue>0?total/revenue:Infinity,rows,piece,fixed,burden,target};
 }
-function minOcc(mods){
-  for(let o=1;o<=100;o+=0.5){
-    const r=compute(Object.assign({},mods,{occ:o-num(S.prop.occ)}));
-    if(r.pct<=r.target)return o;
+function minRooms(mods){
+  const cap=Math.max(1,num(S.prop.rooms)*DAYS);
+  for(let x=0;x<=cap;x++){
+    const r=compute(Object.assign({},mods,{roomsAbs:x}));
+    if(r.pct<=r.target)return x;
   }
   return null;
 }
 
 /* ---------- property inputs ---------- */
-const PF=['rooms','occ','adr','other','days','target','burden','minwage'];
+const PF=['rooms','roomsWeek','adr','other','target','burden','minwage'];
 PF.forEach(k=>{
   const el=$('p-'+k); el.value=S.prop[k];
   el.addEventListener('input',()=>{S.prop[k]=el.value===''?0:num(el.value);touch();update()});
@@ -298,24 +310,25 @@ function renderStaff(){
   S.staff.forEach((r,i)=>{
     const tr=document.createElement('tr');
     const isP=r.type==='piece';
-    tr.appendChild(cell(`<input class="w-name" id="r${i}-name" aria-label="Position">`));
+    tr.appendChild(cell(`<input class="w-name" id="r${i}-name" aria-label="Position">${r.req?'<div class="req">Required</div>':''}`));
     tr.appendChild(cell(`<select class="w-type" id="r${i}-type" aria-label="Pay type"><option value="piece">Piece</option><option value="hourly">Hourly</option><option value="salary">Salary</option></select>`));
     tr.appendChild(cell(`<input class="w-rate" id="r${i}-rate" type="number" min="0" step="${r.type==='salary'?500:isP?0.05:0.25}" aria-label="Rate"><div class="hint" id="r${i}-hint"></div>`));
-    tr.appendChild(cell(`<input class="w-sm" id="r${i}-heads" type="number" min="0" step="1" aria-label="Heads">`));
+    tr.appendChild(cell(`<input class="w-sm" id="r${i}-heads" type="number" min="${r.req?1:0}" step="1" aria-label="Heads">`));
     tr.appendChild(cell(`<input class="w-sm" id="r${i}-hrs" type="number" min="0" step="0.25" aria-label="Hours per day">`));
-    tr.appendChild(cell(`<input class="w-sm" id="r${i}-days" type="number" min="0" step="1" aria-label="Days">`));
-    tr.appendChild(cell(isP?`<div class="vol w-vol"><select id="r${i}-mode" aria-label="Volume basis"><option value="occ">% occupied</option><option value="fixed">Units/day</option></select><input id="r${i}-vol" type="number" min="0" step="1" aria-label="Volume"></div><div class="hint" id="r${i}-volhint"></div>`:`<span class="hint">—</span>`));
+    tr.appendChild(cell(`<input class="w-sm" id="r${i}-days" type="number" min="0" max="7" step="1" aria-label="Days worked this week">`));
+    tr.appendChild(cell(isP?`<div class="vol w-vol"><select id="r${i}-mode" aria-label="Volume basis"><option value="rooms">% of rooms</option><option value="fixed">Units/week</option></select><input id="r${i}-vol" type="number" min="0" step="1" aria-label="Volume"></div><div class="hint" id="r${i}-volhint"></div>`:`<span class="hint">—</span>`));
     const c=cell(`<span id="r${i}-cost"></span><div class="hint" id="r${i}-sub"></div><div id="r${i}-flag"></div>`);c.className='r cost';tr.appendChild(c);
-    tr.appendChild(cell(`<button class="x" type="button" aria-label="Remove row" data-del="${i}">×</button>`));
+    tr.appendChild(cell(r.req?'':`<button class="x" type="button" aria-label="Remove row" data-del="${i}">×</button>`));
     tb.appendChild(tr);
     const bind=(f,key,isNum)=>{const el=$(`r${i}-${f}`);if(!el)return;el.value=r[key];
-      el.addEventListener('input',()=>{r[key]=isNum?(el.value===''?0:num(el.value)):el.value;touch();update()})};
+      el.addEventListener('input',()=>{let v=isNum?(el.value===''?0:num(el.value)):el.value;if(r.req&&key==='heads'&&v<1)v=1;r[key]=v;touch();update()})};
     bind('name','name',false);bind('rate','rate',true);bind('heads','heads',true);bind('hrs','hrs',true);bind('days','days',true);
     $(`r${i}-type`).value=r.type;
-    $(`r${i}-type`).addEventListener('change',e=>{r.type=e.target.value;if(r.type==='piece'&&!r.mode){r.mode='occ';r.pct=100;r.units=0}touch();renderStaff();update()});
+    $(`r${i}-type`).addEventListener('change',e=>{r.type=e.target.value;if(r.type==='piece'&&!r.mode){r.mode='rooms';r.pct=100;r.units=0}touch();renderStaff();update()});
     if(isP){
+      if(r.mode!=='fixed')r.mode='rooms';
       const mode=$(`r${i}-mode`),vol=$(`r${i}-vol`);
-      mode.value=r.mode||'occ';vol.value=r.mode==='fixed'?r.units:r.pct;
+      mode.value=r.mode;vol.value=r.mode==='fixed'?r.units:r.pct;
       mode.addEventListener('change',()=>{r.mode=mode.value;vol.value=r.mode==='fixed'?r.units:r.pct;touch();update()});
       vol.addEventListener('input',()=>{const v=vol.value===''?0:num(vol.value);if(r.mode==='fixed')r.units=v;else r.pct=v;touch();update()});
     }
@@ -323,16 +336,19 @@ function renderStaff(){
   tb.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{S.staff.splice(+b.dataset.del,1);touch();renderStaff();update()}));
 }
 document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>{
-  const t=b.dataset.add,d=num(S.prop.days)||7;
-  S.staff.push(t==='piece'?{name:'New piece work',type:'piece',rate:5,heads:1,hrs:8,days:d,mode:'occ',pct:100,units:0}
-    :t==='hourly'?{name:'New hourly',type:'hourly',rate:15,heads:1,hrs:8,days:Math.min(d,5)}
-    :{name:'New salary',type:'salary',rate:45000,heads:1,hrs:8,days:Math.min(d,5)});
+  const t=b.dataset.add;
+  S.staff.push(t==='piece'?{name:'New piece work',type:'piece',rate:5,heads:1,hrs:8,days:7,mode:'rooms',pct:100,units:0}
+    :t==='hourly'?{name:'New hourly',type:'hourly',rate:15,heads:1,hrs:8,days:5}
+    :{name:'New salary',type:'salary',rate:45000,heads:1,hrs:8,days:5});
   touch();renderStaff();update();
   const last=document.getElementById(`r${S.staff.length-1}-name`);if(last){last.focus();last.select()}
 }));
 
 /* ---------- stress sliders ---------- */
-const SL={occ:v=>sign(v)+' pts',adr:v=>sign(v)+'%',piece:v=>sign(v)+'%',wage:v=>sign(v)+'%'};
+const SL={
+  rooms:v=>`${sign(v)}% · ${int(num(S.prop.roomsWeek)*(1+v/100))} rooms`,
+  adr:v=>sign(v)+'%',piece:v=>sign(v)+'%',wage:v=>sign(v)+'%'
+};
 Object.keys(SL).forEach(k=>{
   const el=$('s-'+k);el.value=S.stress[k];
   el.addEventListener('input',()=>{S.stress[k]=num(el.value);save();update()});
@@ -348,12 +364,10 @@ function update(){
   const st=S.stress, stressed=Object.values(st).some(v=>v!==0);
   const base=compute(), R=compute(st);
   Object.keys(SL).forEach(k=>$('s-'+k+'-v').textContent=SL[k](st[k]));
-  $('scenarioTag').textContent=stressed?'Stressed scenario':'Base case';
+  $('scenarioTag').textContent=stressed?'Stressed week':'Base week';
 
-  // property derived
-  $('propDerived').innerHTML=`<span>Occupied rooms/day <b>${n1(R.occRooms)}</b></span><span>Room nights <b>${Math.round(R.occRooms*num(S.prop.days)).toLocaleString()}</b></span><span>RevPAR <b>${usd2.format(num(S.prop.rooms)?R.occRooms*R.adr/num(S.prop.rooms):0)}</b></span><span>Labor $ per occupied room <b>${R.occRooms?usd2.format(R.total/(R.occRooms*num(S.prop.days))):'–'}</b></span>`;
+  $('propDerived').innerHTML=`<span>Occupancy <b>${pct(R.occ)}</b>${R.occ>1?' <span class="pill bad">over capacity</span>':''}</span><span>Rooms/day <b>${n1(R.roomsWk/DAYS)}</b></span><span>Room revenue <b>${usd0.format(R.roomsWk*R.adr)}</b></span><span>Labor $ per room cleaned <b>${R.roomsWk?usd2.format(R.total/R.roomsWk):'–'}</b></span>`;
 
-  // rows
   const mw=num(S.prop.minwage);
   S.staff.forEach((r,i)=>{
     const x=R.rows[i]; if(!$(`r${i}-cost`))return;
@@ -361,17 +375,17 @@ function update(){
     $(`r${i}-hint`).textContent=r.type==='salary'?`= ${usd2.format(num(r.rate)/2080)}/hr`:HINT[r.type];
     let sub='',flag='';
     if(r.type==='piece'){
-      sub=`${usd2.format(x.hourly)}/hr each · ${n1(x.unitsDay/(num(r.heads)||1))}/day each`;
-      const vh=$(`r${i}-volhint`); if(vh)vh.textContent=r.mode==='occ'?`= ${n1(x.unitsDay)} units/day`:'fixed units per day';
+      const each=x.unitsWk/(num(r.heads)||1);
+      sub=`${usd2.format(x.hourly)}/hr each · ${int(each)}/wk each`;
+      const vh=$(`r${i}-volhint`); if(vh)vh.textContent=r.mode==='fixed'?'fixed units per week':`= ${int(x.unitsWk)} rooms this week`;
       if(st.piece)sub=`at ${usd2.format(x.rate)}/unit · `+sub;
     }else{
-      sub=`${usd2.format(x.hourly)}/hr · ${n1(num(r.hrs)*num(r.days))} hrs each`;
+      sub=`${usd2.format(x.hourly)}/hr · ${n1(num(r.hrs)*num(r.days))} hrs/wk each`;
     }
     if(mw>0&&num(r.heads)>0&&x.hourly<mw)flag=`<span class="pill bad">below min wage</span>`;
     $(`r${i}-sub`).textContent=sub;$(`r${i}-flag`).innerHTML=flag;
   });
 
-  // scorecard
   const s=statusOf(R.pct,R.target);
   $('o-pct').textContent=pct(R.pct);
   const so=$('o-status');so.className='status s-'+s;
@@ -390,8 +404,9 @@ function update(){
   $('o-headLbl').textContent=R.head>=0?'Room left in budget':'Over budget by';
   const h=$('o-head');h.textContent=usd0.format(Math.abs(R.head));h.className=R.head>=0?'pos':'neg';
 
-  // capacity
   const cap=[];
+  const mgr=S.staff.reduce((a,r,i)=>a+(r.req?R.rows[i].cost:0),0)*(1+R.burden);
+  cap.push(['4 required managers (loaded)',usd0.format(mgr)]);
   const pieceBudget=R.allowed/(1+R.burden)-R.fixed;
   S.staff.forEach((r,i)=>{
     if(r.type!=='piece')return;
@@ -407,19 +422,17 @@ function update(){
     const raise=fixedBudget/R.fixed-1;
     cap.push(['Max raise · hourly & salary',isFinite(raise)?(raise>=0?'+':'')+(raise*100).toFixed(1)+'%':'–']);
   }
-  const mo=minOcc({adr:st.adr,piece:st.piece,wage:st.wage});
-  cap.push(['Lowest occupancy that holds target',mo===null?'not reachable':mo.toFixed(1)+'%']);
+  const mr=minRooms({adr:st.adr,piece:st.piece,wage:st.wage});
+  cap.push(['Fewest rooms/week that holds target',mr===null?'not reachable':int(mr)+' rooms']);
   $('capList').innerHTML=cap.map(([a,b])=>`<div class="cap-item"><span>${esc(a)}</span><strong>${b}</strong></div>`).join('');
 
-  // mix
   const order=S.staff.map((r,i)=>({n:r.name||'(unnamed)',c:R.rows[i].cost,t:r.type})).sort((a,b)=>b.c-a.c);
   $('mix').innerHTML=order.map(o=>{const share=R.wages?o.c/R.wages:0;
     return `<div class="mix-row"><div><div class="lbl">${esc(o.n)}</div><div class="mix-bar"><i style="width:${share*100}%;${o.t==='piece'?'':'opacity:.55'}"></i></div></div><div style="text-align:right">${(share*100).toFixed(0)}%</div></div>`}).join('')
     +`<div class="legend" style="margin-top:4px">Darker bars are piece work.</div>`;
 
-  // compare
   const d=R.pct-base.pct;
-  $('compare').innerHTML=`<span>Base <b>${pct(base.pct)}</b></span><span>Stressed <b>${pct(R.pct)}</b> <span style="color:var(--${d>0.0005?'bad':d<-0.0005?'good':'muted'})">(${d>=0?'+':''}${(d*100).toFixed(1)} pts)</span></span><span>Revenue <b>${usd0.format(R.revenue)}</b></span><span>Total labor <b>${usd0.format(R.total)}</b></span><span>${R.head>=0?'Room left':'Over by'} <b>${usd0.format(Math.abs(R.head))}</b></span>`;
+  $('compare').innerHTML=`<span>Base <b>${pct(base.pct)}</b></span><span>Stressed <b>${pct(R.pct)}</b> <span style="color:var(--${d>0.0005?'bad':d<-0.0005?'good':'muted'})">(${d>=0?'+':''}${(d*100).toFixed(1)} pts)</span></span><span>Rooms <b>${int(R.roomsWk)}</b></span><span>Revenue <b>${usd0.format(R.revenue)}</b></span><span>Total labor <b>${usd0.format(R.total)}</b></span><span>${R.head>=0?'Room left':'Over by'} <b>${usd0.format(Math.abs(R.head))}</b></span>`;
 
   renderMatrix(st);
 }
@@ -427,21 +440,21 @@ function renderMatrix(st){
   const t=$('matrix');
   const firstP=S.staff.find(r=>r.type==='piece');
   const cols=[-20,-10,0,10,20,30,40];
-  const baseOcc=num(S.prop.occ);
-  const curOcc=Math.round(Math.max(0,Math.min(100,baseOcc+st.occ)));
-  let rowsO=[];for(let o=40;o<=95;o+=5)rowsO.push(o);
-  if(!rowsO.includes(curOcc))rowsO.push(curOcc);
-  rowsO=rowsO.filter(o=>o>=0&&o<=100).sort((a,b)=>b-a);
-  let html='<thead><tr><th style="text-align:right">Occupancy</th>'+cols.map(c=>{
+  const baseRooms=num(S.prop.roomsWeek);
+  const steps=[30,20,10,0,-10,-20,-30,-40];
+  if(!steps.includes(st.rooms))steps.push(st.rooms);
+  steps.sort((a,b)=>b-a);
+  const curCol=cols.reduce((a,c)=>Math.abs(c-st.piece)<Math.abs(a-st.piece)?c:a,cols[0]);
+  let html='<thead><tr><th style="text-align:right">Rooms / week</th>'+cols.map(c=>{
     const lbl=firstP?usd2.format(num(firstP.rate)*(1+c/100)):'';
     return `<th>${c>0?'+':''}${c}%<small>${lbl}</small></th>`}).join('')+'</tr></thead><tbody>';
-  rowsO.forEach(o=>{
-    html+=`<tr><th>${o}%${o===curOcc?' ◂':''}</th>`;
+  steps.forEach(k=>{
+    const rooms=baseRooms*(1+k/100), cur=k===st.rooms;
+    html+=`<tr><th>${int(rooms)} <span style="font-weight:400">(${k>0?'+':''}${k}%)</span>${cur?' ◂':''}</th>`;
     cols.forEach(c=>{
-      const r=compute({occ:o-baseOcc,adr:st.adr,wage:st.wage,piece:c});
+      const r=compute({rooms:k,adr:st.adr,wage:st.wage,piece:c});
       const s=statusOf(r.pct,r.target);
-      const isCur=o===curOcc&&c===Math.round(st.piece/10)*10&&Math.abs(st.piece-c)<5;
-      html+=`<td class="c-${s}${isCur?' cur':''}">${pct(r.pct)}</td>`;
+      html+=`<td class="c-${s}${cur&&c===curCol?' cur':''}">${pct(r.pct)}</td>`;
     });
     html+='</tr>';
   });
@@ -451,4 +464,5 @@ function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 
 renderStaff();update();
 })();
+
 </script>
